@@ -34,8 +34,8 @@
 --dtr-white: #fff;
 --dtr-gray: rgba(187,179,158,0.4);
 --dtr-primary: #4A060D;
---dtr-secondary: #c86358;
---dtr-secondary-light: #f5eae6;
+--dtr-secondary: #f5eae6;
+--dtr-secondary-light: #1b1d73;
 /*backgrounds*/
 --dtr-bg-white: var(--dtr-white);
 --dtr-bg-gray: var(--dtr-gray);
@@ -234,7 +234,7 @@ button:hover, .dtr-btn:hover, input[type="submit"]:hover, button[type="submit"]:
 .dtr-sidemenu-scroll { width: 100%; max-width: 300px; display: block; height: 50px; position: fixed; right: 0; top: 0; z-index: 9000; visibility: hidden; -webkit-backface-visibility: hidden; backface-visibility: hidden; -webkit-transform: scale(0); -moz-transform: scale(0); -ms-transform: scale(0); -o-transform: scale(0); transform: scale(0); transform-origin: 100% 0; -webkit-transition: -webkit-transform 0.3s, visibility 0s 0.3s; -moz-transition: -moz-transform 0.3s, visibility 0s 0.3s; transition: transform 0.3s, visibility 0s 0.3s; background-color: #fff; }
 .admin-bar .dtr-navigation-trigger, .admin-bar .dtr-sidemenu-wrapper, .admin-bar .dtr-sidemenu-scroll, .admin-bar .dtr-navigation-close-trigger { margin-top: var(--wpadminbar-height); }
 /*== Vertical menu  Colors ==*/
-.dtr-navigation-trigger span, .dtr-navigation-trigger.menu-is-open span::before, .dtr-navigation-trigger.menu-is-open span::after { background-color: var(--dtr-bg-primary); }
+.dtr-navigation-trigger span, .dtr-navigation-trigger.menu-is-open span::before, .dtr-navigation-trigger.menu-is-open span::after { background-color: white; }
 .dtr-vertical-nav a { color: var(--dtr-text-color-primary); }
 .dtr-vertical-nav a:hover, .dtr-vertical-nav .active { color: var(--dtr-text-color-secondary); }
 .dtr-sidemenu-wrapper::-webkit-scrollbar {
@@ -528,32 +528,105 @@ blockquote { padding: 30px; margin: 0; border-style: solid; border-width: 0 0 0 
 .dtr-pricing--clr-scheme3 .dtr-pricing__btn { background-color: var(--dtr-white); border-color: var(--dtr-white); color: var(--dtr-text-color-primary); }
 .dtr-pricing--clr-scheme3 .dtr-pricing__btn:hover { background-color: var(--dtr-bg-secondary); border-color: var(--dtr-border-color-secondary); color: var(--dtr-white); }
 /*== Custom - Social Widget ==*/
-.dtr-social li { list-style: none; display: inline-block; text-align: center; margin: 0 15px; }
-.text-left .dtr-social li:first-child { margin-left: 0; margin-right: 15px; }
-.text-right .dtr-social li:last-child { margin-left: 15px; margin-right: 0; }
-.dtr-social li a { display: inline-block; font-size: 24px; }
-/*===== social icons =====*/
-.dtr-social a::before, .dtr-social a i { display: inline-block; font-family: 'icomoon'; vertical-align: middle; font-weight: var(--dtr-normal); color: inherit; }
-.dtr-social .dtr-facebook::before { content: "\e912"; }
-.dtr-social .dtr-twitter::before { content: "\e965"; }
-.dtr-social .dtr-pinterest::before { content: "\e93f"; }
-.dtr-social .dtr-google::before { content: "\e91e"; }
-.dtr-social .dtr-linkedin::before { content: "\e930"; }
-.dtr-social .dtr-instagram::before { content: "\e923"; }
-.dtr-social .dtr-behance::before { content: "\e903"; }
-.dtr-social .dtr-skype::before { content: "\e949"; }
-.dtr-social .dtr-vimeo::before { content: "\e96a"; }
-.dtr-social .dtr-mail::before { content: "\e9aa"; }
-.dtr-social .dtr-youtube::before { content: "\e976"; }
-.dtr-social .dtr-flickr::before { content: "\e916"; }
-.dtr-social .dtr-dribbble::before { content: "\e90b"; }
-.dtr-social .dtr-soundcloud::before { content: "\e94c"; }
-.dtr-social .dtr-digg::before { content: "\e90a"; }
-.dtr-social .dtr-yelp::before { content: "\e975"; }
-.dtr-social .dtr-vk::before { content: "\e96c"; }
-.dtr-social .dtr-whatsapp::before { content: "\e96e"; }
-.dtr-social .dtr-telegram::before { content: "\e99f"; }
-.dtr-social a:focus { outline: none; }
+/*== Custom - Social Widget ==*/
+.dtr-social li {
+ list-style: none;
+ display: inline-block;
+ text-align: center;
+ margin: 0 15px;
+}
+.text-left .dtr-social li:first-child {
+ margin-left: 0;
+ margin-right: 15px;
+}
+.text-right .dtr-social li:last-child {
+ margin-left: 15px;
+ margin-right: 0;
+}
+.dtr-social li a {
+ display: inline-block;
+ font-size: 24px;
+ color: #ffffff; /* Set the default icon color to white */
+ transition: color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+/*===== Social icons =====*/
+.dtr-social a::before,
+.dtr-social a i {
+ display: inline-block;
+ font-family: 'icomoon';
+ vertical-align: middle;
+ font-weight: var(--dtr-normal);
+ color: inherit; /* Inherits the white color defined in the parent */
+}
+
+.dtr-social .dtr-facebook::before {
+ content: "\e912";
+}
+.dtr-social .dtr-twitter::before {
+ content: "\e965";
+}
+.dtr-social .dtr-pinterest::before {
+ content: "\e93f";
+}
+.dtr-social .dtr-google::before {
+ content: "\e91e";
+}
+.dtr-social .dtr-linkedin::before {
+ content: "\e930";
+}
+.dtr-social .dtr-instagram::before {
+ content: "\e923";
+}
+.dtr-social .dtr-behance::before {
+ content: "\e903";
+}
+.dtr-social .dtr-skype::before {
+ content: "\e949";
+}
+.dtr-social .dtr-vimeo::before {
+ content: "\e96a";
+}
+.dtr-social .dtr-mail::before {
+ content: "\e9aa";
+}
+.dtr-social .dtr-youtube::before {
+ content: "\e976";
+}
+.dtr-social .dtr-flickr::before {
+ content: "\e916";
+}
+.dtr-social .dtr-dribbble::before {
+ content: "\e90b";
+}
+.dtr-social .dtr-soundcloud::before {
+ content: "\e94c";
+}
+.dtr-social .dtr-digg::before {
+ content: "\e90a";
+}
+.dtr-social .dtr-yelp::before {
+ content: "\e975";
+}
+.dtr-social .dtr-vk::before {
+ content: "\e96c";
+}
+.dtr-social .dtr-whatsapp::before {
+ content: "\e96e";
+}
+.dtr-social .dtr-telegram::before {
+ content: "\e99f";
+}
+
+/* Hover effect: Change color to a different shade if needed */
+.dtr-social li a:hover {
+ color: #1db954; /* Green shade (or change to any other hover color) */
+}
+
+.dtr-social a:focus {
+ outline: none;
+}
+
 /*===== 404 error page =====*/
 .error-404 { text-align: center; }
 .error404 #dtr-main-wrapper { padding-top: 70px; }
