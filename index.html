@@ -113,59 +113,142 @@
                 <div class="container">
                     <div class="row">
 
-                        <!--== first column starts ==-->
+                        <!-- First column starts -->
                         <div class="col-12 col-md-6">
                             <div class="hero-wheel-wrap">
-                                
-                                <!-- heading -->
-                                <h1 style="color: white">Welcome
-                                </h1>
+
+                                <!-- Heading -->
+                                <h1 style="color: white">Welcome</h1>
                             </div>
-                            <!-- spacer -->
+                            <!-- Spacer -->
                             <span class="spacer spacer-20"></span>
 
-                            <!-- hero content starts -->
+                            <!-- Hero content starts -->
                             <div class="hero-text-shrink">
-                                <h6 class="text-color-secondary" style="color: #eeeeee">Success is about empowering others, delivering excellence, and leaving a   meaningful impact that inspires trust, growth, 
-                                    and lasting connections in every endeavor.</h6>
+                                <h6 class="text-color-secondary" style="color: #eeeeee">
+                                    Success is about empowering others, delivering excellence, and leaving a meaningful impact that inspires trust, growth, and lasting connections in every endeavor.
+                                </h6>
                                 <span class="spacer spacer-20"></span>
                                 <span class="spacer spacer-5"></span>
 
-                                <!-- social icons start -->
-                                <!-- <div class="dtr-social-widget text-left">
+                                <!-- Social icons start -->
+                                <div class="dtr-social-widget text-left">
                                     <ul class="dtr-social">
-                                        <li > <a class="dtr-whatsapp" href="#" title="Whatsapp" target="_blank" rel="nofollow" aria-label="Whatsapp"></a></li>
+                                        <li><a class="dtr-whatsapp" href="#" title="Whatsapp" target="_blank" rel="nofollow" aria-label="Whatsapp"></a></li>
                                         <li><a class="dtr-behance" href="#" title="Behance" target="_blank" rel="nofollow" aria-label="Behance"></a></li>
                                         <li><a class="dtr-dribbble" href="#" title="Dribbble" target="_blank" rel="nofollow" aria-label="Dribbble"></a></li>
                                     </ul>
-                                </div> -->
-                                <!-- social icons end -->
+                                </div>
+                                <!-- Social icons end -->
 
                             </div>
-                            <!-- hero content ends -->
+                            <!-- Hero content ends -->
 
                         </div>
-                        <!--== first column ends ==-->
+                        <!-- First column ends -->
 
-                        <!--== second column starts ==-->
-                        <div class="col-12 col-md-6 small-device-top-space">
-
-                            <!-- about starts -->
+                        <!-- Second column starts -->
+                        <div class="image-section"> <!-- Removed Bootstrap column class -->
                             <div class="dtr-about">
                                 <figure class="dtr-about__img">
                                     <img src="assets/images/about-img1.jpg" alt="about image">
                                 </figure>
+                                <div class="slider-controls">
+                                    <button class="slider-prev" aria-label="Previous Image">&lt;</button>
+                                    <button class="slider-next" aria-label="Next Image">&gt;</button>
+                                </div>
                             </div>
-                            
-                            
-                            <!-- about ends -->
-
                         </div>
-                        <!--== second column ends ==-->
+
+
+
+
+                        <!-- Second column ends -->
 
                     </div>
                 </div>
             </section>
+            <style>
+                @media (min-width: 992px) {
+                    .hero-section {
+                        display: flex; /* Flexbox for the entire section */
+                        align-items: center;
+                        justify-content: space-between;
+                    }
+
+                    .hero-section .col-md-6:first-child {
+                        flex: 1; /* Ensure the left section takes its natural width */
+                        z-index: 1; /* Keeps the text above the image if they overlap */
+                    }
+
+                    .image-section {
+                        flex: 1; /* Ensure the right section also takes its natural width */
+                        display: flex;
+                        justify-content: flex-end; /* Align the image to the right */
+                        align-items: center;
+                    }
+
+                    .dtr-about {
+                        width: 100%; /* Allow the container to expand fully */
+                        max-width: 850px; /* Limit the maximum width of the image section */
+                        height: 430px; /* Keep the height fixed */
+                        position: relative;
+                        overflow: hidden;
+                    }
+
+                    .dtr-about__img img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover; /* Ensure the image fills the container */
+                    }
+
+                    .slider-controls {
+                        position: absolute;
+                        bottom: 20px;
+                        right: 20px;
+                        display: flex;
+                        gap: 10px;
+                        z-index: 2; /* Ensure controls are visible above the image */
+                    }
+
+                    .slider-controls button {
+                        background-color: #800000; /* Dark red for the buttons */
+                        color: white;
+                        border: none;
+                        padding: 5px 10px;
+                        cursor: pointer;
+                    }
+
+                    .slider-controls button:hover {
+                        background-color: #b30000; /* Lighter red on hover */
+                    }
+                }
+                }
+                }
+
+
+            </style>
+
+
+             <script>
+                 document.addEventListener("DOMContentLoaded", function () {
+                     const images = ["assets/images/about-img1.jpg", "assets/images/about-img2.jpg", "assets/images/about-img3.jpg"];
+                     const imageElement = document.querySelector(".dtr-about__img img");
+                     let currentIndex = 0;
+
+                     document.querySelector(".slider-prev").addEventListener("click", function () {
+                         currentIndex = (currentIndex === 0) ? images.length - 1 : currentIndex - 1;
+                         imageElement.src = images[currentIndex];
+                     });
+
+                     document.querySelector(".slider-next").addEventListener("click", function () {
+                         currentIndex = (currentIndex === images.length - 1) ? 0 : currentIndex + 1;
+                         imageElement.src = images[currentIndex];
+                     });
+                 });
+
+             </script>
+
             <!--===== hero section ends =====-->
 
 
@@ -220,7 +303,7 @@
                 <div class="container">
                     <div class="row">
                         <!-- Intro text -->
-                        <div class="col-12 text-center mb-4">
+                        <div class="col-12 text-center mb-4" style="margin-top:10px">
                             <h6 class="dtr-counter__info-text" style="color: white;">
                                 Dedicated to empowering organizations with strategic insights, innovative training, and impactful leadership solutions for over two decades.
                             </h6>
@@ -234,7 +317,7 @@
                                     <p>
                                         <span class="dtr-counter__number counting-number" data-from="1" data-to="20" data-speed="1600" >20+</span>
                                     </p>
-                                    <h6 class="dtr-counter__heading" style="color: white; background-color: #003366;">Experience</h6>
+                                    <h6 class="dtr-counter__heading" style="color: white; background-color: #003366;">+ Years Leadership & Consultancy</h6>
                                 </div>
                             </div>
             
@@ -244,7 +327,7 @@
                                     <p>
                                         <span class="dtr-counter__number counting-number" data-from="1" data-to="1000" data-speed="1600">1000+</span>
                                     </p>
-                                    <h6 class="dtr-counter__heading" style="color: white; background-color: #003366;">Best Design Awards</h6>
+                                    <h6 class="dtr-counter__heading" style="color: white; background-color: #003366;">+ Professionals</h6>
                                 </div>
                             </div>
             
@@ -254,19 +337,19 @@
                                     <p>
                                         <span class="dtr-counter__number counting-number" data-from="1" data-to="50" data-speed="1600">50+</span>
                                     </p>
-                                    <h6 class="dtr-counter__heading" style="color: white; background-color: #003366;">Best Design Awards</h6>
+                                    <h6 class="dtr-counter__heading" style="color: white; background-color: #003366;">+ Projects</h6>
                                 </div>
                             </div>
                         </div>
             
                         <!-- Web column layout -->
-                        <div class="col-12 d-none d-md-flex justify-content-around align-items-center text-center dtr-counter-desktop">
+                        <div class="col-12 d-none d-md-flex justify-content-around align-items-center text-center dtr-counter-desktop" style="margin-bottom:30px">
                             <!-- Experience -->
-                            <div class="dtr-counter">
+                            <div class="dtr-counter" >
                                 <p>
                                     <span class="dtr-counter__number counting-number" data-from="1" data-to="20" data-speed="1600">20+</span>
                                 </p>
-                                <h6 class="dtr-counter__heading" style="color: white; background-color: #003366;">Experience</h6>
+                                <h6 class="dtr-counter__heading" style="color: white; background-color: #003366; width:200px">+ Years  Consultancy</h6>
                             </div>
             
                             <!-- 1000 Best Design Awards -->
@@ -274,7 +357,7 @@
                                 <p>
                                     <span class="dtr-counter__number counting-number" data-from="1" data-to="1000" data-speed="1600">1000+</span>
                                 </p>
-                                <h6 class="dtr-counter__heading" style="color: white; background-color: #003366;">Best Design Awards</h6>
+                                <h6 class="dtr-counter__heading" style="color: white; background-color: #003366;">+ Professionals</h6>
                             </div>
             
                             <!-- 50 Best Design Awards -->
@@ -282,7 +365,7 @@
                                 <p>
                                     <span class="dtr-counter__number counting-number" data-from="1" data-to="50" data-speed="1600">50+</span>
                                 </p>
-                                <h6 class="dtr-counter__heading" style="color: white; background-color: #003366;">Best Design Awards</h6>
+                                <h6 class="dtr-counter__heading" style="color: white; background-color: #003366;">+ Projects</h6>
                             </div>
                         </div>
                     </div>
