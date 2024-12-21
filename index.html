@@ -247,12 +247,12 @@
             <!--===== hero section ends =====-->
 
 
-            <section id="about" class="dtr-section padding-y-100">
-                <div class="container">
+            <section id="about" class="dtr-section" style="padding:30px">
+                <div class="container" style="margin-top:20px; margin-bottom:20px">
                     <div class="row">
 
                         <!--== column 1 starts ==-->
-                        <div class="col-12 col-md-6">
+                        <div class="col-12 col-md-6" >
 
                             <!-- about starts -->
                             <div class="dtr-about2">
@@ -268,25 +268,40 @@
                         <!--== column 1 ends ==-->
 
                         <!--== column 2 starts ==-->
-                        <div class="col-12 col-md-6" >
-                            <h2 style="color: #0c0c0c" >Hi There , I am<br>
-                                Gopi Muthumaran</h2>
+                        <div class="col-12 col-md-6 intro-dec">
+                            <h2 style="color: #0c0c0c;" class="intro-title">
+
+                                <div class="desk-intro">
+                                    <span class="line1">Hi There ,<span>I am</span> </span><br>
+                                    <span class="line1"> Gopi Muthumaran</span><br>
+                                </div>
+
+
+                                <div class="mobile-intro">
+                                    <span class="line1">Hi There ,</span><br>
+                                    <span class="line1">I am Gopi</span><br>
+                                    <span class="line1">Muthumaran</span>
+                                </div>
+
+
                             <span class="spacer spacer-20"></span>
-                            <h6 style="color: #131313" >With a passion for leadership and strategic growth, I’ve dedicated my career to empowering individuals and organizations. My work spans corporate training, consultancy, and education, fostering meaningful change and lasting impact.
+                            <h6 style="color: #131313">
+                                With a passion for leadership and strategic growth, I’ve dedicated my career to empowering individuals and organizations. My work spans corporate training, consultancy, and education, fostering meaningful change and lasting impact.
                             </h6>
                             <span class="spacer spacer-20"></span>
-                            <p style="color: #1e1e1e">As a seasoned professional with over two decades of experience, I specialize in driving excellence through strategic management, innovative training, and impactful consultancy. Whether mentoring future leaders or crafting transformative solutions, my focus remains on creating value, inspiring progress, 
-                                and leaving a legacy of trust and collaboration in every endeavor.</p>
-                            <p style="color: #1e1e1e" >I combine expertise in leadership, training, and strategy to empower growth, inspire innovation, and make a difference in every interaction.
+                            <p style="color: #1e1e1e">
+                                As a seasoned professional with over two decades of experience, I specialize in driving excellence through strategic management, innovative training, and impactful consultancy. Whether mentoring future leaders or crafting transformative solutions, my focus remains on creating value, inspiring progress, and leaving a legacy of trust and collaboration in every endeavor.
+                            </p>
+                            <p style="color: #1e1e1e">
+                                I combine expertise in leadership, training, and strategy to empower growth, inspire innovation, and make a difference in every interaction.
                             </p>
                             <span class="spacer spacer-10"></span>
                             <!-- button -->
-                            <a class="dtr-btn" href="#" role="button" style="background-color:#228B22
-                             ">
+                            <a class="dtr-btn" href="#" role="button" style="background-color: #228B22;">
                                 <span class="dtr-btn__text">Contact</span>
-                             
                             </a>
                         </div>
+
                         <!--== column 2 ends ==-->
 
                     </div>
@@ -392,7 +407,7 @@
                         <div class="col-12 col-md-6">
 
                             <!-- box 1 starts -->
-                            <div class="padding-50 bg-color-primary text-color-white wow animate__fadeIn" style="background-color: #003366">
+                            <div class="padding-50 bg-color-primary text-color-white wow animate__fadeIn mobile-bg-1" style="background-color: #003366">
                                 <h5>Work Experience</h5>
                                 <span class="spacer spacer-20"></span>
 
@@ -440,7 +455,7 @@
                             <span class="spacer spacer-section"></span>
 
                             <!-- box 2 starts -->
-                            <div class="padding-50 bg-color-secondary-light" style="background-color: #4E749B">
+                            <div class="padding-50 bg-color-secondary-light mobile-bg-2" style="background-color: #4E749B">
                                 <h5 style = "color:white">Key Abilities</h5>
                                 <span class="spacer spacer-20"></span>
 
@@ -480,7 +495,7 @@
                         <div class="col-12 col-md-6 small-device-top-space" >
 
                             <!-- box 1 starts -->
-                            <div class="padding-50 bg-color-secondary text-color-white wow animate__fadeIn" data-wow-delay=".4s" style="background-color: #4E749B">
+                            <div class="padding-50 bg-color-secondary text-color-white wow animate__fadeIn mobile-bg-3" data-wow-delay=".4s" style="background-color: #4E749B">
                                 <h5>Academic Achievement</h5>
                                 <span class="spacer spacer-20"></span>
 
@@ -518,7 +533,7 @@
                             <span class="spacer spacer-section"></span>
 
                             <!-- box 2 starts -->
-                            <div class="padding-50 bg-color-secondary text-color-white wow animate__fadeIn" data-wow-delay=".4s" style="background-color:#003366">
+                            <div class="padding-50 bg-color-secondary text-color-white wow animate__fadeIn mobile-bg-4" data-wow-delay=".4s" style="background-color:#003366">
                                 <h5>Technical Skills</h5>
                                 <span class="spacer spacer-30"></span>
 
@@ -568,6 +583,50 @@
                     </div>
                 </div>
             </section>
+
+            <style>
+                /* Default styling */
+                .bg-color-primary {
+                    background-color: #003366;
+                }
+
+                .bg-color-secondary-light {
+                    background-color: #4E749B;
+                }
+                .mobile-intro{
+                    display: none;
+                }
+
+                /* Mobile-specific styling */
+                @media (max-width: 768px) {
+                    .mobile-bg-1 {
+                        background-color: #003366 !important;
+                    }
+                    .mobile-bg-2 {
+                        background-color: #4E749B !important;
+                    }
+                    .mobile-bg-3 {
+                        background-color: #003366 !important;
+                    }
+                    .mobile-bg-4 {
+                        background-color: #4E749B !important;
+                    }
+                    .intro-title{
+                        margin-top:25px;
+
+                    }
+                    .desk-intro{
+                        display: none;
+                    }
+                    .mobile-intro{
+                        display: block;
+                    }
+
+                }
+
+
+            </style>
+
             <!--===== resume section ends =====-->
            
 
@@ -595,7 +654,7 @@
                         <div class="col-12 col-md-3">
 
                             <!-- client box starts -->
-                            <div class="dtr-client-box" style="background-color: #003366;">
+                            <div class="dtr-client-box mobile-bg-4 " style="background-color: #003366;">
                                 <div class="dtr-client-box__content">
                                     <img src="assets/images/client-1.png" alt="client-1">
                                 </div>
@@ -608,7 +667,7 @@
                             <!-- client box ends -->
 
                             <!-- client box starts -->
-                            <div class="dtr-client-box dtr-client-box--clr-scheme2" style="background-color:#4E749B;">
+                            <div class="dtr-client-box dtr-client-box--clr-scheme2 mobile-bg-3" style="background-color:#4E749B;">
                                 <div class="dtr-client-box__content">
                                     <img src="assets/images/client-5.png" alt="client-5">
                                 </div>
@@ -627,7 +686,7 @@
                         <div class="col-12 col-md-3">
 
                             <!-- client box starts -->
-                            <div class="dtr-client-box dtr-client-box--clr-scheme2" style="background-color:#4E749B;">
+                            <div class="dtr-client-box dtr-client-box--clr-scheme2 mobile-bg-4" style="background-color:#4E749B;">
                                 <div class="dtr-client-box__content">
                                     <img src="assets/images/client-2.png" alt="client-2">
                                 </div>
@@ -640,7 +699,7 @@
                             <!-- client box ends -->
 
                             <!-- client box starts -->
-                            <div class="dtr-client-box" style="background-color:#003366;">
+                            <div class="dtr-client-box mobile-bg-3" style="background-color:#003366;">
                                 <div class="dtr-client-box__content">
                                     <img src="assets/images/client-4.png" alt="client-4">
                                 </div>
@@ -659,7 +718,7 @@
                         <div class="col-12 col-md-3">
 
                             <!-- client box starts -->
-                            <div class="dtr-client-box" style="background-color: #003366;">
+                            <div class="dtr-client-box mobile-bg-4" style="background-color: #003366;">
                                 <div class="dtr-client-box__content">
                                     <img src="assets/images/client-6.png" alt="client-6">
                                 </div>
@@ -672,7 +731,7 @@
                             <!-- client box ends -->
 
                             <!-- client box starts -->
-                            <div class="dtr-client-box dtr-client-box--clr-scheme2" style="background-color: #4E749B;">
+                            <div class="dtr-client-box dtr-client-box--clr-scheme2 mobile-bg-3" style="background-color: #4E749B;">
                                 <div class="dtr-client-box__content">
                                     <img src="assets/images/client-3.png" alt="client-3">
                                 </div>
@@ -691,7 +750,7 @@
                         <div class="col-12 col-md-3">
 
                             <!-- client box starts -->
-                            <div class="dtr-client-box dtr-client-box--clr-scheme2" style="background-color: #4E749B;">
+                            <div class="dtr-client-box dtr-client-box--clr-scheme2 mobile-bg-4" style="background-color: #4E749B;">
                                 <div class="dtr-client-box__content">
                                     <img src="assets/images/client-7.png" alt="client-7">
                                 </div>
@@ -704,7 +763,7 @@
                             <!-- client box ends -->
 
                             <!-- client box starts -->
-                            <div class="dtr-client-box" style="background-color:#003366;">
+                            <div class="dtr-client-box mobile-bg-3" style="background-color:#003366;">
                                 <div class="dtr-client-box__content">
                                     <img src="assets/images/client-8.png" alt="client-8">
                                 </div>
@@ -731,7 +790,7 @@
                 <!--== intro starts ==-->
                 <div class="container" style="background-color: #003366;">
                     <div class="dtr-intro--spaced-col" style="background-color: #003366;">
-                        <h2 class="dtr-intro__heading" style="color: white;">My Works</h2>
+                        <h2 class="dtr-intro__heading" style="color: white;">Gallery</h2>
                         <p><a class="dtr-btn" href="#about" role="button" style="background-color: #228B22;"><span class="dtr-btn__text">View Portfolio</span></a></p>
                     </div>
                 </div>
@@ -744,10 +803,10 @@
                 <div class="dtr-filter-nav-wrapper">
                     <ul class="dtr-filter-nav clearfix">
                         <li><a class="dtr-filter-all active" data-filter="*" href="#" style="color: white;">All</a></li>
-                        <li><a data-filter=".branding" href="#" style="color: white;">Branding</a></li>
-                        <li><a data-filter=".creative" href="#" style="color: white;">Creative</a></li>
-                        <li><a data-filter=".marketing" href="#" style="color: white;">Marketing</a></li>
-                        <li><a data-filter=".web" href="#" style="color: white;">Web</a></li>
+                        <li><a data-filter=".branding" href="#" style="color: white;">Cate1</a></li>
+                        <li><a data-filter=".creative" href="#" style="color: white;">Cate2</a></li>
+<!--                        <li><a data-filter=".marketing" href="#" style="color: white;">Marketing</a></li>-->
+<!--                        <li><a data-filter=".web" href="#" style="color: white;">Web</a></li>-->
                     </ul>
                 </div>
                 <!--== portfolio nav ends ==-->
@@ -1078,7 +1137,7 @@
                         <div class="col-12">
                             <div class="dtr-intro--spaced-col">
                                 <h2 class="dtr-intro__heading" style="color: white;">Events</h2>
-                                <p><a class="dtr-btn" href="#" role="button" style="background-color: #228B22;"><span class="dtr-btn__text">View More</span></a></p>
+                                <p><a class="dtr-btn" href="Events.html" role="button" style="background-color: #228B22;"><span class="dtr-btn__text">View More</span></a></p>
                             </div>
                         </div>
                         <!--== intro ends ==-->
@@ -1176,7 +1235,7 @@
                         <div class="col-12">
                             <div class="dtr-intro--spaced-col">
                                 <h2 class="dtr-intro__heading" style="color: black;">Recent Articles</h2>
-                                <p><a class="dtr-btn" href="#" role="button" style="background-color: #228B22;"><span class="dtr-btn__text">View More</span></a></p>
+                                <p><a class="dtr-btn" href="Articles.html" role="button" style="background-color: #228B22;"><span class="dtr-btn__text">View More</span></a></p>
                             </div>
                         </div>
                         <!--== intro ends ==-->
