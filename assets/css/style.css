@@ -376,9 +376,9 @@ blockquote { padding: 30px; margin: 0; border-style: solid; border-width: 0 0 0 
 /*===== counter =====*/
 .dtr-counter__info-text { margin-top: 35px; }
 .dtr-counter { position: relative; display: block; min-width: 200px; text-align: center; }
-.dtr-counter__number { font-size: 180px; line-height: 1em; font-weight: var(--dtr-font-weight-bold); margin: 0; vertical-align: middle; color: var(--dtr-text-color-secondary); }
+.dtr-counter__number { font-size: 125px; line-height: 1em; font-weight: var(--dtr-font-weight-bold); margin: 0; vertical-align: middle; color: var(--dtr-text-color-secondary); }
 .dtr-counter__heading { display: inline-block; width: 100%; position: absolute; top: 50%; left: 0; margin-bottom: 0; padding: 5px 10px; -webkit-transform: translateY(-45%); transform: translateY(-45%); box-sizing: border-box; text-align: center; font-size: 15px; background-color: var(--dtr-bg-secondary-light); color: var(--dtr-text-color-on-secondary-light); }
-.dtr-counter--small .dtr-counter__number { font-size: 8em; }
+.dtr-counter--small .dtr-counter__number { font-size: 7em; }
 /*===== timeline =====*/
 .dtr-timeline__highlight { display: inline-block; padding: 2px 15px; margin-bottom: 15px; background-color: var(--dtr-bg-secondary); color: var(--dtr-text-color-on-secondary); }
 .dtr-timeline__heading { margin-bottom: 10px; }
