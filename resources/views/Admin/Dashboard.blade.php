@@ -178,7 +178,7 @@
                                  data-bs-target="#addRowModal"
                                  >
                               <i class="fa fa-plus"></i>
-                              Add Subject
+                              Add Event
                               </button>
                            </div>
                         </div>
