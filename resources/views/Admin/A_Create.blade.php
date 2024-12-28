@@ -6,30 +6,32 @@
       <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
 
       <!-- Fonts and icons -->
-      <script src="./assets-dash/js/plugin/webfont/webfont.min.js"></script>
-      <script>
-         WebFont.load({
-           google: { families: ["Public Sans:300,400,500,600,700"] },
-           custom: {
-             families: [
-               "Font Awesome 5 Solid",
-               "Font Awesome 5 Regular",
-               "Font Awesome 5 Brands",
-               "simple-line-icons",
-             ],
-             urls: ["./assets-dash/css/fonts.min.css"],
-           },
-           active: function () {
-             sessionStorage.fonts = true;
-           },
-         });
-      </script>
+      <script src="{{ asset('assets-dash/js/plugin/webfont/webfont.min.js') }}"></script>
+        <script>
+            WebFont.load({
+                google: { families: ["Public Sans:300,400,500,600,700"] },
+                custom: {
+                    families: [
+                        "Font Awesome 5 Solid",
+                        "Font Awesome 5 Regular",
+                        "Font Awesome 5 Brands",
+                        "simple-line-icons",
+                    ],
+                    urls: ["{{ asset('assets-dash/css/fonts.min.css') }}"],
+                },
+                active: function () {
+                    sessionStorage.fonts = true;
+                },
+            });
+        </script>
 
-      <!-- CSS Files -->
-      <link rel="stylesheet" href="./assets-dash/css/bootstrap.min.css" />
-      <link rel="stylesheet" href="./assets-dash/css/plugins.min.css" />
-      <link rel="stylesheet" href="./assets-dash/css/kaiadmin.min.css" />
-      <link rel="stylesheet" href="./assets-dash/css/demo.css" />
+        <!-- CSS Files -->
+        <link rel="stylesheet" href="{{ asset('assets-dash/css/bootstrap.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('assets-dash/css/plugins.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('assets-dash/css/kaiadmin.min.css') }}" />
+
+        <!-- CSS Just for demo purpose, don't include it in your project -->
+        <link rel="stylesheet" href="{{ asset('assets-dash/css/demo.css') }}" />
 
       <!-- Custom Styles for Image Preview -->
       <style>
@@ -99,7 +101,7 @@
          <div class="sidebar" data-background-color="dark">
             <div class="sidebar-logo">
                <div class="logo-header" data-background-color="dark">
-                  <a href="{{route('dashboard-home')}}" class="logo">
+                  <a href="{{route('Dashboard-Article')}}" class="logo">
                      <p class="navbar-brand" style="color:white;">Gopi</p>
                   </a>
                   <div class="nav-toggle">
@@ -123,7 +125,7 @@
                <!-- Header content remains the same -->
                <div class="main-header-logo">
                   <div class="logo-header" data-background-color="dark">
-                     <a href="{{route('dashboard-home')}}" class="logo">
+                     <a href="{{route('Dashboard-Article')}}" class="logo">
                         <img src="./assets-dash/img/kaiadmin/logo_light.svg" alt="navbar brand" class="navbar-brand" height="20" />
                      </a>
                      <div class="nav-toggle">
@@ -168,7 +170,7 @@
                      <h3 class="fw-bold mb-3">Create Article</h3>
                      <ul class="breadcrumbs mb-3">
                         <li class="nav-home">
-                           <a href="{{route('dashboard-home')}}">
+                           <a href="{{route('Dashboard-Article')}}">
                               <i class="icon-home"></i>
                            </a>
                         </li>

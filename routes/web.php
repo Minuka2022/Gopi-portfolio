@@ -23,5 +23,5 @@ Route::get('/dashboard/event' , [EventController::class, 'index'])->name('Dashbo
 
 
 //Gallery managment
-Route::get('/dashboard/gallery' , [EventController::class, 'index'])->name('Dashboard-Gallery');
+Route::get('/dashboard/gallery' , [Gallery::class, 'index'])->name('Dashboard-Gallery');
 
