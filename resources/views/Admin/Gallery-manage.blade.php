@@ -1,73 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-      <title>Dash</title>
-      <meta
-         content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
-         name="viewport"
-         />
-      <!-- Fonts and icons -->
-      <script src="./assets-dash/js/plugin/webfont/webfont.min.js"></script>
-      <script>
-         WebFont.load({
-           google: { families: ["Public Sans:300,400,500,600,700"] },
-           custom: {
-             families: [
-               "Font Awesome 5 Solid",
-               "Font Awesome 5 Regular",
-               "Font Awesome 5 Brands",
-               "simple-line-icons",
-             ],
-             urls: ["./assets-dash/css/fonts.min.css"],
-           },
-           active: function () {
-             sessionStorage.fonts = true;
-           },
-         });
-      </script>
-      <!-- CSS Files -->
-      <link rel="stylesheet" href="./assets-dash/css/bootstrap.min.css" />
-      <link rel="stylesheet" href="./assets-dash/css/plugins.min.css" />
-      <link rel="stylesheet" href="./assets-dash/css/kaiadmin.min.css" />
-      <!-- CSS Just for demo purpose, don't include it in your project -->
-      <link rel="stylesheet" href="./assets-dash/css/demo.css" />
-   </head>
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Dash</title>
+        <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
+
+        <!-- Fonts and icons -->
+        <script src="{{ asset('assets-dash/js/plugin/webfont/webfont.min.js') }}"></script>
+        <script>
+            WebFont.load({
+                google: { families: ["Public Sans:300,400,500,600,700"] },
+                custom: {
+                    families: [
+                        "Font Awesome 5 Solid",
+                        "Font Awesome 5 Regular",
+                        "Font Awesome 5 Brands",
+                        "simple-line-icons",
+                    ],
+                    urls: ["{{ asset('assets-dash/css/fonts.min.css') }}"],
+                },
+                active: function () {
+                    sessionStorage.fonts = true;
+                },
+            });
+        </script>
+
+        <!-- CSS Files -->
+        <link rel="stylesheet" href="{{ asset('assets-dash/css/bootstrap.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('assets-dash/css/plugins.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('assets-dash/css/kaiadmin.min.css') }}" />
+
+        <!-- CSS Just for demo purpose, don't include it in your project -->
+        <link rel="stylesheet" href="{{ asset('assets-dash/css/demo.css') }}" />
+    </head>
+
+
    <body>
       <div class="wrapper">
          <!-- Sidebar -->
-         <div class="sidebar" data-background-color="dark">
-            <div class="sidebar-logo">
-               <!-- Logo Header -->
-               <div class="logo-header" data-background-color="dark">
-                  <a href="{{route('dashboard-home')}}" class="logo">
-
-                     <p class="navbar-brand" style="color:white;">Gopi</p>
-                  </a>
-
-                  <div class="nav-toggle">
-                     <button class="btn btn-toggle toggle-sidebar">
-                     <i class="gg-menu-right"></i>
-                     </button>
-                     <button class="btn btn-toggle sidenav-toggler">
-                     <i class="gg-menu-left"></i>
-                     </button>
-                  </div>
-                  <button class="topbar-toggler more">
-                  <i class="gg-more-vertical-alt"></i>
-                  </button>
-               </div>
-               <!-- End Logo Header -->
-            </div>
-            @include('partials.sidebar')
-         </div>
+         @include('partials.sidebar')
          <!-- End Sidebar -->
          <div class="main-panel">
             <div class="main-header">
                <div class="main-header-logo">
                   <!-- Logo Header -->
                   <div class="logo-header" data-background-color="dark">
-                     <a href="{{route('dashboard-home')}}" class="logo">
+                     <a href="{{route('Dashboard-Article')}}" class="logo">
                      <img
                         src="./assets-dash/img/kaiadmin/logo_light.svg"
                         alt="navbar brand"
@@ -152,7 +130,7 @@
             <div class="container">
                <div class="page-inner">
                   <div class="page-header">
-                     <h3 class="fw-bold mb-3">Subjects</h3>
+                     <h3 class="fw-bold mb-3">Manage Gallery</h3>
                      <ul class="breadcrumbs mb-3">
                         <li class="nav-home">
                            <a href="{{route('dashboard-home')}}">
