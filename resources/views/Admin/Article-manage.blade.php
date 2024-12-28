@@ -151,8 +151,8 @@
                               <button
                                  class="btn btn-primary btn-round ms-auto"
                                   onclick="window.location.href='{{ route('Dashboard-Create-Article') }}'"
-
                                  >
+
                               <i class="fa fa-plus"></i>
 
                                 Add Event
