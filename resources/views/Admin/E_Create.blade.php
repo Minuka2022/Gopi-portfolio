@@ -2,7 +2,7 @@
 <html lang="en">
    <head>
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-      <title>Create Article</title>
+      <title>Create Event</title>
       <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
 
       <!-- Fonts and icons -->
@@ -45,20 +45,28 @@
         }
 
         .image-preview {
-            width: 100px;
-            height: 100px;
+            width: 110px;
+            height: 110px;
             background: #dee2e6;
             position: relative;
             border-radius: 4px;
             transition: opacity 0.3s ease;
             opacity: 1;
+            overflow: hidden;
+        }
+
+        .image-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
         }
 
         .remove-btn {
             position: absolute;
-            top: -8px;
-            right: -8px;
-            background: rgb(116, 115, 115);
+            top: -1px;
+            right: -1px;
+            background: rgb(103, 103, 103);
             color: white;
             width: 20px;
             height: 20px;
@@ -68,11 +76,21 @@
             justify-content: center;
             cursor: pointer;
             font-size: 16px;
+            z-index: 1;
+        }
+
+        .remove-btn:hover {
+            background: rgba(0, 0, 0, 0.7);
         }
 
         .gap-2 { gap: 0.5rem !important; }
         .gap-3 { gap: 1rem !important; }
         .gap-4 { gap: 1.5rem !important; }
+
+        /* Added styles for the file input */
+        .image-input {
+            display: none;
+        }
       </style>
    </head>
    <body>
@@ -147,7 +165,7 @@
             <div class="container">
                <div class="page-inner">
                   <div class="page-header">
-                     <h3 class="fw-bold mb-3">Create Article</h3>
+                     <h3 class="fw-bold mb-3">Create Event</h3>
                      <ul class="breadcrumbs mb-3">
                         <li class="nav-home">
                            <a href="{{route('dashboard-home')}}">
@@ -158,7 +176,7 @@
                            <i class="icon-arrow-right"></i>
                         </li>
                         <li class="nav-item">
-                           <a href="#">Create Article</a>
+                           <a href="#">Create Event</a>
                         </li>
                      </ul>
                   </div>
@@ -180,21 +198,47 @@
                               <div class="add-images-section mb-4">
                                  <div class="d-flex flex-wrap gap-3">
                                     <div class="d-flex align-items-center">
-                                       <button class="btn btn-primary btn-round ms-auto" data-bs-toggle="modal" data-bs-target="#addRowModal">
-                                          <i class="fa"></i>
-                                          Add Images
-                                       </button>
+                                        <button class="btn btn-primary btn-round ms-auto" data-bs-toggle="modal" data-bs-target="#addImageModal">
+                                            <i class="fa"></i>
+                                            Add Images
+                                        </button>
                                     </div>
-                                    <div class="d-flex flex-wrap gap-4">
-                                       <div class="image-preview">
-                                          <span class="remove-btn">×</span>
-                                       </div>
-                                       <div class="image-preview">
-                                          <span class="remove-btn">×</span>
-                                       </div>
-                                       <div class="image-preview">
-                                          <span class="remove-btn">×</span>
-                                       </div>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="addImageModal" tabindex="-1" aria-labelledby="addImageModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="addImageModalLabel">Choose Images</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form id="imageForm">
+                                                        <div class="mb-3">
+                                                            <label for="imageInput" class="form-label">Select Images</label>
+                                                            <input type="file" class="form-control" id="imageInput" accept="image/*" required>
+                                                            <div id="fileError" class="text-danger mt-2" style="display: none;">Please select a valid image file (jpg, png, gif).</div>
+                                                        </div>
+                                                        <button type="submit" class="btn btn-primary">Upload</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex flex-wrap gap-4" id="imagePreviewContainer">
+                                        <div class="image-preview">
+                                            <img src="/assets/images/post-img9-600x600.jpg" alt="Event image">
+                                            <span class="remove-btn">×</span>
+                                        </div>
+                                        <div class="image-preview">
+                                            <img src="/assets/images/post-img9-600x600.jpg" alt="Event image">
+                                            <span class="remove-btn">×</span>
+                                        </div>
+                                        <div class="image-preview">
+                                            <img src="/assets/images/post-img9-600x600.jpg" alt="Event image">
+                                            <span class="remove-btn">×</span>
+                                        </div>
                                     </div>
                                  </div>
                               </div>
@@ -260,6 +304,24 @@
                  });
              });
          });
+
+         document.getElementById('imageForm').addEventListener('submit', function (e) {
+            e.preventDefault(); // Prevent default form submission
+
+            const fileInput = document.getElementById('imageInput');
+            const fileError = document.getElementById('fileError');
+            const file = fileInput.files[0];
+
+            // Check if a file is selected and its type
+            if (file && file.type.match('image.*')) {
+                alert('Image uploaded successfully!');
+                fileError.style.display = 'none';
+                // You can handle the file upload logic here
+            } else {
+                fileError.style.display = 'block';
+            }
+        });
+
       </script>
    </body>
 </html>

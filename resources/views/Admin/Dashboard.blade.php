@@ -175,8 +175,7 @@
                               <button
                                  class="btn btn-primary btn-round ms-auto"
                                  data-bs-toggle="modal"
-                                 data-bs-target="#addRowModal"
-                                 >
+                                 data-bs-target="#addRowModal">
                               <i class="fa fa-plus"></i>
                               Add Event
                               </button>
