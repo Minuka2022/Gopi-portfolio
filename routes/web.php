@@ -9,3 +9,4 @@ Route::get('/', function () {
 Route::get('/dashboard' , function () {
     return view('Admin.Dashboard');
 })->name('dashboard-home');
+
