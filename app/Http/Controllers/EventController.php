@@ -11,4 +11,9 @@ class EventController extends Controller
     public function index () {
         return view('Admin.Event-manage');
     }
+
+
+    public function create(){
+        return view('Admin.E_Create');
+    }
 }

@@ -150,11 +150,13 @@
                               <h4 class="card-title">Manage Subjects</h4>
                               <button
                                  class="btn btn-primary btn-round ms-auto"
-                                 data-bs-toggle="modal"
-                                 data-bs-target="#addRowModal"
+                                  onclick="window.location.href='{{ route('Dashboard-Create-Article') }}'"
+
                                  >
                               <i class="fa fa-plus"></i>
-                              Add Event
+
+                                Add Event
+
                               </button>
                            </div>
                         </div>
