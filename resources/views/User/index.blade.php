@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="format-detection" content="telephone=no">
-    <title>Copr - HTML Template</title>
+    <title>Gopi Muthumaran</title>
     <meta name="author" content="tansh">
     <meta name="description" content="HTMLTemplate">
     <meta name="keywords" content="portfolio, personal">
@@ -83,18 +83,16 @@
                 <!-- menu links starts -->
                 <ul class="dtr-nav dtr-main-nav dtr-vertical-nav">
                     <li class="menu-item menu-item-has-children"> <a class="nav-link" href="#" >Home</a>
-                        <ul class="sub-menu">
-                            <li><a href="index.html" class="nav-link" style="color: black;">Home v1</a></li>
-                            <li><a href="home-2.html" class="nav-link" style="color: black;">Home v2</a></li>
-                        </ul>
+
                     </li>
-                    <li class="menu-item"><a href="#services" class="nav-link" style="color: black;">Services</a></li>
-                    <li class="menu-item"><a href="#works" class="nav-link" style="color: black;">Works</a></li>
-                    <li class="menu-item"><a href="#about" class="nav-link" style="color: black;">About Me</a></li>
-                    <li class="menu-item"><a href="#testimonial" class="nav-link" style="color: black;">Testimonials</a></li>
-                    <li class="menu-item"><a href="#pricing" class="nav-link" style="color: black;">Plans &#038; Pricing</a></li>
-                    <li class="menu-item"><a href="#blog" class="nav-link" style="color: black;">Blog</a></li>
-                    <li class="menu-item"><a href="#contact" class="nav-link" style="color: black;">Contact Me</a></li>
+                    <li class="menu-item"><a href="#aboutme" class="nav-link" style="color: black;">About me</a></li>
+                    <li class="menu-item"><a href="#acheivment" class="nav-link" style="color: black;">Acheivment</a></li>
+                    <li class="menu-item"><a href="#client" class="nav-link" style="color: black;">My Client</a></li>
+                    <li class="menu-item"><a href="#Gallery" class="nav-link" style="color: black;">Gallery</a></li>
+                    <li class="menu-item"><a href="#Testimonials" class="nav-link" style="color: black;">Testimonials</a></li>
+                    <li class="menu-item"><a href="#Events" class="nav-link" style="color: black;">Events</a></li>
+                    <li class="menu-item"><a href="#Articles" class="nav-link" style="color: black;">Articles</a></li>
+                    <li class="menu-item"><a href="#Contact" class="nav-link" style="color: black;">Contact</a></li>
                 </ul>
             </div>
         </header>
@@ -247,7 +245,7 @@
             <!--===== hero section ends =====-->
 
 
-            <section id="about" class="dtr-section" style="padding:30px">
+            <section id="aboutme" class="dtr-section" style="padding:30px">
                 <div class="container" style="margin-top:20px; margin-bottom:20px">
                     <div class="row">
 
@@ -387,7 +385,7 @@
 
 
                 <!--===== resume section starts =====-->
-            <section class="dtr-section padding-y-100 ">
+            <section class="dtr-section padding-y-100 " id="acheivment">
                 <div class="container">
                     <div class="row">
 
@@ -631,7 +629,7 @@
 
 
             <!--===== client section starts =====-->
-            <section class="dtr-section padding-y-100 ">
+            <section class="dtr-section padding-y-100 " id="client">
                 <div class="container">
 
                     <!--== intro starts ==-->
@@ -785,7 +783,7 @@
 
 
             <!--===== works section starts =====-->
-            <section id="works" class="dtr-section padding-top-100 bg-color-secondary-light" style="background-color: #003366;">
+            <section id="Gallery" class="dtr-section padding-top-100 bg-color-secondary-light" style="background-color: #003366;">
 
                 <!--== intro starts ==-->
                 <div class="container" style="background-color: #003366;">
@@ -941,7 +939,7 @@
 
 
             <!--===== testimonial section starts =====-->
-            <section id="testimonial" class="dtr-section bg-color-secondary-light padding-y-100" style="background-color: white">
+            <section id="Testimonials" class="dtr-section bg-color-secondary-light padding-y-100" style="background-color: white">
                 <div class="container">
                     <div class="row">
 
@@ -1129,7 +1127,7 @@
             <!--===== pricing section ends =====-->
 
             <!--===== blog section starts =====-->
-            <section id="blog" class="dtr-section bg-color-secondary-light padding-y-100" style="background-color: #003366;">
+            <section id="Events" class="dtr-section bg-color-secondary-light padding-y-100" style="background-color: #003366;">
                 <div class="container">
                     <div class="row">
 
@@ -1227,7 +1225,7 @@
                 </div>
             </section>
             <!--===== blog section ends =====-->
-            <section id="blog1" class="dtr-section bg-color-secondary-light padding-y-100" style="background-color: white">
+            <section id="Articles" class="dtr-section bg-color-secondary-light padding-y-100" style="background-color: white">
                 <div class="container">
                     <div class="row">
 
@@ -1327,7 +1325,7 @@
 
 
             <!--===== contact section starts =====-->
-            <section id="contact" class="dtr-section bg-color-secondary-light padding-y-100" style="background-color: #003366;">
+            <section id="Contact" class="dtr-section bg-color-secondary-light padding-y-100" style="background-color: #003366;">
                 <div class="container" style="color: white;">
                     <div class="row">
 
