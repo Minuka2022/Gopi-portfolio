@@ -66,63 +66,7 @@
                   <!-- End Logo Header -->
                </div>
                <!-- Navbar Header -->
-               <nav
-                  class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bottom"
-                  >
-                  <div class="container-fluid">
-                     <ul class="navbar-nav topbar-nav ms-md-auto align-items-center">
-                        <li class="nav-item topbar-user dropdown hidden-caret">
-                           <a
-                              class="dropdown-toggle profile-pic"
-                              data-bs-toggle="dropdown"
-                              href="#"
-                              aria-expanded="false"
-                              >
-                              <div class="avatar-sm">
-                                 <img
-                                    src="assets-dash/img/profile.jpg"
-                                    alt="..."
-                                    class="avatar-img rounded-circle"
-                                    />
-                              </div>
-                              <span class="profile-username">
-                              <span class="op-7">Hi,</span>
-                              <span class="fw-bold">Minuka</span>
-                              </span>
-                           </a>
-                           </a>
-                           <ul class="dropdown-menu dropdown-user animated fadeIn">
-                              <div class="dropdown-user-scroll scrollbar-outer">
-                                 <li>
-                                    <div class="user-box">
-                                       <div class="avatar-lg">
-                                          <imgd
-                                             src="assets-dash/img/profile.jpg"
-                                             alt="image profile"
-                                             class="avatar-img rounded"
-                                             />
-                                       </div>
-                                       <div class="u-text">
-                                          <h4>Hizrian</h4>
-                                          <p class="text-muted">hello@example.com</p>
-                                          <a
-                                             href="/forms/Profile.php"
-                                             class="btn btn-xs btn-secondary btn-sm"
-                                             >View Profile</a
-                                             >
-                                       </div>
-                                    </div>
-                                 </li>
-                                 <li>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="logout.php">Logout</a>
-                                 </li>
-                              </div>
-                           </ul>
-                        </li>
-                     </ul>
-                  </div>
-               </nav>
+
                <!-- End Navbar -->
             </div>
             <div class="container">
@@ -139,7 +83,7 @@
                            <i class="icon-arrow-right"></i>
                         </li>
                         <li class="nav-item">
-                           <a href="#">Manage Subjects</a>
+                           <a href="#">Manage Article</a>
                         </li>
                      </ul>
                   </div>
@@ -147,7 +91,7 @@
                      <div class="card">
                         <div class="card-header">
                            <div class="d-flex align-items-center">
-                              <h4 class="card-title">Manage Subjects</h4>
+
                               <button
                                  class="btn btn-primary btn-round ms-auto"
                                   onclick="window.location.href='{{ route('Dashboard-Create-Article') }}'"
@@ -155,7 +99,7 @@
 
                               <i class="fa fa-plus"></i>
 
-                                Add Event
+                                Add Article
 
                               </button>
                            </div>
@@ -165,9 +109,9 @@
                               <table id="multi-filter-select" class="display table table-striped table-hover">
                                  <thead>
                                     <tr>
-                                       <th>Grade</th>
-                                       <th>Subject</th>
-                                       <th>Papers</th>
+                                       <th>No</th>
+                                       <th>Name</th>
+                                       <th>Created On</th>
                                        <th style="width: 10%">Action</th>
                                     </tr>
                                  </thead>
