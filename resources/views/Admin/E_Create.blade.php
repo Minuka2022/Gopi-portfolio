@@ -101,7 +101,7 @@
          <div class="sidebar" data-background-color="dark">
             <div class="sidebar-logo">
                <div class="logo-header" data-background-color="dark">
-                  <a href="{{route('dashboard-home')}}" class="logo">
+                  <a href="{{route('Dashboard-Article')}}" class="logo">
                      <p class="navbar-brand" style="color:white;">Gopi</p>
                   </a>
                   <div class="nav-toggle">
@@ -125,7 +125,7 @@
                <!-- Header content remains the same -->
                <div class="main-header-logo">
                   <div class="logo-header" data-background-color="dark">
-                     <a href="{{route('dashboard-home')}}" class="logo">
+                     <a href="{{route('Dashboard-Article')}}" class="logo">
                         <img src="./assets-dash/img/kaiadmin/logo_light.svg" alt="navbar brand" class="navbar-brand" height="20" />
                      </a>
                      <div class="nav-toggle">
@@ -170,7 +170,7 @@
                      <h3 class="fw-bold mb-3">Create Event</h3>
                      <ul class="breadcrumbs mb-3">
                         <li class="nav-home">
-                           <a href="{{route('dashboard-home')}}">
+                           <a href="{{route('Dashboard-Article')}}">
                               <i class="icon-home"></i>
                            </a>
                         </li>
