@@ -184,85 +184,171 @@
                   </div>
 
                   <div class="col-md-12">
-                     <div class="card">
-                        <div class="card-header">
-                           <div class="d-flex align-items-center">
-                              {{-- <h4 class="card-title">Create Event</h4> --}}
-                              <button class="btn btn-primary btn-round ms-auto" data-bs-toggle="modal" data-bs-target="#addRowModal">
-                                 <i class="fa"></i>
-                                 Publish
-                              </button>
-                           </div>
-                        </div>
+                    <div class="card">
+                       <div class="card-header">
+                          <div class="d-flex align-items-center">
+                             {{-- <h4 class="card-title">Create Event</h4> --}}
+                             <button class="btn btn-primary btn-round ms-auto" data-bs-toggle="modal" data-bs-target="#addRowModal">
+                                <i class="fa"></i>
+                                Publish
+                             </button>
+                          </div>
+                       </div>
 
-                        <div class="card-body">
-                           <form>
-                              <div class="add-images-section mb-4">
-                                 <div class="d-flex flex-wrap gap-3">
-                                    <div class="d-flex align-items-center">
-                                        <button class="btn btn-primary btn-round ms-auto" data-bs-toggle="modal" data-bs-target="#addImageModal">
-                                            <i class="fa"></i>
-                                            Add Images
-                                        </button>
-                                    </div>
+                       <div class="card-body">
+                          <form>
+                             <div class="add-images-section mb-4">
+                                <div class="d-flex flex-wrap gap-3">
+                                   <div class="d-flex align-items-center">
+                                       <button class="btn btn-primary btn-round ms-auto" data-bs-toggle="modal" data-bs-target="#addImageModal">
+                                           <i class="fa"></i>
+                                           Add Images
+                                       </button>
+                                   </div>
 
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="addImageModal" tabindex="-1" aria-labelledby="addImageModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="addImageModalLabel">Choose Images</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <form id="imageForm">
-                                                        <div class="mb-3">
-                                                            <label for="imageInput" class="form-label">Select Images</label>
-                                                            <input type="file" class="form-control" id="imageInput" accept="image/*" required>
-                                                            <div id="fileError" class="text-danger mt-2" style="display: none;">Please select a valid image file (jpg, png, gif).</div>
-                                                        </div>
-                                                        <button type="submit" class="btn btn-primary">Upload</button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                   <!-- Modal -->
+                                   <div class="modal fade" id="addImageModal" tabindex="-1" aria-labelledby="addImageModalLabel" aria-hidden="true">
+                                       <div class="modal-dialog">
+                                           <div class="modal-content">
+                                               <div class="modal-header">
+                                                   <h5 class="modal-title" id="addImageModalLabel">Choose Images</h5>
+                                                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                               </div>
+                                               <div class="modal-body">
+                                                   <form id="imageForm">
+                                                       <div class="mb-3">
+                                                           <label for="imageInput" class="form-label">Select Images</label>
+                                                           <input type="file" class="form-control" id="imageInput" accept="image/*" required>
+                                                           <div id="fileError" class="text-danger mt-2" style="display: none;">Please select a valid image file (jpg, png, gif).</div>
+                                                       </div>
+                                                       <button type="submit" class="btn btn-primary">Upload</button>
+                                                   </form>
+                                               </div>
+                                           </div>
+                                       </div>
+                                   </div>
 
-                                    <div class="d-flex flex-wrap gap-4" id="imagePreviewContainer">
-                                        <div class="image-preview">
-                                            <img src="/assets/images/post-img9-600x600.jpg" alt="Event image">
-                                            <span class="remove-btn">×</span>
-                                        </div>
-                                        <div class="image-preview">
-                                            <img src="/assets/images/post-img9-600x600.jpg" alt="Event image">
-                                            <span class="remove-btn">×</span>
-                                        </div>
-                                        <div class="image-preview">
-                                            <img src="/assets/images/post-img9-600x600.jpg" alt="Event image">
-                                            <span class="remove-btn">×</span>
-                                        </div>
-                                    </div>
-                                 </div>
-                              </div>
+                                   <div class="d-flex flex-wrap gap-4" id="imagePreviewContainer">
+                                       <div class="image-preview">
+                                           <img src="/assets/images/post-img9-600x600.jpg" alt="Event image">
+                                           <span class="remove-btn">×</span>
+                                       </div>
+                                       <div class="image-preview">
+                                           <img src="/assets/images/post-img9-600x600.jpg" alt="Event image">
+                                           <span class="remove-btn">×</span>
+                                       </div>
+                                       <div class="image-preview">
+                                           <img src="/assets/images/post-img9-600x600.jpg" alt="Event image">
+                                           <span class="remove-btn">×</span>
+                                       </div>
+                                   </div>
+                                </div>
+                             </div>
 
-                              <div class="mb-3">
-                                 <label class="form-label">Title</label>
-                                 <input type="text" class="form-control">
-                              </div>
+                             <div class="mb-3">
+                                <label class="form-label">Title</label>
+                                <input type="text" class="form-control">
+                             </div>
 
-                              <div class="mb-3">
-                                 <label class="form-label">Description</label>
-                                 <textarea class="form-control" rows="4"></textarea>
-                              </div>
+                             <div class="mb-3">
+                                <label class="form-label">Description</label>
+                                <textarea class="form-control" rows="4"></textarea>
+                             </div>
 
-                              <div class="mb-3">
-                                 <label class="form-label">Paragraph</label>
-                                 <textarea class="form-control" rows="10"></textarea>
-                              </div>
-                           </form>
-                        </div>
-                     </div>
-                  </div>
+                             <div class="mb-3">
+                                <label class="form-label">Paragraph</label>
+                                <textarea class="form-control" rows="10"></textarea>
+                             </div>
+                          </form>
+                       </div>
+                    </div>
+                 </div>
+
+                 <script>
+                    document.getElementById("uploadImages").addEventListener("click", function () {
+                    const imageInput = document.getElementById("imageInput");
+                    const previewContainer = document.getElementById("imagePreviewContainer");
+                    const fileError = document.getElementById("fileError");
+
+                    // Clear previous error
+                    fileError.style.display = "none";
+
+                    if (imageInput.files.length === 0) {
+                        fileError.style.display = "block";
+                        fileError.textContent = "Please select at least one image.";
+                        return;
+                    }
+
+                    // Loop through selected files and create preview elements
+                    Array.from(imageInput.files).forEach((file) => {
+                        if (!file.type.startsWith("image/")) {
+                            fileError.style.display = "block";
+                            fileError.textContent = "Only image files are allowed.";
+                            return;
+                        }
+
+                        const reader = new FileReader();
+                        reader.onload = function (e) {
+                            // Create image preview element
+                            const preview = document.createElement("div");
+                            preview.classList.add("image-preview");
+
+                            const img = document.createElement("img");
+                            img.src = e.target.result;
+                            img.alt = "Event image";
+
+                            const removeBtn = document.createElement("span");
+                            removeBtn.classList.add("remove-btn");
+                            removeBtn.textContent = "×";
+                            removeBtn.onclick = function () {
+                                preview.remove();
+                            };
+
+                            preview.appendChild(img);
+                            preview.appendChild(removeBtn);
+                            previewContainer.appendChild(preview);
+                        };
+                        reader.readAsDataURL(file);
+                    });
+
+                    // Reset file input for future uploads
+                    imageInput.value = "";
+                    const modal = bootstrap.Modal.getInstance(document.getElementById("addImageModal"));
+                    modal.hide();
+                });
+
+                 </script>
+
+
+                <style>
+
+                    .image-preview {
+                        position: relative;
+                        display: inline-block;
+                        margin: 5px;
+                    }
+
+                    .image-preview img {
+                        max-width: 100px;
+                        max-height: 100px;
+                        border: 1px solid #ddd;
+                        border-radius: 5px;
+                    }
+
+                    .image-preview .remove-btn {
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+                        background: red;
+                        color: white;
+                        font-weight: bold;
+                        cursor: pointer;
+                        padding: 2px 5px;
+                        border-radius: 50%;
+                        transform: translate(50%, -50%);
+                    }
+
+                </style>
                </div>
             </div>
          </div>

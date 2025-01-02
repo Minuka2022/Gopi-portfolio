@@ -67,7 +67,7 @@
                   <!-- End Logo Header -->
                </div>
                <!-- Navbar Header -->
-              
+
                <!-- End Navbar -->
             </div>
             <div class="container">
@@ -95,8 +95,7 @@
 
                               <button
                                  class="btn btn-primary btn-round ms-auto"
-                                 data-bs-toggle="modal"
-                                 data-bs-target="#addRowModal"
+                                  onclick="window.location.href='{{ route('Dashboard-Create-Event') }}'"
                                  >
                               <i class="fa fa-plus"></i>
                               Add Event

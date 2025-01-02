@@ -16,6 +16,7 @@ Route::get('/articles', [FrontendController::class, 'gallery'])->name('frontend-
 Route::get('/dashboard' , [ArticleController::class, 'index'])->name('Dashboard-Article');
 
 Route::get('/dashboard/Create-Article' , [ArticleController::class, 'create'])->name('Dashboard-Create-Article');
+Route::get('/dashboard/Create-Event' , [EventController::class, 'create'])->name('Dashboard-Create-Event');
 
 
 //Event Managment
