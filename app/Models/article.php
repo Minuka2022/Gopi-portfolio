@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class article extends Model
+class Article extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
+    protected $fillable = ['title', 'description', 'content'];
 
-        'title',
-        'description',
-        'content'
-    ];
+    public function images()
+    {
+        return $this->hasMany(ArticleImage::class);
+    }
 }
