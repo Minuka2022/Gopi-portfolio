@@ -4,6 +4,7 @@
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
       <title>Create Event</title>
       <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
+      <meta name="csrf-token" content="{{ csrf_token() }}">
 
       <!-- Fonts and icons -->
       <script src="{{ asset('assets-dash/js/plugin/webfont/webfont.min.js') }}"></script>
@@ -185,170 +186,172 @@
 
                   <div class="col-md-12">
                     <div class="card">
-                       <div class="card-header">
-                          <div class="d-flex align-items-center">
-                             {{-- <h4 class="card-title">Create Event</h4> --}}
-                             <button class="btn btn-primary btn-round ms-auto" data-bs-toggle="modal" data-bs-target="#addRowModal">
-                                <i class="fa"></i>
-                                Publish
-                             </button>
-                          </div>
-                       </div>
+                        <div class="card-header">
+                            <div class="d-flex align-items-center">
+                                <!-- Moved the Publish button inside the form -->
+                                <button class="btn btn-primary btn-round ms-auto" >
+                                    <i class="fa"></i>
+                                    Publish
+                                </button>
+                            </div>
+                        </div>
 
-                       <div class="card-body">
-                          <form>
-                             <div class="add-images-section mb-4">
-                                <div class="d-flex flex-wrap gap-3">
-                                   <div class="d-flex align-items-center">
-                                       <button class="btn btn-primary btn-round ms-auto" data-bs-toggle="modal" data-bs-target="#addImageModal">
-                                           <i class="fa"></i>
-                                           Add Images
-                                       </button>
-                                   </div>
+                        <div class="card-body">
+                            <form id="eventForm" method="POST" enctype="multipart/form-data" action="{{ route('event.store') }}">
+                                @csrf <!-- Add this if you're using Laravel -->
+                                @method('post')
 
-                                   <!-- Modal -->
-                                   <div class="modal fade" id="addImageModal" tabindex="-1" aria-labelledby="addImageModalLabel" aria-hidden="true">
-                                       <div class="modal-dialog">
-                                           <div class="modal-content">
-                                               <div class="modal-header">
-                                                   <h5 class="modal-title" id="addImageModalLabel">Choose Images</h5>
-                                                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                               </div>
-                                               <div class="modal-body">
-                                                   <form id="imageForm">
-                                                       <div class="mb-3">
-                                                           <label for="imageInput" class="form-label">Select Images</label>
-                                                           <input type="file" class="form-control" id="imageInput" accept="image/*" required>
-                                                           <div id="fileError" class="text-danger mt-2" style="display: none;">Please select a valid image file (jpg, png, gif).</div>
-                                                       </div>
-                                                       <button type="submit" class="btn btn-primary">Upload</button>
-                                                   </form>
-                                               </div>
-                                           </div>
-                                       </div>
-                                   </div>
+                                <!-- Corrected button to submit the form -->
+                                <button type="submit">
+                                    Send
+                                </button>
 
-                                   <div class="d-flex flex-wrap gap-4" id="imagePreviewContainer">
-                                       <div class="image-preview">
-                                           <img src="/assets/images/post-img9-600x600.jpg" alt="Event image">
-                                           <span class="remove-btn">×</span>
-                                       </div>
-                                       <div class="image-preview">
-                                           <img src="/assets/images/post-img9-600x600.jpg" alt="Event image">
-                                           <span class="remove-btn">×</span>
-                                       </div>
-                                       <div class="image-preview">
-                                           <img src="/assets/images/post-img9-600x600.jpg" alt="Event image">
-                                           <span class="remove-btn">×</span>
-                                       </div>
-                                   </div>
+                                <!-- Image Section -->
+                                <div class="add-images-section mb-4">
+                                    <div class="d-flex flex-wrap gap-3">
+                                        <div class="d-flex align-items-center">
+                                            <button type="button" class="btn btn-primary btn-round" data-bs-toggle="modal" data-bs-target="#addImageModal">
+                                                <i class="fa"></i>
+                                                Add Images
+                                            </button>
+                                        </div>
+
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="addImageModal" tabindex="-1" aria-labelledby="addImageModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="addImageModalLabel">Choose Images</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="mb-3">
+                                                            <label for="imageInput" class="form-label">Select Images</label>
+                                                            <input type="file" class="form-control" id="imageInput" accept="image/*" multiple>
+                                                            <div id="fileError" class="text-danger mt-2" style="display: none;">Please select a valid image file (jpg, png, gif).</div>
+                                                        </div>
+                                                        <button type="button" class="btn btn-primary" id="uploadImagesButton">Upload</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Image Previews -->
+                                    <div class="d-flex flex-wrap gap-4" id="imagePreviewContainer"></div>
+
+                                    <!-- Hidden Input to Store Uploaded Image Paths -->
+                                    <input type="hidden" name="images" id="imagePaths">
                                 </div>
-                             </div>
 
-                             <div class="mb-3">
-                                <label class="form-label">Title</label>
-                                <input type="text" class="form-control">
-                             </div>
+                                <!-- Title -->
+                                <div class="mb-3">
+                                    <label class="form-label">Title</label>
+                                    <input type="text" class="form-control" name="title" required>
+                                </div>
 
-                             <div class="mb-3">
-                                <label class="form-label">Description</label>
-                                <textarea class="form-control" rows="4"></textarea>
-                             </div>
+                                <!-- Description -->
+                                <div class="mb-3">
+                                    <label class="form-label">Description</label>
+                                    <textarea class="form-control" name="description" rows="4" required></textarea>
+                                </div>
 
-                             <div class="mb-3">
-                                <label class="form-label">Paragraph</label>
-                                <textarea class="form-control" rows="10"></textarea>
-                             </div>
-                          </form>
-                       </div>
+                                <!-- Paragraph -->
+                                <div class="mb-3">
+                                    <label class="form-label">Main Content</label>
+                                    <textarea class="form-control" name="content" rows="10" required></textarea>
+                                </div>
+
+                            </form>
+
+                        </div>
                     </div>
-                 </div>
 
-                 <script>
-                    document.getElementById("uploadImages").addEventListener("click", function () {
-                    const imageInput = document.getElementById("imageInput");
-                    const previewContainer = document.getElementById("imagePreviewContainer");
-                    const fileError = document.getElementById("fileError");
+                </div>
 
-                    // Clear previous error
-                    fileError.style.display = "none";
+                <script>
+                    const imageInput = document.getElementById('imageInput');
+                    const uploadImagesButton = document.getElementById('uploadImagesButton');
+                    const imagePreviewContainer = document.getElementById('imagePreviewContainer');
+                    const imagePathsInput = document.getElementById('imagePaths');
+                    const publishButton = document.getElementById('publishButton');
 
-                    if (imageInput.files.length === 0) {
-                        fileError.style.display = "block";
-                        fileError.textContent = "Please select at least one image.";
-                        return;
-                    }
+                    let uploadedImages = [];
 
-                    // Loop through selected files and create preview elements
-                    Array.from(imageInput.files).forEach((file) => {
-                        if (!file.type.startsWith("image/")) {
-                            fileError.style.display = "block";
-                            fileError.textContent = "Only image files are allowed.";
+                    // Handle Image Uploads
+                    uploadImagesButton.addEventListener('click', async () => {
+                        const files = imageInput.files;
+                        if (!files.length) {
+                            alert('Please select images to upload.');
                             return;
                         }
 
-                        const reader = new FileReader();
-                        reader.onload = function (e) {
-                            // Create image preview element
-                            const preview = document.createElement("div");
-                            preview.classList.add("image-preview");
+                        const formData = new FormData();
+                        for (let i = 0; i < files.length; i++) {
+                            formData.append('images[]', files[i]);
+                        }
 
-                            const img = document.createElement("img");
-                            img.src = e.target.result;
-                            img.alt = "Event image";
-
-                            const removeBtn = document.createElement("span");
-                            removeBtn.classList.add("remove-btn");
-                            removeBtn.textContent = "×";
-                            removeBtn.onclick = function () {
-                                preview.remove();
-                            };
-
-                            preview.appendChild(img);
-                            preview.appendChild(removeBtn);
-                            previewContainer.appendChild(preview);
-                        };
-                        reader.readAsDataURL(file);
+                        try {
+                            const response = await fetch('/dashboard/upload-images', {
+                                method: 'POST',
+                                body: formData,
+                                headers: {
+                                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                                }
+                            });
+                            const result = await response.json();
+                            if (response.ok) {
+                                console.log('Uploaded image paths:', result.paths);
+                                uploadedImages.push(...result.paths);
+                                updateImagePreviews();
+                                imagePathsInput.value = JSON.stringify(uploadedImages);
+                                alert('Images uploaded successfully!');
+                                $('#addImageModal').modal('hide');
+                            } else {
+                                alert(result.message || 'Failed to upload images.');
+                            }
+                        }catch (error) {
+                            // If there's a network or unexpected error
+                            console.error(error);
+                            alert(`Unexpected Error: ${error.message}`);
+                        }
                     });
 
-                    // Reset file input for future uploads
-                    imageInput.value = "";
-                    const modal = bootstrap.Modal.getInstance(document.getElementById("addImageModal"));
-                    modal.hide();
-                });
+                    // Update Image Previews
+                    function updateImagePreviews() {
+                        imagePreviewContainer.innerHTML = '';
 
-                 </script>
+                        uploadedImages.forEach(path => {
+                            // Ensure the path includes 'EventImage' folder for your specific setup
+                            const imageUrl = `/storage/EventImage/${path}`;  // Adjusted for your folder structure
 
-
-                <style>
-
-                    .image-preview {
-                        position: relative;
-                        display: inline-block;
-                        margin: 5px;
+                            const preview = document.createElement('div');
+                            preview.className = 'image-preview';
+                            preview.innerHTML = `
+                                <img src="${imageUrl}" alt="Event image">
+                                <span class="remove-btn" onclick="removeImage('${path}')">×</span>
+                            `;
+                            imagePreviewContainer.appendChild(preview);
+                            console.log(imageUrl);  // Log the full image URL
+                        });
                     }
 
-                    .image-preview img {
-                        max-width: 100px;
-                        max-height: 100px;
-                        border: 1px solid #ddd;
-                        border-radius: 5px;
+
+                    // Remove Image
+                    function removeImage(path) {
+                        uploadedImages = uploadedImages.filter(image => image !== path);
+                        updateImagePreviews();
+                        imagePathsInput.value = JSON.stringify(uploadedImages);
                     }
 
-                    .image-preview .remove-btn {
-                        position: absolute;
-                        top: 0;
-                        right: 0;
-                        background: red;
-                        color: white;
-                        font-weight: bold;
-                        cursor: pointer;
-                        padding: 2px 5px;
-                        border-radius: 50%;
-                        transform: translate(50%, -50%);
-                    }
+                    // Handle Publish
+                    publishButton.addEventListener('click', () => {
+                        const form = document.getElementById('eventForm');
+                        form.submit();
+                    });
+                </script>
 
-                </style>
+
                </div>
             </div>
          </div>

@@ -18,7 +18,8 @@ Route::get('/dashboard' , [ArticleController::class, 'index'])->name('Dashboard-
 Route::get('/dashboard/Create-Article' , [ArticleController::class, 'create'])->name('Dashboard-Create-Article');
 Route::get('/dashboard/Create-Event' , [EventController::class, 'create'])->name('Dashboard-Create-Event');
 
-
+Route::post('/dashboard/eventStore' , [EventController::class, 'store'])->name('event.store');
+Route::post('/dashboard/upload-images'  , [EventController::class, 'uploadImages'])->name('events.uploadImages');
 //Event Managment
 Route::get('/dashboard/event' , [EventController::class, 'index'])->name('Dashboard-Event');
 
