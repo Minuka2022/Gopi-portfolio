@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Article;
 use App\Models\ArticleImage;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Log;
+// use Illuminate\Support\Facades\Storage;
+// use Illuminate\Support\Facades\Log;
 
 class ArticleController extends Controller
 {
@@ -20,37 +20,54 @@ class ArticleController extends Controller
         return view('Admin.A_Create');
     }
 
-    public function store(Request $request)
-    {
-        // Validate the incoming request
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'required|string',
-            'content' => 'required|string',
-            'images.*' => 'image|mimes:jpeg,png,jpg|max:2048',
-        ]);
-
-        // Store article data
-        $article = Article::create($request->only(['title', 'description', 'content']));
-
-        // Handle image uploads
-        if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $image) {
-                // Save to the public disk and get the path
-                $publicPath = $image->store('Article-images', 'public');
-                Log::info("Image saved to public disk: $publicPath");
-
-                // Save the image URL to the database
-                ArticleImage::create([
-                    'article_id' => $article->id,
-                    'image' => $publicPath, // Store only the public path in the database
+      public function uploadImage(Request $request)
+            {
+                $request->validate([
+                    'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
                 ]);
-            }
-        } else {
-            Log::error('No images were uploaded.');
-        }
 
-        // Return redirect with success message
-        return redirect()->route('Dashboard-Article')->with('success', 'Article created successfully!');
+                if ($request->hasFile('image')) {
+                    try {
+                        $path = $request->file('image')->store('Article-images', 'public');
+                        $url = asset('storage/' . $path);
+
+                        return response()->json([
+                            'success' => true,
+                            'file_path' => $path,
+                            'file_url' => $url,
+                        ]);
+                    } catch (\Exception $e) {
+                        return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
+                    }
+                }
+
+                return response()->json(['success' => false, 'message' => 'No image uploaded.'], 400);
+            }
+
+
+public function store(Request $request)
+{
+    $request->validate([
+        'title' => 'required|string|max:255',
+        'description' => 'required|string',
+        'content' => 'required|string',
+        'uploaded_images' => 'nullable|string', // JSON string of uploaded image paths
+    ]);
+
+    $article = Article::create($request->only(['title', 'description', 'content']));
+
+    if ($request->uploaded_images) {
+        $images = json_decode($request->uploaded_images, true);
+
+        foreach ($images as $path) {
+            ArticleImage::create([
+                'article_id' => $article->id,
+                'image' => $path,
+            ]);
+        }
     }
+
+    return redirect()->route('Dashboard-Article')->with('success', 'Article created successfully!');
+}
+
 }

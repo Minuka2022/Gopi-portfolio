@@ -4,6 +4,7 @@
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
       <title>Create Article</title>
       <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
+      <meta name="csrf-token" content="{{ csrf_token() }}">
 
       <!-- Fonts and icons -->
       <script src="{{ asset('assets-dash/js/plugin/webfont/webfont.min.js') }}"></script>
@@ -119,37 +120,103 @@
                   <div class="col-md-12">
                      <div class="card">
                         <div class="card-body">
-                           <form id="articleForm" action="{{ route('Dashboard-Store-Article') }}" method="POST" enctype="multipart/form-data">
-                              @csrf
+                            <form id="articleForm" action="{{ route('Dashboard-Store-Article') }}" method="POST" enctype="multipart/form-data">
+                                @csrf
 
-                              <div class="add-images-section mb-4">
-                                 <div class="d-flex flex-wrap gap-3">
-                                    <button type="button" class="btn btn-primary" id="addImageButton">
-                                       <i class="fa fa-plus"></i> Add Images
-                                    </button>
+                                <div class="add-images-section mb-4">
+                                    <div class="d-flex flex-wrap gap-3">
+                                        <button type="button" class="btn btn-primary" id="addImageButton">
+                                            <i class="fa fa-plus"></i> Add Images
+                                        </button>
+                                        <input type="file" id="imageInput" class="d-none" multiple accept="image/*">
+                                        <div class="d-flex flex-wrap gap-3" id="imagePreviewContainer"></div>
+                                    </div>
+                                </div>
 
-                                    <input type="file" id="imageInput" class="d-none" name="images[]" multiple accept="image/*">
-                                    <div class="d-flex flex-wrap gap-3" id="imagePreviewContainer"></div>
-                                 </div>
-                              </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Title</label>
+                                    <input type="text" name="title" class="form-control" required>
+                                </div>
 
-                              <div class="mb-3">
-                                 <label class="form-label">Title</label>
-                                 <input type="text" name="title" class="form-control" required>
-                              </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Description</label>
+                                    <textarea name="description" class="form-control" rows="4" required></textarea>
+                                </div>
 
-                              <div class="mb-3">
-                                 <label class="form-label">Description</label>
-                                 <textarea name="description" class="form-control" rows="4" required></textarea>
-                              </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Content</label>
+                                    <textarea name="content" class="form-control" rows="10" required></textarea>
+                                </div>
 
-                              <div class="mb-3">
-                                 <label class="form-label">Content</label>
-                                 <textarea name="content" class="form-control" rows="10" required></textarea>
-                              </div>
+                                <input type="hidden" name="uploaded_images" id="uploadedImages">
 
-                              <button type="submit" class="btn btn-primary">Publish</button>
-                           </form>
+                                <button type="submit" class="btn btn-primary">Publish</button>
+                            </form>
+
+                            <script>
+                                document.addEventListener('DOMContentLoaded', function () {
+                                    const addImageButton = document.getElementById('addImageButton');
+                                    const imageInput = document.getElementById('imageInput');
+                                    const imagePreviewContainer = document.getElementById('imagePreviewContainer');
+                                    const uploadedImagesField = document.getElementById('uploadedImages');
+
+                                    const uploadedImages = [];
+
+                                    addImageButton.addEventListener('click', () => imageInput.click());
+
+                                    imageInput.addEventListener('change', function () {
+                                        Array.from(imageInput.files).forEach(file => {
+                                            if (file.type.startsWith('image/')) {
+                                                const formData = new FormData();
+                                                formData.append('image', file);
+
+                                                // Upload image via AJAX
+                                                fetch('{{ route("Dashboard-Upload-Image") }}', {
+                                                    method: 'POST',
+                                                    headers: {
+                                                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                                                    },
+                                                    body: formData
+                                                })
+                                                    .then(response => response.json())
+                                                    .then(data => {
+                                                        if (data.success) {
+                                                            uploadedImages.push(data.file_path); // Store uploaded image path
+                                                            uploadedImagesField.value = JSON.stringify(uploadedImages); // Update hidden field
+
+                                                            const div = document.createElement('div');
+                                                            div.classList.add('image-preview');
+
+                                                            div.innerHTML = `
+                                                                <img src="${data.file_url}" alt="Image preview">
+                                                                <span class="remove-btn" data-path="${data.file_path}">&times;</span>
+                                                            `;
+
+                                                            imagePreviewContainer.appendChild(div);
+
+                                                            // Handle image removal
+                                                            div.querySelector('.remove-btn').addEventListener('click', function () {
+                                                                const path = this.getAttribute('data-path');
+                                                                uploadedImages.splice(uploadedImages.indexOf(path), 1);
+                                                                uploadedImagesField.value = JSON.stringify(uploadedImages); // Update hidden field
+                                                                div.remove();
+                                                            });
+                                                        } else {
+                                                            alert('Failed to upload image. Please try again.');
+                                                        }
+                                                    })
+                                                    .catch(err => {
+                                                        console.error(err);
+                                                        alert('Error uploading image.');
+                                                    });
+                                            }
+                                        });
+
+                                        imageInput.value = '';
+                                    });
+                                });
+                            </script>
+
                         </div>
                      </div>
                   </div>
@@ -162,40 +229,6 @@
       <script src="{{ asset('assets-dash/js/core/jquery-3.7.1.min.js') }}"></script>
       <script src="{{ asset('assets-dash/js/core/bootstrap.min.js') }}"></script>
 
-      <script>
-         document.addEventListener('DOMContentLoaded', function () {
-            const addImageButton = document.getElementById('addImageButton');
-            const imageInput = document.getElementById('imageInput');
-            const imagePreviewContainer = document.getElementById('imagePreviewContainer');
 
-            addImageButton.addEventListener('click', () => imageInput.click());
-
-            imageInput.addEventListener('change', function () {
-               Array.from(imageInput.files).forEach(file => {
-                  if (file.type.startsWith('image/')) {
-                     const reader = new FileReader();
-                     reader.onload = function (e) {
-                        const div = document.createElement('div');
-                        div.classList.add('image-preview');
-
-                        div.innerHTML = `
-                           <img src="${e.target.result}" alt="Image preview">
-                           <span class="remove-btn">&times;</span>
-                        `;
-
-                        imagePreviewContainer.appendChild(div);
-
-                        div.querySelector('.remove-btn').addEventListener('click', () => {
-                           div.remove();
-                        });
-                     };
-                     reader.readAsDataURL(file);
-                  }
-               });
-
-               imageInput.value = '';
-            });
-         });
-      </script>
    </body>
 </html>
