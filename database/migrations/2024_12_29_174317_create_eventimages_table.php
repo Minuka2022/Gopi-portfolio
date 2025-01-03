@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('eventimages', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('event_id')->constrained('event');
+            $table->foreignId('event_id')->constrained('events'); // Make sure the table name is 'events'
             $table->string('image');
             $table->timestamps();
         });

@@ -20,8 +20,10 @@ Route::post('/dashboard/upload-image', [ArticleController::class, 'uploadImage']
 
 
 //Event Managment
-Route::get('/dashboard/event' , [EventController::class, 'index'])->name('Dashboard-Event');
-Route::get('/dashboard/Create-Event' , [EventController::class, 'create'])->name('Dashboard-Create-Event');
+Route::get('/dashboard/event', [EventController::class, 'index'])->name('Dashboard-Event');
+Route::get('/dashboard/create-Event', [EventController::class, 'create'])->name('Dashboard-Create-Event');
+Route::post('/dashboard/store-event', [EventController::class, 'store'])->name('Dashboard-Store-Event');
+Route::post('/upload-image', [EventController::class, 'uploadImage'])->name('Dashboard-Upload-EImage');
 
 //Gallery managment
 Route::get('/dashboard/gallery' , [Gallery::class, 'index'])->name('Dashboard-Gallery');

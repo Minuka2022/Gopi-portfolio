@@ -7,10 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class eventimages extends Model
 {
-    Use HasFactory;
+    use HasFactory;
 
     protected $fillable = [
         'event_id',
-        'image'
+        'image',
     ];
+
+    // Relationship with event model
+    public function event()
+    {
+        return $this->belongsTo(event::class, 'event_id');
+    }
 }
