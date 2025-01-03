@@ -6,24 +6,18 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
-        Schema::create('articleimages', function (Blueprint $table) {
+        Schema::create('article_images', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('article_id')->constrained('article');
-            $table->string('image');
+            $table->foreignId('article_id')->constrained('articles')->onDelete('cascade');
+            $table->string('image'); // Path to the image
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
-        Schema::dropIfExists('articleimages');
+        Schema::dropIfExists('article_images');
     }
 };
