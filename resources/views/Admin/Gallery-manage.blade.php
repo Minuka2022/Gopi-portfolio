@@ -4,36 +4,35 @@
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
       <title>Manage Gallery</title>
       <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
+      <meta name="csrf-token" content="{{ csrf_token() }}">
 
       <!-- Fonts and icons -->
       <script src="{{ asset('assets-dash/js/plugin/webfont/webfont.min.js') }}"></script>
-        <script>
-            WebFont.load({
-                google: { families: ["Public Sans:300,400,500,600,700"] },
-                custom: {
-                    families: [
-                        "Font Awesome 5 Solid",
-                        "Font Awesome 5 Regular",
-                        "Font Awesome 5 Brands",
-                        "simple-line-icons",
-                    ],
-                    urls: ["{{ asset('assets-dash/css/fonts.min.css') }}"],
-                },
-                active: function () {
-                    sessionStorage.fonts = true;
-                },
-            });
-        </script>
+      <script>
+         WebFont.load({
+             google: { families: ["Public Sans:300,400,500,600,700"] },
+             custom: {
+                 families: [
+                     "Font Awesome 5 Solid",
+                     "Font Awesome 5 Regular",
+                     "Font Awesome 5 Brands",
+                     "simple-line-icons",
+                 ],
+                 urls: ["{{ asset('assets-dash/css/fonts.min.css') }}"],
+             },
+             active: function () {
+                 sessionStorage.fonts = true;
+             },
+         });
+      </script>
 
-        <!-- CSS Files -->
-        <link rel="stylesheet" href="{{ asset('assets-dash/css/bootstrap.min.css') }}" />
-        <link rel="stylesheet" href="{{ asset('assets-dash/css/plugins.min.css') }}" />
-        <link rel="stylesheet" href="{{ asset('assets-dash/css/kaiadmin.min.css') }}" />
+      <!-- CSS Files -->
+      <link rel="stylesheet" href="{{ asset('assets-dash/css/bootstrap.min.css') }}" />
+      <link rel="stylesheet" href="{{ asset('assets-dash/css/plugins.min.css') }}" />
+      <link rel="stylesheet" href="{{ asset('assets-dash/css/kaiadmin.min.css') }}" />
+      <link rel="stylesheet" href="{{ asset('assets-dash/css/demo.css') }}" />
 
-        <!-- CSS Just for demo purpose, don't include it in your project -->
-        <link rel="stylesheet" href="{{ asset('assets-dash/css/demo.css') }}" />
-
-      <!-- Custom Styles for Gallery Layout -->
+      <!-- The original styles remain unchanged -->
       <style>
         /* Base layout styles */
         .card-body {
@@ -155,28 +154,6 @@
          </div>
 
          <div class="main-panel">
-            <div class="main-header">
-               <div class="main-header-logo">
-                  <div class="logo-header" data-background-color="dark">
-                     <a href="{{route('Dashboard-Article')}}" class="logo">
-                        <img src="./assets-dash/img/kaiadmin/logo_light.svg" alt="navbar brand" class="navbar-brand" height="20" />
-                     </a>
-                     <div class="nav-toggle">
-                        <button class="btn btn-toggle toggle-sidebar">
-                           <i class="gg-menu-right"></i>
-                        </button>
-                        <button class="btn btn-toggle sidenav-toggler">
-                           <i class="gg-menu-left"></i>
-                        </button>
-                     </div>
-                     <button class="topbar-toggler more">
-                        <i class="gg-more-vertical-alt"></i>
-                     </button>
-                  </div>
-               </div>
-
-            </div>
-
             <div class="container">
                <div class="page-inner">
                   <div class="page-header">
@@ -210,124 +187,16 @@
                                     </div>
                                 </button>
                               </div>
-                              <div class="modal fade" id="addImageModal" tabindex="-1" aria-labelledby="addImageModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="addImageModalLabel">Choose an Image</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form id="imageForm">
-                                                <div class="mb-3">
-                                                    <label for="imageInput" class="form-label">Select Image</label>
-                                                    <input type="file" class="form-control" id="imageInput" accept="image/*" required>
-                                                    <div id="fileError" class="text-danger mt-2" style="display: none;">Please select a valid image file (jpg, png, gif).</div>
-                                                </div>
-                                                <button type="submit" class="btn btn-primary">Upload</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
 
-                              <!-- Demo Image Tiles - First Row -->
-                              <div class="gallery-tile">
+                              <!-- Dynamic Gallery Images -->
+                              @foreach($images as $image)
+                              <div class="gallery-tile" data-id="{{ $image->id }}">
                                  <div class="image-container">
-                                    <img src="/assets/images/post-img9-600x600.jpg" alt="">
-                                    <span class="remove-btn">×</span>
+                                    <img src="{{ asset('storage/' . $image->photo) }}" alt="{{ $image->name }}">
+                                    <span class="remove-btn" data-id="{{ $image->id }}">×</span>
                                  </div>
                               </div>
-                              <div class="gallery-tile">
-                                 <div class="image-container">
-                                    <img src="/assets/images/post-img9-600x600.jpg" alt="Gallery image">
-                                    <span class="remove-btn">×</span>
-                                 </div>
-                              </div>
-                              <div class="gallery-tile">
-                                 <div class="image-container">
-                                    <img src="https://via.placeholder.com/300" alt="Gallery image">
-                                    <span class="remove-btn">×</span>
-                                 </div>
-                              </div>
-
-                              <!-- Second Row -->
-                              <div class="gallery-tile">
-                                 <div class="image-container">
-                                    <img src="https://via.placeholder.com/300" alt="Gallery image">
-                                    <span class="remove-btn">×</span>
-                                 </div>
-                              </div>
-                              <div class="gallery-tile">
-                                 <div class="image-container">
-                                    <img src="https://via.placeholder.com/300" alt="Gallery image">
-                                    <span class="remove-btn">×</span>
-                                 </div>
-                              </div>
-                              <div class="gallery-tile">
-                                 <div class="image-container">
-                                    <img src="https://via.placeholder.com/300" alt="Gallery image">
-                                    <span class="remove-btn">×</span>
-                                 </div>
-                              </div>
-                              <div class="gallery-tile">
-                                 <div class="image-container">
-                                    <img src="https://via.placeholder.com/300" alt="Gallery image">
-                                    <span class="remove-btn">×</span>
-                                 </div>
-                              </div>
-
-                              <!-- Third Row -->
-                              <div class="gallery-tile">
-                                 <div class="image-container">
-                                    <img src="https://via.placeholder.com/300" alt="Gallery image">
-                                    <span class="remove-btn">×</span>
-                                 </div>
-                              </div>
-                              <div class="gallery-tile">
-                                 <div class="image-container">
-                                    <img src="https://via.placeholder.com/300" alt="Gallery image">
-                                    <span class="remove-btn">×</span>
-                                 </div>
-                              </div>
-                              <div class="gallery-tile">
-                                 <div class="image-container">
-                                    <img src="https://via.placeholder.com/300" alt="Gallery image">
-                                    <span class="remove-btn">×</span>
-                                 </div>
-                              </div>
-                              <div class="gallery-tile">
-                                 <div class="image-container">
-                                    <img src="https://via.placeholder.com/300" alt="Gallery image">
-                                    <span class="remove-btn">×</span>
-                                 </div>
-                              </div>
-                              <!-- Forth Row -->
-
-                              <div class="gallery-tile">
-                                <div class="image-container">
-                                   <img src="https://via.placeholder.com/300" alt="Gallery image">
-                                   <span class="remove-btn">×</span>
-                                </div>
-                             </div>
-                             <div class="gallery-tile">
-                                <div class="image-container">
-                                   <img src="https://via.placeholder.com/300" alt="Gallery image">
-                                   <span class="remove-btn">×</span>
-                                </div>
-                             </div>
-                             <div class="gallery-tile">
-                                <div class="image-container">
-                                   <img src="https://via.placeholder.com/300" alt="Gallery image">
-                                   <span class="remove-btn">×</span>
-                                </div>
-                             </div>
-                             <div class="gallery-tile">
-                                <div class="image-container">
-                                   <img src="https://via.placeholder.com/300" alt="Gallery image">
-                                   <span class="remove-btn">×</span>
-                                </div>
-                             </div>
+                              @endforeach
                            </div>
                         </div>
                      </div>
@@ -337,8 +206,30 @@
          </div>
       </div>
 
+      <!-- Add Image Modal -->
+      <div class="modal fade" id="addImageModal" tabindex="-1" aria-labelledby="addImageModalLabel" aria-hidden="true">
+         <div class="modal-dialog">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h5 class="modal-title" id="addImageModalLabel">Upload New Image</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+               </div>
+               <div class="modal-body">
+                  <form id="imageUploadForm" enctype="multipart/form-data">
+                     @csrf
+                     <div class="mb-3">
+                        <label for="image" class="form-label">Choose Image</label>
+                        <input type="file" class="form-control" id="image" name="image" accept="image/*" required>
+                        <div id="imageError" class="text-danger mt-2" style="display: none;"></div>
+                     </div>
+                     <button type="submit" class="btn btn-primary">Upload Image</button>
+                  </form>
+               </div>
+            </div>
+         </div>
+      </div>
+
       <!-- Core JS Files -->
-      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
       <script src="{{ asset('assets-dash/js/core/jquery-3.7.1.min.js') }}"></script>
       <script src="{{ asset('assets-dash/js/core/popper.min.js') }}"></script>
       <script src="{{ asset('assets-dash/js/core/bootstrap.min.js') }}"></script>
@@ -346,49 +237,88 @@
       <script src="{{ asset('assets-dash/js/plugin/datatables/datatables.min.js') }}"></script>
       <script src="{{ asset('assets-dash/js/kaiadmin.min.js') }}"></script>
       <script src="{{ asset('assets-dash/js/setting-demo2.js') }}"></script>
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-      <!-- Image Removal Script -->
+      <!-- Custom JavaScript -->
       <script>
-         document.addEventListener('DOMContentLoaded', function() {
-             // Get all remove buttons in the gallery
-             const removeButtons = document.querySelectorAll('.remove-btn');
+         $(document).ready(function() {
+             $.ajaxSetup({
+                 headers: {
+                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                 }
+             });
 
-             // Add click event listener to each remove button
-             removeButtons.forEach(button => {
-                 button.addEventListener('click', function(e) {
-                     // Prevent event bubbling
-                     e.stopPropagation();
+             // Image Upload Handler
+             $('#imageUploadForm').on('submit', function(e) {
+                 e.preventDefault();
 
-                     // Get the parent gallery tile element
-                     const galleryTile = this.closest('.gallery-tile');
+                 let formData = new FormData(this);
 
-                     // Add fade-out animation
-                     galleryTile.style.opacity = '0';
+                 $.ajax({
+                     type: 'POST',
+                     url: "{{ route('Dashboard-Store-Gallery') }}",
+                     data: formData,
+                     contentType: false,
+                     processData: false,
+                     success: function(response) {
+                         if(response.success) {
+                             Swal.fire({
+                                 icon: 'success',
+                                 title: 'Success',
+                                 text: 'Image uploaded successfully!'
+                             }).then(() => {
+                                 location.reload();
+                             });
+                         }
+                     },
+                     error: function(response) {
+                         $('#imageError').text(response.responseJSON.message).show();
+                     }
+                 });
+             });
 
-                     // Remove the element after animation completes
-                     setTimeout(() => {
-                         galleryTile.remove();
-                     }, 300);
+             // Delete Image Handler
+             $('.remove-btn').on('click', function() {
+                 const imageId = $(this).data('id');
+                 const galleryTile = $(this).closest('.gallery-tile');
+
+                 Swal.fire({
+                     title: 'Delete Image?',
+                     text: "This action cannot be undone!",
+                     icon: 'warning',
+                     showCancelButton: true,
+                     confirmButtonColor: '#d33',
+                     cancelButtonColor: '#3085d6',
+                     confirmButtonText: 'Yes, delete it!'
+                 }).then((result) => {
+                     if (result.isConfirmed) {
+                         $.ajax({
+                             type: 'DELETE',
+                             url: "{{ route('Dashboard-Delete-Gallery', '') }}/" + imageId,
+                             success: function(response) {
+                                 if(response.success) {
+                                     galleryTile.fadeOut(300, function() {
+                                         $(this).remove();
+                                     });
+                                     Swal.fire(
+                                         'Deleted!',
+                                         'Image has been deleted.',
+                                         'success'
+                                     );
+                                 }
+                             },
+                             error: function() {
+                                 Swal.fire(
+                                     'Error!',
+                                     'Failed to delete image.',
+                                     'error'
+                                 );
+                             }
+                         });
+                     }
                  });
              });
          });
-
-         document.getElementById('imageForm').addEventListener('submit', function (e) {
-            e.preventDefault(); // Prevent default form submission
-
-            const fileInput = document.getElementById('imageInput');
-            const fileError = document.getElementById('fileError');
-            const file = fileInput.files[0];
-
-            // Check if a file is selected and its type
-            if (file && file.type.match('image.*')) {
-                alert('Image uploaded successfully!');
-                fileError.style.display = 'none';
-                // You can handle the file upload logic here
-            } else {
-                fileError.style.display = 'block';
-            }
-        });
       </script>
    </body>
 </html>
