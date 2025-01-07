@@ -5,7 +5,7 @@
       <title>Create Article</title>
       <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
       <meta name="csrf-token" content="{{ csrf_token() }}">
-
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
       <!-- Fonts and icons -->
       <script src="{{ asset('assets-dash/js/plugin/webfont/webfont.min.js') }}"></script>
       <script>
@@ -86,6 +86,28 @@
       </style>
    </head>
    <body>
+
+    @if (session('success'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Article Created!',
+            text: "{{ session('success') }}",
+            timer: 2000
+        });
+    </script>
+    @endif
+
+    @if (session('error'))
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: "{{ session('error') }}",
+            timer: 2000
+        });
+    </script>
+    @endif
       <div class="wrapper">
          <!-- Sidebar -->
          <div class="sidebar" data-background-color="dark">

@@ -9,6 +9,8 @@
          />
       <!-- Fonts and icons -->
       <script src="./assets-dash/js/plugin/webfont/webfont.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
       <script>
          WebFont.load({
            google: { families: ["Public Sans:300,400,500,600,700"] },
@@ -34,6 +36,43 @@
       <link rel="stylesheet" href="./assets-dash/css/demo.css" />
    </head>
    <body>
+
+        @if (session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Deleted!',
+                text: "{{ session('success') }}",
+                timer: 2000
+            });
+        </script>
+        @endif
+
+        @if (session('updated'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Article Updated!',
+                text: "{{ session('success') }}",
+                timer: 2000
+            });
+        </script>
+        @endif
+
+
+
+        @if (session('error'))
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: "{{ session('error') }}",
+                timer: 2000
+            });
+        </script>
+        @endif
+
+
       <div class="wrapper">
          <!-- Sidebar -->
          @include('partials.sidebar')
@@ -112,26 +151,63 @@
                                        <th>No</th>
                                        <th>Name</th>
                                        <th>Created On</th>
+                                       <th>Last Update</th>
                                        <th style="width: 10%">Action</th>
                                     </tr>
                                  </thead>
+                                 @foreach ($articles as $article)
+
+
                                  <tbody id="subjectTableBody">
                                     <!-- Table rows will be dynamically generated here -->
-                                    <td>${subject.grade}</td>
-                                    <td>${subject.subject}</td>
-                                    <td>${subject.papers}</td>
+                                    <td>{{$article ->id}}</td>
+                                    <td>{{$article ->title }}</td>
+                                    <td>{{$article ->created_at}}</td>
+                                    <td>{{$article ->updated_at}}</td>
                                     <td>
                                        <div class="form-button-action">
-                                          <button type="button" class="btn btn-link btn-primary btn-lg btn-edit-subject" data-bs-toggle="tooltip" title="Edit Task">
+                                          <button type="button" class="btn btn-link btn-primary btn-lg btn-edit-subject" data-bs-toggle="tooltip" title="Edit Task"   onclick="location.href='{{ route('Dashboard-article-edit', $article->id) }}'">
                                           <i class="fa fa-edit" style="pointer-events: none;"></i>
                                           </button>
                                           <!-- Hidden input field to store subject ID -->
-                                          <input type="hidden" class="subject-id" value="${subject.id}">
-                                          <button type="button" class="btn btn-link btn-danger btn-remove-subject" data-bs-toggle="tooltip" title="Remove">
-                                          <i class="fa fa-times" style="pointer-events: none;"></i>
-                                          </button>
+
+                                          <form id="delete-article-form-{{ $article->id }}" action="{{ route('Dashboard-delete-Article', ['id' => $article->id]) }}" method="POST" style="display: none;">
+                                            @csrf
+                                            @method('POST') <!-- Since the route expects POST -->
+                                        </form>
+
+                                        <button type="button" class="btn btn-link btn-danger delete-article-btn" data-id="{{ $article->id }}" data-bs-toggle="tooltip" title="Remove">
+                                            <i class="fa fa-times" style="pointer-events: none;"></i>
+                                        </button>
+
+                                        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                                        <script>
+                                            document.querySelectorAll('.delete-article-btn').forEach(button => {
+                                                button.addEventListener('click', function() {
+                                                    const articleId = this.getAttribute('data-id');
+
+                                                    Swal.fire({
+                                                        title: 'Are you sure?',
+                                                        text: "You won't be able to revert this action!",
+                                                        icon: 'warning',
+                                                        showCancelButton: true,
+                                                        confirmButtonColor: '#3085d6',
+                                                        cancelButtonColor: '#d33',
+                                                        confirmButtonText: 'Yes, delete it!',
+                                                        cancelButtonText: 'Cancel'
+                                                    }).then((result) => {
+                                                        if (result.isConfirmed) {
+                                                            // Submit the corresponding form
+                                                            document.getElementById(`delete-article-form-${articleId}`).submit();
+                                                        }
+                                                    });
+                                                });
+                                            });
+                                        </script>
+
                                        </div>
                                     </td>
+                                @endforeach
                                  </tbody>
                               </table>
                            </div>
