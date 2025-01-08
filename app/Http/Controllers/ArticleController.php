@@ -132,7 +132,7 @@ class ArticleController extends Controller
 
 
 
-            public function deleteImage($id)
+        public function deleteImage($id)
                 {
                     try {
                         $image = ArticleImage::findOrFail($id);
@@ -152,7 +152,7 @@ class ArticleController extends Controller
                         return response()->json(['success' => false, 'message' => 'Error deleting image']);
                     }
                 }
-                public function delete($id)
+        public function delete($id)
                 {
                     try {
                         // Find the article by ID
@@ -175,7 +175,7 @@ class ArticleController extends Controller
                         Log::error('Error deleting article: ' . $e->getMessage());
                         return response()->json(['success' => false, 'message' => 'Error deleting article']);
                     }
-}
+             }
 
 
 

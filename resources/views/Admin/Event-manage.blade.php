@@ -4,7 +4,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <title>Dash</title>
         <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
-
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <!-- Fonts and icons -->
         <script src="{{ asset('assets-dash/js/plugin/webfont/webfont.min.js') }}"></script>
         <script>
@@ -35,6 +35,52 @@
     </head>
 
    <body>
+
+    @if (session('success'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Article Added!',
+            text: "{{ session('success') }}",
+            timer: 2000
+        });
+    </script>
+    @endif
+
+    @if (session('updated'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Article Updated!',
+            text: "{{ session('success') }}",
+            timer: 2000
+        });
+    </script>
+    @endif
+
+    @if (session('deleted'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Article Deleted!',
+            text: "{{ session('success') }}",
+            timer: 2000
+        });
+    </script>
+    @endif
+
+
+
+    @if (session('error'))
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: "{{ session('error') }}",
+            timer: 2000
+        });
+    </script>
+    @endif
       <div class="wrapper">
          <!-- Sidebar -->
          @include('partials.sidebar')
@@ -110,27 +156,66 @@
                                        <th>No</th>
                                        <th>Name</th>
                                        <th>Created On</th>
+                                       <th>Updated On</th>
                                        <th style="width: 10%">Action</th>
                                     </tr>
                                  </thead>
+                                 @foreach ($events as $event)
+
+
                                  <tbody id="subjectTableBody">
                                     <!-- Table rows will be dynamically generated here -->
-                                    <td>${subject.grade}</td>
-                                    <td>${subject.subject}</td>
-                                    <td>${subject.papers}</td>
+                                    <td>{{$event->id}}</td>
+                                    <td>{{$event->title}}</td>
+                                    <td>{{$event->created_at}}</td>
+                                    <td>{{$event->updated_at}}</td>
                                     <td>
                                        <div class="form-button-action">
-                                          <button type="button" class="btn btn-link btn-primary btn-lg btn-edit-subject" data-bs-toggle="tooltip" title="Edit Task">
+                                          <button type="button" class="btn btn-link btn-primary btn-lg btn-edit-subject" data-bs-toggle="tooltip" title="Edit Task" onclick="location.href='{{ route('Dashbaord-Edit-Event', $event->id) }}'">
                                           <i class="fa fa-edit" style="pointer-events: none;"></i>
                                           </button>
                                           <!-- Hidden input field to store subject ID -->
-                                          <input type="hidden" class="subject-id" value="${subject.id}">
-                                          <button type="button" class="btn btn-link btn-danger btn-remove-subject" data-bs-toggle="tooltip" title="Remove">
-                                          <i class="fa fa-times" style="pointer-events: none;"></i>
-                                          </button>
+
+                                          <form id="delete-event-form-{{$event->id}}" action="{{ route('Dashboard-delete-Event', ['id' => $event->id]) }}" method="POST" style="display: none;">
+                                            @csrf
+                                            @method('POST') <!-- Remove this if you don't need to simulate DELETE method -->
+                                        </form>
+
+                                        <button type="button" class="btn btn-link btn-danger delete-event-btn" data-id="{{ $event->id }}" data-bs-toggle="tooltip" title="Remove">
+                                            <i class="fa fa-times" style="pointer-events: none;"></i>
+                                        </button>
+
+                                        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                                        <script>
+                                            document.querySelectorAll('.delete-event-btn').forEach(button => {
+                                                button.addEventListener('click', function() {
+                                                    const eventId = this.getAttribute('data-id');
+
+                                                    Swal.fire({
+                                                        title: 'Are you sure?',
+                                                        text: "You won't be able to revert this action!",
+                                                        icon: 'warning',
+                                                        showCancelButton: true,
+                                                        confirmButtonColor: '#3085d6',
+                                                        cancelButtonColor: '#d33',
+                                                        confirmButtonText: 'Yes, delete it!',
+                                                        cancelButtonText: 'Cancel'
+                                                    }).then((result) => {
+                                                        if (result.isConfirmed) {
+                                                            // Submit the corresponding form using POST method
+                                                            document.getElementById(`delete-event-form-${eventId}`).submit();
+                                                        }
+                                                    });
+                                                });
+                                            });
+                                        </script>
+
+
+
                                        </div>
                                     </td>
                                  </tbody>
+                                 @endforeach
                               </table>
                            </div>
                         </div>

@@ -14,4 +14,10 @@ class Event extends Model
         'description',
         'content',
     ];
+
+    // Relationship with eventimages model
+    public function eventImages()
+    {
+        return $this->hasMany(eventimages::class, 'event_id');
+    }
 }

@@ -3,7 +3,7 @@
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\ArticleController;
-use App\Http\Controllers\Gallery;
+use App\Http\Controllers\GalleryController;
 use Illuminate\Support\Facades\Route;
 
 //Front end Routes
@@ -25,11 +25,17 @@ Route::post('/dashboard/delete-article/{id}', [ArticleController::class, 'delete
 
 
 //Event Managment
-Route::get('/dashboard/event' , [EventController::class, 'index'])->name('Dashboard-Event');
-Route::get('/dashboard/Create-Event' , [EventController::class, 'create'])->name('Dashboard-Create-Event');
-Route::post('/dashboard/eventStore' , [EventController::class, 'store'])->name('event.store');
-Route::post('/dashboard/upload-images'  , [EventController::class, 'uploadImages'])->name('events.uploadImages');
+Route::get('/dashboard/event', [EventController::class, 'index'])->name('Dashboard-Event');
+Route::get('/dashboard/create-Event', [EventController::class, 'create'])->name('Dashboard-Create-Event');
+Route::post('/dashboard/store-event', [EventController::class, 'store'])->name('Dashboard-Store-Event');
+Route::post('/upload-image', [EventController::class, 'uploadImage'])->name('Dashboard-Upload-EImage');
+Route::get('dashboard/event/{id}/edit', [EventController::class , 'edit'])->name('Dashbaord-Edit-Event');
+Route::delete('/dashboard/event-image/{id}', [EventController::class, 'deleteImage'])->name('Dashboard-delete-EventImage');
+Route::post('/dashboard/update-event/{id}', [EventController::class, 'update'])->name('Dashboard-update-Event');
+Route::post('/dashboard/delete-event/{id}', [EventController::class, 'delete'])->name('Dashboard-delete-Event');
+
 
 //Gallery managment
-Route::get('/dashboard/gallery' , [Gallery::class, 'index'])->name('Dashboard-Gallery');
-
+Route::get('/dashboard/gallery', [GalleryController::class, 'index'])->name('Dashboard-Gallery');
+Route::post('/dashboard/store-gallery', [GalleryController::class, 'store'])->name('Dashboard-Store-Gallery');
+Route::delete('/dashboard/delete-gallery/{gallery}', [GalleryController::class, 'destroy'])->name('Dashboard-Delete-Gallery');
