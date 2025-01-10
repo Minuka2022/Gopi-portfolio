@@ -69,7 +69,7 @@ class ArticleController extends Controller
                 }
             }
 
-            return redirect()->route('Dashboard-Create-Article')->with('success', 'Article created successfully!');
+            return redirect()->route('Dashboard-Article')->with('store', 'Article created successfully!');
         }
 
 
