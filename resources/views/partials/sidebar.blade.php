@@ -48,20 +48,15 @@
             </li>
 
             <li class="nav-item">
-              <a href="Manage-Users.php">
-                <i class="fas fa-users"></i>
-                <p>Logout</p>
-              </a>
+                <a href="{{ route('logout') }}">
+                    <i class="fas fa-users"></i>
+                    <p>Logout</p>
+                </a>
             </li>
-
-
           </ul>
         </div>
       </div>
  </div>
-
-
-
 
 
 
