@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Gallery;
 
 class FrontendController extends Controller
 {
@@ -22,6 +23,9 @@ class FrontendController extends Controller
     }
 
     public function gallery(){
-        return view('User.Gallery');
+        $images = Gallery::latest()->get();
+        return view('User.Gallery', compact('images'));
     }
+
+
 }
