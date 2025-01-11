@@ -40,7 +40,7 @@
     <script>
         Swal.fire({
             icon: 'success',
-            title: 'Article Added!',
+            title: 'Event Added!',
             text: "{{ session('success') }}",
             timer: 2000
         });
@@ -51,7 +51,7 @@
     <script>
         Swal.fire({
             icon: 'success',
-            title: 'Article Updated!',
+            title: 'Event Updated!',
             text: "{{ session('success') }}",
             timer: 2000
         });
@@ -62,7 +62,7 @@
     <script>
         Swal.fire({
             icon: 'success',
-            title: 'Article Deleted!',
+            title: 'Event Deleted!',
             text: "{{ session('success') }}",
             timer: 2000
         });

@@ -48,6 +48,17 @@
         </script>
         @endif
 
+        @if (session('store'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Article added!',
+                text: "{{ session('success') }}",
+                timer: 2000
+            });
+        </script>
+        @endif
+
         @if (session('updated'))
         <script>
             Swal.fire({

@@ -14,6 +14,19 @@ Route::get('/event', [FrontendController::class, 'event'])->name('frontend-event
 Route::get('/gallery', [FrontendController::class, 'gallery'])->name('frontend-gallery');
 // Route::get('/gallery', [FrontendController::class, 'gallery'])->name('frontend-gallery');
 
+
+// //Article Managment
+// Route::get('/dashboard' , [ArticleController::class, 'index'])->name('Dashboard-Article');
+// Route::get('/dashboard/Create-Article', [ArticleController::class, 'create'])->name('Dashboard-Create-Article');
+// Route::post('/dashboard/store-article', [ArticleController::class, 'store'])->name('Dashboard-Store-Article');
+// Route::post('/dashboard/upload-image', [ArticleController::class, 'uploadImage'])->name('Dashboard-Upload-Image');
+// Route::get('/dashboard/{id}/edit' , [ArticleController::class, 'edit'])->name('Dashboard-article-edit');
+// Route::delete('/dashboard/article-image/{id}', [ArticleController::class, 'deleteImage'])->name('Dashboard-Article-Image-delete');
+// Route::post('/dashboard/update-article/{id}', [ArticleController::class, 'update'])->name('Dashboard-update-Article');
+// Route::post('/dashboard/delete-article/{id}', [ArticleController::class, 'delete'])->name('Dashboard-delete-Article');
+
+
+
 // Login & Logout
 Route::get('/login', [LoginController::class, 'showLogin'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
@@ -21,10 +34,14 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::middleware([\App\Http\Middleware\AuthenticateDashboard::class])->group(function () {
     // Article Management
-    Route::get('/dashboard', [ArticleController::class, 'index'])->name('Dashboard-Article');
-    Route::get('/dashboard/create-Article', [ArticleController::class, 'create'])->name('Dashboard-Create-Article');
+    Route::get('/dashboard' , [ArticleController::class, 'index'])->name('Dashboard-Article');
+    Route::get('/dashboard/Create-Article', [ArticleController::class, 'create'])->name('Dashboard-Create-Article');
     Route::post('/dashboard/store-article', [ArticleController::class, 'store'])->name('Dashboard-Store-Article');
     Route::post('/dashboard/upload-image', [ArticleController::class, 'uploadImage'])->name('Dashboard-Upload-Image');
+    Route::get('/dashboard/{id}/edit' , [ArticleController::class, 'edit'])->name('Dashboard-article-edit');
+    Route::delete('/dashboard/article-image/{id}', [ArticleController::class, 'deleteImage'])->name('Dashboard-Article-Image-delete');
+    Route::post('/dashboard/update-article/{id}', [ArticleController::class, 'update'])->name('Dashboard-update-Article');
+    Route::post('/dashboard/delete-article/{id}', [ArticleController::class, 'delete'])->name('Dashboard-delete-Article');
 
     //Event Managment
     Route::get('/dashboard/event', [EventController::class, 'index'])->name('Dashboard-Event');
@@ -51,3 +68,4 @@ Route::middleware([\App\Http\Middleware\AuthenticateDashboard::class])->group(fu
     Route::post('/dashboard/update-article/{id}', [ArticleController::class, 'update'])->name('Dashboard-update-Article');
     Route::post('/dashboard/delete-article/{id}', [ArticleController::class, 'delete'])->name('Dashboard-delete-Article');
 });
+
