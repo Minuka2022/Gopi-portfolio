@@ -219,7 +219,8 @@
                                             {{ $article->description }}
                                         </div>
                                         <div class="dtr-post-block__read-more">
-                                            <a href="#">Read More</a>
+                                            <a href="{{ route('article.show', ['slug' => Str::slug($article->title) . '-' . $article->id]) }}">Read More</a>
+
                                         </div>
 
 

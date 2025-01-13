@@ -13,6 +13,7 @@ Route::get('/articles', [FrontendController::class, 'article'])->name('frontend-
 Route::get('/event', [FrontendController::class, 'event'])->name('frontend-event');
 Route::get('/gallery', [FrontendController::class, 'gallery'])->name('frontend-gallery');
 Route::get('/events/{slug}', [FrontendController::class, 'showEvent'])->name('events.show');
+Route::get('/article/{slug}', [FrontendController::class, 'showArticle'])->name('article.show');
 
 //Article Managment
 Route::get('/dashboard' , [ArticleController::class, 'index'])->name('Dashboard-Article');
