@@ -110,10 +110,6 @@
                                 </div>
                             </div>
                         </div>
-
-
-
-
                         <!-- Second column ends -->
 
                     </div>
@@ -199,9 +195,7 @@
              </script>
 
             <!--===== hero section ends =====-->
-
-
-            <section id="aboutme" class="dtr-section" style="padding:30px">
+           <section id="aboutme" class="dtr-section" style="padding:30px">
                 <div class="container" style="margin-top:20px; margin-bottom:20px">
                     <div class="row">
 
@@ -335,12 +329,10 @@
                     </div>
                 </div>
             </section>
-
-
             <!--===== counter section ends =====-->
 
 
-                <!--===== resume section starts =====-->
+            <!--===== resume section starts =====-->
             <section class="dtr-section padding-y-100 " id="acheivment">
                 <div class="container">
                     <div class="row">
@@ -524,7 +516,6 @@
                                     <div class="dtr-timeline__content">Skilled in delivering people skills, ethics, and supervisory workshops.<br>
                                         </div>
                                 </div>
-
                             </div>
                             <!-- box 2 ends -->
                             <span class="spacer spacer-20"></span>
