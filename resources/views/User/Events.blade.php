@@ -45,53 +45,7 @@
 
         <!-- header starts
 ============================================= -->
-        <header id="dtr-header-global" class="fixed-top dtr-header" >
-
-            <!-- == header content starts == -->
-            <div class="dtr-header-global-content">
-
-                <!-- header left starts -->
-                <div class="dtr-header-left">
-                    <!-- logo -->
-                    <a class="logo-default" href="index.html"><img src="assets/images/logo.png" alt="logo" width="88" height="25"></a>
-                    <!-- logo on scroll -->
-                    <a class="logo-alt" href="index.html"><img src="assets/images/logo.png" alt="logo" width="88" height="25"></a>
-                </div>
-                <!-- header left ends -->
-
-                <!-- header right starts -->
-                <div class="dtr-header-right">
-                    <button id="dtr-menu-button" class="dtr-hamburger" type="button" aria-label="Menu Button"><span class="dtr-hamburger-lines-wrapper" ><span class="dtr-hamburger-lines"></span></span></button>
-                </div>
-                <!-- header right ends -->
-
-            </div>
-            <!-- == header content ends == -->
-
-            <!-- == sidemenu section starts == -->
-            <a href="#" class="dtr-navigation-trigger" >Menu<span></span></a>
-            <a href="#" class="dtr-navigation-close-trigger" aria-label="Menu Close Button"></a>
-            <div class="dtr-sidemenu-scroll"></div>
-            <div class="dtr-sidemenu-wrapper">
-
-                <!-- menu links starts -->
-                <ul class="dtr-nav dtr-main-nav dtr-vertical-nav">
-                    <li class="menu-item menu-item-has-children"> <a class="nav-link" href="#" >Home</a>
-                        <ul class="sub-menu">
-                            <li><a href="index.html" class="nav-link" style="color: black;">Home v1</a></li>
-                            <li><a href="home-2.html" class="nav-link" style="color: black;">Home v2</a></li>
-                        </ul>
-                    </li>
-                    <li class="menu-item"><a href="#services" class="nav-link" style="color: black;">Services</a></li>
-                    <li class="menu-item"><a href="#works" class="nav-link" style="color: black;">Works</a></li>
-                    <li class="menu-item"><a href="#about" class="nav-link" style="color: black;">About Me</a></li>
-                    <li class="menu-item"><a href="#testimonial" class="nav-link" style="color: black;">Testimonials</a></li>
-                    <li class="menu-item"><a href="#pricing" class="nav-link" style="color: black;">Plans &#038; Pricing</a></li>
-                    <li class="menu-item"><a href="#blog" class="nav-link" style="color: black;">Blog</a></li>
-                    <li class="menu-item"><a href="#contact" class="nav-link" style="color: black;">Contact Me</a></li>
-                </ul>
-            </div>
-        </header>
+@include('partials.header')
     </div>
         <!-- header ends
 ================================================== -->
@@ -266,7 +220,7 @@
                                             {{ $event->description }}
                                         </div>
                                         <div class="dtr-post-block__read-more">
-                                            <a href="{{ route('events.show', ['slug' => Str::slug($event->title) ]) }}">Read More</a>
+                                            <a href="{{ route('events.show', ['slug' => Str::slug($event->title) . '-' . $event->id]) }}">Read More</a>
 
                                         </div>
 

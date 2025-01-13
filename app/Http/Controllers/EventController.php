@@ -196,7 +196,8 @@ public function delete($id)
         // Finally, delete the event
         $event->delete();
 
-        return response()->json(['deleted' => true, 'message' => 'Event deleted successfully.']);
+
+        return redirect()->route('Dashboard-Event')->with('deleted', 'Event deleted successfully!');
     } catch (\Exception $e) {
         Log::error('Event deletion error: ' . $e->getMessage());
         return response()->json([

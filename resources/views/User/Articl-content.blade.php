@@ -54,57 +54,7 @@
 
         <!-- header starts
 ============================================= -->
-        <header id="dtr-header-global" class="fixed-top dtr-header">
-
-            <!-- == header content starts == -->
-            <div class="dtr-header-global-content">
-
-                <!-- header left starts -->
-                <div class="dtr-header-left">
-                    <!-- logo -->
-                    <a class="logo-default" href="index.html"><img src="assets/images/logo.png" alt="logo" width="88" height="25"></a>
-                    <!-- logo on scroll -->
-                    <a class="logo-alt" href="index.html"><img src="assets/images/logo.png" alt="logo" width="88" height="25"></a>
-                </div>
-                <!-- header left ends -->
-
-                <!-- header right starts -->
-                <div class="dtr-header-right">
-                    <button id="dtr-menu-button" class="dtr-hamburger" type="button" aria-label="Menu Button"><span class="dtr-hamburger-lines-wrapper"><span class="dtr-hamburger-lines"></span></span></button>
-                </div>
-                <!-- header right ends -->
-
-            </div>
-            <!-- == header content ends == -->
-
-            <!-- == sidemenu section starts == -->
-            <a href="#" class="dtr-navigation-trigger">Menu<span></span></a>
-            <a href="#" class="dtr-navigation-close-trigger" aria-label="Menu Close Button"></a>
-            <div class="dtr-sidemenu-scroll"></div>
-            <div class="dtr-sidemenu-wrapper">
-
-                <!-- menu links starts -->
-                <ul class="dtr-nav dtr-main-nav dtr-vertical-nav">
-                    <li class="menu-item menu-item-has-children"> <a class="nav-link" href="#">Home</a>
-                        <ul class="sub-menu">
-                            <li><a href="index.html" class="nav-link">Home v1</a></li>
-                            <li><a href="home-2.html" class="nav-link">Home v2</a></li>
-                        </ul>
-                    </li>
-                    <li class="menu-item"><a href="index.html#services" class="nav-link">Services</a></li>
-                    <li class="menu-item"><a href="index.html#works" class="nav-link">Works</a></li>
-                    <li class="menu-item"><a href="index.html#about" class="nav-link">About Me</a></li>
-                    <li class="menu-item"><a href="index.html#testimonial" class="nav-link">Testimonials</a></li>
-                    <li class="menu-item"><a href="index.html#pricing" class="nav-link">Plans &#038; Pricing</a></li>
-                    <li class="menu-item"><a href="index.html#blog" class="nav-link">Blog</a></li>
-                    <li class="menu-item"><a href="index.html#contact" class="nav-link">Contact Me</a></li>
-                </ul>
-                <!-- menu links ends -->
-
-            </div>
-            <!-- == sidemenu section ends == -->
-
-        </header>
+@include('partials.header')
         <!-- header ends
 ================================================== -->
 

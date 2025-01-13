@@ -4,9 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+
 use App\Models\event;
 use Illuminate\Support\Facades\Log;
 use App\Models\Article;
+use App\Models\Gallery;
+
+
 class FrontendController extends Controller
 {
     //
@@ -36,8 +40,10 @@ class FrontendController extends Controller
 
 
     public function gallery(){
-        return view('User.Gallery');
+        $images = Gallery::latest()->get();
+        return view('User.Gallery', compact('images'));
     }
+
 
 
     public function showEvent($slug)
@@ -51,4 +57,6 @@ class FrontendController extends Controller
 
         return view('User.Event-content', compact('event'));
     }
+
+
 }
