@@ -140,76 +140,7 @@
 
         <!-- footer section starts
 ================================================== -->
-        <footer id="dtr-footer-section">
-            <div class="container">
-
-                <!--== row 1 starts ==-->
-                <div class="row">
-
-                    <!--== column 1 starts ==-->
-                    <div class="col-12 col-md-6">
-                        <div class="dtr-footer-col-shrink">
-                            <a href="index.html"><img src="assets/images/logo.png" alt="logo" width="88" height="25"></a>
-                            <span class="spacer spacer-20"></span>
-                            <p>There are many variations of passages of lorem ipsum available but the majority have suffered alteration in some form.</p>
-                        </div>
-                    </div>
-                    <!--== column 1 ends ==-->
-
-                    <!--== column 2 starts ==-->
-                    <div class="col-12 col-md-3 small-device-top-space">
-                        <div class="dtr-footer-contact">
-                            <p><a href="#">hello@example.com</a></p>
-                            <p>12 345 678 90</p>
-                            <p>Borough 47, Aveton Gifford,<br>Devon, UK, EX4 1QU</p>
-                        </div>
-                    </div>
-                    <!--== column 2 ends ==-->
-
-                    <!--== column 3 starts ==-->
-                    <div class="col-12 col-md-3 small-device-top-space text-right">
-                        <div class="dtr-footer-contact">
-                            <p>Have a project in mind?</p>
-                        </div>
-                        <p class="dtr-footer-btn">
-                            <a class="dtr-btn dtr-btn-contrast" href="#contact" role="button">
-                                <span class="dtr-btn__text">Contact Me</span>
-                            </a>
-                        </p>
-                    </div>
-                    <!--== column 3 ends ==-->
-
-                </div>
-                <!--== row 1 ends ==-->
-
-                <!--== row 2 starts ==-->
-                <div class="dtr-copyright">
-                    <div class="row">
-
-                        <!--== column 1 starts ==-->
-                        <div class="col-12 col-md-6">
-                            <div class="text-left">
-                                <ul class="dtr-social">
-                                    <li><a class="dtr-facebook" href="#" title="Facebook" target="_blank" rel="nofollow" aria-label="Facebook"></a></li>
-                                    <li><a class="dtr-twitter" href="#" title="Twitter" target="_blank" rel="nofollow" aria-label="Twitter"></a></li>
-                                    <li><a class="dtr-instagram" href="#" title="Instagram" target="_blank" rel="nofollow" aria-label="Instagram"></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!--== column 1 ends ==-->
-
-                        <!--== column 2 starts ==-->
-                        <div class="col-12 col-md-6 dtr-copyright-col-2">
-                            <p>2024 © Copr. Theme by Tansh</p>
-                        </div>
-                        <!--== column 2 ends ==-->
-
-                    </div>
-                </div>
-                <!--== row 2 ends ==-->
-
-            </div>
-        </footer>
+@include('partials.footer')
         <!-- footer section ends
 ================================================== -->
         <!--== scroll to top ==-->
