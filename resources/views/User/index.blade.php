@@ -1125,6 +1125,29 @@
 <!--                </div>-->
 <!--            </section>-->
             <!--===== pricing section ends =====-->
+            <style>
+               .dtr-post-block__img-wrapper {
+                    width: 100%;
+                    height: 200px; /* Adjust height as needed */
+                    overflow: hidden;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    background-color: #f0f0f0; /* Neutral background for better image appearance */
+                }
+
+                .dtr-post-block__img-wrapper img {
+                    width: auto;
+                    height: 100%; /* Ensures the image fits while maintaining its aspect ratio */
+                    object-fit: contain; /* Shows the entire image without cropping */
+                }
+
+
+
+               */
+
+
+            </style>
 
             <!--===== blog section starts =====-->
             <section id="Events" class="dtr-section bg-color-secondary-light padding-y-100" style="background-color: #003366;">
@@ -1135,7 +1158,7 @@
                         <div class="col-12">
                             <div class="dtr-intro--spaced-col">
                                 <h2 class="dtr-intro__heading" style="color: white;">Events</h2>
-                                <p><a class="dtr-btn" href="Events.html" role="button" style="background-color: #228B22;"><span class="dtr-btn__text">View More</span></a></p>
+                                <p><a class="dtr-btn" href="{{route('frontend-event')}}" role="button" style="background-color: #228B22;"><span class="dtr-btn__text">View More</span></a></p>
                             </div>
                         </div>
                         <!--== intro ends ==-->
@@ -1149,73 +1172,39 @@
                             <!-- swiper slider starts -->
                             <div class="swiper dtr-swiper swiper-container dtr-recentposts-carousel">
                                 <div class="swiper-wrapper">
-
-                                    <!-- slide 1 starts -->
-                                    <div class="swiper-slide dtr-post-block">
-                                        <div class="dtr-post-block__img-wrapper"><a href="single-post.html"><img src="assets/images/post-img8-600x600.jpg" alt="image"></a>
-                                            <!-- <div class="dtr-post-block__category"><a class="dtr-category-link" href="#">Growth</a></div> -->
-                                        </div>
-                                        <div class="dtr-post-block__content" style="color: white;">
-                                            <div class="dtr-post-block__meta">
-                                                <a class="dtr-meta-item" href="#" style="color: white;">March 14, 2020</a>
-                                                <a class="dtr-meta-item" href="#"  style="color: white;">Emanuel</a>
+                                    @foreach ($articles as $article)
+                                        <div class="swiper-slide dtr-post-block">
+                                            <!-- Article Image -->
+                                            <div class="dtr-post-block__img-wrapper">
+                                                <a href="single-post.html">
+                                                    <img src="{{ asset('storage/' . ($article->images->first()->image ?? 'default.jpg')) }}" alt="Article Image">
+                                                </a>
                                             </div>
-                                            <h5 class="dtr-post-block__title"><a href="single-post.html" rel="bookmark"  style="color: white;">Treat your website as a product</a></h5>
-                                            <div class="dtr-post-block__excerpt">There are many variations of passages of lorem ipsum available but the…</div>
-                                        </div>
-                                    </div>
-                                    <!-- slide 1 ends -->
 
-                                    <!-- slide 2 starts -->
-                                    <div class="swiper-slide dtr-post-block">
-                                        <div class="dtr-post-block__img-wrapper"><a href="single-post.html"><img src="assets/images/post-img7-600x600.jpg" alt="image"></a>
-                                            <!-- <div class="dtr-post-block__category"><a class="dtr-category-link" href="#">Web</a></div> -->
-                                        </div>
-                                        <div class="dtr-post-block__content">
-                                            <div class="dtr-post-block__meta">
-                                                <a class="dtr-meta-item" href="#"  style="color: white;">March 14, 2023</a>
-                                                <a class="dtr-meta-item" href="#"  style="color: white;">Emanuel</a>
+                                            <!-- Article Content -->
+                                            <div class="dtr-post-block__content">
+                                                <div class="dtr-post-block__meta">
+                                                    <!-- Article Date -->
+                                                    <a class="dtr-meta-item" href="#" style="color: hsl(0, 0%, 90%);">{{ $article->created_at->format('F d, Y') }}</a>
+                                                    <!-- Hardcoded Author -->
+                                                    <a class="dtr-meta-item" href="#" style="color:  hsl(0, 0%, 90%);">Author Name</a>
+                                                </div>
+
+                                                <!-- Article Title -->
+                                                <h5 class="dtr-post-block__title">
+                                                    <a href="single-post.html" rel="bookmark" style="color: rgb(255, 255, 255);">{{ $article->title }}</a>
+                                                </h5>
+
+                                                <!-- Article Description -->
+                                                <div class="dtr-post-block__excerpt" style="color: rgb(226, 223, 223);">
+                                                    {{ $article->description }}
+                                                </div>
                                             </div>
-                                            <h5 class="dtr-post-block__title"><a href="single-post.html" rel="bookmark"  style="color: white;">Visual communication in brand development</a></h5>
-                                            <div class="dtr-post-block__excerpt">There are many variations of passages of lorem ipsum available but the…</div>
                                         </div>
-                                    </div>
-                                    <!-- slide 2 ends -->
-
-                                    <!-- slide 3 starts -->
-                                    <div class="swiper-slide dtr-post-block">
-                                        <div class="dtr-post-block__img-wrapper"><a href="single-post.html"><img src="assets/images/post-img9-600x600.jpg" alt="image"></a>
-                                            <!-- <div class="dtr-post-block__category"><a class="dtr-category-link" href="#">Product</a></div> -->
-                                        </div>
-                                        <div class="dtr-post-block__content">
-                                            <div class="dtr-post-block__meta">
-                                                <a class="dtr-meta-item" href="#"  style="color: white;">May 20, 2023</a>
-                                                <a class="dtr-meta-item" href="#" style="color: white;">Emanuel</a>
-                                            </div>
-                                            <h5 class="dtr-post-block__title"><a href="single-post.html" rel="bookmark" style="color: white;">The most important aspects of a creative design</a></h5>
-                                            <div class="dtr-post-block__excerpt">There are many variations of passages of lorem ipsum available but the…</div>
-                                        </div>
-                                    </div>
-                                    <!-- slide 3 ends -->
-
-                                    <!-- slide 4 starts -->
-                                    <div class="swiper-slide dtr-post-block">
-                                        <div class="dtr-post-block__img-wrapper"><a href="single-post.html"><img src="assets/images/post-img3-600x600.jpg" alt="image"></a>
-                                            <!-- <div class="dtr-post-block__category"><a class="dtr-category-link" href="#">Viusal</a></div> -->
-                                        </div>
-                                        <div class="dtr-post-block__content">
-                                            <div class="dtr-post-block__meta">
-                                                <a class="dtr-meta-item" href="#" style="color: white;">July 09, 2023</a>
-                                                <a class="dtr-meta-item" href="#" style="color: white;">Emanuel</a>
-                                            </div>
-                                            <h5 class="dtr-post-block__title"><a href="single-post.html" rel="bookmark" style="color: white;">Visual communication in brand development</a></h5>
-                                            <div class="dtr-post-block__excerpt">There are many variations of passages of lorem ipsum available but the…</div>
-                                        </div>
-                                    </div>
-                                    <!-- slide 4 ends -->
-
+                                    @endforeach
                                 </div>
                             </div>
+
                             <!-- swiper slider ends -->
 
                         </div>
@@ -1233,7 +1222,7 @@
                         <div class="col-12">
                             <div class="dtr-intro--spaced-col">
                                 <h2 class="dtr-intro__heading" style="color: black;">Recent Articles</h2>
-                                <p><a class="dtr-btn" href="Articles.html" role="button" style="background-color: #228B22;"><span class="dtr-btn__text">View More</span></a></p>
+                                <p><a class="dtr-btn" href="{{route('frontend-article')}}" role="button" style="background-color: #228B22;"><span class="dtr-btn__text">View More</span></a></p>
                             </div>
                         </div>
                         <!--== intro ends ==-->
@@ -1247,73 +1236,40 @@
                             <!-- swiper slider starts -->
                             <div class="swiper dtr-swiper swiper-container dtr-recentposts-carousel">
                                 <div class="swiper-wrapper">
-
-                                    <!-- slide 1 starts -->
-                                    <div class="swiper-slide dtr-post-block">
-                                        <div class="dtr-post-block__img-wrapper"><a href="single-post.html"><img src="assets/images/post-img8-600x600.jpg" alt="image"></a>
-                                            <!-- <div class="dtr-post-block__category"><a class="dtr-category-link" href="#">Growth</a></div> -->
-                                        </div>
-                                        <div class="dtr-post-block__content">
-                                            <div class="dtr-post-block__meta">
-                                                <a class="dtr-meta-item" href="#" style="color: black;">March 14, 2020</a>
-                                                <a class="dtr-meta-item" href="#" style="color: black;">Emanuel</a>
+                                    @foreach ($articles as $article)
+                                        <div class="swiper-slide dtr-post-block">
+                                            <!-- Article Image -->
+                                            <div class="dtr-post-block__img-wrapper">
+                                                <a href="single-post.html">
+                                                    <img src="{{ asset('storage/' . ($article->images->first()->image ?? 'default.jpg')) }}" alt="Article Image">
+                                                </a>
                                             </div>
-                                            <h5 class="dtr-post-block__title"><a href="single-post.html" rel="bookmark" style="color: black;">Treat your website as a product</a></h5>
-                                            <div class="dtr-post-block__excerpt">There are many variations of passages of lorem ipsum available but the…</div>
-                                        </div>
-                                    </div>
-                                    <!-- slide 1 ends -->
 
-                                    <!-- slide 2 starts -->
-                                    <div class="swiper-slide dtr-post-block">
-                                        <div class="dtr-post-block__img-wrapper"><a href="single-post.html"><img src="assets/images/post-img7-600x600.jpg" alt="image"></a>
-                                            <!-- <div class="dtr-post-block__category"><a class="dtr-category-link" href="#">Web</a></div> -->
-                                        </div>
-                                        <div class="dtr-post-block__content">
-                                            <div class="dtr-post-block__meta">
-                                                <a class="dtr-meta-item" href="#" style="color: black;">March 14, 2023</a>
-                                                <a class="dtr-meta-item" href="#" style="color: black;">Emanuel</a>
+                                            <!-- Article Content -->
+                                            <div class="dtr-post-block__content">
+                                                <div class="dtr-post-block__meta">
+                                                    <!-- Article Date -->
+                                                    <a class="dtr-meta-item" href="#" style="color: black;">{{ $article->created_at->format('F d, Y') }}</a>
+                                                    <!-- Hardcoded Author -->
+                                                    <a class="dtr-meta-item" href="#" style="color: black;">Author Name</a>
+                                                </div>
+
+                                                <!-- Article Title -->
+                                                <h5 class="dtr-post-block__title">
+                                                    <a href="single-post.html" rel="bookmark" style="color: black;">{{ $article->title }}</a>
+                                                </h5>
+
+                                                <!-- Article Description -->
+                                                <div class="dtr-post-block__excerpt">
+                                                    {{ $article->description }}
+                                                </div>
                                             </div>
-                                            <h5 class="dtr-post-block__title"><a href="single-post.html" rel="bookmark" style="color: black;">Visual communication in brand development</a></h5>
-                                            <div class="dtr-post-block__excerpt">There are many variations of passages of lorem ipsum available but the…</div>
                                         </div>
-                                    </div>
-                                    <!-- slide 2 ends -->
-
-                                    <!-- slide 3 starts -->
-                                    <div class="swiper-slide dtr-post-block">
-                                        <div class="dtr-post-block__img-wrapper"><a href="single-post.html"><img src="assets/images/post-img9-600x600.jpg" alt="image"></a>
-                                            <!-- <div class="dtr-post-block__category"><a class="dtr-category-link" href="#">Product</a></div> -->
-                                        </div>
-                                        <div class="dtr-post-block__content">
-                                            <div class="dtr-post-block__meta">
-                                                <a class="dtr-meta-item" href="#" style="color: black;">May 20, 2023</a>
-                                                <a class="dtr-meta-item" href="#" style="color: black;">Emanuel</a>
-                                            </div>
-                                            <h5 class="dtr-post-block__title"><a href="single-post.html" rel="bookmark" style="color: black;">The most important aspects of a creative design</a></h5>
-                                            <div class="dtr-post-block__excerpt">There are many variations of passages of lorem ipsum available but the…</div>
-                                        </div>
-                                    </div>
-                                    <!-- slide 3 ends -->
-
-                                    <!-- slide 4 starts -->
-                                    <div class="swiper-slide dtr-post-block">
-                                        <div class="dtr-post-block__img-wrapper"><a href="single-post.html"><img src="assets/images/post-img3-600x600.jpg" alt="image"></a>
-                                            <!-- <div class="dtr-post-block__category"><a class="dtr-category-link" href="#">Viusal</a></div> -->
-                                        </div>
-                                        <div class="dtr-post-block__content">
-                                            <div class="dtr-post-block__meta">
-                                                <a class="dtr-meta-item" href="#" style="color: black;">July 09, 2023</a>
-                                                <a class="dtr-meta-item" href="#" style="color: black;">Emanuel</a>
-                                            </div>
-                                            <h5 class="dtr-post-block__title"><a href="single-post.html" rel="bookmark" style="color: black;">Visual communication in brand development</a></h5>
-                                            <div class="dtr-post-block__excerpt">There are many variations of passages of lorem ipsum available but the…</div>
-                                        </div>
-                                    </div>
-                                    <!-- slide 4 ends -->
-
+                                    @endforeach
                                 </div>
                             </div>
+
+
                             <!-- swiper slider ends -->
 
                         </div>

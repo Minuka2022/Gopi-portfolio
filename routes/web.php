@@ -11,8 +11,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [FrontendController::class, 'index'])->name('frontend-Home');
 Route::get('/articles', [FrontendController::class, 'article'])->name('frontend-article');
 Route::get('/event', [FrontendController::class, 'event'])->name('frontend-event');
-
-Route::get('/articles', [FrontendController::class, 'gallery'])->name('frontend-gallery');
+Route::get('/gallery', [FrontendController::class, 'gallery'])->name('frontend-gallery');
+Route::get('/events/{slug}', [FrontendController::class, 'showEvent'])->name('events.show');
 
 //Article Managment
 Route::get('/dashboard' , [ArticleController::class, 'index'])->name('Dashboard-Article');

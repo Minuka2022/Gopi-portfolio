@@ -105,7 +105,7 @@
                 <div class="col-12">
                     <div class="dtr-intro--spaced-col">
                         <h2 class="dtr-intro__heading" style="color:black;">Events</h2>
-                        <p><a class="dtr-btn" href="index.html" role="button" style="background-color: #228B22;"><span class="dtr-btn__text">Back to Home</span></a></p>
+                        <p><a class="dtr-btn" href="{{route('frontend-Home')}}" role="button" style="background-color: #228B22;"><span class="dtr-btn__text">Back to Home</span></a></p>
                     </div>
                 </div>
                 <!--== intro ends ==-->
@@ -116,120 +116,168 @@
                 <!--== single column starts ==-->
                 <div class="col-12" style="color: white;  " >
 
-                    <!-- swiper slider starts -->
-                    <div class="swiper dtr-swiper swiper-container dtr-recentposts-carousel" style="margin-bottom: 40px;">
-                        <div class="swiper-wrapper" style="color: black">
+                    <style>
 
-                            <!-- slide 1 starts -->
-                            <div class="swiper-slide dtr-post-block" style="color: black">
-                                <div class="dtr-post-block__img-wrapper"><a href="single-post.html"><img src="assets/images/post-img8-600x600.jpg" alt="image"></a>
-                                    <!-- <div class="dtr-post-block__category"><a class="dtr-category-link" href="#">Growth</a></div> -->
-                                </div>
-                                <div class="dtr-post-block__content" style="color: black;">
-                                    <div class="dtr-post-block__meta" style="color:black;;">
-                                        <a class="dtr-meta-item" href="#" style="color: black;">March 14, 2020</a>
-                                        <a class="dtr-meta-item" href="#"  style="color: black;">Emanuel</a>
+                        .dtr-recentposts-grid {
+                            margin-bottom: 40px; /* Space at the bottom of the grid */
+                        }
+
+                        .dtr-post-wrapper {
+                            display: grid; /* Use grid layout */
+                            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive columns */
+                            gap: 16px; /* Add space between cards */
+                            margin: 16px; /* Outer margin for the wrapper */
+                        }
+
+                        /* Card Styling */
+                            .dtr-post-block {
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: space-between; /* Space between content */
+                                background-color: #fff;
+                                border: 1px solid #ddd;
+                                padding: 0;
+                                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                                overflow: hidden;
+                                border-radius: 8px; /* Add slight rounding */
+                            }
+
+                        /* Image Section */
+                        .dtr-post-block__img-wrapper {
+                            overflow: hidden; /* Hide overflow in case of irregular image sizes */
+                            width: 100%;
+                            height: 180px; /* Set a fixed height for the image section */
+                        }
+
+                        .dtr-post-block__img-wrapper img {
+                            width: 100%; /* Ensure the image takes the full width of the container */
+                            height: 100%; /* Match the height of the container */
+                            object-fit: cover; /* Ensure the image covers the area without distortion */
+                        }
+
+                        /* Event Content Styling */
+                        /* Content Styling */
+                        .dtr-post-block__content {
+                            flex-grow: 1; /* Allow content to expand */
+                            padding: 15px;
+                            color: black;
+                            display: flex;
+                            flex-direction: column;
+                        }
+                        .dtr-post-block img {
+                            width: 100%; /* Make images responsive */
+                            height: auto; /* Maintain aspect ratio */
+                            display: block;
+                            object-fit: cover; /* Ensure images fit nicely */
+                        }
+
+
+                        .dtr-post-block__meta a {
+                            color: black; /* Meta links color */
+                            text-decoration: none; /* Remove underline */
+                            margin-right: 10px; /* Space between the meta items */
+                        }
+
+
+
+                        /* Title Styling */
+                        .dtr-post-block__title {
+                            font-size: 18px; /* Title font size */
+                            margin: 10px 0; /* Space around the title */
+                        }
+
+                        .dtr-post-block__title a {
+                            color: black; /* Title link color */
+                            text-decoration: none; /* Remove underline */
+                        }
+
+                        /* Excerpt Styling */
+                        .dtr-post-block__excerpt {
+                            font-size: 14px; /* Excerpt font size */
+                            line-height: 1.5; /* Improve line spacing */
+                            color: #666; /* Lighter text color for the excerpt */
+                        }
+
+                        /* Read More Button */
+                        .dtr-post-block__read-more {
+                            margin-top: auto; /* Push button to the bottom */
+                            padding: 10px 15px; /* Padding around the button */
+                            text-align: left;
+                        }
+
+
+                        .dtr-post-block__read-more a {
+                            display: inline-block;
+                            padding: 8px 16px;
+                            background-color: #28a745;
+                            color: #fff;
+                            font-size: 14px;
+                            text-decoration: none;
+                            border-radius: 4px;
+                            font-weight: bold;
+                        }
+
+
+                        .dtr-post-block__read-more a:hover {
+                            background-color: #218838;
+                        }
+
+                        /* Responsive Design */
+                        @media (max-width: 768px) {
+                            .dtr-post-wrapper {
+                                grid-template-columns: 1fr; /* Single column on smaller screens */
+                            }
+
+                            .dtr-post-block {
+                                margin: 0 auto; /* Center cards on mobile */
+                            }
+                        }
+
+
+                    </style>
+
+                        <div class="dtr-recentposts-grid" style="margin-bottom: 40px;">
+                            <div class="swiper-wrapper" style="color: black; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+                                @foreach ($events as $event)
+                                <div class="dtr-post-block" style="color: black">
+                                    <!-- Event Image -->
+                                    <div class="dtr-post-block__img-wrapper">
+                                        <a href="single-post.html">
+                                            <img src="{{ asset('storage/' . ($event->eventImages->first()->image ?? 'default.jpg')) }}" alt="Event Image">
+                                        </a>
                                     </div>
-                                    <h5 class="dtr-post-block__title"><a href="single-post.html" rel="bookmark"  style="color: black;">Treat your website as a product</a></h5>
-                                    <div class="dtr-post-block__excerpt" style="color: black">There are many variations of passages of lorem ipsum available but the…</div>
-                                </div>
-                            </div>
-                            <!-- slide 1 ends -->
 
-                            <!-- slide 2 starts -->
-                            <div class="swiper-slide dtr-post-block" style="color: black">
-                                <div class="dtr-post-block__img-wrapper"><a href="single-post.html"><img src="assets/images/post-img8-600x600.jpg" alt="image"></a>
-                                    <!-- <div class="dtr-post-block__category"><a class="dtr-category-link" href="#">Growth</a></div> -->
-                                </div>
-                                <div class="dtr-post-block__content" style="color: black;">
-                                    <div class="dtr-post-block__meta" style="color:black;;">
-                                        <a class="dtr-meta-item" href="#" style="color: black;">March 14, 2020</a>
-                                        <a class="dtr-meta-item" href="#"  style="color: black;">Emanuel</a>
+                                    <!-- Event Content -->
+                                    <div class="dtr-post-block__content" style="color: black;">
+                                        <div class="dtr-post-block__meta" style="color: black;">
+                                            <!-- Event Date -->
+                                            <a class="dtr-meta-item" href="#" style="color: black;">{{ $event->created_at->format('F d, Y') }}</a>
+                                            <!-- Hardcoded Author -->
+                                            <a class="dtr-meta-item" href="#" style="color: black;">Gopi</a>
+                                        </div>
+
+                                        <!-- Event Title -->
+                                        <h5 class="dtr-post-block__title">
+                                            <a href="single-post.html" rel="bookmark" style="color: black;">{{ $event->title }}</a>
+                                        </h5>
+
+                                        <!-- Event Description -->
+                                        <div class="dtr-post-block__excerpt" style="color: black;">
+                                            {{ $event->description }}
+                                        </div>
+                                        <div class="dtr-post-block__read-more">
+                                            <a href="{{ route('events.show', ['slug' => Str::slug($event->title) ]) }}">Read More</a>
+
+                                        </div>
+
+
                                     </div>
-                                    <h5 class="dtr-post-block__title"><a href="single-post.html" rel="bookmark"  style="color: black;">Treat your website as a product</a></h5>
-                                    <div class="dtr-post-block__excerpt" style="color: black">There are many variations of passages of lorem ipsum available but the…</div>
+
                                 </div>
+                                @endforeach
                             </div>
-                            <!-- slide 2 ends -->
-
-                            <!-- slide 3 starts -->
-                            <div class="swiper-slide dtr-post-block" style="color: black">
-                                <div class="dtr-post-block__img-wrapper"><a href="single-post.html"><img src="assets/images/post-img8-600x600.jpg" alt="image"></a>
-                                    <!-- <div class="dtr-post-block__category"><a class="dtr-category-link" href="#">Growth</a></div> -->
-                                </div>
-                                <div class="dtr-post-block__content" style="color: black;">
-                                    <div class="dtr-post-block__meta" style="color:black;;">
-                                        <a class="dtr-meta-item" href="#" style="color: black;">March 14, 2020</a>
-                                        <a class="dtr-meta-item" href="#"  style="color: black;">Emanuel</a>
-                                    </div>
-                                    <h5 class="dtr-post-block__title"><a href="single-post.html" rel="bookmark"  style="color: black;">Treat your website as a product</a></h5>
-                                    <div class="dtr-post-block__excerpt" style="color: black">There are many variations of passages of lorem ipsum available but the…</div>
-                                </div>
-                            </div>
-                            <!-- slide 3 ends -->
-
-
-
                         </div>
 
-                    </div>
-
-                    <div class="swiper dtr-swiper swiper-container dtr-recentposts-carousel">
-                        <div class="swiper-wrapper" style="color: black">
-
-                            <!-- slide 1 starts -->
-                            <div class="swiper-slide dtr-post-block" style="color: black">
-                                <div class="dtr-post-block__img-wrapper"><a href="single-post.html"><img src="assets/images/post-img8-600x600.jpg" alt="image"></a>
-                                    <!-- <div class="dtr-post-block__category"><a class="dtr-category-link" href="#">Growth</a></div> -->
-                                </div>
-                                <div class="dtr-post-block__content" style="color: black;">
-                                    <div class="dtr-post-block__meta" style="color:black;;">
-                                        <a class="dtr-meta-item" href="#" style="color: black;">March 14, 2020</a>
-                                        <a class="dtr-meta-item" href="#"  style="color: black;">Emanuel</a>
-                                    </div>
-                                    <h5 class="dtr-post-block__title"><a href="single-post.html" rel="bookmark"  style="color: black;">Treat your website as a product</a></h5>
-                                    <div class="dtr-post-block__excerpt" style="color: black">There are many variations of passages of lorem ipsum available but the…</div>
-                                </div>
-                            </div>
-                            <!-- slide 1 ends -->
-
-                            <!-- slide 2 starts -->
-                            <div class="swiper-slide dtr-post-block" style="color: black">
-                                <div class="dtr-post-block__img-wrapper"><a href="single-post.html"><img src="assets/images/post-img8-600x600.jpg" alt="image"></a>
-                                    <!-- <div class="dtr-post-block__category"><a class="dtr-category-link" href="#">Growth</a></div> -->
-                                </div>
-                                <div class="dtr-post-block__content" style="color: black;">
-                                    <div class="dtr-post-block__meta" style="color:black;;">
-                                        <a class="dtr-meta-item" href="#" style="color: black;">March 14, 2020</a>
-                                        <a class="dtr-meta-item" href="#"  style="color: black;">Emanuel</a>
-                                    </div>
-                                    <h5 class="dtr-post-block__title"><a href="single-post.html" rel="bookmark"  style="color: black;">Treat your website as a product</a></h5>
-                                    <div class="dtr-post-block__excerpt" style="color: black">There are many variations of passages of lorem ipsum available but the…</div>
-                                </div>
-                            </div>
-                            <!-- slide 2 ends -->
-
-                            <!-- slide 3 starts -->
-                            <div class="swiper-slide dtr-post-block" style="color: black">
-                                <div class="dtr-post-block__img-wrapper"><a href="single-post.html"><img src="assets/images/post-img8-600x600.jpg" alt="image"></a>
-                                    <!-- <div class="dtr-post-block__category"><a class="dtr-category-link" href="#">Growth</a></div> -->
-                                </div>
-                                <div class="dtr-post-block__content" style="color: black;">
-                                    <div class="dtr-post-block__meta" style="color:black;;">
-                                        <a class="dtr-meta-item" href="#" style="color: black;">March 14, 2020</a>
-                                        <a class="dtr-meta-item" href="#"  style="color: black;">Emanuel</a>
-                                    </div>
-                                    <h5 class="dtr-post-block__title"><a href="single-post.html" rel="bookmark"  style="color: black;">Treat your website as a product</a></h5>
-                                    <div class="dtr-post-block__excerpt" style="color: black">There are many variations of passages of lorem ipsum available but the…</div>
-                                </div>
-                            </div>
-                            <!-- slide 3 ends -->
-
-
-
-                        </div >
-
-                    </div>
                     <!-- swiper slider ends -->
 
                 </div>
