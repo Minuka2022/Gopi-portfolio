@@ -59,5 +59,12 @@ class FrontendController extends Controller
         return view('User.Event-content', compact('event'));
     }
 
+    public function showArticle($slug) {
+       $id = explode('-', $slug);
+       $articleId = end($id);
+       $article = Article::with('images')->findOrFail($articleId);
+       return view('User.Articl-content', compact('article'));
+    }
+
 
 }
