@@ -204,7 +204,7 @@ button:hover, .dtr-btn:hover, input[type="submit"]:hover, button[type="submit"]:
 /*===== main header =====*/
 #dtr-header-global { padding: 30px 50px; border-width: 0; border-style: solid; z-index: 999; background-color: transparent; }
 .dtr-header-global-content { display: flex; align-items: center; flex-wrap: wrap; justify-content: space-between; }
-#dtr-header-global.header-fixed { border: 0; padding: 30px 50px; backdrop-filter: blur(4px); background: rgba(255, 255, 255, 0.9); background-color: rgba(255, 255, 255, 0.9); }
+#dtr-header-global.header-fixed { border: 0; padding: 30px 50px; backdrop-filter: blur(4px); background: rgb(0, 51, 102 ,0.9); background-color: rgba(0, 51, 102 ,0.9); }
 /*===== logo =====*/
 .dtr-logo { font-size: 22px; line-height: 22px; display: inline-block; }
 #dtr-header-global .logo-default, #dtr-header-global.header-fixed .logo-alt { display: block !important; }
@@ -680,6 +680,7 @@ blockquote { padding: 30px; margin: 0; border-style: solid; border-width: 0 0 0 
 .dtr-portfolio-grid .dtr-portfolio-item { margin-bottom: 20px; }
 .dtr-portfolio-compact .dtr-portfolio-item { margin-bottom: 0; }
 .dtr-portfolio-compact .portfolio-excerpt { padding-bottom: 40px; padding-top: 10px; }
+
 /*== filter nav ==*/
 .dtr-filter-nav { width: 100%; display: block; text-align: center; margin-bottom: 30px; }
 .dtr-filter-nav li { padding: 0; margin: 0 15px; display: inline; list-style-type: none; }

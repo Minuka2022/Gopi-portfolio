@@ -1,73 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-      <title>Dash</title>
-      <meta
-         content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
-         name="viewport"
-         />
-      <!-- Fonts and icons -->
-      <script src="./assets-dash/js/plugin/webfont/webfont.min.js"></script>
-      <script>
-         WebFont.load({
-           google: { families: ["Public Sans:300,400,500,600,700"] },
-           custom: {
-             families: [
-               "Font Awesome 5 Solid",
-               "Font Awesome 5 Regular",
-               "Font Awesome 5 Brands",
-               "simple-line-icons",
-             ],
-             urls: ["./assets-dash/css/fonts.min.css"],
-           },
-           active: function () {
-             sessionStorage.fonts = true;
-           },
-         });
-      </script>
-      <!-- CSS Files -->
-      <link rel="stylesheet" href="./assets-dash/css/bootstrap.min.css" />
-      <link rel="stylesheet" href="./assets-dash/css/plugins.min.css" />
-      <link rel="stylesheet" href="./assets-dash/css/kaiadmin.min.css" />
-      <!-- CSS Just for demo purpose, don't include it in your project -->
-      <link rel="stylesheet" href="./assets-dash/css/demo.css" />
-   </head>
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Dash</title>
+        <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <!-- Fonts and icons -->
+        <script src="{{ asset('assets-dash/js/plugin/webfont/webfont.min.js') }}"></script>
+        <script>
+            WebFont.load({
+                google: { families: ["Public Sans:300,400,500,600,700"] },
+                custom: {
+                    families: [
+                        "Font Awesome 5 Solid",
+                        "Font Awesome 5 Regular",
+                        "Font Awesome 5 Brands",
+                        "simple-line-icons",
+                    ],
+                    urls: ["{{ asset('assets-dash/css/fonts.min.css') }}"],
+                },
+                active: function () {
+                    sessionStorage.fonts = true;
+                },
+            });
+        </script>
+
+        <!-- CSS Files -->
+        <link rel="stylesheet" href="{{ asset('assets-dash/css/bootstrap.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('assets-dash/css/plugins.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('assets-dash/css/kaiadmin.min.css') }}" />
+
+        <!-- CSS Just for demo purpose, don't include it in your project -->
+        <link rel="stylesheet" href="{{ asset('assets-dash/css/demo.css') }}" />
+    </head>
+
    <body>
+
+    @if (session('success'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Event Added!',
+            text: "{{ session('success') }}",
+            timer: 2000
+        });
+    </script>
+    @endif
+
+    @if (session('updated'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Event Updated!',
+            text: "{{ session('success') }}",
+            timer: 2000
+        });
+    </script>
+    @endif
+
+    @if (session('deleted'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Event Deleted!',
+            text: "{{ session('success') }}",
+            timer: 2000
+        });
+    </script>
+    @endif
+
+
+
+    @if (session('error'))
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: "{{ session('error') }}",
+            timer: 2000
+        });
+    </script>
+    @endif
       <div class="wrapper">
          <!-- Sidebar -->
-         <div class="sidebar" data-background-color="dark">
-            <div class="sidebar-logo">
-               <!-- Logo Header -->
-               <div class="logo-header" data-background-color="dark">
-                  <a href="{{route('dashboard-home')}}" class="logo">
-
-                     <p class="navbar-brand" style="color:white;">Gopi</p>
-                  </a>
-
-                  <div class="nav-toggle">
-                     <button class="btn btn-toggle toggle-sidebar">
-                     <i class="gg-menu-right"></i>
-                     </button>
-                     <button class="btn btn-toggle sidenav-toggler">
-                     <i class="gg-menu-left"></i>
-                     </button>
-                  </div>
-                  <button class="topbar-toggler more">
-                  <i class="gg-more-vertical-alt"></i>
-                  </button>
-               </div>
-               <!-- End Logo Header -->
-            </div>
-            @include('partials.sidebar')
-         </div>
+         @include('partials.sidebar')
          <!-- End Sidebar -->
          <div class="main-panel">
             <div class="main-header">
                <div class="main-header-logo">
                   <!-- Logo Header -->
                   <div class="logo-header" data-background-color="dark">
-                     <a href="{{route('dashboard-home')}}" class="logo">
+                     <a href="{{route('Dashboard-Article')}}" class="logo">
                      <img
                         src="./assets-dash/img/kaiadmin/logo_light.svg"
                         alt="navbar brand"
@@ -90,72 +113,16 @@
                   <!-- End Logo Header -->
                </div>
                <!-- Navbar Header -->
-               <nav
-                  class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bottom"
-                  >
-                  <div class="container-fluid">
-                     <ul class="navbar-nav topbar-nav ms-md-auto align-items-center">
-                        <li class="nav-item topbar-user dropdown hidden-caret">
-                           <a
-                              class="dropdown-toggle profile-pic"
-                              data-bs-toggle="dropdown"
-                              href="#"
-                              aria-expanded="false"
-                              >
-                              <div class="avatar-sm">
-                                 <img
-                                    src="assets-dash/img/profile.jpg"
-                                    alt="..."
-                                    class="avatar-img rounded-circle"
-                                    />
-                              </div>
-                              <span class="profile-username">
-                              <span class="op-7">Hi,</span>
-                              <span class="fw-bold">Minuka</span>
-                              </span>
-                           </a>
-                           </a>
-                           <ul class="dropdown-menu dropdown-user animated fadeIn">
-                              <div class="dropdown-user-scroll scrollbar-outer">
-                                 <li>
-                                    <div class="user-box">
-                                       <div class="avatar-lg">
-                                          <imgd
-                                             src="assets-dash/img/profile.jpg"
-                                             alt="image profile"
-                                             class="avatar-img rounded"
-                                             />
-                                       </div>
-                                       <div class="u-text">
-                                          <h4>Hizrian</h4>
-                                          <p class="text-muted">hello@example.com</p>
-                                          <a
-                                             href="/forms/Profile.php"
-                                             class="btn btn-xs btn-secondary btn-sm"
-                                             >View Profile</a
-                                             >
-                                       </div>
-                                    </div>
-                                 </li>
-                                 <li>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="logout.php">Logout</a>
-                                 </li>
-                              </div>
-                           </ul>
-                        </li>
-                     </ul>
-                  </div>
-               </nav>
+
                <!-- End Navbar -->
             </div>
             <div class="container">
                <div class="page-inner">
                   <div class="page-header">
-                     <h3 class="fw-bold mb-3">Subjects</h3>
+                     <h3 class="fw-bold mb-3">Manage Event</h3>
                      <ul class="breadcrumbs mb-3">
                         <li class="nav-home">
-                           <a href="{{route('dashboard-home')}}">
+                           <a href="{{route('Dashboard-Article')}}">
                            <i class="icon-home"></i>
                            </a>
                         </li>
@@ -163,7 +130,7 @@
                            <i class="icon-arrow-right"></i>
                         </li>
                         <li class="nav-item">
-                           <a href="#">Manage Subjects</a>
+                           <a href="#">Manage Event</a>
                         </li>
                      </ul>
                   </div>
@@ -171,11 +138,10 @@
                      <div class="card">
                         <div class="card-header">
                            <div class="d-flex align-items-center">
-                              <h4 class="card-title">Manage Subjects</h4>
+
                               <button
                                  class="btn btn-primary btn-round ms-auto"
-                                 data-bs-toggle="modal"
-                                 data-bs-target="#addRowModal"
+                                  onclick="window.location.href='{{ route('Dashboard-Create-Event') }}'"
                                  >
                               <i class="fa fa-plus"></i>
                               Add Event
@@ -187,30 +153,69 @@
                               <table id="multi-filter-select" class="display table table-striped table-hover">
                                  <thead>
                                     <tr>
-                                       <th>Grade</th>
-                                       <th>Subject</th>
-                                       <th>Papers</th>
+                                       <th>No</th>
+                                       <th>Name</th>
+                                       <th>Created On</th>
+                                       <th>Updated On</th>
                                        <th style="width: 10%">Action</th>
                                     </tr>
                                  </thead>
+                                 @foreach ($events as $event)
+
+
                                  <tbody id="subjectTableBody">
                                     <!-- Table rows will be dynamically generated here -->
-                                    <td>${subject.grade}</td>
-                                    <td>${subject.subject}</td>
-                                    <td>${subject.papers}</td>
+                                    <td>{{$event->id}}</td>
+                                    <td>{{$event->title}}</td>
+                                    <td>{{$event->created_at}}</td>
+                                    <td>{{$event->updated_at}}</td>
                                     <td>
                                        <div class="form-button-action">
-                                          <button type="button" class="btn btn-link btn-primary btn-lg btn-edit-subject" data-bs-toggle="tooltip" title="Edit Task">
+                                          <button type="button" class="btn btn-link btn-primary btn-lg btn-edit-subject" data-bs-toggle="tooltip" title="Edit Task" onclick="location.href='{{ route('Dashbaord-Edit-Event', $event->id) }}'">
                                           <i class="fa fa-edit" style="pointer-events: none;"></i>
                                           </button>
                                           <!-- Hidden input field to store subject ID -->
-                                          <input type="hidden" class="subject-id" value="${subject.id}">
-                                          <button type="button" class="btn btn-link btn-danger btn-remove-subject" data-bs-toggle="tooltip" title="Remove">
-                                          <i class="fa fa-times" style="pointer-events: none;"></i>
-                                          </button>
+
+                                          <form id="delete-event-form-{{$event->id}}" action="{{ route('Dashboard-delete-Event', ['id' => $event->id]) }}" method="POST" style="display: none;">
+                                            @csrf
+                                            @method('POST') <!-- Remove this if you don't need to simulate DELETE method -->
+                                        </form>
+
+                                        <button type="button" class="btn btn-link btn-danger delete-event-btn" data-id="{{ $event->id }}" data-bs-toggle="tooltip" title="Remove">
+                                            <i class="fa fa-times" style="pointer-events: none;"></i>
+                                        </button>
+
+                                        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                                        <script>
+                                            document.querySelectorAll('.delete-event-btn').forEach(button => {
+                                                button.addEventListener('click', function() {
+                                                    const eventId = this.getAttribute('data-id');
+
+                                                    Swal.fire({
+                                                        title: 'Are you sure?',
+                                                        text: "You won't be able to revert this action!",
+                                                        icon: 'warning',
+                                                        showCancelButton: true,
+                                                        confirmButtonColor: '#3085d6',
+                                                        cancelButtonColor: '#d33',
+                                                        confirmButtonText: 'Yes, delete it!',
+                                                        cancelButtonText: 'Cancel'
+                                                    }).then((result) => {
+                                                        if (result.isConfirmed) {
+                                                            // Submit the corresponding form using POST method
+                                                            document.getElementById(`delete-event-form-${eventId}`).submit();
+                                                        }
+                                                    });
+                                                });
+                                            });
+                                        </script>
+
+
+
                                        </div>
                                     </td>
                                  </tbody>
+                                 @endforeach
                               </table>
                            </div>
                         </div>
