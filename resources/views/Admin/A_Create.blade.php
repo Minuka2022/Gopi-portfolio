@@ -209,10 +209,9 @@
                                                             const div = document.createElement('div');
                                                             div.classList.add('image-preview');
 
-                                                            div.innerHTML = `
-                                                                <img src="${data.file_url}" alt="Image preview">
-                                                                <span class="remove-btn" data-path="${data.file_path}">&times;</span>
-                                                            `;
+                                                            div.innerHTML =
+                                                                '<img src="' + data.file_url + '" alt="Image preview">' +
+                                                                '<span class="remove-btn" data-path="' + data.file_path + '">&times;</span>';
 
                                                             imagePreviewContainer.appendChild(div);
 
