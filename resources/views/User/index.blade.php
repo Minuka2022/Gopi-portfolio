@@ -370,7 +370,7 @@
                                 <!-- timeline item starts -->
                                 <div class="dtr-timeline">
                                     <span class="dtr-timeline__heading">2017 – 2022</span>
-                                    <h6 class="dtr-timeline__heading">Consultant </h6>
+                                    <h6 class="dtr-timeline__heading"> Consultant </h6>
                                     <div class="dtr-timeline__content">Alcor Management Consultancy Pvt. Ltd<br>
                                         Maldives</div>
                                 </div>
@@ -408,7 +408,7 @@
                                 <!-- inner row - for feature columns starts -->
                                 <div class="dtr-timeline" style="color: white;">
                                     <h6 class="dtr-timeline__heading">Leadership and Strategic Planning</h6>
-                                    <div class="dtr-timeline__content">Proven track record of delivering transformative results in corporate training and development.<br></div>
+                                    <div class="dtr-timeline__content"> Proven track record of delivering transformative results in corporate training and development.<br></div>
                                 </div>
                                 <!-- timeline item ends -->
 
@@ -648,7 +648,7 @@
                                 <div class="dtr-client-box__content">
                                     <img src="assets/images/client-4.png" alt="client-4">
                                 </div>
-                                <!-- <div class="dtr-client-box__hover-content" style="background-color:#4E749B;">
+                                <!-- <div class="dtr-client-box__hover-content" style="background-color: #4E749B;">
                                     <h5 class="dtr-client-box__heading">Foundant Factory</h5>
                                     <div class="dtr-client-box__text">Lorem ipsum dolor sit amet consectetur adipiscing labore et dolore magna aliqua. </div>
                                     <a href="#" class="dtr-client-box__link" role="button" aria-label="Read More"></a>
@@ -745,144 +745,39 @@
                 <span class="spacer spacer-50"></span>
 
                 <!--== portfolio nav starts ==-->
-                <div class="dtr-filter-nav-wrapper">
+                {{-- <div class="dtr-filter-nav-wrapper">
                     <ul class="dtr-filter-nav clearfix">
                         <li><a class="dtr-filter-all active" data-filter="*" href="#" style="color: white;">All</a></li>
                         <li><a data-filter=".branding" href="#" style="color: white;">Cate1</a></li>
                         <li><a data-filter=".creative" href="#" style="color: white;">Cate2</a></li>
-<!--                        <li><a data-filter=".marketing" href="#" style="color: white;">Marketing</a></li>-->
-<!--                        <li><a data-filter=".web" href="#" style="color: white;">Web</a></li>-->
+                        <li><a data-filter=".marketing" href="#" style="color: white;">Marketing</a></li>
+                        <li><a data-filter=".web" href="#" style="color: white;">Web</a></li>
                     </ul>
-                </div>
+                </div> --}}
                 <!--== portfolio nav ends ==-->
 
                 <!--== portfolio starts ==-->
                 <div class="dtr-portfolio-grid dtr-portfolio-masonry dtr-portfolio-grid-4col dtr-portfolio-compact">
 
-                    <!-- portfolio item 1 starts -->
+                    @foreach($images as $image)
+                    <!-- portfolio item starts -->
                     <div class="dtr-portfolio-item isotope-item creative marketing all">
                         <div class="dtr-portfolio-item__wrapper">
-                            <a class="dtr-portfolio-item__link" href="single-portfolio.html" target="_self" aria-label="Art Volunteering"></a>
-                            <div class="dtr-portfolio-item__img"><img src="assets/images/item-1-1200x1200.jpg" alt="Art Volunteering"></div>
-                            <div class="dtr-portfolio-item__content">
-                                <h4 class="dtr-portfolio-item__heading" style="background-color:#003366;">Art Volunteering</h4>
+                            <a class="dtr-portfolio-item__link" href="#" target="_self" aria-label="{{ $image->name }}"></a>
+                            <div class="dtr-portfolio-item__img"><img src="{{ asset('storage/' . $image->photo) }}" alt="{{ $image->name }}"></div>
+                            {{-- <div class="dtr-portfolio-item__content">
+                                <h4 class="dtr-portfolio-item__heading" style="background-color:#003366;">{{ $image->name }}</h4>
                                 <div class="clearfix"></div>
-                                <!-- <p class="dtr-portfolio-item__subheading">Art direction / Web</p> -->
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
-                    <!-- portfolio item 1 ends -->
-
-                    <!-- portfolio item 2 starts -->
-                    <div class="dtr-portfolio-item isotope-item branding web all">
-                        <div class="dtr-portfolio-item__wrapper">
-                            <a class="dtr-portfolio-item__link" href="single-portfolio.html" target="_self" aria-label="Monstera Paris"></a>
-                            <div class="dtr-portfolio-item__img"><img src="assets/images/item-5-1200x1200.jpg" alt="Monstera Paris"></div>
-                            <div class="dtr-portfolio-item__content">
-                                <h4 class="dtr-portfolio-item__heading" style="background-color:#003366;">Monstera Paris</h4>
-                                <div class="clearfix"></div>
-                                <!-- <p class="dtr-portfolio-item__subheading">Web / Branding</p> -->
-                            </div>
-                        </div>
-                    </div>
-                    <!-- portfolio item 2 ends -->
-
-                    <!-- portfolio item 3 starts -->
-                    <div class="dtr-portfolio-item isotope-item creative web all">
-                        <div class="dtr-portfolio-item__wrapper">
-                            <a class="dtr-portfolio-item__link" href="single-portfolio.html" target="_self" aria-label="Daria Visual"></a>
-                            <div class="dtr-portfolio-item__img"><img src="assets/images/item-6-1200x1200.jpg" alt="Daria Visual"></div>
-                            <div class="dtr-portfolio-item__content">
-                                <h4 class="dtr-portfolio-item__heading" style="background-color:#003366;">Daria Visual</h4>
-                                <div class="clearfix"></div>
-                                <!-- <p class="dtr-portfolio-item__subheading">Illustration</p> -->
-                            </div>
-                        </div>
-                    </div>
-                    <!-- portfolio item 3 ends -->
-
-                    <!-- portfolio item 4 starts -->
-                    <div class="dtr-portfolio-item isotope-item branding creative all">
-                        <div class="dtr-portfolio-item__wrapper">
-                            <a class="dtr-portfolio-item__link" href="single-portfolio.html" target="_self" aria-label="Annshvets"></a>
-                            <div class="dtr-portfolio-item__img"><img src="assets/images/item-2-1200x1200.jpg" alt="Annshvets"></div>
-                            <div class="dtr-portfolio-item__content">
-                                <h4 class="dtr-portfolio-item__heading" style="background-color:#003366;">Annshvets</h4>
-                                <div class="clearfix"></div>
-                                <!-- <p class="dtr-portfolio-item__subheading">Illustration</p> -->
-                            </div>
-                        </div>
-                    </div>
-                    <!-- portfolio item 4 ends -->
-
-                    <!-- portfolio item 5 starts -->
-                    <div class="dtr-portfolio-item isotope-item marketing web all">
-                        <div class="dtr-portfolio-item__wrapper">
-                            <a class="dtr-portfolio-item__link" href="single-portfolio.html" target="_self" aria-label="Fredi"></a>
-                            <div class="dtr-portfolio-item__img"><img src="assets/images/item-4-1200x1200.jpg" alt="Fredi"></div>
-                            <div class="dtr-portfolio-item__content">
-                                <h4 class="dtr-portfolio-item__heading" style="background-color:#003366;">Fredi</h4>
-                                <div class="clearfix"></div>
-                                <!-- <p class="dtr-portfolio-item__subheading">Story Telling / Web</p> -->
-                            </div>
-                        </div>
-                    </div>
-                    <!-- portfolio item 5 ends -->
-
-                    <!-- portfolio item 6 starts -->
-                    <div class="dtr-portfolio-item isotope-item branding creative all">
-                        <div class="dtr-portfolio-item__wrapper">
-                            <a class="dtr-portfolio-item__link" href="single-portfolio.html" target="_self" aria-label="Onne"></a>
-                            <div class="dtr-portfolio-item__img"><img src="assets/images/item-8-1200x1200.jpg" alt="Onne"></div>
-                            <div class="dtr-portfolio-item__content">
-                                <h4 class="dtr-portfolio-item__heading" style="background-color:#003366;">Onne</h4>
-                                <div class="clearfix"></div>
-                                <!-- <p class="dtr-portfolio-item__subheading">Art direction / Logo Design</p> -->
-                            </div>
-                        </div>
-                    </div>
-                    <!-- portfolio item 6 ends -->
-
-                    <!-- portfolio item 7 starts -->
-                    <div class="dtr-portfolio-item isotope-item creative web all">
-                        <div class="dtr-portfolio-item__wrapper">
-                            <a class="dtr-portfolio-item__link" href="single-portfolio.html" target="_self" aria-label="Sound On"></a>
-                            <div class="dtr-portfolio-item__img"><img src="assets/images/item-9-1200x1200.jpg" alt="Sound On"></div>
-                            <div class="dtr-portfolio-item__content">
-                                <h4 class="dtr-portfolio-item__heading" style="background-color:#003366;">Sound On</h4>
-                                <div class="clearfix"></div>
-                                <!-- <p class="dtr-portfolio-item__subheading">Creative / Web</p> -->
-                            </div>
-                        </div>
-                    </div>
-                    <!-- portfolio item 7 ends -->
-
-                    <!-- portfolio item 8 starts -->
-                    <div class="dtr-portfolio-item isotope-item marketing web all">
-                        <div class="dtr-portfolio-item__wrapper">
-                            <a class="dtr-portfolio-item__link" href="single-portfolio.html" target="_self" aria-label="Pressed Juicery"></a>
-                            <div class="dtr-portfolio-item__img"><img src="assets/images/item-3-1200x1200.jpg" alt="Pressed Juicery"></div>
-                            <div class="dtr-portfolio-item__content">
-                                <h4 class="dtr-portfolio-item__heading" style="background-color: #003366;">Pressed Juicery</h4>
-                                <div class="clearfix"></div>
-                                <!-- <p class="dtr-portfolio-item__subheading">Story Telling / Web</p> -->
-                            </div>
-                        </div>
-                    </div>
-                    <!-- portfolio item 8 ends -->
+                    <!-- portfolio item ends -->
+                    @endforeach
 
                 </div>
                 <!--== portfolio ends ==-->
 
             </section>
-            <!--===== works section ends =====-->
-
-            <!--===== about section starts =====-->
-
-            <!--===== about section ends =====-->
-
-
-
 
 
             <!--===== testimonial section starts =====-->
@@ -1435,7 +1330,7 @@
 
                         <!--== column 2 starts ==-->
                         <!-- <div class="col-12 col-md-6 dtr-copyright-col-2">
-                            <p>2024 © Copr. Theme by Tansh</p>
+                            <p>2024 &copy; Copr. Theme by Tansh</p>
                         </div> -->
                         <!--== column 2 ends ==-->
 

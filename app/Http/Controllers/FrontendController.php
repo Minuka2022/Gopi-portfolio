@@ -11,7 +11,8 @@ class FrontendController extends Controller
     //
 
     public function index(){
-        return view('User.index');
+        $images = Gallery::latest()->get();
+        return view('User.index', compact('images'));
     }
 
     public function article(){

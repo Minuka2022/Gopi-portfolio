@@ -133,25 +133,24 @@ class ArticleController extends Controller
 
 
         public function deleteImage($id)
-                {
-                    try {
-                        $image = ArticleImage::findOrFail($id);
+        {
+            try {
+                $image = ArticleImage::findOrFail($id);
 
-                        // Delete the image file from storage
-                        $filePath = public_path('storage/' . $image->image);
-                        if (file_exists($filePath)) {
-                            unlink($filePath);
-                        }
-
-                        // Delete the image record from the database
-                        $image->delete();
-
-                        return response()->json(['success' => true, 'message' => 'Image deleted successfully']);
-                    } catch (\Exception $e) {
-                        Log::error('Error deleting image: ' . $e->getMessage());
-                        return response()->json(['success' => false, 'message' => 'Error deleting image']);
-                    }
+                // Delete the image file from storage
+                if (Storage::disk('public')->exists($image->image)) {
+                    Storage::disk('public')->delete($image->image);
                 }
+
+                // Delete the image record from the database
+                $image->delete();
+
+                return response()->json(['success' => true, 'message' => 'Image deleted successfully']);
+            } catch (\Exception $e) {
+                Log::error('Error deleting image: ' . $e->getMessage());
+                return response()->json(['success' => false, 'message' => 'Error deleting image']);
+            }
+        }
         public function delete($id)
                 {
                     try {
@@ -160,9 +159,10 @@ class ArticleController extends Controller
 
                         // Delete associated images (if any)
                         foreach ($article->images as $image) {
-                            $filePath = public_path('storage/' . $image->image);
-                            if (file_exists($filePath)) {
-                                unlink($filePath);
+                            // Check if file exists in storage
+                            if (Storage::disk('public')->exists($image->image)) {
+                                // Delete the file from storage
+                                Storage::disk('public')->delete($image->image);
                             }
                             $image->delete();
                         }

@@ -18,6 +18,8 @@ class LoginController extends Controller
 
         if ($username === 'admin' && $password === '#123') {
             session(['is_logged_in' => true]);
+            session(['user_id' => 'admin']);
+            session(['last_activity' => now()]);
             return redirect('/dashboard');
         }
 

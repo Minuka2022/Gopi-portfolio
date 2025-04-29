@@ -160,15 +160,15 @@
                                        <th style="width: 10%">Action</th>
                                     </tr>
                                  </thead>
-                                 @foreach ($events as $event)
+                                 @foreach ($events as $index => $event)
 
 
                                  <tbody id="subjectTableBody">
                                     <!-- Table rows will be dynamically generated here -->
-                                    <td>{{$event->id}}</td>
+                                    <td>{{ $index + 1 }}</td>
                                     <td>{{$event->title}}</td>
-                                    <td>{{$event->created_at}}</td>
-                                    <td>{{$event->updated_at}}</td>
+                                    <td>{{ $event->created_at->format('d M Y, h:i A') }}</td>
+                                    <td>{{ $event->updated_at->format('d M Y, h:i A') }}</td>
                                     <td>
                                        <div class="form-button-action">
                                           <button type="button" class="btn btn-link btn-primary btn-lg btn-edit-subject" data-bs-toggle="tooltip" title="Edit Task" onclick="location.href='{{ route('Dashbaord-Edit-Event', $event->id) }}'">
@@ -209,9 +209,6 @@
                                                 });
                                             });
                                         </script>
-
-
-
                                        </div>
                                     </td>
                                  </tbody>
@@ -225,7 +222,6 @@
             </div>
          </div>
       </div>
-      <!-- Custom template | don't include it in your project! -->
       <!-- Modal -->
       <div class="modal fade" id="addRowModal" tabindex="-1" aria-labelledby="addRowModalLabel" aria-hidden="true">
          <div class="modal-dialog">
