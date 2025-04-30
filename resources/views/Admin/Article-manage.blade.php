@@ -95,7 +95,7 @@
                   <div class="logo-header" data-background-color="dark">
                      <a href="{{route('Dashboard-Article')}}" class="logo">
                      <img
-                        src="./assets-dash/img/kaiadmin/logo_light.svg"
+                        src="./assets-dash/img/kaiadmin/logo_light.svg"`
                         alt="navbar brand"
                         class="navbar-brand"
                         height="20"
@@ -143,14 +143,9 @@
                            <div class="d-flex align-items-center">
 
                               <button
-                                 class="btn btn-primary btn-round ms-auto"
-                                  onclick="window.location.href='{{ route('Dashboard-Create-Article') }}'"
-                                 >
-
-                              <i class="fa fa-plus"></i>
-
+                                 class="btn btn-primary btn-round ms-auto" >
+                                <i class="fa fa-plus"></i>
                                 Add Article
-
                               </button>
                            </div>
                         </div>
@@ -166,15 +161,15 @@
                                        <th style="width: 10%">Action</th>
                                     </tr>
                                  </thead>
-                                 @foreach ($articles as $article)
+                                 @foreach ($articles as $index => $article)
 
 
                                  <tbody id="subjectTableBody">
                                     <!-- Table rows will be dynamically generated here -->
-                                    <td>{{$article ->id}}</td>
+                                    <td>{{ $index + 1 }}</td>
                                     <td>{{$article ->title }}</td>
-                                    <td>{{$article ->created_at}}</td>
-                                    <td>{{$article ->updated_at}}</td>
+                                    <td>{{ $article->created_at->format('d M Y, h:i A') }}</td>
+                                    <td>{{ $article->updated_at->format('d M Y, h:i A') }}</td>
                                     <td>
                                        <div class="form-button-action">
                                           <button type="button" class="btn btn-link btn-primary btn-lg btn-edit-subject" data-bs-toggle="tooltip" title="Edit Task"   onclick="location.href='{{ route('Dashboard-article-edit', $article->id) }}'">
@@ -215,7 +210,6 @@
                                                 });
                                             });
                                         </script>
-
                                        </div>
                                     </td>
                                 @endforeach

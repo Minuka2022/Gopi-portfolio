@@ -294,7 +294,7 @@
                      if (result.isConfirmed) {
                          $.ajax({
                              type: 'DELETE',
-                             url: "{{ route('Dashboard-Delete-Gallery', '') }}/" + imageId,
+                             url: "{{ route('Dashboard-Delete-Gallery','') }}/" + imageId,
                              success: function(response) {
                                  if(response.success) {
                                      galleryTile.fadeOut(300, function() {

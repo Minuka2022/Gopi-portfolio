@@ -9,8 +9,8 @@ use Illuminate\Support\Facades\Log;
 
 class AuthenticateDashboard
 {
-    // Session timeout in seconds (6 hours)
-    protected $sessionTimeout = 21600; // 6 hours = 6 * 60 * 60
+    // Session timeout in seconds (2 hours)
+    protected $sessionTimeout = 7200;
 
     public function handle(Request $request, Closure $next)
     {

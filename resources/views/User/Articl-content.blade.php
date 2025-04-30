@@ -1,9 +1,5 @@
 <!doctype html>
 <html lang="en">
-
-
-<!-- Mirrored from tanshcreative.com/copr-st-preview/single-post.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 22 Oct 2024 14:26:42 GMT -->
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
