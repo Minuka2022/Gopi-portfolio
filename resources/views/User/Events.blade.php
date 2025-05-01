@@ -236,67 +236,7 @@
             <!--===== works section ends =====-->
 
             <!--===== contact section starts =====-->
-            <section id="contact" class="dtr-section bg-color-secondary-light padding-y-100" style="background-color: #003366;">
-                <div class="container" style="color: white;">
-                    <div class="row">
-
-                        <!--== column 1 starts ==-->
-                        <div class="col-12 col-md-6">
-
-                            <h2>Contact Me</h2>
-                            <span class="spacer spacer-50"></span>
-
-                            <!-- feature starts -->
-                            <div class="dtr-feature dtr-feature--style-default dtr-feature--text-left dtr-feature--icon-align-left dtr-feature--size-small">
-                                <div class="dtr-feature__icon">
-                                    <i class="icon-phone-volume-solid" aria-hidden="true"></i>
-                                </div>
-                                <div class="dtr-feature__content">
-                                    <p class="dtr-feature__subtext">Just wanna say hello! Give me a call</p>
-                                    <h6 class="dtr-feature__heading">+ 12 345 678 90</h6>
-                                </div>
-                            </div>
-                            <!-- feature ends -->
-
-                            <span class="spacer spacer-50"></span>
-
-                            <!-- feature starts -->
-                            <div class="dtr-feature dtr-feature--style-default dtr-feature--icon-vert-align-top dtr-feature--text-left dtr-feature--icon-align-left dtr-feature--size-small">
-                                <div class="dtr-feature__icon">
-                                    <i class="icon-envelope-circle-check-solid" aria-hidden="true"></i>
-                                </div>
-                                <div class="dtr-feature__content">
-                                    <p class="dtr-feature__subtext">For collaboration, mail me</p>
-                                    <h6 class="dtr-feature__heading">hello@example.com</h6>
-                                </div>
-                            </div>
-                            <!-- feature ends -->
-
-                            <span class="spacer spacer-50"></span>
-
-                            <!-- feature starts -->
-                            <div class="dtr-feature dtr-feature--style-default dtr-feature--icon-vert-align-top dtr-feature--text-left dtr-feature--icon-align-left dtr-feature--size-small">
-                                <div class="dtr-feature__icon">
-                                    <i class="icon-location-arrow-solid" aria-hidden="true"></i>
-                                </div>
-                                <div class="dtr-feature__content">
-                                    <p class="dtr-feature__subtext">Walk-in to meet me</p>
-                                    <h6 class="dtr-feature__heading">Borough 47, Aveton Gifford,
-                                        Devon, UK, EX4 1QU</h6>
-                                </div>
-                            </div>
-                            <!-- feature ends -->
-
-                        </div>
-                        <!--== column 1 ends ==-->
-
-                        <!--== column 2 starts ==-->
-                   @include('partials.footer')
-                        <!--== column 2 ends ==-->
-
-                    </div>
-                </div>
-            </section>
+            @include('partials.footer')
             <!--===== contact section ends =====-->
 
         </div>

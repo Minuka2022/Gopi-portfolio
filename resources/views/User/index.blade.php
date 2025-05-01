@@ -141,8 +141,6 @@
                                 <div class="dtr-social-widget text-left">
                                     <ul class="dtr-social">
                                         <li><a class="dtr-whatsapp" href="#" title="Whatsapp" target="_blank" rel="nofollow" aria-label="Whatsapp"></a></li>
-                                        <li><a class="dtr-behance" href="#" title="Behance" target="_blank" rel="nofollow" aria-label="Behance"></a></li>
-                                        <li><a class="dtr-dribbble" href="#" title="Dribbble" target="_blank" rel="nofollow" aria-label="Dribbble"></a></li>
                                     </ul>
                                 </div>
                                 <!-- Social icons end -->
@@ -1898,7 +1896,7 @@
                     <!-- Section Header -->
                     <div class="articles-header">
                         <div class="articles-title-wrapper">
-                            <h2 class="articles-title">Recent Articles</h2>
+                            <h2 class="articles-title">Articles</h2>
                             <div class="articles-divider"></div>
                         </div>
                         <a class="dtr-btn articles-btn" href="{{route('frontend-article')}}" role="button">
@@ -1916,8 +1914,9 @@
                                         <div class="article-image-container">
                                             <a href="{{ route('article.show', ['slug' => Str::slug($article->title) . '-' . $article->id]) }}">
                                                 <img src="{{ asset('storage/' . ($article->images->first()->image ?? 'default.jpg')) }}" alt="{{ $article->title }}">
-                                                <div class="article-category">
-                                                    <span>{{ $article->category->name ?? 'Uncategorized' }}</span>
+                                                <div class="article-date-badge">
+                                                    <span class="article-day">{{ $article->created_at->format('d') }}</span>
+                                                    <span class="article-month">{{ $article->created_at->format('M') }}</span>
                                                 </div>
                                             </a>
                                         </div>
@@ -1929,7 +1928,7 @@
                                                     <i class="far fa-calendar-alt"></i> {{ $article->created_at->format('M d, Y') }}
                                                 </span>
                                                 <span class="article-author">
-                                                    <i class="far fa-user"></i> Author Name
+                                                    <i class="far fa-user"></i> Gopi Muthumaran
                                                 </span>
                                             </div>
 
@@ -2022,16 +2021,15 @@
                         background-color: white;
                         border-radius: 8px;
                         overflow: hidden;
-                        box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+                        box-shadow: 0 10px 20px rgba(0,0,0,0.15);
                         transition: all 0.3s ease;
                         height: 100%;
                         margin: 0 10px;
-                        border: 1px solid rgba(0,0,0,0.05);
                     }
 
                     .article-card:hover {
                         transform: translateY(-10px);
-                        box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+                        box-shadow: 0 15px 30px rgba(0,0,0,0.25);
                     }
 
                     .article-image-container {
@@ -2051,19 +2049,30 @@
                         transform: scale(1.1);
                     }
 
-                    .article-category {
+                    .article-date-badge {
                         position: absolute;
                         top: 15px;
-                        left: 15px;
+                        right: 15px;
                         background-color: #228B22;
                         color: white;
-                        padding: 5px 12px;
-                        border-radius: 20px;
-                        font-size: 0.8rem;
-                        font-weight: 600;
+                        padding: 10px;
+                        border-radius: 4px;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        min-width: 60px;
+                        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+                    }
+
+                    .article-day {
+                        font-size: 1.5rem;
+                        font-weight: 700;
+                        line-height: 1;
+                    }
+
+                    .article-month {
+                        font-size: 0.9rem;
                         text-transform: uppercase;
-                        letter-spacing: 0.5px;
-                        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
                     }
 
                     .article-content {
@@ -2178,68 +2187,7 @@
             <!--===== blog section ends =====-->
 
             <!--===== contact section starts =====-->
-            <section id="Contact" class="dtr-section bg-color-secondary-light padding-y-100" style="background-color: #003366;">
-                <div class="container" style="color: white;">
-                    <div class="row">
-
-                        <!--== column 1 starts ==-->
-                        <div class="col-12 col-md-6">
-
-                            <h2>Contact Me</h2>
-                            <span class="spacer spacer-50"></span>
-
-                            <!-- feature starts -->
-                            <div class="dtr-feature dtr-feature--style-default dtr-feature--text-left dtr-feature--icon-align-left dtr-feature--size-small">
-                                <div class="dtr-feature__icon">
-                                    <i class="icon-phone-volume-solid" aria-hidden="true"></i>
-                                </div>
-                                <div class="dtr-feature__content">
-                                    <p class="dtr-feature__subtext">Just wanna say hello! Give me a call</p>
-                                    <h6 class="dtr-feature__heading">+ 12 345 678 90</h6>
-                                </div>
-                            </div>
-                            <!-- feature ends -->
-
-                            <span class="spacer spacer-50"></span>
-
-                            <!-- feature starts -->
-                            <div class="dtr-feature dtr-feature--style-default dtr-feature--icon-vert-align-top dtr-feature--text-left dtr-feature--icon-align-left dtr-feature--size-small">
-                                <div class="dtr-feature__icon">
-                                    <i class="icon-envelope-circle-check-solid" aria-hidden="true"></i>
-                                </div>
-                                <div class="dtr-feature__content">
-                                    <p class="dtr-feature__subtext">For collaboration, mail me</p>
-                                    <h6 class="dtr-feature__heading">hello@example.com</h6>
-                                </div>
-                            </div>
-                            <!-- feature ends -->
-
-                            <span class="spacer spacer-50"></span>
-
-                            <!-- feature starts -->
-                            <div class="dtr-feature dtr-feature--style-default dtr-feature--icon-vert-align-top dtr-feature--text-left dtr-feature--icon-align-left dtr-feature--size-small">
-                                <div class="dtr-feature__icon">
-                                    <i class="icon-location-arrow-solid" aria-hidden="true"></i>
-                                </div>
-                                <div class="dtr-feature__content">
-                                    <p class="dtr-feature__subtext">Walk-in to meet me</p>
-                                    <h6 class="dtr-feature__heading">Borough 47, Aveton Gifford,
-                                        Devon, UK, EX4 1QU</h6>
-                                </div>
-                            </div>
-                            <!-- feature ends -->
-
-                        </div>
-                        <!--== column 1 ends ==-->
-
-
-                        <!--== column 2 ends ==-->
-
-                        @include('partials.footer')
-
-                    </div>
-                </div>
-            </section>
+           @include('partials.footer')
             <!--===== contact section ends =====-->
 
         </div>
@@ -2260,82 +2208,6 @@
             });
         </script>
 
-        <!-- ===== main content area ends ===== -->
-
-        <!-- footer section starts
-================================================== -->
-        <!-- <footer id="dtr-footer-section">
-            <div class="container"> -->
-
-                <!--== row 1 starts ==-->
-                <!-- <div class="row"> -->
-
-                    <!--== column 1 starts ==-->
-                    <!-- <div class="col-12 col-md-6">
-                        <div class="dtr-footer-col-shrink">
-                            <a href="index.html"><img src="assets/images/logo.png" alt="logo" width="88" height="25"></a>
-                            <span class="spacer spacer-20"></span>
-                            <p>There are many variations of passages of lorem ipsum available but the majority have suffered alteration in some form.</p>
-                        </div>
-                    </div> -->
-                    <!--== column 1 ends ==-->
-
-                    <!--== column 2 starts ==-->
-                    <!-- <div class="col-12 col-md-3 small-device-top-space">
-                        <div class="dtr-footer-contact">
-                            <p><a href="#">hello@example.com</a></p>
-                            <p>12 345 678 90</p>
-                            <p>Borough 47, Aveton Gifford,<br>Devon, UK, EX4 1QU</p>
-                        </div>
-                    </div> -->
-                    <!--== column 2 ends ==-->
-
-                    <!--== column 3 starts ==-->
-                    <!-- <div class="col-12 col-md-3 text-right">
-                        <div class="dtr-footer-contact small-device-top-space">
-                            <p>Have a project in mind?</p>
-                        </div>
-                        <p class="dtr-footer-btn">
-                            <a class="dtr-btn dtr-btn-contrast" href="#contact" role="button">
-                                <span class="dtr-btn__text">Contact Me</span>
-                            </a>
-                        </p>
-                    </div> -->
-                    <!--== column 3 ends ==-->
-
-                </div>
-                <!--== row 1 ends ==-->
-
-                <!--== row 2 starts ==-->
-                <!-- <div class="dtr-copyright">
-                    <div class="row"> -->
-
-                        <!--== column 1 starts ==-->
-                        <!-- <div class="col-12 col-md-6">
-                            <div class="text-left">
-                                <ul class="dtr-social">
-                                    <li><a class="dtr-facebook" href="#" title="Facebook" target="_blank" rel="nofollow" aria-label="Facebook"></a></li>
-                                    <li><a class="dtr-twitter" href="#" title="Twitter" target="_blank" rel="nofollow" aria-label="Twitter"></a></li>
-                                    <li><a class="dtr-instagram" href="#" title="Instagram" target="_blank" rel="nofollow" aria-label="Instagram"></a></li>
-                                </ul>
-                            </div>
-                        </div> -->
-                        <!--== column 1 ends ==-->
-
-                        <!--== column 2 starts ==-->
-                        <!-- <div class="col-12 col-md-6 dtr-copyright-col-2">
-                            <p>2024 &copy; Copr. Theme by Tansh</p>
-                        </div> -->
-                        <!--== column 2 ends ==-->
-
-                    </div>
-                </div>
-                <!--== row 2 ends ==-->
-
-            </div>
-        </footer>
-        <!-- footer section ends
-================================================== -->
         <!--== scroll to top ==-->
         <a id="take-to-top" href="#" class="active" aria-label="Scroll To Top"></a>
     </div>
