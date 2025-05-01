@@ -18,8 +18,9 @@ class FrontendController extends Controller
     public function index() {
         $articles = article::with('images')->orderBy('created_at', 'desc')->get();
         $events = event::with('eventImages')->orderBy('created_at', 'desc')->get();
+        $images = Gallery::latest()->get();
         Log::info('Events' . $events);
-        return view('User.index', compact('articles', 'events'));
+        return view('User.index', compact('articles', 'events', 'images'));
     }
 
 
