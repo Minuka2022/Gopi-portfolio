@@ -8,7 +8,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="format-detection" content="telephone=no">
-    <title>Copr - HTML Template</title>
+    <title>Event -{{ $event->title }}</title>
     <meta name="author" content="tansh">
     <meta name="description" content="HTMLTemplate">
     <meta name="keywords" content="portfolio, personal">
@@ -114,28 +114,6 @@
             <div style="color:rgb(14, 14, 14)">
                 {!! implode('</div><p>', array_map('trim', explode("\n\n", $event->content))) !!}
                 </div>
-
-
-
-
-            <!-- Post Navigation -->
-            {{-- <nav class="dtr-single-post-nav">
-                @if($previousEvent)
-                <div class="dtr-single-nav__prev">
-                    <a href="{{ route('events.show', ['slug' => Str::slug($previousEvent->title) . '-' . $previousEvent->id]) }}" rel="prev">
-                        <p class="dtr-single-nav__prev-arrow">Previous Post</p>
-                        <h4 class="dtr-single-nav__prev-title">{{ $previousEvent->title }}</h4>
-                    </a>
-                </div>
-                @endif
-                @if($nextEvent)
-                <div class="dtr-single-nav__next">
-                    <a href="{{ route('events.show', ['slug' => Str::slug($nextEvent->title) . '-' . $nextEvent->id]) }}" rel="next">
-                        <p class="dtr-single-nav__next-arrow">Next Post</p>
-                        <h4 class="dtr-single-nav__next-title">{{ $nextEvent->title }}</h4>
-                    </a>
-                </div>
-                @endif --}}
             </nav>
         </div>
 
@@ -194,81 +172,67 @@
 </div>
 
         <!-- ===== main content area ends ===== -->
-
-        <!-- footer section starts
-================================================== -->
-        <footer id="dtr-footer-section">
-            <div class="container">
-
-                <!--== row 1 starts ==-->
+        <section id="contact" class="dtr-section bg-color-secondary-light padding-y-100" style="background-color: #003366;">
+            <div class="container" style="color: white;">
                 <div class="row">
 
                     <!--== column 1 starts ==-->
                     <div class="col-12 col-md-6">
-                        <div class="dtr-footer-col-shrink">
-                            <a href="index.html"><img src="assets/images/logo.png" alt="logo" width="88" height="25"></a>
-                            <span class="spacer spacer-20"></span>
-                            <p>There are many variations of passages of lorem ipsum available but the majority have suffered alteration in some form.</p>
+
+                        <h2>Contact Me</h2>
+                        <span class="spacer spacer-50"></span>
+
+                        <!-- feature starts -->
+                        <div class="dtr-feature dtr-feature--style-default dtr-feature--text-left dtr-feature--icon-align-left dtr-feature--size-small">
+                            <div class="dtr-feature__icon">
+                                <i class="icon-phone-volume-solid" aria-hidden="true"></i>
+                            </div>
+                            <div class="dtr-feature__content">
+                                <p class="dtr-feature__subtext">Just wanna say hello! Give me a call</p>
+                                <h6 class="dtr-feature__heading">+ 12 345 678 90</h6>
+                            </div>
                         </div>
+                        <!-- feature ends -->
+
+                        <span class="spacer spacer-50"></span>
+
+                        <!-- feature starts -->
+                        <div class="dtr-feature dtr-feature--style-default dtr-feature--icon-vert-align-top dtr-feature--text-left dtr-feature--icon-align-left dtr-feature--size-small">
+                            <div class="dtr-feature__icon">
+                                <i class="icon-envelope-circle-check-solid" aria-hidden="true"></i>
+                            </div>
+                            <div class="dtr-feature__content">
+                                <p class="dtr-feature__subtext">For collaboration, mail me</p>
+                                <h6 class="dtr-feature__heading">hello@example.com</h6>
+                            </div>
+                        </div>
+                        <!-- feature ends -->
+
+                        <span class="spacer spacer-50"></span>
+
+                        <!-- feature starts -->
+                        <div class="dtr-feature dtr-feature--style-default dtr-feature--icon-vert-align-top dtr-feature--text-left dtr-feature--icon-align-left dtr-feature--size-small">
+                            <div class="dtr-feature__icon">
+                                <i class="icon-location-arrow-solid" aria-hidden="true"></i>
+                            </div>
+                            <div class="dtr-feature__content">
+                                <p class="dtr-feature__subtext">Walk-in to meet me</p>
+                                <h6 class="dtr-feature__heading">Borough 47, Aveton Gifford,
+                                    Devon, UK, EX4 1QU</h6>
+                            </div>
+                        </div>
+                        <!-- feature ends -->
+
                     </div>
                     <!--== column 1 ends ==-->
 
                     <!--== column 2 starts ==-->
-                    <div class="col-12 col-md-3 small-device-top-space">
-                        <div class="dtr-footer-contact">
-                            <p><a href="#">hello@example.com</a></p>
-                            <p>12 345 678 90</p>
-                            <p>Borough 47, Aveton Gifford,<br>Devon, UK, EX4 1QU</p>
-                        </div>
-                    </div>
+               @include('partials.footer')
                     <!--== column 2 ends ==-->
 
-                    <!--== column 3 starts ==-->
-                    <div class="col-12 col-md-3 small-device-top-space text-right">
-                        <div class="dtr-footer-contact">
-                            <p>Have a project in mind?</p>
-                        </div>
-                        <p class="dtr-footer-btn">
-                            <a class="dtr-btn dtr-btn-contrast" href="#contact" role="button">
-                                <span class="dtr-btn__text">Contact Me</span>
-                            </a>
-                        </p>
-                    </div>
-                    <!--== column 3 ends ==-->
-
                 </div>
-                <!--== row 1 ends ==-->
-
-                <!--== row 2 starts ==-->
-                <div class="dtr-copyright">
-                    <div class="row">
-
-                        <!--== column 1 starts ==-->
-                        <div class="col-12 col-md-6">
-                            <div class="text-left">
-                                <ul class="dtr-social">
-                                    <li><a class="dtr-facebook" href="#" title="Facebook" target="_blank" rel="nofollow" aria-label="Facebook"></a></li>
-                                    <li><a class="dtr-twitter" href="#" title="Twitter" target="_blank" rel="nofollow" aria-label="Twitter"></a></li>
-                                    <li><a class="dtr-instagram" href="#" title="Instagram" target="_blank" rel="nofollow" aria-label="Instagram"></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!--== column 1 ends ==-->
-
-                        <!--== column 2 starts ==-->
-                        <div class="col-12 col-md-6 dtr-copyright-col-2">
-                            <p>2024 © Copr. Theme by Tansh</p>
-                        </div>
-                        <!--== column 2 ends ==-->
-
-                    </div>
-                </div>
-                <!--== row 2 ends ==-->
-
             </div>
-        </footer>
-        <!-- footer section ends
-================================================== -->
+        </section>
         <!--== scroll to top ==-->
         <a id="take-to-top" href="#" class="active" aria-label="Scroll To Top"></a>
     </div>
