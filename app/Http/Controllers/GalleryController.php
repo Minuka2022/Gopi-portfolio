@@ -17,22 +17,31 @@ class GalleryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
+            'images' => 'required|array',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
-        if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('Gallery-images', 'public');
-            $url = asset('storage/' . $path);
+        $uploadedCount = 0;
 
-            Gallery::create([
-                'name' => $request->file('image')->getClientOriginalName(),
-                'photo' => $path
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $path = $image->store('Gallery-images', 'public');
+                
+                Gallery::create([
+                    'name' => $image->getClientOriginalName(),
+                    'photo' => $path
+                ]);
+                
+                $uploadedCount++;
+            }
+
+            return response()->json([
+                'success' => true,
+                'message' => $uploadedCount . ' images uploaded successfully'
             ]);
-
-            return response()->json(['success' => true]);
         }
 
-        return response()->json(['success' => false]);
+        return response()->json(['success' => false, 'message' => 'No images were uploaded']);
     }
 
     public function destroy(Gallery $gallery)

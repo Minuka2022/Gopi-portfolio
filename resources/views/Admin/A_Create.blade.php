@@ -196,18 +196,38 @@
                                     const uploadedImages = [];
 
                                     // Word count functionality for description
-                                    descriptionField.addEventListener('input', function() {
+                                    descriptionField.addEventListener('input', function(e) {
                                         const text = this.value.trim();
-                                        const wordCount = text === '' ? 0 : text.split(/\s+/).length;
+                                        const words = text === '' ? [] : text.split(/\s+/);
+                                        const wordCount = words.length;
                                         wordCountDisplay.textContent = wordCount + ' words';
 
                                         // Add visual feedback
                                         if (wordCount > 20) {
                                             wordCountDisplay.classList.add('text-danger');
                                             wordCountDisplay.classList.remove('text-muted');
+
+                                            // Keep only the first 20 words
+                                            this.value = words.slice(0, 20).join(' ');
                                         } else {
                                             wordCountDisplay.classList.remove('text-danger');
                                             wordCountDisplay.classList.add('text-muted');
+                                        }
+                                    });
+
+                                    // Block all keyboard input when 20 words are reached
+                                    descriptionField.addEventListener('keydown', function(e) {
+                                        const text = this.value.trim();
+                                        const words = text === '' ? [] : text.split(/\s+/);
+                                        const wordCount = words.length;
+                                        const selection = window.getSelection().toString();
+
+                                        // If at 20 words and no text is selected, block all input except:
+                                        // - Backspace, Delete, Arrow keys, Tab, Ctrl combinations
+                                        if (wordCount >= 20 && selection === '' &&
+                                            !['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Tab'].includes(e.key) &&
+                                            !(e.ctrlKey || e.metaKey)) {
+                                            e.preventDefault();
                                         }
                                     });
 
@@ -215,11 +235,11 @@
                                     boldButton.addEventListener('click', function() {
                                         const selection = window.getSelection();
                                         const selectedText = selection.toString();
-                                        
+
                                         if (contentField.selectionStart !== undefined) {
                                             const startPos = contentField.selectionStart;
                                             const endPos = contentField.selectionEnd;
-                                            
+
                                             if (startPos !== endPos) {
                                                 const currentContent = contentField.value;
                                                 const boldText = '<strong>' + selectedText + '</strong>';
@@ -234,13 +254,13 @@
                                     articleForm.addEventListener('submit', function(e) {
                                         const descriptionText = descriptionField.value.trim();
                                         const wordCount = descriptionText === '' ? 0 : descriptionText.split(/\s+/).length;
-                                        
+
                                         if (wordCount > 20) {
                                             e.preventDefault();
                                             alert('Description must be 20 words or less.');
                                             return false;
                                         }
-                                        
+
                                         // Convert line breaks to HTML paragraphs in the content only
                                         const contentText = contentField.value.trim();
                                         const contentParagraphs = contentText.split(/\n\s*\n/);

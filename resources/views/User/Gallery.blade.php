@@ -56,7 +56,78 @@
         }
     </style>
 
+    <style>
+        /* Lightbox Styles */
+        .lightbox-modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 50px;
+        }
 
+        .lightbox-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 80vh;
+            object-fit: contain;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .lightbox-close:hover,
+        .lightbox-close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .lightbox-prev,
+        .lightbox-next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -50px;
+            color: white;
+            font-weight: bold;
+            font-size: 30px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .lightbox-next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .lightbox-prev {
+            left: 0;
+        }
+
+        .lightbox-prev:hover,
+        .lightbox-next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+    </style>
 
 </head>
 
@@ -100,22 +171,14 @@
                 <span class="spacer spacer-50"></span>
 
                 <!--== portfolio nav starts ==-->
-                <div class="dtr-filter-nav-wrapper">
-                    <ul class="dtr-filter-nav clearfix">
-                        <li><a class="dtr-filter-all active" data-filter="*" href="#" style="color: white;">All</a></li>
-                        <li><a data-filter=".branding" href="#" style="color: white;">Branding</a></li>
-                        <li><a data-filter=".creative" href="#" style="color: white;">Creative</a></li>
-                        <li><a data-filter=".marketing" href="#" style="color: white;">Marketing</a></li>
-                        <li><a data-filter=".web" href="#" style="color: white;">Web</a></li>
-                    </ul>
-                </div>
+
                 <span class="spacer spacer-20"></span>
 
                 <!--== portfolio starts ==-->
                 <div class="portfolio-container">
                     @foreach($images as $image)
                     <div class="dtr-portfolio-item">
-                        <a class="dtr-portfolio-item__link" target="_self" aria-label="{{ $image->name }}">
+                        <a class="dtr-portfolio-item__link" href="{{ asset('storage/' . $image->photo) }}" aria-label="{{ $image->name }}">
                             <div class="dtr-portfolio-item__img">
                                 <img src="{{ asset('storage/' . $image->photo) }}" alt="{{ $image->name }}">
                             </div>
@@ -124,8 +187,13 @@
                     @endforeach
                 </div>
 
-
-
+                <!-- Lightbox Modal -->
+                <div class="lightbox-modal" id="lightboxModal">
+                    <span class="lightbox-close">&times;</span>
+                    <img class="lightbox-content" id="lightboxImage">
+                    <a class="lightbox-prev">&#10094;</a>
+                    <a class="lightbox-next">&#10095;</a>
+                </div>
 
                 <!--== portfolio ends ==-->
 
@@ -238,6 +306,96 @@
                     filter: selector
                 });
                 return false;
+            });
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get all gallery items
+            const galleryItems = document.querySelectorAll('.dtr-portfolio-item__link');
+            const lightboxModal = document.getElementById('lightboxModal');
+            const lightboxImage = document.getElementById('lightboxImage');
+            const lightboxClose = document.querySelector('.lightbox-close');
+            const lightboxNext = document.querySelector('.lightbox-next');
+            const lightboxPrev = document.querySelector('.lightbox-prev');
+
+            let currentIndex = 0;
+            const images = [];
+
+            // Collect all image data
+            galleryItems.forEach((item, index) => {
+                const imgSrc = item.getAttribute('href');
+
+                images.push({
+                    src: imgSrc
+                });
+
+                // Add click event to open lightbox
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    openLightbox(index);
+                });
+            });
+
+            // Open lightbox function
+            function openLightbox(index) {
+                currentIndex = index;
+                updateLightboxContent();
+                lightboxModal.style.display = 'block';
+
+                // Prevent scrolling when lightbox is open
+                document.body.style.overflow = 'hidden';
+            }
+
+            // Update lightbox content
+            function updateLightboxContent() {
+                lightboxImage.src = images[currentIndex].src;
+            }
+
+            // Close lightbox
+            lightboxClose.addEventListener('click', function() {
+                lightboxModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+
+            // Next image
+            lightboxNext.addEventListener('click', function() {
+                currentIndex = (currentIndex + 1) % images.length;
+                updateLightboxContent();
+            });
+
+            // Previous image
+            lightboxPrev.addEventListener('click', function() {
+                currentIndex = (currentIndex - 1 + images.length) % images.length;
+                updateLightboxContent();
+            });
+
+            // Close on click outside image
+            lightboxModal.addEventListener('click', function(e) {
+                if (e.target === lightboxModal) {
+                    lightboxModal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+
+            // Keyboard navigation
+            document.addEventListener('keydown', function(e) {
+                if (lightboxModal.style.display === 'block') {
+                    if (e.key === 'ArrowRight') {
+                        // Next image
+                        currentIndex = (currentIndex + 1) % images.length;
+                        updateLightboxContent();
+                    } else if (e.key === 'ArrowLeft') {
+                        // Previous image
+                        currentIndex = (currentIndex - 1 + images.length) % images.length;
+                        updateLightboxContent();
+                    } else if (e.key === 'Escape') {
+                        // Close lightbox
+                        lightboxModal.style.display = 'none';
+                        document.body.style.overflow = 'auto';
+                    }
+                }
             });
         });
     </script>
