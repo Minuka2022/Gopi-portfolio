@@ -26,10 +26,10 @@
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/counter.css') }}">
-    
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    
+
     <!-- Custom CSS for Gallery Section -->
     <style>
         /* Gallery hover effects */
@@ -37,31 +37,31 @@
             transform: translateY(-10px);
             box-shadow: 0 15px 30px rgba(0,0,0,0.25);
         }
-        
+
         .dtr-portfolio-item__wrapper:hover .dtr-portfolio-item__img img {
             transform: scale(1.05);
         }
-        
+
         .dtr-portfolio-item__wrapper:hover .dtr-portfolio-item__overlay {
             opacity: 1;
         }
-        
+
         .dtr-portfolio-item__wrapper:hover .dtr-portfolio-item__content {
             transform: translateY(0);
         }
-        
+
         .view-btn:hover {
             background-color: #228B22;
             color: white;
             transition: all 0.3s ease;
         }
-        
+
         /* Button animation */
         .btn-animation {
             position: relative;
             overflow: hidden;
         }
-        
+
         .btn-animation:after {
             content: '';
             position: absolute;
@@ -74,7 +74,7 @@
             transform: translate(-50%, -50%);
             transition: width 0.6s, height 0.6s;
         }
-        
+
         .btn-animation:hover:after {
             width: 300%;
             height: 300%;
@@ -380,7 +380,7 @@
                         padding: 80px 0;
                         color: white;
                     }
-                    
+
                     .dtr-counter__info-text {
                         color: #ffffff;
                         font-size: 1.2rem;
@@ -388,29 +388,29 @@
                         margin: 0 auto;
                         line-height: 1.8;
                     }
-                    
+
                     .dtr-intro__divider {
                         width: 80px;
                         height: 3px;
                         background-color: #228B22;
                         margin: 0 auto 20px;
                     }
-                    
+
                     .dtr-counter {
                         position: relative;
                         padding: 20px;
                         width: 280px;
                         transition: transform 0.3s ease;
                     }
-                    
+
                     .dtr-counter:hover {
                         transform: translateY(-5px);
                     }
-                    
+
                     .counter-icon-wrapper {
                         margin-bottom: 15px;
                     }
-                    
+
                     .counter-icon {
                         display: inline-flex;
                         align-items: center;
@@ -421,28 +421,28 @@
                         border-radius: 50%;
                         margin-bottom: 15px;
                     }
-                    
+
                     .counter-icon i {
                         font-size: 28px;
                         color: #4CAF50;
                     }
-                    
+
                     .counter-number-wrapper {
                         margin-bottom: 10px;
                     }
-                    
+
                     .dtr-counter__number {
                         font-size: 3.5rem;
                         font-weight: 700;
                         color: white;
                         display: block;
                     }
-                    
+
                     .counter-label-wrapper {
                         position: relative;
                         background: transparent;
                     }
-                    
+
                     .dtr-counter__heading {
                         font-size: 1.1rem;
                         font-weight: 500;
@@ -454,7 +454,7 @@
                         width: auto;
                         transform: none;
                     }
-                    
+
                     .dtr-counter__heading:after {
                         content: '';
                         position: absolute;
@@ -465,7 +465,7 @@
                         height: 2px;
                         background-color: #4CAF50;
                     }
-                    
+
                     @media (max-width: 768px) {
                         .dtr-counter {
                             width: 100%;
@@ -675,25 +675,25 @@
                     #acheivment {
                         background-color: #f8f9fa;
                     }
-                    
+
                     /* Intro Section */
                     #acheivment .dtr-intro__heading {
                         color: #002244;
                         margin-bottom: 15px;
                     }
-                    
+
                     #acheivment .dtr-intro__divider {
                         width: 80px;
                         height: 3px;
                         background-color: #228B22;
                         margin-bottom: 20px;
                     }
-                    
+
                     #acheivment .dtr-intro p {
                         color: #555;
                         font-size: 1.1rem;
                     }
-                    
+
                     /* Box Styles */
                     #acheivment .mobile-bg-1,
                     #acheivment .mobile-bg-4 {
@@ -701,14 +701,14 @@
                         border-radius: 8px;
                         box-shadow: 0 5px 15px rgba(0,0,0,0.1);
                     }
-                    
+
                     #acheivment .mobile-bg-2,
                     #acheivment .mobile-bg-3 {
                         background-color: #1a5276;
                         border-radius: 8px;
                         box-shadow: 0 5px 15px rgba(0,0,0,0.1);
                     }
-                    
+
                     /* Heading Styles */
                     #acheivment h5 {
                         color: #fff;
@@ -717,21 +717,21 @@
                         padding-bottom: 10px;
                         margin-bottom: 20px;
                     }
-                    
+
                     #acheivment .timeline-year {
                         color: #4CAF50;
                     }
-                    
+
                     #acheivment .dtr-timeline__heading {
                         color: #fff;
                         font-size: 1.2rem;
                     }
-                    
+
                     #acheivment .ability-heading {
                         color: #4CAF50;
                         font-size: 1.2rem;
                     }
-                    
+
                     #acheivment .dtr-timeline__content {
                         color: #e0e0e0;
                     }
@@ -743,51 +743,51 @@
                             font-size: 2.2rem;
                             line-height: 1.2;
                         }
-                        
+
                         .line1 {
                             font-size: 2rem;
                         }
-                        
+
                         .desk-intro {
                             display: none;
                         }
-                        
+
                         .mobile-intro {
                             display: block;
                         }
-                        
+
                         h6, p {
                             font-size: 0.95rem;
                             line-height: 1.6;
                         }
-                        
+
                         .dtr-about2__img {
                             margin-bottom: 15px;
                         }
-                        
+
                         .dtr-about2__img img {
                             max-width: 80%;
                             margin: 0 auto;
                             display: block;
                         }
-                        
+
                         .dtr-about2 p {
                             text-align: center;
                             margin-top: 10px;
                         }
-                        
+
                         .intro-dec {
                             text-align: center;
                             margin-top: 20px;
                         }
                     }
-                    
+
                     /* Desktop Styles */
                     @media (min-width: 769px) {
                         .mobile-intro {
                             display: none;
                         }
-                        
+
                         .desk-intro {
                             display: block;
                         }
@@ -913,7 +913,7 @@
                         position: relative;
                         overflow: hidden;
                     }
-                    
+
                     .client-section:before {
                         content: '';
                         position: absolute;
@@ -924,29 +924,29 @@
                         background: linear-gradient(135deg, rgba(0,50,102,0.03) 0%, rgba(78,116,155,0.03) 100%);
                         z-index: 0;
                     }
-                    
+
                     .client-section .container {
                         position: relative;
                         z-index: 1;
                     }
-                    
+
                     .client-section .dtr-intro__heading {
                         color: #002244;
                         margin-bottom: 15px;
                     }
-                    
+
                     .client-section .dtr-intro__divider {
                         width: 80px;
                         height: 3px;
                         background-color: #228B22;
                         margin-bottom: 20px;
                     }
-                    
+
                     .client-section p {
                         color: #555;
                         font-size: 1.1rem;
                     }
-                    
+
                     .dtr-client-box {
                         position: relative;
                         overflow: hidden;
@@ -954,21 +954,21 @@
                         margin: 0;
                         border: 1px solid rgba(0,0,0,0.05);
                     }
-                    
+
                     .client-box-navy {
                         background-color: #002244;
                     }
-                    
+
                     .client-box-blue {
                         background-color: #4E749B;
                     }
-                    
+
                     .dtr-client-box:hover {
                         transform: translateY(-5px);
                         box-shadow: 0 10px 20px rgba(0,0,0,0.1);
                         z-index: 2;
                     }
-                    
+
                     .dtr-client-box:after {
                         content: '';
                         position: absolute;
@@ -980,11 +980,11 @@
                         transform: scaleX(0);
                         transition: transform 0.3s ease;
                     }
-                    
+
                     .dtr-client-box:hover:after {
                         transform: scaleX(1);
                     }
-                    
+
                     .dtr-client-box__content {
                         display: flex;
                         align-items: center;
@@ -992,7 +992,7 @@
                         padding: 40px 20px;
                         height: 150px;
                     }
-                    
+
                     .dtr-client-box__content img {
                         max-width: 80%;
                         max-height: 80%;
@@ -1000,22 +1000,22 @@
                         opacity: 0.8;
                         transition: all 0.3s ease;
                     }
-                    
+
                     .dtr-client-box:hover .dtr-client-box__content img {
                         opacity: 1;
                         transform: scale(1.05);
                     }
-                    
+
                     @media (max-width: 768px) {
                         .dtr-client-box__content {
                             height: 120px;
                             padding: 25px 15px;
                         }
-                        
+
                         .client-section .dtr-intro__heading {
                             font-size: 2rem;
                         }
-                        
+
                         .client-section p {
                             font-size: 1rem;
                         }
@@ -1033,7 +1033,7 @@
                     <div class="gallery-header">
                         <h2 class="gallery-title">Gallery</h2>
                         <div class="gallery-divider"></div>
-                        <p><a class="dtr-btn gallery-btn" href="{{ route('frontend-gallery') }}" role="button"><span class="dtr-btn__text">View Portfolio</span></a></p>
+                        <p><a class="dtr-btn gallery-btn" href="{{ route('frontend-gallery') }}" role="button"><span class="dtr-btn__text">View Gallery</span></a></p>
                     </div>
                 </div>
                 <!--== intro ends ==-->
@@ -1048,7 +1048,7 @@
                         <!-- gallery item starts -->
                         <div class="gallery-item">
                             <div class="gallery-item-wrapper">
-                                <a class="gallery-item-link" href="#" target="_self" aria-label="{{ $image->name }}">
+                                <a class="gallery-item-link" href="{{ asset('storage/' . $image->photo) }}" data-lightbox="homepage-gallery" aria-label="{{ $image->name }}">
                                     <div class="gallery-item-img">
                                         <img src="{{ asset('storage/' . $image->photo) }}" alt="{{ $image->name }}">
                                     </div>
@@ -1066,6 +1066,14 @@
                 </div>
                 <!--== portfolio ends ==-->
 
+                <!-- Lightbox Modal -->
+                <div class="lightbox-modal" id="lightboxModal">
+                    <span class="lightbox-close">&times;</span>
+                    <img class="lightbox-content" id="lightboxImage">
+                    <a class="lightbox-prev">&#10094;</a>
+                    <a class="lightbox-next">&#10095;</a>
+                </div>
+
                 <style>
                     /* Gallery Section Styles */
                     .gallery-section {
@@ -1073,25 +1081,25 @@
                         padding: 80px 0;
                         position: relative;
                     }
-                    
+
                     .gallery-header {
                         text-align: center;
                         margin-bottom: 40px;
                     }
-                    
+
                     .gallery-title {
                         color: white;
                         font-size: 2.5rem;
                         margin-bottom: 15px;
                     }
-                    
+
                     .gallery-divider {
                         width: 80px;
                         height: 3px;
                         background-color: #228B22;
                         margin: 0 auto 25px;
                     }
-                    
+
                     .gallery-btn {
                         background-color: #228B22;
                         border: none;
@@ -1101,36 +1109,36 @@
                         display: inline-block;
                         margin-top: 15px;
                     }
-                    
+
                     .gallery-btn:hover {
                         background-color: #1a6b1a;
                         transform: translateY(-3px);
                         box-shadow: 0 5px 15px rgba(0,0,0,0.2);
                     }
-                    
+
                     .gallery-grid {
                         display: grid;
-                        grid-template-columns: repeat(3, 1fr);
+                        grid-template-columns: repeat(4, 1fr);
                         gap: 20px;
                         max-width: 1200px;
                         margin: 0 auto;
                     }
-                    
+
                     .gallery-item {
                         position: relative;
                         overflow: hidden;
                         border-radius: 8px;
                         box-shadow: 0 8px 20px rgba(0,0,0,0.15);
                     }
-                    
+
                     .gallery-item-wrapper {
                         position: relative;
                         width: 100%;
                         height: 0;
-                        padding-bottom: 80%; /* Slightly taller aspect ratio */
+                        padding-bottom: 75%; /* Square aspect ratio */
                         overflow: hidden;
                     }
-                    
+
                     .gallery-item-img {
                         position: absolute;
                         top: 0;
@@ -1138,14 +1146,14 @@
                         width: 100%;
                         height: 100%;
                     }
-                    
+
                     .gallery-item-img img {
                         width: 100%;
                         height: 100%;
                         object-fit: cover;
                         transition: transform 0.5s ease;
                     }
-                    
+
                     .gallery-item-overlay {
                         position: absolute;
                         top: 0;
@@ -1159,7 +1167,7 @@
                         opacity: 0;
                         transition: opacity 0.3s ease;
                     }
-                    
+
                     .gallery-item-icon {
                         width: 50px;
                         height: 50px;
@@ -1173,45 +1181,209 @@
                         transform: scale(0);
                         transition: transform 0.3s ease;
                     }
-                    
+
                     .gallery-item:hover .gallery-item-overlay {
                         opacity: 1;
                     }
-                    
+
                     .gallery-item:hover .gallery-item-icon {
                         transform: scale(1);
                     }
-                    
+
                     .gallery-item:hover .gallery-item-img img {
                         transform: scale(1.1);
                     }
-                    
+
+                    @media (max-width: 1200px) {
+                        .gallery-grid {
+                            grid-template-columns: repeat(3, 1fr);
+                        }
+                    }
+
                     @media (max-width: 992px) {
                         .gallery-grid {
                             grid-template-columns: repeat(2, 1fr);
                         }
                     }
-                    
+
                     @media (max-width: 768px) {
-                        .gallery-grid {
-                            grid-template-columns: 1fr;
-                        }
-                        
                         .gallery-title {
                             font-size: 2rem;
                         }
-                        
+
                         .gallery-section {
                             padding: 60px 0;
                         }
                     }
-                    
+
                     @media (max-width: 480px) {
                         .gallery-grid {
                             grid-template-columns: 1fr;
                         }
                     }
+
+                    /* Lightbox Styles */
+                    .lightbox-modal {
+                        display: none;
+                        position: fixed;
+                        z-index: 9999;
+                        left: 0;
+                        top: 0;
+                        width: 100%;
+                        height: 100%;
+                        overflow: hidden;
+                        background-color: rgba(0, 0, 0, 0.9);
+                        padding: 50px;
+                    }
+                    
+                    .lightbox-content {
+                        margin: auto;
+                        display: block;
+                        max-width: 90%;
+                        max-height: 80vh;
+                        object-fit: contain;
+                    }
+                    
+                    .lightbox-close {
+                        position: absolute;
+                        top: 15px;
+                        right: 35px;
+                        color: #f1f1f1;
+                        font-size: 40px;
+                        font-weight: bold;
+                        transition: 0.3s;
+                        cursor: pointer;
+                    }
+                    
+                    .lightbox-close:hover,
+                    .lightbox-close:focus {
+                        color: #bbb;
+                        text-decoration: none;
+                        cursor: pointer;
+                    }
+                    
+                    .lightbox-prev,
+                    .lightbox-next {
+                        cursor: pointer;
+                        position: absolute;
+                        top: 50%;
+                        width: auto;
+                        padding: 16px;
+                        margin-top: -50px;
+                        color: white;
+                        font-weight: bold;
+                        font-size: 30px;
+                        transition: 0.6s ease;
+                        border-radius: 0 3px 3px 0;
+                        user-select: none;
+                        -webkit-user-select: none;
+                    }
+                    
+                    .lightbox-next {
+                        right: 0;
+                        border-radius: 3px 0 0 3px;
+                    }
+                    
+                    .lightbox-prev {
+                        left: 0;
+                    }
+                    
+                    .lightbox-prev:hover,
+                    .lightbox-next:hover {
+                        background-color: rgba(0, 0, 0, 0.8);
+                    }
                 </style>
+
+                <!-- Lightbox JavaScript -->
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        // Get all gallery items
+                        const galleryItems = document.querySelectorAll('.gallery-item-link');
+                        const lightboxModal = document.getElementById('lightboxModal');
+                        const lightboxImage = document.getElementById('lightboxImage');
+                        const lightboxClose = document.querySelector('.lightbox-close');
+                        const lightboxNext = document.querySelector('.lightbox-next');
+                        const lightboxPrev = document.querySelector('.lightbox-prev');
+                        
+                        let currentIndex = 0;
+                        const images = [];
+                        
+                        // Collect all image data
+                        galleryItems.forEach((item, index) => {
+                            const imgSrc = item.getAttribute('href');
+                            
+                            images.push({
+                                src: imgSrc,
+                            });
+                            
+                            // Add click event to open lightbox
+                            item.addEventListener('click', function(e) {
+                                e.preventDefault();
+                                openLightbox(index);
+                            });
+                        });
+                        
+                        // Open lightbox function
+                        function openLightbox(index) {
+                            currentIndex = index;
+                            updateLightboxContent();
+                            lightboxModal.style.display = 'block';
+                            
+                            // Prevent scrolling when lightbox is open
+                            document.body.style.overflow = 'hidden';
+                        }
+                        
+                        // Update lightbox content
+                        function updateLightboxContent() {
+                            lightboxImage.src = images[currentIndex].src;
+                        }
+                        
+                        // Close lightbox
+                        lightboxClose.addEventListener('click', function() {
+                            lightboxModal.style.display = 'none';
+                            document.body.style.overflow = 'auto';
+                        });
+                        
+                        // Next image
+                        lightboxNext.addEventListener('click', function() {
+                            currentIndex = (currentIndex + 1) % images.length;
+                            updateLightboxContent();
+                        });
+                        
+                        // Previous image
+                        lightboxPrev.addEventListener('click', function() {
+                            currentIndex = (currentIndex - 1 + images.length) % images.length;
+                            updateLightboxContent();
+                        });
+                        
+                        // Close on click outside image
+                        lightboxModal.addEventListener('click', function(e) {
+                            if (e.target === lightboxModal) {
+                                lightboxModal.style.display = 'none';
+                                document.body.style.overflow = 'auto';
+                            }
+                        });
+                        
+                        // Keyboard navigation
+                        document.addEventListener('keydown', function(e) {
+                            if (lightboxModal.style.display === 'block') {
+                                if (e.key === 'ArrowRight') {
+                                    // Next image
+                                    currentIndex = (currentIndex + 1) % images.length;
+                                    updateLightboxContent();
+                                } else if (e.key === 'ArrowLeft') {
+                                    // Previous image
+                                    currentIndex = (currentIndex - 1 + images.length) % images.length;
+                                    updateLightboxContent();
+                                } else if (e.key === 'Escape') {
+                                    // Close lightbox
+                                    lightboxModal.style.display = 'none';
+                                    document.body.style.overflow = 'auto';
+                                }
+                            }
+                        });
+                    });
+                </script>
             </section>
             <!--===== works section ends =====-->
 
@@ -1463,7 +1635,7 @@
                                             <h4 class="event-title">
                                                 <a href="single-post.html">{{ $event->title }}</a>
                                             </h4>
-                                            
+
                                             <div class="event-meta">
                                                 <span class="event-author">
                                                     <i class="fas fa-user"></i> Author Name
@@ -1472,11 +1644,11 @@
                                                     <i class="fas fa-map-marker-alt"></i> Event Location
                                                 </span>
                                             </div>
-                                            
+
                                             <div class="event-description">
                                                 {{ \Illuminate\Support\Str::limit($event->description, 120) }}
                                             </div>
-                                            
+
                                             <a href="{{ route('events.show', ['slug' => Str::slug($event->title) . '-' . $event->id]) }}" class="event-read-more">
                                                 Read More <i class="fas fa-arrow-right"></i>
                                             </a>
@@ -1484,14 +1656,13 @@
                                     </div>
                                 @endforeach
                             </div>
-                            
+
                             <!-- Add navigation arrows -->
                             <div class="swiper-button-next events-nav-next"></div>
                             <div class="swiper-button-prev events-nav-prev"></div>
                         </div>
                     </div>
                 </div>
-                
                 <style>
                     /* Events Section Styles */
                     .events-section {
@@ -1499,7 +1670,7 @@
                         padding: 80px 0;
                         position: relative;
                     }
-                    
+
                     .events-section::before {
                         content: '';
                         position: absolute;
@@ -1510,32 +1681,32 @@
                         background: linear-gradient(135deg, rgba(0,34,68,0.95) 0%, rgba(0,50,102,0.95) 100%);
                         z-index: 0;
                     }
-                    
+
                     .events-section .container {
                         position: relative;
                         z-index: 1;
                     }
-                    
+
                     .events-header {
                         display: flex;
                         justify-content: space-between;
                         align-items: center;
                         margin-bottom: 40px;
                     }
-                    
+
                     .events-title {
                         color: white;
                         font-size: 2.5rem;
                         margin-bottom: 15px;
                     }
-                    
+
                     .events-divider {
                         width: 80px;
                         height: 3px;
                         background-color: #228B22;
                         margin-bottom: 10px;
                     }
-                    
+
                     .events-btn {
                         background-color: #228B22;
                         border: none;
@@ -1543,18 +1714,18 @@
                         border-radius: 4px;
                         transition: all 0.3s ease;
                     }
-                    
+
                     .events-btn:hover {
                         background-color: #1a6b1a;
                         transform: translateY(-3px);
                         box-shadow: 0 5px 15px rgba(0,0,0,0.2);
                     }
-                    
+
                     .events-slider-container {
                         position: relative;
                         padding: 0 60px;
                     }
-                    
+
                     .event-card {
                         background-color: white;
                         border-radius: 8px;
@@ -1564,29 +1735,29 @@
                         height: 100%;
                         margin: 0 10px;
                     }
-                    
+
                     .event-card:hover {
                         transform: translateY(-10px);
                         box-shadow: 0 15px 30px rgba(0,0,0,0.25);
                     }
-                    
+
                     .event-image-container {
                         position: relative;
                         height: 220px;
                         overflow: hidden;
                     }
-                    
+
                     .event-image-container img {
                         width: 100%;
                         height: 100%;
                         object-fit: cover;
                         transition: transform 0.5s ease;
                     }
-                    
+
                     .event-card:hover .event-image-container img {
                         transform: scale(1.1);
                     }
-                    
+
                     .event-date-badge {
                         position: absolute;
                         top: 15px;
@@ -1601,39 +1772,39 @@
                         min-width: 60px;
                         box-shadow: 0 4px 8px rgba(0,0,0,0.2);
                     }
-                    
+
                     .event-day {
                         font-size: 1.5rem;
                         font-weight: 700;
                         line-height: 1;
                     }
-                    
+
                     .event-month {
                         font-size: 0.9rem;
                         text-transform: uppercase;
                     }
-                    
+
                     .event-content {
                         padding: 25px;
                         color: #333;
                     }
-                    
+
                     .event-title {
                         font-size: 1.3rem;
                         margin-bottom: 15px;
                         font-weight: 600;
                     }
-                    
+
                     .event-title a {
                         color: #002244;
                         text-decoration: none;
                         transition: color 0.3s ease;
                     }
-                    
+
                     .event-title a:hover {
                         color: #228B22;
                     }
-                    
+
                     .event-meta {
                         display: flex;
                         gap: 15px;
@@ -1641,18 +1812,18 @@
                         font-size: 0.9rem;
                         color: #666;
                     }
-                    
+
                     .event-meta i {
                         color: #228B22;
                         margin-right: 5px;
                     }
-                    
+
                     .event-description {
                         margin-bottom: 20px;
                         color: #555;
                         line-height: 1.6;
                     }
-                    
+
                     .event-read-more {
                         display: inline-block;
                         color: #228B22;
@@ -1660,20 +1831,20 @@
                         text-decoration: none;
                         transition: all 0.3s ease;
                     }
-                    
+
                     .event-read-more i {
                         margin-left: 5px;
                         transition: transform 0.3s ease;
                     }
-                    
+
                     .event-read-more:hover {
                         color: #002244;
                     }
-                    
+
                     .event-read-more:hover i {
                         transform: translateX(5px);
                     }
-                    
+
                     .events-nav-next,
                     .events-nav-prev {
                         color: white;
@@ -1686,35 +1857,35 @@
                         top: 50%;
                         transform: translateY(-50%);
                     }
-                    
+
                     .events-nav-next {
                         right: 10px;
                     }
-                    
+
                     .events-nav-prev {
                         left: 10px;
                     }
-                    
+
                     .events-nav-next:hover,
                     .events-nav-prev:hover {
                         background-color: #1a6b1a;
                         transform: translateY(-50%) scale(1.1);
                     }
-                    
+
                     @media (max-width: 768px) {
                         .events-header {
                             flex-direction: column;
                             text-align: center;
                         }
-                        
+
                         .events-title-wrapper {
                             margin-bottom: 20px;
                         }
-                        
+
                         .events-divider {
                             margin: 0 auto 10px;
                         }
-                        
+
                         .event-image-container {
                             height: 180px;
                         }
@@ -1761,15 +1932,15 @@
                                                     <i class="far fa-user"></i> Author Name
                                                 </span>
                                             </div>
-                                            
+
                                             <h4 class="article-title">
                                                 <a href="{{ route('article.show', ['slug' => Str::slug($article->title) . '-' . $article->id]) }}">{{ $article->title }}</a>
                                             </h4>
-                                            
+
                                             <div class="article-description">
                                                 {{ \Illuminate\Support\Str::limit($article->description, 120) }}
                                             </div>
-                                            
+
                                             <a href="{{ route('article.show', ['slug' => Str::slug($article->title) . '-' . $article->id]) }}" class="article-read-more">
                                                 Read More <i class="fas fa-arrow-right"></i>
                                             </a>
@@ -1777,14 +1948,13 @@
                                     </div>
                                 @endforeach
                             </div>
-                            
+
                             <!-- Add navigation arrows -->
                             <div class="swiper-button-next articles-nav-next"></div>
                             <div class="swiper-button-prev articles-nav-prev"></div>
                         </div>
                     </div>
                 </div>
-                
                 <style>
                     /* Articles Section Styles */
                     .articles-section {
@@ -1792,7 +1962,7 @@
                         padding: 80px 0;
                         position: relative;
                     }
-                    
+
                     .articles-section::before {
                         content: '';
                         position: absolute;
@@ -1803,32 +1973,32 @@
                         background: linear-gradient(135deg, rgba(248,249,250,0.95) 0%, rgba(255,255,255,0.95) 100%);
                         z-index: 0;
                     }
-                    
+
                     .articles-section .container {
                         position: relative;
                         z-index: 1;
                     }
-                    
+
                     .articles-header {
                         display: flex;
                         justify-content: space-between;
                         align-items: center;
                         margin-bottom: 40px;
                     }
-                    
+
                     .articles-title {
                         color: #002244;
                         font-size: 2.5rem;
                         margin-bottom: 15px;
                     }
-                    
+
                     .articles-divider {
                         width: 80px;
                         height: 3px;
                         background-color: #228B22;
                         margin-bottom: 10px;
                     }
-                    
+
                     .articles-btn {
                         background-color: #228B22;
                         border: none;
@@ -1836,18 +2006,18 @@
                         border-radius: 4px;
                         transition: all 0.3s ease;
                     }
-                    
+
                     .articles-btn:hover {
                         background-color: #1a6b1a;
                         transform: translateY(-3px);
                         box-shadow: 0 5px 15px rgba(0,0,0,0.2);
                     }
-                    
+
                     .articles-slider-container {
                         position: relative;
                         padding: 0 60px;
                     }
-                    
+
                     .article-card {
                         background-color: white;
                         border-radius: 8px;
@@ -1858,29 +2028,29 @@
                         margin: 0 10px;
                         border: 1px solid rgba(0,0,0,0.05);
                     }
-                    
+
                     .article-card:hover {
                         transform: translateY(-10px);
                         box-shadow: 0 15px 30px rgba(0,0,0,0.12);
                     }
-                    
+
                     .article-image-container {
                         position: relative;
                         height: 220px;
                         overflow: hidden;
                     }
-                    
+
                     .article-image-container img {
                         width: 100%;
                         height: 100%;
                         object-fit: cover;
                         transition: transform 0.5s ease;
                     }
-                    
+
                     .article-card:hover .article-image-container img {
                         transform: scale(1.1);
                     }
-                    
+
                     .article-category {
                         position: absolute;
                         top: 15px;
@@ -1895,12 +2065,12 @@
                         letter-spacing: 0.5px;
                         box-shadow: 0 4px 8px rgba(0,0,0,0.1);
                     }
-                    
+
                     .article-content {
                         padding: 25px;
                         color: #333;
                     }
-                    
+
                     .article-meta {
                         display: flex;
                         gap: 15px;
@@ -1908,35 +2078,35 @@
                         font-size: 0.9rem;
                         color: #666;
                     }
-                    
+
                     .article-meta i {
                         color: #228B22;
                         margin-right: 5px;
                     }
-                    
+
                     .article-title {
                         font-size: 1.3rem;
                         margin-bottom: 15px;
                         font-weight: 600;
                         line-height: 1.4;
                     }
-                    
+
                     .article-title a {
                         color: #002244;
                         text-decoration: none;
                         transition: color 0.3s ease;
                     }
-                    
+
                     .article-title a:hover {
                         color: #228B22;
                     }
-                    
+
                     .article-description {
                         margin-bottom: 20px;
                         color: #555;
                         line-height: 1.6;
                     }
-                    
+
                     .article-read-more {
                         display: inline-block;
                         color: #228B22;
@@ -1944,20 +2114,20 @@
                         text-decoration: none;
                         transition: all 0.3s ease;
                     }
-                    
+
                     .article-read-more i {
                         margin-left: 5px;
                         transition: transform 0.3s ease;
                     }
-                    
+
                     .article-read-more:hover {
                         color: #002244;
                     }
-                    
+
                     .article-read-more:hover i {
                         transform: translateX(5px);
                     }
-                    
+
                     .articles-nav-next,
                     .articles-nav-prev {
                         color: white;
@@ -1970,35 +2140,35 @@
                         top: 50%;
                         transform: translateY(-50%);
                     }
-                    
+
                     .articles-nav-next {
                         right: 10px;
                     }
-                    
+
                     .articles-nav-prev {
                         left: 10px;
                     }
-                    
+
                     .articles-nav-next:hover,
                     .articles-nav-prev:hover {
                         background-color: #1a6b1a;
                         transform: translateY(-50%) scale(1.1);
                     }
-                    
+
                     @media (max-width: 768px) {
                         .articles-header {
                             flex-direction: column;
                             text-align: center;
                         }
-                        
+
                         .articles-title-wrapper {
                             margin-bottom: 20px;
                         }
-                        
+
                         .articles-divider {
                             margin: 0 auto 10px;
                         }
-                        
+
                         .article-image-container {
                             height: 180px;
                         }

@@ -173,18 +173,38 @@
                                     const uploadedImages = [];
 
                                     // Word count functionality for description
-                                    descriptionField.addEventListener('input', function() {
+                                    descriptionField.addEventListener('input', function(e) {
                                         const text = this.value.trim();
-                                        const wordCount = text === '' ? 0 : text.split(/\s+/).length;
+                                        const words = text === '' ? [] : text.split(/\s+/);
+                                        const wordCount = words.length;
                                         wordCountDisplay.textContent = wordCount + ' words';
 
                                         // Add visual feedback
                                         if (wordCount > 20) {
                                             wordCountDisplay.classList.add('text-danger');
                                             wordCountDisplay.classList.remove('text-muted');
+                                            
+                                            // Keep only the first 20 words
+                                            this.value = words.slice(0, 20).join(' ');
                                         } else {
                                             wordCountDisplay.classList.remove('text-danger');
                                             wordCountDisplay.classList.add('text-muted');
+                                        }
+                                    });
+
+                                    // Block all keyboard input when 20 words are reached
+                                    descriptionField.addEventListener('keydown', function(e) {
+                                        const text = this.value.trim();
+                                        const words = text === '' ? [] : text.split(/\s+/);
+                                        const wordCount = words.length;
+                                        const selection = window.getSelection().toString();
+                                        
+                                        // If at 20 words and no text is selected, block all input except:
+                                        // - Backspace, Delete, Arrow keys, Tab, Ctrl combinations
+                                        if (wordCount >= 20 && selection === '' && 
+                                            !['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Tab'].includes(e.key) && 
+                                            !(e.ctrlKey || e.metaKey)) {
+                                            e.preventDefault();
                                         }
                                     });
 
