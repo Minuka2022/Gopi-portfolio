@@ -196,7 +196,7 @@
                                 <div class="dtr-post-block" style="color: black">
                                     <!-- Event Image -->
                                     <div class="dtr-post-block__img-wrapper">
-                                        <a href="single-post.html">
+                                        <a href="{{ route('events.show', ['slug' => Str::slug($event->title) . '-' . $event->id]) }}">
                                             <img src="{{ asset('storage/' . ($event->eventImages->first()->image ?? 'default.jpg')) }}" alt="Event Image">
                                         </a>
                                     </div>
@@ -205,14 +205,14 @@
                                     <div class="dtr-post-block__content" style="color: black;">
                                         <div class="dtr-post-block__meta" style="color: black;">
                                             <!-- Event Date -->
-                                            <a class="dtr-meta-item" href="#" style="color: black;">{{ $event->created_at->format('F d, Y') }}</a>
+                                            <a class="dtr-meta-item" style="color: black;">{{ $event->created_at->format('F d, Y') }}</a>
                                             <!-- Hardcoded Author -->
-                                            <a class="dtr-meta-item" href="#" style="color: black;">Gopi</a>
+                                            <a class="dtr-meta-item" style="color: black;">Gopi</a>
                                         </div>
 
                                         <!-- Event Title -->
                                         <h5 class="dtr-post-block__title">
-                                            <a href="single-post.html" rel="bookmark" style="color: black;">{{ $event->title }}</a>
+                                            <a href="{{ route('events.show', ['slug' => Str::slug($event->title) . '-' . $event->id]) }}" rel="bookmark" style="color: black;">{{ $event->title }}</a>
                                         </h5>
 
                                         <!-- Event Description -->
@@ -221,19 +221,12 @@
                                         </div>
                                         <div class="dtr-post-block__read-more">
                                             <a href="{{ route('events.show', ['slug' => Str::slug($event->title) . '-' . $event->id]) }}">Read More</a>
-
                                         </div>
-
-
                                     </div>
-
                                 </div>
                                 @endforeach
                             </div>
                         </div>
-
-                    <!-- swiper slider ends -->
-
                 </div>
                 <!--== single column ends ==-->
 

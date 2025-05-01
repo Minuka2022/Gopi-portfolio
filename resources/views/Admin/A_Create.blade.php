@@ -161,13 +161,19 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <label class="form-label">Description</label>
-                                    <textarea name="description" class="form-control" rows="4" required></textarea>
+                                    <label class="form-label">Description <small>(max 20 words)</small></label>
+                                    <textarea name="description" id="description" class="form-control" rows="4" required></textarea>
+                                    <div id="wordCount" class="text-muted mt-1">0 words</div>
                                 </div>
 
                                 <div class="mb-3">
                                     <label class="form-label">Content</label>
-                                    <textarea name="content" class="form-control" rows="10" required></textarea>
+                                    <div class="mb-2">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary" id="boldButton">
+                                            <i class="fa fa-bold"></i> Bold
+                                        </button>
+                                    </div>
+                                    <textarea name="content" id="content" class="form-control" rows="10" required></textarea>
                                 </div>
 
                                 <input type="hidden" name="uploaded_images" id="uploadedImages">
@@ -181,8 +187,66 @@
                                     const imageInput = document.getElementById('imageInput');
                                     const imagePreviewContainer = document.getElementById('imagePreviewContainer');
                                     const uploadedImagesField = document.getElementById('uploadedImages');
+                                    const descriptionField = document.getElementById('description');
+                                    const wordCountDisplay = document.getElementById('wordCount');
+                                    const articleForm = document.getElementById('articleForm');
+                                    const boldButton = document.getElementById('boldButton');
+                                    const contentField = document.getElementById('content');
 
                                     const uploadedImages = [];
+
+                                    // Word count functionality for description
+                                    descriptionField.addEventListener('input', function() {
+                                        const text = this.value.trim();
+                                        const wordCount = text === '' ? 0 : text.split(/\s+/).length;
+                                        wordCountDisplay.textContent = wordCount + ' words';
+
+                                        // Add visual feedback
+                                        if (wordCount > 20) {
+                                            wordCountDisplay.classList.add('text-danger');
+                                            wordCountDisplay.classList.remove('text-muted');
+                                        } else {
+                                            wordCountDisplay.classList.remove('text-danger');
+                                            wordCountDisplay.classList.add('text-muted');
+                                        }
+                                    });
+
+                                    // Bold button functionality
+                                    boldButton.addEventListener('click', function() {
+                                        const selection = window.getSelection();
+                                        const selectedText = selection.toString();
+                                        
+                                        if (contentField.selectionStart !== undefined) {
+                                            const startPos = contentField.selectionStart;
+                                            const endPos = contentField.selectionEnd;
+                                            
+                                            if (startPos !== endPos) {
+                                                const currentContent = contentField.value;
+                                                const boldText = '<strong>' + selectedText + '</strong>';
+                                                contentField.value = currentContent.substring(0, startPos) +
+                                                                  boldText +
+                                                                  currentContent.substring(endPos);
+                                            }
+                                        }
+                                    });
+
+                                    // Form validation
+                                    articleForm.addEventListener('submit', function(e) {
+                                        const descriptionText = descriptionField.value.trim();
+                                        const wordCount = descriptionText === '' ? 0 : descriptionText.split(/\s+/).length;
+                                        
+                                        if (wordCount > 20) {
+                                            e.preventDefault();
+                                            alert('Description must be 20 words or less.');
+                                            return false;
+                                        }
+                                        
+                                        // Convert line breaks to HTML paragraphs in the content only
+                                        const contentText = contentField.value.trim();
+                                        const contentParagraphs = contentText.split(/\n\s*\n/);
+                                        const htmlContent = contentParagraphs.map(p => `<p>${p.replace(/\n/g, '<br>')}</p>`).join('');
+                                        contentField.value = htmlContent;
+                                    });
 
                                     addImageButton.addEventListener('click', () => imageInput.click());
 

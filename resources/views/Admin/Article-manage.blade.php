@@ -141,11 +141,9 @@
                      <div class="card">
                         <div class="card-header">
                            <div class="d-flex align-items-center">
-
-                              <button
-                                 class="btn btn-primary btn-round ms-auto" >
-                                <i class="fa fa-plus"></i>
-                                Add Article
+                              <button type="button" class="btn btn-primary btn-round ms-auto" onclick="location.href='{{ route('Dashboard-Create-Article') }}'">
+                                 <i class="fa fa-plus"></i>
+                                 Add Article
                               </button>
                            </div>
                         </div>
@@ -172,7 +170,7 @@
                                     <td>{{ $article->updated_at->format('d M Y, h:i A') }}</td>
                                     <td>
                                        <div class="form-button-action">
-                                          <button type="button" class="btn btn-link btn-primary btn-lg btn-edit-subject" data-bs-toggle="tooltip" title="Edit Task"   onclick="location.href='{{ route('Dashboard-article-edit', $article->id) }}'">
+                                          <button type="button" class="btn btn-link btn-primary btn-lg btn-edit-subject" data-bs-toggle="tooltip" title="Edit Task"   onclick="location.href='{{ route('Dashboard-article-edit',['id' => $article->id]) }}'">
                                           <i class="fa fa-edit" style="pointer-events: none;"></i>
                                           </button>
                                           <!-- Hidden input field to store subject ID -->

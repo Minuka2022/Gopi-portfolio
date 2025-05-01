@@ -195,7 +195,7 @@
                                 <div class="dtr-post-block" style="color: black">
                                     <!-- Event Image -->
                                     <div class="dtr-post-block__img-wrapper">
-                                        <a href="single-post.html">
+                                        <a href="{{ route('article.show', ['slug' => Str::slug($article->title) . '-' . $article->id]) }}">
                                             <img src="{{ asset('storage/' . ($article->images->first()->image ?? 'default.jpg')) }}" alt="Event Image">
                                         </a>
                                     </div>
@@ -211,7 +211,7 @@
 
                                         <!-- Event Title -->
                                         <h5 class="dtr-post-block__title">
-                                            <a href="single-post.html" rel="bookmark" style="color: black;">{{ $article->title }}</a>
+                                            <a href="{{ route('article.show', ['slug' => Str::slug($article->title) . '-' . $article->id]) }}" rel="bookmark" style="color: black;">{{ $article->title }}</a>
                                         </h5>
 
                                         <!-- Event Description -->
@@ -297,7 +297,7 @@
                         <!--== column 1 ends ==-->
 
                         <!--== column 2 starts ==-->
-                   @include('partials.footer')
+                        @include('partials.footer')
                         <!--== column 2 ends ==-->
 
                     </div>
