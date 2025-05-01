@@ -25,6 +25,61 @@
     <link rel="stylesheet" href="{{ asset('assets/css/animate.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/counter.css') }}">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    <!-- Custom CSS for Gallery Section -->
+    <style>
+        /* Gallery hover effects */
+        .dtr-portfolio-item__wrapper:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+        }
+        
+        .dtr-portfolio-item__wrapper:hover .dtr-portfolio-item__img img {
+            transform: scale(1.05);
+        }
+        
+        .dtr-portfolio-item__wrapper:hover .dtr-portfolio-item__overlay {
+            opacity: 1;
+        }
+        
+        .dtr-portfolio-item__wrapper:hover .dtr-portfolio-item__content {
+            transform: translateY(0);
+        }
+        
+        .view-btn:hover {
+            background-color: #228B22;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        /* Button animation */
+        .btn-animation {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-animation:after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .btn-animation:hover:after {
+            width: 300%;
+            height: 300%;
+        }
+    </style>
 </head>
 
 
@@ -257,73 +312,68 @@
             </section>
 
                <!--===== counter section starts =====-->
-               <section class="dtr-section padding-y-70 bg-color-secondary-light" style="background-color: #003366;">
+               <section class="dtr-section counter-section">
                 <div class="container">
                     <div class="row">
                         <!-- Intro text -->
-                        <div class="col-12 text-center mb-4" style="margin-top:10px; ">
-                            <h6 class="dtr-counter__info-text" style="color: white; font-weight: bold; ">
+                        <div class="col-12 text-center mb-5">
+                            <div class="dtr-intro__divider"></div>
+                            <h5 class="dtr-counter__info-text">
                                 Dedicated to empowering organizations with strategic insights, innovative training, and impactful leadership solutions for over two decades.
-                            </h6>
+                            </h5>
                         </div>
 
-                        <!-- Mobile and Web column layout -->
-                        <div class="dtr-counter-mobile d-block d-md-none">
+                        <!-- Counter items - Desktop and Mobile -->
+                        <div class="col-12 d-flex justify-content-around align-items-center text-center flex-wrap">
                             <!-- Experience -->
-                            <div class="col-12">
-                                <div class="dtr-counter text-center">
-                                    <p>
-                                        <span class="dtr-counter__number counting-number" data-from="1" data-to="20" data-speed="1600" >20+</span>
-                                    </p>
-                                    <h6 class="dtr-counter__heading" style="color: white; background-color: #003366;">+ Years Leadership & Consultancy</h6>
+                            <div class="dtr-counter mb-4">
+                                <div class="counter-icon-wrapper">
+                                    <span class="counter-icon">
+                                        <i class="fas fa-chart-line"></i>
+                                    </span>
+                                </div>
+                                <div class="counter-number-wrapper">
+                                    <span class="dtr-counter__number counting-number" data-from="1" data-to="20" data-speed="1600">20</span>
+                                </div>
+                                <div class="counter-label-wrapper">
+                                    <h6 class="dtr-counter__heading">
+                                        Years Leadership & Consultancy
+                                    </h6>
                                 </div>
                             </div>
 
-                            <!-- 1000 Best Design Awards -->
-                            <div class="col-12">
-                                <div class="dtr-counter text-center" >
-                                    <p >
-                                        <span class="dtr-counter__number counting-number" data-from="1" data-to="1000" data-speed="1600" >1000+</span>
-                                    </p>
-                                    <h6 class="dtr-counter__heading" style="color: white; background-color: #003366;">+ Professionals</h6>
+                            <!-- Professionals -->
+                            <div class="dtr-counter mb-4">
+                                <div class="counter-icon-wrapper">
+                                    <span class="counter-icon">
+                                        <i class="fas fa-users"></i>
+                                    </span>
+                                </div>
+                                <div class="counter-number-wrapper">
+                                    <span class="dtr-counter__number counting-number" data-from="1" data-to="1000" data-speed="1600">1000</span>
+                                </div>
+                                <div class="counter-label-wrapper">
+                                    <h6 class="dtr-counter__heading">
+                                        Professionals Trained
+                                    </h6>
                                 </div>
                             </div>
 
-                            <!-- 50 Best Design Awards -->
-                            <div class="col-12">
-                                <div class="dtr-counter text-center">
-                                    <p>
-                                        <span class="dtr-counter__number counting-number" data-from="1" data-to="50" data-speed="1600">50+</span>
-                                    </p>
-                                    <h6 class="dtr-counter__heading" style="color: white; background-color: #003366;">+ Projects</h6>
+                            <!-- Projects -->
+                            <div class="dtr-counter mb-4">
+                                <div class="counter-icon-wrapper">
+                                    <span class="counter-icon">
+                                        <i class="fas fa-project-diagram"></i>
+                                    </span>
                                 </div>
-                            </div>
-                        </div>
-
-                        <!-- Web column layout -->
-                        <div class="col-12 d-none d-md-flex justify-content-around align-items-center text-center dtr-counter-desktop" style="margin-bottom:30px">
-                            <!-- Experience -->
-                            <div class="dtr-counter" >
-                                <p>
-                                    <span class="dtr-counter__number counting-number" data-from="1" data-to="20" data-speed="1600">20+</span>
-                                </p>
-                                <h6 class="dtr-counter__heading" style="color: white; background-color: #003366; width:200px">+ Years  Consultancy</h6>
-                            </div>
-
-                            <!-- 1000 Best Design Awards -->
-                            <div class="dtr-counter">
-                                <p>
-                                    <span class="dtr-counter__number counting-number" data-from="1" data-to="1000" data-speed="1600">1000+</span>
-                                </p>
-                                <h6 class="dtr-counter__heading" style="color: white; background-color: #003366;">+ Professionals</h6>
-                            </div>
-
-                            <!-- 50 Best Design Awards -->
-                            <div class="dtr-counter">
-                                <p>
-                                    <span class="dtr-counter__number counting-number" data-from="1" data-to="50" data-speed="1600">50+</span>
-                                </p>
-                                <h6 class="dtr-counter__heading" style="color: white; background-color: #003366;">+ Projects</h6>
+                                <div class="counter-number-wrapper">
+                                    <span class="dtr-counter__number counting-number" data-from="1" data-to="50" data-speed="1600">50</span>
+                                </div>
+                                <div class="counter-label-wrapper">
+                                    <h6 class="dtr-counter__heading">
+                                        Projects Completed
+                                    </h6>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -340,26 +390,26 @@
                         <!--== intro starts ==-->
                         <div class="col-12">
                             <div class="dtr-intro width-50-center-align">
-                                <h2 class="dtr-intro__heading" style="color: black;">Achievements & Certifications</h2>
-                                <p style="color:black"><b>>Showcasing a journey of professional success, learning, and leadership</b></p>
+                                <h2 class="dtr-intro__heading">Achievements & Certifications</h2>
+                                <div class="dtr-intro__divider mx-auto"></div>
+                                <p><b>Showcasing a journey of professional success, learning, and leadership</b></p>
                             </div>
                         </div>
                         <!--== intro ends ==-->
 
                         <!-- spacer -->
-                        <span class="spacer spacer-10"></span>
+                        <span class="spacer spacer-30"></span>
 
                         <!--== column 1 starts ==-->
                         <div class="col-12 col-md-6">
 
                             <!-- box 1 starts -->
-                            <div class="padding-50 bg-color-primary text-color-white wow animate__fadeIn mobile-bg-1" style="background-color: #003366">
+                            <div class="padding-50 text-color-white wow animate__fadeIn mobile-bg-1">
                                 <h5>Work Experience</h5>
-                                <span class="spacer spacer-20"></span>
 
                                 <!-- timeline item starts -->
                                 <div class="dtr-timeline">
-                                    <span class="dtr-timeline__heading">2022 - Present</span>
+                                    <span class="dtr-timeline__heading timeline-year">2022 - Present</span>
                                     <h6 class="dtr-timeline__heading">Managing Director</h6>
                                     <div class="dtr-timeline__content">Ignite Learning & Consultancy Pvt. Ltd<br>Sri Lanka</div>
                                 </div>
@@ -369,8 +419,8 @@
 
                                 <!-- timeline item starts -->
                                 <div class="dtr-timeline">
-                                    <span class="dtr-timeline__heading">2017 – 2022</span>
-                                    <h6 class="dtr-timeline__heading"> Consultant </h6>
+                                    <span class="dtr-timeline__heading timeline-year">2017 – 2022</span>
+                                    <h6 class="dtr-timeline__heading">Consultant</h6>
                                     <div class="dtr-timeline__content">Alcor Management Consultancy Pvt. Ltd<br>
                                         Maldives</div>
                                 </div>
@@ -380,16 +430,16 @@
 
                                 <!-- timeline item starts -->
                                 <div class="dtr-timeline">
-                                    <span class="dtr-timeline__heading">2010 – 2017</span>
-                                    <h6 class="dtr-timeline__heading"> Chief Operating Officer</h6>
+                                    <span class="dtr-timeline__heading timeline-year">2010 – 2017</span>
+                                    <h6 class="dtr-timeline__heading">Chief Operating Officer</h6>
                                     <div class="dtr-timeline__content">Focus Education Centre<br>
                                         Maldives</div>
                                 </div>
                                 <span class="spacer spacer-30"></span>
 
                                 <div class="dtr-timeline">
-                                    <span class="dtr-timeline__heading">2005 – 2010</span>
-                                    <h6 class="dtr-timeline__heading"> Various Roles in Sales & Customer Support</h6>
+                                    <span class="dtr-timeline__heading timeline-year">2005 – 2010</span>
+                                    <h6 class="dtr-timeline__heading">Various Roles in Sales & Customer Support</h6>
                                     <div class="dtr-timeline__content">Sri Lanka<br></div>
                                 </div>
                                 <!-- timeline item ends -->
@@ -398,25 +448,24 @@
                             <!-- box 1 ends -->
 
                             <!-- spacer -->
-                            <span class="spacer spacer-section"></span>
+                            <span class="spacer spacer-30"></span>
 
                             <!-- box 2 starts -->
-                            <div class="padding-50 bg-color-secondary-light mobile-bg-2" style="background-color: #4E749B">
-                                <h5 style = "color:white">Key Abilities</h5>
-                                <span class="spacer spacer-20"></span>
+                            <div class="padding-50 mobile-bg-2">
+                                <h5>Key Abilities</h5>
 
                                 <!-- inner row - for feature columns starts -->
-                                <div class="dtr-timeline" style="color: white;">
-                                    <h6 class="dtr-timeline__heading">Leadership and Strategic Planning</h6>
-                                    <div class="dtr-timeline__content"> Proven track record of delivering transformative results in corporate training and development.<br></div>
+                                <div class="dtr-timeline">
+                                    <h6 class="dtr-timeline__heading ability-heading">Leadership and Strategic Planning</h6>
+                                    <div class="dtr-timeline__content">Proven track record of delivering transformative results in corporate training and development.<br></div>
                                 </div>
                                 <!-- timeline item ends -->
 
                                 <span class="spacer spacer-20"></span>
 
                                 <!-- timeline item starts -->
-                                <div class="dtr-timeline" style="color: white;">
-                                    <h6 class="dtr-timeline__heading">Multicultural Expertise</h6>
+                                <div class="dtr-timeline">
+                                    <h6 class="dtr-timeline__heading ability-heading">Multicultural Expertise</h6>
                                     <div class="dtr-timeline__content">Over 20 years of experience across Sri Lanka, Maldives, and India in diverse industries<br></div>
                                 </div>
                                 <!-- timeline item ends -->
@@ -424,8 +473,8 @@
                                 <span class="spacer spacer-20"></span>
 
                                 <!-- timeline item starts -->
-                                <div class="dtr-timeline" style="color: white;">
-                                    <h6 class="dtr-timeline__heading">Client-Centric Approach</h6>
+                                <div class="dtr-timeline">
+                                    <h6 class="dtr-timeline__heading ability-heading">Client-Centric Approach</h6>
                                     <div class="dtr-timeline__content">Delivered solutions to prestigious clients such as Virtusa, Maldivian Airlines, and Bank of Maldives.<br>
                                         </div>
                                 </div>
@@ -441,13 +490,12 @@
                         <div class="col-12 col-md-6 small-device-top-space" >
 
                             <!-- box 1 starts -->
-                            <div class="padding-50 bg-color-secondary text-color-white wow animate__fadeIn mobile-bg-3" data-wow-delay=".4s" style="background-color: #4E749B">
+                            <div class="padding-50 text-color-white wow animate__fadeIn mobile-bg-3" data-wow-delay=".4s">
                                 <h5>Academic Achievement</h5>
-                                <span class="spacer spacer-20"></span>
 
                                 <!-- timeline item starts -->
                                 <div class="dtr-timeline">
-                                    <h6 class="dtr-timeline__heading">Master of Business Administration (MBA)</h6>
+                                    <h6 class="dtr-timeline__heading ability-heading">Master of Business Administration (MBA)</h6>
                                     <div class="dtr-timeline__content">Open University of Malaysia.<br>
                                         Graduated with Distinction and College Book Award for academic excellence.</div>
                                 </div>
@@ -457,7 +505,7 @@
 
                                 <!-- timeline item starts -->
                                 <div class="dtr-timeline">
-                                    <h6 class="dtr-timeline__heading">Professional Diploma in Marketing</h6>
+                                    <h6 class="dtr-timeline__heading ability-heading">Professional Diploma in Marketing</h6>
                                     <div class="dtr-timeline__content">Chartered Institute of Marketing (CIM), UK.<br>
                                         Enhanced expertise in strategic marketing and business development.</div>
                                 </div>
@@ -467,7 +515,7 @@
 
                                 <!-- timeline item starts -->
                                 <div class="dtr-timeline">
-                                    <h6 class="dtr-timeline__heading">Professional Certifications</h6>
+                                    <h6 class="dtr-timeline__heading ability-heading">Professional Certifications</h6>
                                     <div class="dtr-timeline__content">Certified Trainer from Door South Asia and Certified Drama-Based Facilitator.<br>
                                         </div>
                                 </div>
@@ -476,17 +524,16 @@
                             <!-- box 1 ends -->
 
                             <!-- spacer -->
-                            <span class="spacer spacer-section"></span>
+                            <span class="spacer spacer-30"></span>
 
                             <!-- box 2 starts -->
-                            <div class="padding-50 bg-color-secondary text-color-white wow animate__fadeIn mobile-bg-4" data-wow-delay=".4s" style="background-color:#003366">
+                            <div class="padding-50 text-color-white wow animate__fadeIn mobile-bg-4" data-wow-delay=".4s">
                                 <h5>Technical Skills</h5>
-                                <span class="spacer spacer-30"></span>
 
                                 <!-- timeline item starts -->
                                 <div class="dtr-timeline">
-                                    <h6 class="dtr-timeline__heading">Corporate Training Development</h6>
-                                    <div class="dtr-timeline__content"> Expert in developing training programs on leadership, management, and strategic thinking.
+                                    <h6 class="dtr-timeline__heading ability-heading">Corporate Training Development</h6>
+                                    <div class="dtr-timeline__content">Expert in developing training programs on leadership, management, and strategic thinking.
                                         <br></div>
                                 </div>
                                 <!-- timeline item ends -->
@@ -495,7 +542,7 @@
 
                                 <!-- timeline item starts -->
                                 <div class="dtr-timeline">
-                                    <h6 class="dtr-timeline__heading">Content Development</h6>
+                                    <h6 class="dtr-timeline__heading ability-heading">Content Development</h6>
                                     <div class="dtr-timeline__content">Experienced in creating impactful training modules and consultancy frameworks.<br></div>
                                 </div>
                                 <!-- timeline item ends -->
@@ -504,7 +551,7 @@
 
                                 <!-- timeline item starts -->
                                 <div class="dtr-timeline">
-                                    <h6 class="dtr-timeline__heading">Technical Knowledge</h6>
+                                    <h6 class="dtr-timeline__heading ability-heading">Technical Knowledge</h6>
                                     <div class="dtr-timeline__content">Advanced understanding of IT infrastructure and business solutions.<br>
                                         </div>
                                 </div>
@@ -512,7 +559,7 @@
                                 <span class="spacer spacer-20"></span>
 
                                 <div class="dtr-timeline">
-                                    <h6 class="dtr-timeline__heading">Soft Skills Training</h6>
+                                    <h6 class="dtr-timeline__heading ability-heading">Soft Skills Training</h6>
                                     <div class="dtr-timeline__content">Skilled in delivering people skills, ethics, and supervisory workshops.<br>
                                         </div>
                                 </div>
@@ -527,56 +574,76 @@
 
                     </div>
                 </div>
+                <style>
+                    /* Achievement Section Styles */
+                    #acheivment {
+                        background-color: #f8f9fa;
+                    }
+                    
+                    /* Intro Section */
+                    #acheivment .dtr-intro__heading {
+                        color: #002244;
+                        margin-bottom: 15px;
+                    }
+                    
+                    #acheivment .dtr-intro__divider {
+                        width: 80px;
+                        height: 3px;
+                        background-color: #228B22;
+                        margin-bottom: 20px;
+                    }
+                    
+                    #acheivment .dtr-intro p {
+                        color: #555;
+                        font-size: 1.1rem;
+                    }
+                    
+                    /* Box Styles */
+                    #acheivment .mobile-bg-1,
+                    #acheivment .mobile-bg-4 {
+                        background-color: #002244;
+                        border-radius: 8px;
+                        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+                    }
+                    
+                    #acheivment .mobile-bg-2,
+                    #acheivment .mobile-bg-3 {
+                        background-color: #1a5276;
+                        border-radius: 8px;
+                        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+                    }
+                    
+                    /* Heading Styles */
+                    #acheivment h5 {
+                        color: #fff;
+                        font-size: 1.5rem;
+                        border-bottom: 2px solid #228B22;
+                        padding-bottom: 10px;
+                        margin-bottom: 20px;
+                    }
+                    
+                    #acheivment .timeline-year {
+                        color: #4CAF50;
+                    }
+                    
+                    #acheivment .dtr-timeline__heading {
+                        color: #fff;
+                        font-size: 1.2rem;
+                    }
+                    
+                    #acheivment .ability-heading {
+                        color: #4CAF50;
+                        font-size: 1.2rem;
+                    }
+                    
+                    #acheivment .dtr-timeline__content {
+                        color: #e0e0e0;
+                    }
+                </style>
             </section>
 
-            <style>
-                /* Default styling */
-                .bg-color-primary {
-                    background-color: #003366;
-                }
-
-                .bg-color-secondary-light {
-                    background-color: #4E749B;
-                }
-                .mobile-intro{
-                    display: none;
-                }
-
-                /* Mobile-specific styling */
-                @media (max-width: 768px) {
-                    .mobile-bg-1 {
-                        background-color: #003366 !important;
-                    }
-                    .mobile-bg-2 {
-                        background-color: #4E749B !important;
-                    }
-                    .mobile-bg-3 {
-                        background-color: #003366 !important;
-                    }
-                    .mobile-bg-4 {
-                        background-color: #4E749B !important;
-                    }
-                    .intro-title{
-                        margin-top:25px;
-
-                    }
-                    .desk-intro{
-                        display: none;
-                    }
-                    .mobile-intro{
-                        display: block;
-                    }
-
-                }
-
-
-            </style>
-
-            <!--===== resume section ends =====-->
-
-
-            <!--===== client section starts =====-->
-            <section class="dtr-section padding-y-100 " id="client">
+               <!--===== client section starts =====-->
+               <section class="dtr-section padding-y-100 " id="client">
                 <div class="container">
 
                     <!--== intro starts ==-->
@@ -777,7 +844,8 @@
                 </div>
                 <!--== portfolio ends ==-->
 
-            </section>
+            </section>
+            <!--===== works section ends =====-->
 
 
             <!--===== testimonial section starts =====-->
@@ -967,6 +1035,29 @@
 <!--                </div>-->
 <!--            </section>-->
             <!--===== pricing section ends =====-->
+            <style>
+               .dtr-post-block__img-wrapper {
+                    width: 100%;
+                    height: 200px; /* Adjust height as needed */
+                    overflow: hidden;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    background-color: #f0f0f0; /* Neutral background for better image appearance */
+                }
+
+                .dtr-post-block__img-wrapper img {
+                    width: auto;
+                    height: 100%; /* Ensures the image fits while maintaining its aspect ratio */
+                    object-fit: contain; /* Shows the entire image without cropping */
+                }
+
+
+
+               */
+
+
+            </style>
 
             <!--===== blog section starts =====-->
             <section id="Events" class="dtr-section bg-color-secondary-light padding-y-100" style="background-color: #003366;">
@@ -977,7 +1068,7 @@
                         <div class="col-12">
                             <div class="dtr-intro--spaced-col">
                                 <h2 class="dtr-intro__heading" style="color: white;">Events</h2>
-                                <p><a class="dtr-btn" href="Events.html" role="button" style="background-color: #228B22;"><span class="dtr-btn__text">View More</span></a></p>
+                                <p><a class="dtr-btn" href="{{route('frontend-event')}}" role="button" style="background-color: #228B22;"><span class="dtr-btn__text">View More</span></a></p>
                             </div>
                         </div>
                         <!--== intro ends ==-->
@@ -991,73 +1082,39 @@
                             <!-- swiper slider starts -->
                             <div class="swiper dtr-swiper swiper-container dtr-recentposts-carousel">
                                 <div class="swiper-wrapper">
-
-                                    <!-- slide 1 starts -->
-                                    <div class="swiper-slide dtr-post-block">
-                                        <div class="dtr-post-block__img-wrapper"><a href="single-post.html"><img src="assets/images/post-img8-600x600.jpg" alt="image"></a>
-                                            <!-- <div class="dtr-post-block__category"><a class="dtr-category-link" href="#">Growth</a></div> -->
-                                        </div>
-                                        <div class="dtr-post-block__content" style="color: white;">
-                                            <div class="dtr-post-block__meta">
-                                                <a class="dtr-meta-item" href="#" style="color: white;">March 14, 2020</a>
-                                                <a class="dtr-meta-item" href="#"  style="color: white;">Emanuel</a>
+                                    @foreach ($articles as $article)
+                                        <div class="swiper-slide dtr-post-block">
+                                            <!-- Article Image -->
+                                            <div class="dtr-post-block__img-wrapper">
+                                                <a href="single-post.html">
+                                                    <img src="{{ asset('storage/' . ($article->images->first()->image ?? 'default.jpg')) }}" alt="Article Image">
+                                                </a>
                                             </div>
-                                            <h5 class="dtr-post-block__title"><a href="single-post.html" rel="bookmark"  style="color: white;">Treat your website as a product</a></h5>
-                                            <div class="dtr-post-block__excerpt">There are many variations of passages of lorem ipsum available but the…</div>
-                                        </div>
-                                    </div>
-                                    <!-- slide 1 ends -->
 
-                                    <!-- slide 2 starts -->
-                                    <div class="swiper-slide dtr-post-block">
-                                        <div class="dtr-post-block__img-wrapper"><a href="single-post.html"><img src="assets/images/post-img7-600x600.jpg" alt="image"></a>
-                                            <!-- <div class="dtr-post-block__category"><a class="dtr-category-link" href="#">Web</a></div> -->
-                                        </div>
-                                        <div class="dtr-post-block__content">
-                                            <div class="dtr-post-block__meta">
-                                                <a class="dtr-meta-item" href="#"  style="color: white;">March 14, 2023</a>
-                                                <a class="dtr-meta-item" href="#"  style="color: white;">Emanuel</a>
+                                            <!-- Article Content -->
+                                            <div class="dtr-post-block__content">
+                                                <div class="dtr-post-block__meta">
+                                                    <!-- Article Date -->
+                                                    <a class="dtr-meta-item" href="#" style="color: hsl(0, 0%, 90%);">{{ $article->created_at->format('F d, Y') }}</a>
+                                                    <!-- Hardcoded Author -->
+                                                    <a class="dtr-meta-item" href="#" style="color:  hsl(0, 0%, 90%);">Author Name</a>
+                                                </div>
+
+                                                <!-- Article Title -->
+                                                <h5 class="dtr-post-block__title">
+                                                    <a href="single-post.html" rel="bookmark" style="color: rgb(255, 255, 255);">{{ $article->title }}</a>
+                                                </h5>
+
+                                                <!-- Article Description -->
+                                                <div class="dtr-post-block__excerpt" style="color: rgb(226, 223, 223);">
+                                                    {{ $article->description }}
+                                                </div>
                                             </div>
-                                            <h5 class="dtr-post-block__title"><a href="single-post.html" rel="bookmark"  style="color: white;">Visual communication in brand development</a></h5>
-                                            <div class="dtr-post-block__excerpt">There are many variations of passages of lorem ipsum available but the…</div>
                                         </div>
-                                    </div>
-                                    <!-- slide 2 ends -->
-
-                                    <!-- slide 3 starts -->
-                                    <div class="swiper-slide dtr-post-block">
-                                        <div class="dtr-post-block__img-wrapper"><a href="single-post.html"><img src="assets/images/post-img9-600x600.jpg" alt="image"></a>
-                                            <!-- <div class="dtr-post-block__category"><a class="dtr-category-link" href="#">Product</a></div> -->
-                                        </div>
-                                        <div class="dtr-post-block__content">
-                                            <div class="dtr-post-block__meta">
-                                                <a class="dtr-meta-item" href="#"  style="color: white;">May 20, 2023</a>
-                                                <a class="dtr-meta-item" href="#" style="color: white;">Emanuel</a>
-                                            </div>
-                                            <h5 class="dtr-post-block__title"><a href="single-post.html" rel="bookmark" style="color: white;">The most important aspects of a creative design</a></h5>
-                                            <div class="dtr-post-block__excerpt">There are many variations of passages of lorem ipsum available but the…</div>
-                                        </div>
-                                    </div>
-                                    <!-- slide 3 ends -->
-
-                                    <!-- slide 4 starts -->
-                                    <div class="swiper-slide dtr-post-block">
-                                        <div class="dtr-post-block__img-wrapper"><a href="single-post.html"><img src="assets/images/post-img3-600x600.jpg" alt="image"></a>
-                                            <!-- <div class="dtr-post-block__category"><a class="dtr-category-link" href="#">Viusal</a></div> -->
-                                        </div>
-                                        <div class="dtr-post-block__content">
-                                            <div class="dtr-post-block__meta">
-                                                <a class="dtr-meta-item" href="#" style="color: white;">July 09, 2023</a>
-                                                <a class="dtr-meta-item" href="#" style="color: white;">Emanuel</a>
-                                            </div>
-                                            <h5 class="dtr-post-block__title"><a href="single-post.html" rel="bookmark" style="color: white;">Visual communication in brand development</a></h5>
-                                            <div class="dtr-post-block__excerpt">There are many variations of passages of lorem ipsum available but the…</div>
-                                        </div>
-                                    </div>
-                                    <!-- slide 4 ends -->
-
+                                    @endforeach
                                 </div>
                             </div>
+
                             <!-- swiper slider ends -->
 
                         </div>
@@ -1075,7 +1132,7 @@
                         <div class="col-12">
                             <div class="dtr-intro--spaced-col">
                                 <h2 class="dtr-intro__heading" style="color: black;">Recent Articles</h2>
-                                <p><a class="dtr-btn" href="Articles.html" role="button" style="background-color: #228B22;"><span class="dtr-btn__text">View More</span></a></p>
+                                <p><a class="dtr-btn" href="{{route('frontend-article')}}" role="button" style="background-color: #228B22;"><span class="dtr-btn__text">View More</span></a></p>
                             </div>
                         </div>
                         <!--== intro ends ==-->
@@ -1089,73 +1146,40 @@
                             <!-- swiper slider starts -->
                             <div class="swiper dtr-swiper swiper-container dtr-recentposts-carousel">
                                 <div class="swiper-wrapper">
-
-                                    <!-- slide 1 starts -->
-                                    <div class="swiper-slide dtr-post-block">
-                                        <div class="dtr-post-block__img-wrapper"><a href="single-post.html"><img src="assets/images/post-img8-600x600.jpg" alt="image"></a>
-                                            <!-- <div class="dtr-post-block__category"><a class="dtr-category-link" href="#">Growth</a></div> -->
-                                        </div>
-                                        <div class="dtr-post-block__content">
-                                            <div class="dtr-post-block__meta">
-                                                <a class="dtr-meta-item" href="#" style="color: black;">March 14, 2020</a>
-                                                <a class="dtr-meta-item" href="#" style="color: black;">Emanuel</a>
+                                    @foreach ($articles as $article)
+                                        <div class="swiper-slide dtr-post-block">
+                                            <!-- Article Image -->
+                                            <div class="dtr-post-block__img-wrapper">
+                                                <a href="single-post.html">
+                                                    <img src="{{ asset('storage/' . ($article->images->first()->image ?? 'default.jpg')) }}" alt="Article Image">
+                                                </a>
                                             </div>
-                                            <h5 class="dtr-post-block__title"><a href="single-post.html" rel="bookmark" style="color: black;">Treat your website as a product</a></h5>
-                                            <div class="dtr-post-block__excerpt">There are many variations of passages of lorem ipsum available but the…</div>
-                                        </div>
-                                    </div>
-                                    <!-- slide 1 ends -->
 
-                                    <!-- slide 2 starts -->
-                                    <div class="swiper-slide dtr-post-block">
-                                        <div class="dtr-post-block__img-wrapper"><a href="single-post.html"><img src="assets/images/post-img7-600x600.jpg" alt="image"></a>
-                                            <!-- <div class="dtr-post-block__category"><a class="dtr-category-link" href="#">Web</a></div> -->
-                                        </div>
-                                        <div class="dtr-post-block__content">
-                                            <div class="dtr-post-block__meta">
-                                                <a class="dtr-meta-item" href="#" style="color: black;">March 14, 2023</a>
-                                                <a class="dtr-meta-item" href="#" style="color: black;">Emanuel</a>
+                                            <!-- Article Content -->
+                                            <div class="dtr-post-block__content">
+                                                <div class="dtr-post-block__meta">
+                                                    <!-- Article Date -->
+                                                    <a class="dtr-meta-item" href="#" style="color: black;">{{ $article->created_at->format('F d, Y') }}</a>
+                                                    <!-- Hardcoded Author -->
+                                                    <a class="dtr-meta-item" href="#" style="color: black;">Author Name</a>
+                                                </div>
+
+                                                <!-- Article Title -->
+                                                <h5 class="dtr-post-block__title">
+                                                    <a href="single-post.html" rel="bookmark" style="color: black;">{{ $article->title }}</a>
+                                                </h5>
+
+                                                <!-- Article Description -->
+                                                <div class="dtr-post-block__excerpt">
+                                                    {{ $article->description }}
+                                                </div>
                                             </div>
-                                            <h5 class="dtr-post-block__title"><a href="single-post.html" rel="bookmark" style="color: black;">Visual communication in brand development</a></h5>
-                                            <div class="dtr-post-block__excerpt">There are many variations of passages of lorem ipsum available but the…</div>
                                         </div>
-                                    </div>
-                                    <!-- slide 2 ends -->
-
-                                    <!-- slide 3 starts -->
-                                    <div class="swiper-slide dtr-post-block">
-                                        <div class="dtr-post-block__img-wrapper"><a href="single-post.html"><img src="assets/images/post-img9-600x600.jpg" alt="image"></a>
-                                            <!-- <div class="dtr-post-block__category"><a class="dtr-category-link" href="#">Product</a></div> -->
-                                        </div>
-                                        <div class="dtr-post-block__content">
-                                            <div class="dtr-post-block__meta">
-                                                <a class="dtr-meta-item" href="#" style="color: black;">May 20, 2023</a>
-                                                <a class="dtr-meta-item" href="#" style="color: black;">Emanuel</a>
-                                            </div>
-                                            <h5 class="dtr-post-block__title"><a href="single-post.html" rel="bookmark" style="color: black;">The most important aspects of a creative design</a></h5>
-                                            <div class="dtr-post-block__excerpt">There are many variations of passages of lorem ipsum available but the…</div>
-                                        </div>
-                                    </div>
-                                    <!-- slide 3 ends -->
-
-                                    <!-- slide 4 starts -->
-                                    <div class="swiper-slide dtr-post-block">
-                                        <div class="dtr-post-block__img-wrapper"><a href="single-post.html"><img src="assets/images/post-img3-600x600.jpg" alt="image"></a>
-                                            <!-- <div class="dtr-post-block__category"><a class="dtr-category-link" href="#">Viusal</a></div> -->
-                                        </div>
-                                        <div class="dtr-post-block__content">
-                                            <div class="dtr-post-block__meta">
-                                                <a class="dtr-meta-item" href="#" style="color: black;">July 09, 2023</a>
-                                                <a class="dtr-meta-item" href="#" style="color: black;">Emanuel</a>
-                                            </div>
-                                            <h5 class="dtr-post-block__title"><a href="single-post.html" rel="bookmark" style="color: black;">Visual communication in brand development</a></h5>
-                                            <div class="dtr-post-block__excerpt">There are many variations of passages of lorem ipsum available but the…</div>
-                                        </div>
-                                    </div>
-                                    <!-- slide 4 ends -->
-
+                                    @endforeach
                                 </div>
                             </div>
+
+
                             <!-- swiper slider ends -->
 
                         </div>
@@ -1221,44 +1245,10 @@
                         </div>
                         <!--== column 1 ends ==-->
 
-                        <!--== column 2 starts ==-->
-                        <div class="col-12 col-md-6 small-device-top-space">
-                            <div class="dtr-contact-box padding-50 bg-color-white">
 
-
-                                <!-- form starts -->
-                                <form id="contactform" method="post" action="https://tanshcreative.com/copr-st-preview/php/contact-form.php">
-                                    <fieldset>
-                                        <p class="dtr-form-field">
-                                            <label style="color: black;">Your Name*</label>
-                                            <input name="name" class="required" type="text" placeholder="John Doe" style="background-color: #d0d0d1;">
-                                        </p>
-                                        <p class="dtr-form-field">
-                                            <label style="color: black;">Email Address*</label>
-                                            <input name="email" class="required email" type="text" placeholder="hello@example.com" style="background-color: #d0d0d1;">
-                                        </p>
-                                        <p class="dtr-form-field">
-                                            <label style="color: black;">Subject</label>
-                                            <input name="subject" type="text" placeholder="Subject" style="background-color: #d0d0d1;">
-                                        </p>
-                                        <p class="dtr-form-field">
-                                            <label style="color: black;">Message*</label>
-                                            <textarea rows="4" name="message" class="required" placeholder="Message in brief..." style="background-color: #d0d0d1;"></textarea>
-                                        </p>
-                                        <p class="antispam" style="color: black;">Leave this empty: <br />
-                                            <input name="url" />
-                                        </p>
-                                        <p>
-                                            <button type="submit" style="background-color: #228B22;">Send Message</button>
-                                        </p>
-                                        <div id="contactresult"></div>
-                                    </fieldset>
-                                </form>
-                                <!-- form ends -->
-
-                            </div>
-                        </div>
                         <!--== column 2 ends ==-->
+
+                        @include('partials.footer')
 
                     </div>
                 </div>
@@ -1266,6 +1256,23 @@
             <!--===== contact section ends =====-->
 
         </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                // Get the URL parameter
+                const urlParams = new URLSearchParams(window.location.search);
+                const section = urlParams.get('section');
+
+                // Scroll to the section if it exists
+                if (section) {
+                    const targetElement = document.getElementById(section);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: "smooth" });
+                    }
+                }
+            });
+        </script>
+
         <!-- ===== main content area ends ===== -->
 
         <!-- footer section starts

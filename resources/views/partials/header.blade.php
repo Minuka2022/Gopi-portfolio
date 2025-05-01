@@ -29,17 +29,16 @@
 
         <!-- menu links starts -->
         <ul class="dtr-nav dtr-main-nav dtr-vertical-nav">
-            <li class="menu-item menu-item-has-children"> <a class="nav-link" href="#" >Home</a>
-
-            </li>
-            <li class="menu-item"><a href="#aboutme" class="nav-link" style="color: black;">About me</a></li>
-            <li class="menu-item"><a href="#acheivment" class="nav-link" style="color: black;">Acheivment</a></li>
-            <li class="menu-item"><a href="#client" class="nav-link" style="color: black;">My Client</a></li>
-            <li class="menu-item"><a href="#Gallery" class="nav-link" style="color: black;">Gallery</a></li>
-            <li class="menu-item"><a href="#Testimonials" class="nav-link" style="color: black;">Testimonials</a></li>
-            <li class="menu-item"><a href="#Events" class="nav-link" style="color: black;">Events</a></li>
-            <li class="menu-item"><a href="#Articles" class="nav-link" style="color: black;">Articles</a></li>
-            <li class="menu-item"><a href="#Contact" class="nav-link" style="color: black;">Contact</a></li>
+            <li class="menu-item"><a href="{{ route('frontend-Home') }}#home" class="nav-link" style="color: black;">Home</a></li>
+            <li class="menu-item"><a href="{{ route('frontend-Home', ['section' => 'aboutme']) }}" class="nav-link" style="color: black;">About me</a></li>
+            <li class="menu-item"><a href="{{ route('frontend-Home', ['section' => 'acheivment']) }}" class="nav-link" style="color: black;">Acheivment</a></li>
+            <li class="menu-item"><a href="{{ route('frontend-Home', ['section' => 'client']) }}" class="nav-link" style="color: black;">My Client</a></li>
+            <li class="menu-item"><a href="{{ route('frontend-Home', ['section' => 'gallery']) }}" class="nav-link" style="color: black;">Gallery</a></li>
+            <li class="menu-item"><a href="{{ route('frontend-Home', ['section' => 'testimonials']) }}" class="nav-link" style="color: black;">Testimonials</a></li>
+            <li class="menu-item"><a href="{{ route('frontend-Home', ['section' => 'events']) }}" class="nav-link" style="color: black;">Events</a></li>
+            <li class="menu-item"><a href="{{ route('frontend-Home', ['section' => 'articles']) }}" class="nav-link" style="color: black;">Articles</a></li>
+            <li class="menu-item"><a href="{{ route('frontend-Home', ['section' => 'contact']) }}" class="nav-link" style="color: black;">Contact</a></li>
         </ul>
+
     </div>
 </header>
