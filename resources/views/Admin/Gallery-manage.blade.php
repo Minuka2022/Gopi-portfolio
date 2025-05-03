@@ -218,9 +218,12 @@
                   <form id="imageUploadForm" enctype="multipart/form-data">
                      @csrf
                      <div class="mb-3">
-                        <label for="image" class="form-label">Choose Image</label>
-                        <input type="file" class="form-control" id="image" name="image" accept="image/*" required>
+                        <label for="image" class="form-label">Choose Image(s)</label>
+                        <input type="file" class="form-control" id="image" name="images[]" accept="image/*" multiple required>
                         <div id="imageError" class="text-danger mt-2" style="display: none;"></div>
+                     </div>
+                     <div class="mb-3">
+                        <div id="imagePreviewContainer" class="d-flex flex-wrap gap-2"></div>
                      </div>
                      <button type="submit" class="btn btn-primary">Upload Image</button>
                   </form>
@@ -247,6 +250,105 @@
                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                  }
              });
+
+             // Image preview functionality
+             $('#image').on('change', function() {
+                 const previewContainer = $('#imagePreviewContainer');
+                 previewContainer.empty(); // Clear previous previews
+
+                 if (this.files) {
+                     const files = Array.from(this.files);
+
+                     files.forEach((file, index) => {
+                         if (!file.type.match('image.*')) {
+                             return;
+                         }
+
+                         const reader = new FileReader();
+
+                         reader.onload = function(e) {
+                             const previewDiv = $('<div>', {
+                                 class: 'position-relative',
+                                 'data-index': index,
+                                 css: {
+                                     width: '100px',
+                                     height: '100px',
+                                     overflow: 'hidden',
+                                     borderRadius: '4px'
+                                 }
+                             });
+
+                             const img = $('<img>', {
+                                 src: e.target.result,
+                                 css: {
+                                     width: '100%',
+                                     height: '100%',
+                                     objectFit: 'cover'
+                                 }
+                             });
+
+                             const removeBtn = $('<span>', {
+                                 html: '×',
+                                 class: 'position-absolute',
+                                 css: {
+                                     top: '2px',
+                                     right: '2px',
+                                     backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                                     color: 'white',
+                                     width: '20px',
+                                     height: '20px',
+                                     borderRadius: '50%',
+                                     display: 'flex',
+                                     alignItems: 'center',
+                                     justifyContent: 'center',
+                                     cursor: 'pointer',
+                                     fontSize: '14px'
+                                 }
+                             });
+
+                             removeBtn.on('click', function() {
+                                 // Remove the preview
+                                 previewDiv.remove();
+                                 
+                                 // Create a new FileList without the removed file
+                                 removeFileFromInput(index);
+                             });
+
+                             previewDiv.append(img, removeBtn);
+                             previewContainer.append(previewDiv);
+                         };
+
+                         reader.readAsDataURL(file);
+                     });
+                 }
+             });
+             
+             // Function to remove a file from the input
+             function removeFileFromInput(indexToRemove) {
+                 const fileInput = document.getElementById('image');
+                 const dt = new DataTransfer();
+                 
+                 // Add all files except the one to remove
+                 Array.from(fileInput.files)
+                     .filter((_, index) => index !== indexToRemove)
+                     .forEach(file => dt.items.add(file));
+                 
+                 // Update the input files
+                 fileInput.files = dt.files;
+                 
+                 // If all files are removed, clear the input value
+                 if (fileInput.files.length === 0) {
+                     $('#imagePreviewContainer').empty();
+                 } else {
+                     // Update data-index attributes on remaining previews
+                     $('#imagePreviewContainer div[data-index]').each(function(newIndex) {
+                         const currentIndex = parseInt($(this).attr('data-index'));
+                         if (currentIndex > indexToRemove) {
+                             $(this).attr('data-index', currentIndex - 1);
+                         }
+                     });
+                 }
+             }
 
              // Image Upload Handler
              $('#imageUploadForm').on('submit', function(e) {
