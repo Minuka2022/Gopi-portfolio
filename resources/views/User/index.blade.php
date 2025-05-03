@@ -95,7 +95,7 @@
         <div id="dtr-responsive-header">
             <div class="container">
                 <!-- logo -->
-                <a class="dtr-resp-logo" href="index.html"><img src="assets/images/logo.png" alt="logo" width="88" height="25"></a>
+                <a class="dtr-resp-logo" href="{{ route('frontend-Home') }}"><img src="{{ asset('assets/images/logo.png') }}" alt="logo" width="88" height="25"></a>
                 <!-- menu button -->
                 <button id="dtr-resp-menu-button" class="dtr-hamburger" type="button" aria-label="Menu Button"><span class="dtr-hamburger-lines-wrapper"><span class="dtr-hamburger-lines"></span></span></button>
             </div>
@@ -115,7 +115,7 @@
         <div id="dtr-main-content">
 
             <!--===== hero section starts =====-->
-            <section class="dtr-section hero-section bg-color-secondary-light" style="background-color: #003366">
+            <section class="dtr-section hero-section bg-color-secondary-light" style="background-color: #002244;">
                 <div class="container">
                     <div class="row">
 
@@ -140,8 +140,10 @@
                                 <!-- Social icons start -->
                                 <div class="dtr-social-widget text-left">
                                     <ul class="dtr-social">
-                                        <li><a class="dtr-whatsapp" href="#" title="Whatsapp" target="_blank" rel="nofollow" aria-label="Whatsapp"></a></li>
-                                    </ul>
+                                        <li><a class="dtr-linkedin" href="#" title="LinkedIn" target="_blank" rel="nofollow" aria-label="LinkedIn"></a></li>
+                                        <li><a class="dtr-youtube" href="#" title="YouTube" target="_blank" rel="nofollow" aria-label="YouTube"></a></li>
+                                        <li><a class="dtr-facebook" href="#" title="Facebook" target="_blank" rel="nofollow" aria-label="Facebook"></a></li>
+                                     </ul>
                                 </div>
                                 <!-- Social icons end -->
 
@@ -155,12 +157,9 @@
                         <div class="image-section"> <!-- Removed Bootstrap column class -->
                             <div class="dtr-about">
                                 <figure class="dtr-about__img">
-                                    <img src="assets/images/about-img1.jpg" alt="about image">
+                                    <img src="{{ asset('assets/images/GOPIIMAGES/ggopi1.JPG') }}" alt="about image">
                                 </figure>
-                                <div class="slider-controls">
-                                    <button class="slider-prev" aria-label="Previous Image">&lt;</button>
-                                    <button class="slider-next" aria-label="Next Image">&gt;</button>
-                                </div>
+
                             </div>
                         </div>
                         <!-- Second column ends -->
@@ -258,7 +257,7 @@
                             <!-- about starts -->
                             <div class="dtr-about2">
                                 <div class="dtr-about2__img">
-                                    <figure><img src="assets/images/about-img2.jpg" alt="about-img2"></figure>
+                                    <figure><img src="{{ asset('assets/images/GOPIIMAGES/Gopi2.JPG') }}" alt="about-img2"></figure>
 
                                 </div>
                                 <p style="font-weight: bold; color:#0c0c0c">Consultant</p>
@@ -1024,7 +1023,7 @@
 
 
             <!--===== works section starts =====-->
-            <section id="Gallery" class="dtr-section gallery-section">
+            <section id="Gallery" class="dtr-section gallery-section" style="background-color: #002244;">
 
                 <!--== intro starts ==-->
                 <div class="container">
@@ -1233,7 +1232,7 @@
                         background-color: rgba(0, 0, 0, 0.9);
                         padding: 50px;
                     }
-                    
+
                     .lightbox-content {
                         margin: auto;
                         display: block;
@@ -1241,7 +1240,7 @@
                         max-height: 80vh;
                         object-fit: contain;
                     }
-                    
+
                     .lightbox-close {
                         position: absolute;
                         top: 15px;
@@ -1252,14 +1251,14 @@
                         transition: 0.3s;
                         cursor: pointer;
                     }
-                    
+
                     .lightbox-close:hover,
                     .lightbox-close:focus {
                         color: #bbb;
                         text-decoration: none;
                         cursor: pointer;
                     }
-                    
+
                     .lightbox-prev,
                     .lightbox-next {
                         cursor: pointer;
@@ -1276,16 +1275,16 @@
                         user-select: none;
                         -webkit-user-select: none;
                     }
-                    
+
                     .lightbox-next {
                         right: 0;
                         border-radius: 3px 0 0 3px;
                     }
-                    
+
                     .lightbox-prev {
                         left: 0;
                     }
-                    
+
                     .lightbox-prev:hover,
                     .lightbox-next:hover {
                         background-color: rgba(0, 0, 0, 0.8);
@@ -1302,58 +1301,58 @@
                         const lightboxClose = document.querySelector('.lightbox-close');
                         const lightboxNext = document.querySelector('.lightbox-next');
                         const lightboxPrev = document.querySelector('.lightbox-prev');
-                        
+
                         let currentIndex = 0;
                         const images = [];
-                        
+
                         // Collect all image data
                         galleryItems.forEach((item, index) => {
                             const imgSrc = item.getAttribute('href');
-                            
+
                             images.push({
                                 src: imgSrc,
                             });
-                            
+
                             // Add click event to open lightbox
                             item.addEventListener('click', function(e) {
                                 e.preventDefault();
                                 openLightbox(index);
                             });
                         });
-                        
+
                         // Open lightbox function
                         function openLightbox(index) {
                             currentIndex = index;
                             updateLightboxContent();
                             lightboxModal.style.display = 'block';
-                            
+
                             // Prevent scrolling when lightbox is open
                             document.body.style.overflow = 'hidden';
                         }
-                        
+
                         // Update lightbox content
                         function updateLightboxContent() {
                             lightboxImage.src = images[currentIndex].src;
                         }
-                        
+
                         // Close lightbox
                         lightboxClose.addEventListener('click', function() {
                             lightboxModal.style.display = 'none';
                             document.body.style.overflow = 'auto';
                         });
-                        
+
                         // Next image
                         lightboxNext.addEventListener('click', function() {
                             currentIndex = (currentIndex + 1) % images.length;
                             updateLightboxContent();
                         });
-                        
+
                         // Previous image
                         lightboxPrev.addEventListener('click', function() {
                             currentIndex = (currentIndex - 1 + images.length) % images.length;
                             updateLightboxContent();
                         });
-                        
+
                         // Close on click outside image
                         lightboxModal.addEventListener('click', function(e) {
                             if (e.target === lightboxModal) {
@@ -1361,7 +1360,7 @@
                                 document.body.style.overflow = 'auto';
                             }
                         });
-                        
+
                         // Keyboard navigation
                         document.addEventListener('keydown', function(e) {
                             if (lightboxModal.style.display === 'block') {
@@ -1619,7 +1618,7 @@
                                     <div class="swiper-slide event-card">
                                         <!-- Event Image -->
                                         <div class="event-image-container">
-                                            <a href="single-post.html">
+                                            <a href="{{ route('events.show', ['slug' => Str::slug($event->title) . '-' . $event->id]) }}">
                                                 <img src="{{ asset('storage/' . ($event->eventImages->first()->image ?? 'default.jpg')) }}" alt="{{ $event->title }}">
                                                 <div class="event-date-badge">
                                                     <span class="event-day">{{ $event->created_at->format('d') }}</span>
@@ -1631,7 +1630,7 @@
                                         <!-- Event Content -->
                                         <div class="event-content">
                                             <h4 class="event-title">
-                                                <a href="single-post.html">{{ $event->title }}</a>
+                                                <a href="{{ route('events.show', ['slug' => Str::slug($event->title) . '-' . $event->id]) }}">{{ $event->title }}</a>
                                             </h4>
 
                                             <div class="event-meta">
@@ -2250,7 +2249,4 @@
     </script>
 
 </body>
-
-
-<!-- Mirrored from tanshcreative.com/copr-st-preview/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 22 Oct 2024 14:26:34 GMT -->
 </html>
