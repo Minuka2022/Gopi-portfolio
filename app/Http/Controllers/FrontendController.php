@@ -18,7 +18,7 @@ class FrontendController extends Controller
     //
 
     public function index() {
-        $articles = article::with('images')->orderBy('created_at', 'desc')->get();
+        $articles = Article::with('images')->orderBy('created_at', 'desc')->get();
         $events = event::with('eventImages')->orderBy('created_at', 'desc')->get();
         $images = Gallery::latest()->take(12)->get();
         $testimonials = Testimonial::where('is_active', true)->orderBy('display_order')->get();
@@ -29,7 +29,7 @@ class FrontendController extends Controller
 
 
     public function article(){
-        $articles = article::with('images')->get();
+        $articles = Article::with('images')->get();
         Log::info('Articles fetched' . $articles);
         return view('User.Articles' , compact('articles'));
     }
