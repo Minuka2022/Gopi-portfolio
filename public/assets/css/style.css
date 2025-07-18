@@ -940,8 +940,8 @@ a:link, .dtr-nav a, #dtr-header-global, .dtr-form-btn, input, select, textarea, 
 /*----------------------------------------*/
 /* Counter section background */
 .counter-section {
-    background-color: #002244;
-    background-image: linear-gradient(135deg, rgba(0,34,68,0.95) 0%, rgba(0,34,68,0.85) 100%), url('../images/pattern-bg.png');
+    background-color: #002b54;
+    background-image: linear-gradient(135deg, rgba(0,43,84,0.95) 0%, rgba(0,43,84,0.85) 100%), url('../images/pattern-bg.png');
     background-size: cover;
     background-position: center;
     padding: 80px 0;

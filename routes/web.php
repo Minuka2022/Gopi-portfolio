@@ -5,6 +5,8 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\TestimonialController;
+use App\Http\Controllers\TrustedLogoController;
 use Illuminate\Support\Facades\Route;
 
 // Frontend Routes
@@ -47,8 +49,11 @@ Route::post('/login', [LoginController::class, 'login']);
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::middleware([\App\Http\Middleware\AuthenticateDashboard::class])->group(function () {
+    // Dashboard
+    Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+    
     // Article Management
-    Route::get('/dashboard' , [ArticleController::class, 'index'])->name('Dashboard-Article');
+    Route::get('/dashboard/articles', [ArticleController::class, 'index'])->name('Dashboard-Article');
     Route::get('/dashboard/Create-Article', [ArticleController::class, 'create'])->name('Dashboard-Create-Article');
     Route::post('/dashboard/store-article', [ArticleController::class, 'store'])->name('Dashboard-Store-Article');
     Route::post('/dashboard/upload-image', [ArticleController::class, 'uploadImage'])->name('Dashboard-Upload-Image');
@@ -71,6 +76,22 @@ Route::middleware([\App\Http\Middleware\AuthenticateDashboard::class])->group(fu
     Route::get('/dashboard/gallery', [GalleryController::class, 'index'])->name('Dashboard-Gallery');
     Route::post('/dashboard/store-gallery', [GalleryController::class, 'store'])->name('Dashboard-Store-Gallery');
     Route::delete('/dashboard/delete-gallery/{gallery}', [GalleryController::class, 'destroy'])->name('Dashboard-Delete-Gallery');
+    
+    // Testimonial Management
+    Route::get('/dashboard/testimonials', [TestimonialController::class, 'index'])->name('Dashboard-Testimonials');
+    Route::get('/dashboard/create-testimonial', [TestimonialController::class, 'create'])->name('Dashboard-Create-Testimonial');
+    Route::post('/dashboard/store-testimonial', [TestimonialController::class, 'store'])->name('Dashboard-Store-Testimonial');
+    Route::get('/dashboard/testimonial/{id}/edit', [TestimonialController::class, 'edit'])->name('Dashboard-Edit-Testimonial');
+    Route::post('/dashboard/update-testimonial/{id}', [TestimonialController::class, 'update'])->name('Dashboard-Update-Testimonial');
+    Route::post('/dashboard/delete-testimonial/{id}', [TestimonialController::class, 'delete'])->name('Dashboard-Delete-Testimonial');
+    
+    // Trusted Logo Management
+    Route::get('/dashboard/trusted-logos', [TrustedLogoController::class, 'index'])->name('Dashboard-TrustedLogos');
+    Route::get('/dashboard/create-trusted-logo', [TrustedLogoController::class, 'create'])->name('Dashboard-Create-TrustedLogo');
+    Route::post('/dashboard/store-trusted-logo', [TrustedLogoController::class, 'store'])->name('Dashboard-Store-TrustedLogo');
+    Route::get('/dashboard/trusted-logo/{id}/edit', [TrustedLogoController::class, 'edit'])->name('Dashboard-Edit-TrustedLogo');
+    Route::post('/dashboard/update-trusted-logo/{id}', [TrustedLogoController::class, 'update'])->name('Dashboard-Update-TrustedLogo');
+    Route::post('/dashboard/delete-trusted-logo/{id}', [TrustedLogoController::class, 'delete'])->name('Dashboard-Delete-TrustedLogo');
 
     //Article Managment
     Route::get('/dashboard' , [ArticleController::class, 'index'])->name('Dashboard-Article');

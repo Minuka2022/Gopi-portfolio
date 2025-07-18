@@ -1,0 +1,269 @@
+/* Mobile fixes to prevent horizontal swiping and improve mobile experience */
+
+/* Fix mobile header color to match desktop */
+#dtr-responsive-header.mobile-header {
+    background-color: #002b54 !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 15px 0;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Hide desktop header on mobile and mobile header on desktop */
+@media (min-width: 992px) {
+    #dtr-responsive-header.mobile-header {
+        display: none !important;
+    }
+}
+
+@media (max-width: 991px) {
+    #dtr-header-global {
+        display: none !important;
+    }
+}
+
+#dtr-responsive-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+/* Fix hamburger icon in mobile header */
+#dtr-responsive-header .dtr-hamburger {
+    padding: 10px;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    display: block;
+    position: relative;
+    z-index: 1000;
+}
+
+#dtr-responsive-header .dtr-hamburger-lines-wrapper {
+    position: relative;
+    display: block;
+    width: 25px;
+    height: 18px;
+}
+
+#dtr-responsive-header .dtr-hamburger-lines,
+#dtr-responsive-header .dtr-hamburger-lines:before,
+#dtr-responsive-header .dtr-hamburger-lines:after {
+    background-color: #fff !important;
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    left: 0;
+    transition: all 0.3s ease;
+}
+
+#dtr-responsive-header .dtr-hamburger-lines {
+    top: 50%;
+    margin-top: -1px;
+}
+
+#dtr-responsive-header .dtr-hamburger-lines:before {
+    content: '';
+    top: -8px;
+}
+
+#dtr-responsive-header .dtr-hamburger-lines:after {
+    content: '';
+    top: 8px;
+}
+
+/* Style the responsive header menu */
+.dtr-responsive-header-menu {
+    display: none;
+    background-color: #002b54;
+    padding: 0;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    position: fixed;
+    top: 70px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: calc(100vh - 70px);
+    overflow-y: auto;
+    z-index: 999;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.dtr-responsive-header-menu.active {
+    display: block !important;
+}
+
+.dtr-responsive-header-menu .mobile-nav {
+    list-style: none;
+    padding: 20px 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* Add animation to menu items */
+.dtr-responsive-header-menu .mobile-nav .menu-item {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeInUp 0.4s forwards;
+    animation-delay: calc(0.1s * var(--item-index, 1));
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.dtr-responsive-header-menu .mobile-nav .menu-item {
+    border-bottom: none;
+    margin: 5px 0;
+}
+
+.dtr-responsive-header-menu .mobile-nav .menu-item .nav-link {
+    color: #fff;
+    padding: 18px 25px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    border-left: 3px solid transparent;
+    margin: 0 15px;
+    border-radius: 8px;
+}
+
+.dtr-responsive-header-menu .mobile-nav .menu-item .nav-link:active,
+.dtr-responsive-header-menu .mobile-nav .menu-item .nav-link:focus,
+.dtr-responsive-header-menu .mobile-nav .menu-item .nav-link:hover {
+    color: #f8a01c;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-left: 3px solid #f8a01c;
+    padding-left: 30px;
+}
+
+/* Hamburger button active state for responsive header */
+#dtr-resp-menu-button.active .dtr-hamburger-lines {
+    background-color: transparent !important;
+}
+
+#dtr-resp-menu-button.active .dtr-hamburger-lines:before {
+    transform: rotate(45deg);
+    top: 0;
+}
+
+#dtr-resp-menu-button.active .dtr-hamburger-lines:after {
+    transform: rotate(-45deg);
+    top: 0;
+}
+
+/* Close button for mobile menu */
+.mobile-menu-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 30px;
+    height: 30px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 18px;
+    cursor: pointer;
+    z-index: 1001;
+    border: none;
+}
+
+/* Hide any extra close buttons */
+.mobile-menu-close:not(:first-of-type) {
+    display: none !important;
+}
+
+/* Hide the extra close button in the circular area */
+.dtr-responsive-header-menu .close-btn-circle {
+    display: none !important;
+}
+
+/* Add icons to mobile menu items */
+.dtr-responsive-header-menu .mobile-nav .menu-item .nav-link::before {
+    content: '•';
+    margin-right: 10px;
+    color: #f8a01c;
+    font-size: 18px;
+    vertical-align: middle;
+    opacity: 0.7;
+}
+
+/* Add active state indicator */
+.dtr-responsive-header-menu .mobile-nav .menu-item .nav-link.active {
+    color: #f8a01c;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-left: 3px solid #f8a01c;
+    padding-left: 30px;
+}
+
+/* Prevent horizontal scrolling/swiping on mobile */
+html, body {
+    overflow-x: hidden;
+    position: relative;
+    width: 100%;
+    overscroll-behavior-x: none;
+}
+
+/* Fix for hero section on mobile */
+@media (max-width: 767px) {
+    .hero-section {
+        touch-action: pan-y;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior: contain;
+        width: 100%;
+    }
+    
+    .container {
+        width: 100%;
+        max-width: 100%;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    
+    /* Ensure carousel doesn't allow horizontal swiping */
+    .carousel-container {
+        touch-action: pan-y;
+        -webkit-user-select: none;
+        user-select: none;
+    }
+    
+    /* Improve mobile menu appearance */
+    .mobile-menu {
+        height: auto !important;
+        transition: all 0.3s ease;
+    }
+    
+    /* Ensure hamburger menu is visible and clickable */
+    .mobile-menu-toggle {
+        z-index: 1000;
+        position: relative;
+    }
+    
+    /* Prevent text selection on navigation items */
+    .mobile-nav .menu-item .nav-link {
+        -webkit-user-select: none;
+        user-select: none;
+    }
+}

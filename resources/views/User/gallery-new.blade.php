@@ -115,8 +115,115 @@
         .gallery-item:hover img {
             transform: scale(1.05);
         }
+        
+        /* Lightbox Styling */
+        .lightbox-modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 50px;
+        }
+        
+        .lightbox-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 80vh;
+            object-fit: contain;
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        
+        .lightbox-close:hover,
+        .lightbox-close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        
+        .lightbox-prev,
+        .lightbox-next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -50px;
+            color: white;
+            font-weight: bold;
+            font-size: 30px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+            -webkit-user-select: none;
+            background-color: rgba(0, 0, 0, 0.5);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .lightbox-next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+        
+        .lightbox-prev {
+            left: 0;
+        }
+        
+        .lightbox-prev:hover,
+        .lightbox-next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .page-title-container {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .page-title {
+                font-size: 28px;
+            }
+            
+            .pattern-left {
+                display: none;
+            }
+            
+            .section-title h2 {
+                font-size: 20px;
+            }
+            
+            .gallery-section {
+                padding-top: 100px;
+            }
+            
+            .gallery-container {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 10px;
+            }
+        }
     </style>
-
 </head>
 
 <body>
@@ -183,7 +290,6 @@
                     </div>
                     @endforeach
                 </div>
-
             </div>
         </section>
         
@@ -286,7 +392,5 @@
             });
         });
     </script>
-
 </body>
-
 </html>

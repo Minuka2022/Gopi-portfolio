@@ -45,9 +45,23 @@
               </a>
             </li>
 
+            <li class="nav-item {{ request()->routeIs('Dashboard-Testimonials') ? 'active' : '' }}">
+              <a href="{{route('Dashboard-Testimonials')}}">
+                <i class="fas fa-quote-right"></i>
+                <p>Manage Testimonials</p>
+              </a>
+            </li>
+
+            <li class="nav-item {{ request()->routeIs('Dashboard-TrustedLogos') ? 'active' : '' }}">
+              <a href="{{route('Dashboard-TrustedLogos')}}">
+                <i class="fas fa-building"></i>
+                <p>Manage Trusted Logos</p>
+              </a>
+            </li>
+
             <li class="nav-item {{ request()->routeIs('logout') ? 'active' : '' }}">
                 <a href="{{ route('logout') }}">
-                    <i class="fas fa-users"></i>
+                    <i class="fas fa-sign-out-alt"></i>
                     <p>Logout</p>
                 </a>
             </li>

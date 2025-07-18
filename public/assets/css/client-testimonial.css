@@ -1,0 +1,299 @@
+/* Client Logo Carousel and Testimonial Section Styles */
+
+/* Client Logo Carousel */
+.client-logo-section {
+    background-color: #f9f9f9;
+    padding: 60px 0;
+    text-align: center;
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+}
+
+.client-logo-section h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 32px;
+    color: #002b54;
+    position: relative;
+    font-weight: 600;
+}
+
+.client-logo-section h2:after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 3px;
+    background-color: #28a745;
+    margin: 15px auto 0;
+}
+
+.logo-carousel {
+    display: flex;
+    width: auto; /* Auto width for single logo */
+    justify-content: center; /* Center single logo */
+}
+
+/* Animation only for multiple logos */
+.animate-carousel {
+    animation: scroll 30s linear infinite;
+    justify-content: flex-start; /* Align to start for animation */
+    display: flex;
+}
+
+.static-carousel {
+    justify-content: center; /* Center single logo */
+}
+
+.animate-carousel:hover {
+    animation-play-state: paused;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(calc(-200px * var(--logo-count))); /* Move by exact width of all original logos */
+    }
+}
+
+.logo-slide {
+    width: 200px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+    flex-shrink: 0; /* Prevent logo from shrinking */
+}
+
+/* Add this to ensure the animation is smooth */
+.no-logos {
+    padding: 20px;
+    color: #666;
+    font-style: italic;
+}
+
+.logo-slide img {
+    max-width: 100%;
+    max-height: 80px;
+    opacity: 1;
+    transition: all 0.3s ease;
+}
+
+.logo-slide:hover img {
+    transform: scale(1.05);
+}
+
+.logo-track {
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+    margin: 40px auto 0;
+    max-width: 100%;
+    justify-content: center; /* Center the carousel container */
+}
+
+/* Testimonial Section */
+.testimonial-section {
+    background-color: #ffffff;
+    padding: 80px 0;
+    color: #333;
+    position: relative;
+}
+
+.testimonial-section h2 {
+    text-align: center;
+    margin-bottom: 50px;
+    font-size: 32px;
+    color: #002b54;
+    position: relative;
+    font-weight: 600;
+}
+
+.testimonial-section h2:after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 3px;
+    background-color: #28a745;
+    margin: 15px auto 0;
+}
+
+.testimonial-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.testimonial-slider {
+    position: relative;
+}
+
+.testimonial-slide {
+    display: none;
+    padding: 30px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    margin: 20px;
+    position: relative;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease;
+}
+
+.testimonial-slide.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.testimonial-content {
+    position: relative;
+    padding: 40px 60px 60px;
+    font-size: 18px;
+    line-height: 1.7;
+    font-style: italic;
+    text-align: center; /* Center the testimonial text */
+    margin-bottom: 20px;
+}
+
+.testimonial-content:before {
+    content: '"';
+    font-size: 80px;
+    position: absolute;
+    left: 20px;
+    top: -20px;
+    color: rgba(248, 160, 28, 0.2);
+    font-family: Georgia, serif;
+}
+
+.testimonial-content:after {
+    content: '"';
+    font-size: 80px;
+    position: absolute;
+    right: 20px;
+    bottom: -50px;
+    color: rgba(248, 160, 28, 0.2);
+    font-family: Georgia, serif;
+}
+
+.testimonial-author {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.company-logo {
+    max-width: 80px;
+    margin-bottom: 15px;
+}
+
+.author-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 15px;
+    border: 3px solid #28a745;
+}
+
+.author-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.author-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.author-name {
+    font-weight: 600;
+    font-size: 18px;
+    margin-bottom: 5px;
+    color: #28a745;
+}
+
+.author-title {
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+.testimonial-nav {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.testimonial-nav button {
+    background: transparent;
+    border: none;
+    color: #28a745;
+    font-size: 24px;
+    cursor: pointer;
+    margin: 0 10px;
+    transition: all 0.3s ease;
+    padding: 0;
+}
+
+.testimonial-nav button:hover {
+    background-color: #28a745;
+    color: #ffffff;
+}
+
+.testimonial-indicators {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.testimonial-indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgba(0, 43, 84, 0.2);
+    margin: 0 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.testimonial-indicator.active {
+    background-color: #28a745;
+    transform: scale(1.3);
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .testimonial-slide {
+        margin: 10px 0;
+        padding: 20px;
+    }
+    
+    .testimonial-content {
+        font-size: 16px;
+        padding: 15px;
+    }
+    
+    .testimonial-content:before {
+        font-size: 60px;
+        left: -10px;
+        top: -15px;
+    }
+    
+    .client-logo-section {
+        padding: 40px 0;
+    }
+    
+    .client-logo-section h2,
+    .testimonial-section h2 {
+        font-size: 28px;
+        margin-bottom: 30px;
+    }
+}

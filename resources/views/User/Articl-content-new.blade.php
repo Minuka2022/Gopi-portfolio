@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="format-detection" content="telephone=no">
-    <title>Gallery - Gopi Muthumaran</title>
+    <title>Article - {{ $article->title }}</title>
     <meta name="author" content="Gopi Muthumaran">
-    <meta name="description" content="Portfolio Gallery">
-    <meta name="keywords" content="portfolio, personal, gallery">
+    <meta name="description" content="Article details">
+    <meta name="keywords" content="portfolio, personal, article">
 
     <!-- FAVICON -->
     <link rel="icon" href="{{ asset('assets/images/icons/favicon.png') }}" sizes="32x32" />
@@ -32,6 +32,9 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     
+    <!-- Swiper.js Styles -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    
     <style>
         /* Page Title Styling */
         .page-title-container {
@@ -51,7 +54,7 @@
             padding: 0;
         }
         
-        .back-to-home-btn {
+        .back-to-articles-btn {
             display: inline-block;
             background-color: #28a745;
             color: white;
@@ -63,10 +66,23 @@
             transition: background-color 0.2s ease;
         }
         
-        .back-to-home-btn:hover {
+        .back-to-articles-btn:hover {
             background-color: #218838;
             color: white;
             text-decoration: none;
+        }
+        
+        /* Article Meta Info */
+        .article-meta {
+            margin-bottom: 30px;
+            color: #666;
+            font-size: 16px;
+        }
+        
+        .article-date {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
         }
         
         /* Section Title Styling */
@@ -89,34 +105,104 @@
             padding: 0;
         }
         
-        /* Gallery Styling */
-        .gallery-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
+        /* Article Gallery Styling */
+        .article-gallery {
+            margin-bottom: 40px;
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+        }
+        
+        .carousel-container {
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+        
+        .swiper {
+            width: 100%;
+        }
+        
+        .swiper-slide img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .gallery-image {
+            aspect-ratio: 16/9;
+            object-fit: cover;
+        }
+        
+        .featured-image {
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+        
+        .featured-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Article Content Styling */
+        .article-content {
+            color: #333;
+            font-size: 16px;
+            line-height: 1.8;
             margin-bottom: 60px;
         }
         
-        .gallery-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 8px;
-            cursor: pointer;
-            aspect-ratio: 1/1;
+        .article-content p {
+            margin-bottom: 20px;
         }
         
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
+        /* Fix for Swiper Navigation */
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: #fff;
+            background-color: rgba(0, 0, 0, 0.5);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
-        .gallery-item:hover img {
-            transform: scale(1.05);
+        .swiper-button-next:after,
+        .swiper-button-prev:after {
+            font-size: 18px;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .page-title-container {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .page-title {
+                font-size: 28px;
+            }
+            
+            .pattern-left {
+                display: none;
+            }
+            
+            .section-title h2 {
+                font-size: 20px;
+            }
+            
+            .article-detail-section {
+                padding-top: 100px;
+            }
         }
     </style>
-
 </head>
 
 <body>
@@ -126,12 +212,17 @@
         <!-- Header ends -->
 
         <!-- Page content starts -->
-        <section class="gallery-section" style="background-color:white; padding-top: 120px;">
+        <section class="article-detail-section" style="background-color:white; padding-top: 120px;">
             <div class="container">
                 <!-- Main Page Title -->
                 <div class="page-title-container">
-                    <h1 class="page-title">Gallery</h1>
-                    <a href="{{ route('frontend-Home') }}" class="back-to-home-btn">BACK TO HOME</a>
+                    <h1 class="page-title">{{ $article->title }}</h1>
+                    <a href="{{ route('frontend-article') }}" class="back-to-articles-btn">BACK TO ARTICLES</a>
+                </div>
+                
+                <!-- Article Meta Info -->
+                <div class="article-meta">
+                    <span class="article-date"><i class="fas fa-calendar-alt"></i> {{ $article->created_at->format('F d, Y') }}</span>
                 </div>
                 
                 <!-- Section Title with SVG Pattern -->
@@ -171,29 +262,40 @@
                         </svg>
                     </div>
                     <div class="section-title">
-                        <h2>Photo Collection</h2>
+                        <h2>Article Details</h2>
                     </div>
                 </div>
                 
-                <!-- Gallery Grid -->
-                <div class="gallery-container">
-                    @foreach($images as $image)
-                    <div class="gallery-item" data-src="{{ asset('storage/' . $image->photo) }}">
-                        <img src="{{ asset('storage/' . $image->photo) }}" alt="{{ $image->name }}">
+                <!-- Article Image Gallery -->
+                <div class="article-gallery">
+                    @if($article->images->isNotEmpty())
+                    <div class="carousel-container">
+                        <div class="swiper mySwiper">
+                            <div class="swiper-wrapper">
+                                @foreach ($article->images as $image)
+                                <div class="swiper-slide">
+                                    <img src="{{ asset('storage/' . $image->image) }}" alt="Article Image" class="gallery-image">
+                                </div>
+                                @endforeach
+                            </div>
+                            <!-- Navigation -->
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
+                        </div>
                     </div>
-                    @endforeach
+                    @elseif($article->featured_image)
+                    <div class="featured-image">
+                        <img src="{{ asset('storage/' . $article->featured_image) }}" alt="Featured Image">
+                    </div>
+                    @endif
                 </div>
-
+                
+                <!-- Article Content -->
+                <div class="article-content">
+                    {!! implode('</p><p>', array_map('trim', explode("\n\n", $article->content))) !!}
+                </div>
             </div>
         </section>
-        
-        <!-- Lightbox Modal -->
-        <div class="lightbox-modal" id="lightboxModal">
-            <span class="lightbox-close">&times;</span>
-            <img class="lightbox-content" id="lightboxImage">
-            <a class="lightbox-prev">&#10094;</a>
-            <a class="lightbox-next">&#10095;</a>
-        </div>
         
         <!-- Footer -->
         @include('partials.footer')
@@ -212,81 +314,18 @@
     <script src="{{ asset('assets/js/animate.js') }}"></script>
     <script src="{{ asset('assets/js/custom.js') }}"></script>
     
+    <!-- Swiper.js Script -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Get all gallery items
-            const galleryItems = document.querySelectorAll('.gallery-item');
-            const lightboxModal = document.getElementById('lightboxModal');
-            const lightboxImage = document.getElementById('lightboxImage');
-            const lightboxClose = document.querySelector('.lightbox-close');
-            const lightboxNext = document.querySelector('.lightbox-next');
-            const lightboxPrev = document.querySelector('.lightbox-prev');
-
-            let currentIndex = 0;
-            const images = [];
-
-            // Collect all image data
-            galleryItems.forEach((item, index) => {
-                const imgSrc = item.getAttribute('data-src');
-                images.push({
-                    src: imgSrc,
-                    index: index
-                });
-
-                // Add click event to open lightbox
-                item.addEventListener('click', function() {
-                    currentIndex = index;
-                    openLightbox(imgSrc);
-                });
-            });
-
-            // Open lightbox function
-            function openLightbox(src) {
-                lightboxModal.style.display = 'block';
-                lightboxImage.src = src;
-            }
-
-            // Close lightbox
-            lightboxClose.addEventListener('click', function() {
-                lightboxModal.style.display = 'none';
-            });
-
-            // Next image
-            lightboxNext.addEventListener('click', function() {
-                currentIndex = (currentIndex + 1) % images.length;
-                lightboxImage.src = images[currentIndex].src;
-            });
-
-            // Previous image
-            lightboxPrev.addEventListener('click', function() {
-                currentIndex = (currentIndex - 1 + images.length) % images.length;
-                lightboxImage.src = images[currentIndex].src;
-            });
-
-            // Close on click outside
-            lightboxModal.addEventListener('click', function(e) {
-                if (e.target === lightboxModal) {
-                    lightboxModal.style.display = 'none';
-                }
-            });
-
-            // Keyboard navigation
-            document.addEventListener('keydown', function(e) {
-                if (lightboxModal.style.display === 'block') {
-                    if (e.key === 'Escape') {
-                        lightboxModal.style.display = 'none';
-                    } else if (e.key === 'ArrowRight') {
-                        currentIndex = (currentIndex + 1) % images.length;
-                        lightboxImage.src = images[currentIndex].src;
-                    } else if (e.key === 'ArrowLeft') {
-                        currentIndex = (currentIndex - 1 + images.length) % images.length;
-                        lightboxImage.src = images[currentIndex].src;
-                    }
-                }
-            });
+        const swiper = new Swiper(".mySwiper", {
+            loop: true,
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            slidesPerView: 1,
+            spaceBetween: 20,
         });
     </script>
-
 </body>
-
 </html>

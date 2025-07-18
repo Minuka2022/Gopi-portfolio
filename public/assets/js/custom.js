@@ -156,14 +156,22 @@ $(document).ready(function() {
     
     //contact form
     $(function () {
-        var v = $("#contactform").validate({
-            submitHandler: function (form) {
-                $(form).ajaxSubmit({
-                    target: "#contactresult",
-                    clearForm: true
-                });
-            }
-        });
+        // Check if jQuery validate plugin exists before using it
+        if ($.fn.validate) {
+            var v = $("#contactform").validate({
+                submitHandler: function (form) {
+                    if ($.fn.ajaxSubmit) {
+                        $(form).ajaxSubmit({
+                            target: "#contactresult",
+                            clearForm: true
+                        });
+                    } else {
+                        // Fallback if ajaxSubmit is not available
+                        form.submit();
+                    }
+                }
+            });
+        }
     });
     
     // counter
