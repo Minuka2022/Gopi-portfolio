@@ -1,0 +1,154 @@
+/* About Section Styles */
+.about-section {
+    padding: 100px 0;
+    background-color: #fff;
+}
+
+.about-section .row {
+    margin: 0 -40px;
+}
+
+.about-section .col-lg-6 {
+    padding: 0 40px;
+}
+
+/* Remove the gap that was causing stacking */
+.about-row {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.about-section h2 {
+    color: #002b54;
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.about-section h2:after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 3px;
+    background-color: #28a745;
+    margin: 15px 0;
+}
+
+.about-section .lead {
+    color: #666;
+    font-size: 20px;
+    margin-bottom: 30px;
+    font-weight: 400;
+}
+
+.about-text {
+    margin-bottom: 40px;
+}
+
+.about-text p {
+    color: #444;
+    font-size: 16px;
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+.about-image {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.about-image:before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: rgba(248, 160, 28, 0.1);
+    z-index: -1;
+}
+
+.about-image:after {
+    content: '';
+    position: absolute;
+    bottom: -30px;
+    left: -30px;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background-color: rgba(0, 43, 84, 0.1);
+    z-index: -1;
+}
+
+.about-image img {
+    border-radius: 10px;
+    transition: transform 0.5s ease;
+}
+
+.about-image:hover img {
+    transform: scale(1.03);
+}
+
+/* Stats Section */
+.about-stats {
+    margin-top: 40px;
+}
+
+.stat-item {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.stat-item h3 {
+    font-size: 36px;
+    font-weight: 700;
+    color: #28a745;
+    margin-bottom: 10px;
+}
+
+.stat-item p {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+}
+
+/* Responsive Styles */
+@media (max-width: 991px) {
+    .about-section {
+        padding: 70px 0;
+    }
+    
+    .about-content {
+        margin-bottom: 50px;
+    }
+    
+    .about-row {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 767px) {
+    .about-section {
+        padding: 50px 0;
+    }
+    
+    .about-section h2 {
+        font-size: 28px;
+    }
+    
+    .about-section .lead {
+        font-size: 18px;
+    }
+    
+    .stat-item h3 {
+        font-size: 28px;
+    }
+    
+    .stat-item p {
+        font-size: 12px;
+    }
+}

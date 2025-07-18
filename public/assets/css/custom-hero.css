@@ -1,0 +1,274 @@
+/* Custom Hero Section Styles */
+.hero-section {
+    position: relative;
+    background-color: #002b54;
+    padding: 150px 0 120px;
+    overflow: hidden;
+    touch-action: pan-y;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: none;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #001a33 0%, #003366 100%);
+    opacity: 0.95;
+    z-index: 1;
+}
+
+.hero-section .container {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-content {
+    padding: 30px 0;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 30px;
+    position: relative;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s ease forwards;
+    animation-delay: 0.3s;
+}
+
+.hero-title:after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 0;
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #1a4b8b, #3a7bd5);
+    border-radius: 3px;
+}
+
+.hero-description {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #e0e0e0;
+    margin-bottom: 30px;
+    max-width: 90%;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s ease forwards;
+    animation-delay: 0.6s;
+}
+
+.hero-social {
+    margin-top: 40px;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s ease forwards;
+    animation-delay: 0.9s;
+}
+
+.social-icons {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.social-icons li {
+    margin-right: 20px;
+}
+
+.social-icons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+    background-color: #f8a01c;
+    transform: translateY(-5px);
+}
+
+.social-icons i {
+    font-size: 18px;
+}
+
+.hero-image-carousel {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    height: 450px;
+    margin-top: 20px;
+}
+
+.carousel-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.carousel-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1s ease;
+    display: none;
+}
+
+.carousel-slide.active {
+    opacity: 1;
+    display: block;
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.carousel-slide:hover img {
+    transform: scale(1.05);
+}
+
+.carousel-indicators {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    z-index: 10;
+}
+
+.indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.indicator.active {
+    background-color: #f8a01c;
+    transform: scale(1.2);
+}
+
+/* Animation Keyframes */
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Add animation to the hero image carousel */
+.hero-image-carousel {
+    opacity: 0;
+    animation: fadeIn 1.2s ease forwards;
+    animation-delay: 0.5s;
+}
+
+/* Decorative elements */
+.hero-section:before {
+    content: '';
+    position: absolute;
+    top: 50px;
+    right: 50px;
+    width: 100px;
+    height: 100px;
+    border: 5px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.hero-section:after {
+    content: '';
+    position: absolute;
+    bottom: 50px;
+    left: 50px;
+    width: 150px;
+    height: 150px;
+    border: 5px solid rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+    z-index: 1;
+}
+
+/* Responsive styles */
+@media (max-width: 991px) {
+    .hero-section {
+        padding: 120px 0 80px;
+    }
+    
+    .hero-title {
+        font-size: 2.8rem;
+    }
+    
+    .hero-description {
+        font-size: 1.1rem;
+    }
+    
+    .hero-image-carousel {
+        margin-top: 40px;
+        height: 400px;
+    }
+    
+    .row.align-items-center {
+        align-items: flex-start !important;
+    }
+}
+
+@media (max-width: 767px) {
+    .hero-section {
+        padding: 100px 0 60px;
+    }
+    
+    .hero-title {
+        font-size: 2.2rem;
+    }
+    
+    .hero-description {
+        font-size: 1rem;
+    }
+    
+    .hero-image-carousel {
+        height: 350px;
+        margin-top: 30px;
+    }
+    
+    .social-icons a {
+        width: 35px;
+        height: 35px;
+    }
+}

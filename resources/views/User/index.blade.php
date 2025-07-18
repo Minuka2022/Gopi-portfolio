@@ -23,15 +23,59 @@
     <link rel="stylesheet" href="{{ asset('assets/fonts/iconfont.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/swiper.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/animate.css') }}">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/counter.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/custom-header.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/custom-hero.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/mobile-fixes.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/client-testimonial.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/about-section.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/counter-styles.css') }}">
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    <!-- Core JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+    <script src="{{ asset('assets/js/logo-carousel.js') }}"></script>
+    
+    <!-- Fix for missing scripts -->
+    <script>
+        // Create empty objects to prevent errors from missing scripts
+        window.SlickNav = window.SlickNav || {};
+        
+        // Handle jQuery plugin errors
+        jQuery.fn.extend({
+            slickNav: function() { return this; },
+            wow: function() { return this; }
+        });
+        
+        // Error handling for missing elements
+        function safeQuerySelector(selector) {
+            try {
+                return document.querySelector(selector);
+            } catch (e) {
+                console.warn('Error selecting element:', selector, e);
+                return null;
+            }
+        }
+    </script>
 
     <!-- Custom CSS for Gallery Section -->
     <style>
+        /* Hamburger Menu Styles */
+        .dtr-hamburger-lines,
+        .dtr-hamburger-lines:before,
+        .dtr-hamburger-lines:after {
+            background-color: #ffffff !important;
+        }
         /* Gallery hover effects */
         .dtr-portfolio-item__wrapper:hover {
             transform: translateY(-10px);
@@ -51,7 +95,7 @@
         }
 
         .view-btn:hover {
-            background-color: #228B22;
+            background: linear-gradient(135deg, #1a4b8b, #3a7bd5);
             color: white;
             transition: all 0.3s ease;
         }
@@ -79,6 +123,91 @@
             width: 300%;
             height: 300%;
         }
+        
+        /* Mobile Menu Styles */
+        @media (max-width: 767px) {
+            .mobile-menu-toggle {
+                display: block !important;
+            }
+            
+            .main-navigation .horizontal-nav {
+                display: none;
+            }
+            
+            .mobile-header {
+                background-color: #002244;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                z-index: 1000;
+            }
+            
+            /* Hamburger active state */
+            #dtr-resp-menu-button.is-active .dtr-hamburger-lines {
+                background-color: transparent;
+            }
+            
+            .mobile-nav-container {
+                position: fixed;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background-color: #002244;
+                z-index: 1000;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+                max-height: calc(100vh - 60px);
+                overflow-y: auto;
+            }
+            
+            #dtr-resp-menu-button.is-active .dtr-hamburger-lines:before {
+                transform: rotate(45deg);
+                top: 0;
+            }
+            
+            #dtr-resp-menu-button.is-active .dtr-hamburger-lines:after {
+                transform: rotate(-45deg);
+                top: 0;
+            }
+            
+            /* Mobile menu positioning and visibility */
+            .mobile-nav-container {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: #002244;
+                z-index: 999;
+                padding: 20px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            }
+            
+            .mobile-nav-list {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+            
+            .mobile-nav-list li a {
+                display: block;
+                padding: 15px 20px;
+                color: #ffffff;
+                text-decoration: none;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+                font-weight: 500;
+                transition: all 0.3s ease;
+            }
+            
+            .mobile-nav-list li:last-child a {
+                border-bottom: none;
+            }
+            
+            .mobile-nav-list li a:hover {
+                color: #ff6b6b;
+                background-color: rgba(255,255,255,0.05);
+            }
+        }
     </style>
 </head>
 
@@ -92,14 +221,30 @@
 
         <!-- Small Devices Header starts
 ============================================= -->
-        <div id="dtr-responsive-header">
-            <div class="container">
+        <div id="dtr-responsive-header" class="mobile-header">
+            <div class="container" style="background-color: #002b54; padding: 15px; display: flex; justify-content: space-between; align-items: center;">
                 <!-- logo -->
                 <a class="dtr-resp-logo" href="{{ route('frontend-Home') }}"><img src="{{ asset('assets/images/logo.png') }}" alt="logo" width="88" height="25"></a>
                 <!-- menu button -->
                 <button id="dtr-resp-menu-button" class="dtr-hamburger" type="button" aria-label="Menu Button"><span class="dtr-hamburger-lines-wrapper"><span class="dtr-hamburger-lines"></span></span></button>
             </div>
-            <div class="dtr-responsive-header-menu"></div>
+            
+            <!-- Direct Mobile Menu (No SlickNav) -->
+            <div class="mobile-nav-container" style="display: none;">
+                <div class="container">
+                    <ul class="mobile-nav-list">
+                        <li><a href="{{ route('frontend-Home') }}#home">Home</a></li>
+                        <li><a href="#aboutme">About</a></li>
+                        <li><a href="#acheivment">Achievements</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                        <li><a href="#client">Clients</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                        <li><a href="#Events">Events</a></li>
+                        <li><a href="{{ route('frontend-article') }}">Articles</a></li>
+                        <li><a href="#Contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
         <!-- Small Devices Header ends
 ============================================= -->
@@ -115,51 +260,71 @@
         <div id="dtr-main-content">
 
             <!--===== hero section starts =====-->
-            <section class="dtr-section hero-section bg-color-secondary-light" style="background-color: #002244;">
+            <section class="dtr-section hero-section" id="home">
+                <div class="hero-overlay"></div>
                 <div class="container">
-                    <div class="row">
+                    <div class="row align-items-center">
 
                         <!-- First column starts -->
                         <div class="col-12 col-md-6">
-                            <div class="hero-wheel-wrap">
-
+                            <div class="hero-content">
                                 <!-- Heading -->
-                                <h1 style="color: white">Welcome</h1>
-                            </div>
-                            <!-- Spacer -->
-                            <span class="spacer spacer-20"></span>
-
-                            <!-- Hero content starts -->
-                            <div class="hero-text-shrink">
-                                <h6 class="text-color-secondary" style="color: #eeeeee">
-                                    Success is about empowering others, delivering excellence, and leaving a meaningful impact that inspires trust, growth, and lasting connections in every endeavor.
-                                </h6>
-                                <span class="spacer spacer-20"></span>
-                                <span class="spacer spacer-5"></span>
-
-                                <!-- Social icons start -->
-                                <div class="dtr-social-widget text-left">
-                                    <ul class="dtr-social">
-                                        <li><a class="dtr-linkedin" href="#" title="LinkedIn" target="_blank" rel="nofollow" aria-label="LinkedIn"></a></li>
-                                        <li><a class="dtr-youtube" href="#" title="YouTube" target="_blank" rel="nofollow" aria-label="YouTube"></a></li>
-                                        <li><a class="dtr-facebook" href="#" title="Facebook" target="_blank" rel="nofollow" aria-label="Facebook"></a></li>
-                                     </ul>
+                                <h1 class="hero-title" style="position: relative; display: inline-block; margin-bottom: 20px;">
+                                    Welcome
+                                    <!-- <span style="position: absolute; bottom: -5px; left: 0; width: 100%; height: 3px; background: linear-gradient(90deg, #1a4b8b, #3a7bd5); border-radius: 3px;"></span> -->
+                                </h1>
+                                
+                                <!-- Hero content starts -->
+                                <div class="hero-text">
+                                    <div style="margin: 30px 0; padding: 0 20px 0 0;">
+                                        <p class="hero-description" style="text-align: left; max-width: 800px; margin: 0; line-height: 1.8; color: white; font-weight: 400; font-size: 1.1em;">
+                                            Success is about empowering others, delivering excellence, and leaving a meaningful impact that inspires trust, growth, and lasting connections in every endeavor.
+                                        </p>
+                                    </div>
+                                    
+                                    <!-- Luxury SVG sign start -->
+                                    <div class="hero-signature" style="margin-bottom: 18px;">
+                                        <!-- Placeholder luxury SVG sign (replace with owner signature/logo later) -->
+                                        <svg width="56" height="32" viewBox="0 0 56 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M2 30 Q16 2, 28 16 Q40 30, 54 2" stroke="#3a7bd5" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <circle cx="28" cy="16" r="2.5" fill="#1a4b8b"/>
+                                        </svg>
+                                    </div>
+                                    <!-- Luxury SVG sign end -->
+                                    <!-- Social icons start -->
+                                    <div class="hero-social">
+                                        <ul class="social-icons" style="display: flex; gap: 18px; padding: 0; margin: 0; list-style: none;">
+                                            <li><a class="dtr-linkedin" href="https://www.linkedin.com/" title="LinkedIn" target="_blank" rel="nofollow" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>
+                                            <li><a class="dtr-instagram" href="https://www.instagram.com/" title="Instagram" target="_blank" rel="nofollow" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
+                                            <li><a class="dtr-facebook" href="https://www.facebook.com/" title="Facebook" target="_blank" rel="nofollow" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                                        </ul>
+                                    </div>
+                                    <!-- Social icons end -->
                                 </div>
-                                <!-- Social icons end -->
-
+                                <!-- Hero content ends -->
                             </div>
-                            <!-- Hero content ends -->
-
                         </div>
                         <!-- First column ends -->
 
                         <!-- Second column starts -->
-                        <div class="image-section"> <!-- Removed Bootstrap column class -->
-                            <div class="dtr-about">
-                                <figure class="dtr-about__img">
-                                    <img src="{{ asset('assets/images/GOPIIMAGES/ggopi1.JPG') }}" alt="about image">
-                                </figure>
-
+                        <div class="col-12 col-md-6">
+                            <div class="hero-image-carousel">
+                                <div class="carousel-container">
+                                    <div class="carousel-slide active">
+                                        <img src="{{ asset('assets/images/GOPIIMAGES/ggopi1.JPG') }}" alt="Gopi Muthumaran" class="img-fluid">
+                                    </div>
+                                    <div class="carousel-slide">
+                                        <img src="{{ asset('assets/images/GOPIIMAGES/ggopi1.JPG') }}" alt="Gopi Muthumaran" class="img-fluid">
+                                    </div>
+                                    <div class="carousel-slide">
+                                        <img src="{{ asset('assets/images/GOPIIMAGES/ggopi1.JPG') }}" alt="Gopi Muthumaran" class="img-fluid">
+                                    </div>
+                                </div>
+                                <div class="carousel-indicators">
+                                    <span class="indicator active" data-slide="0"></span>
+                                    <span class="indicator" data-slide="1"></span>
+                                    <span class="indicator" data-slide="2"></span>
+                                </div>
                             </div>
                         </div>
                         <!-- Second column ends -->
@@ -167,7 +332,179 @@
                     </div>
                 </div>
             </section>
+
+
+
+            <!-- About Section -->
+            <section class="about-section" id="aboutme">
+                <div class="container">
+                    <div class="row align-items-center about-row d-flex">
+                        <div class="col-lg-6">
+                            <div class="about-content">
+                                <h2>Hello, I'm Gopi Muthumaran</h2>
+                                <p class="lead">Global Trainer & Motivational Speaker</p>
+                                <div class="about-text">
+                                    <p>As a passionate trainer and motivational speaker, I bring over 15 years of experience in corporate training and leadership development. My unique approach combines entertainment with education, creating memorable and impactful learning experiences for my clients.</p>
+                                    
+                                    <p>I've had the privilege of working with Fortune 500 companies across Asia, Europe, and North America, bringing a global perspective to all my training sessions. My expertise spans leadership development, team building, communication skills, and personal growth strategies.</p>
+                                    
+                                    <p>My training philosophy centers on practical application and real-world relevance. I believe that learning should be engaging, interactive, and immediately applicable to participants' professional lives and organizational goals.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="about-image">
+                                <img src="{{ asset('assets/images/GOPIIMAGES/Gopi2.jpg') }}" alt="Gopi Muthumaran" class="img-fluid">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Client Logo Carousel Section -->
+            <section class="client-logo-section" id="client">
+                <div class="container">
+                    <h2>Trusted By</h2>
+                    <div class="logo-track">
+                        @php
+                            $logoCount = count($trustedLogos);
+                        @endphp
+                        
+                        <!-- Different display based on number of logos -->
+                        @if($logoCount == 0)
+                            <!-- No logos to display -->
+                            <div class="no-logos">No trusted partners yet</div>
+                        @elseif($logoCount == 1)
+                            <!-- Single logo - static display -->
+                            <div class="logo-carousel static-carousel">
+                                <div class="logo-slide">
+                                    <a href="{{ $trustedLogos[0]->website_url }}" target="_blank" rel="noopener noreferrer">
+                                        <img src="{{ asset($trustedLogos[0]->logo_image) }}" alt="{{ $trustedLogos[0]->company_name }}">
+                                    </a>
+                                </div>
+                            </div>
+                        @else
+                            <!-- Multiple logos - animated carousel -->
+                            <div class="logo-carousel animate-carousel" style="--logo-count: {{ $logoCount }}">
+                                <!-- Original logos -->
+                                @foreach($trustedLogos as $logo)
+                                    <div class="logo-slide">
+                                        <a href="{{ $logo->website_url }}" target="_blank" rel="noopener noreferrer">
+                                            <img src="{{ asset($logo->logo_image) }}" alt="{{ $logo->company_name }}">
+                                        </a>
+                                    </div>
+                                @endforeach
+                                
+                                <!-- Clone logos for infinite loop effect -->
+                                @foreach($trustedLogos as $logo)
+                                    <div class="logo-slide clone">
+                                        <a href="{{ $logo->website_url }}" target="_blank" rel="noopener noreferrer">
+                                            <img src="{{ asset($logo->logo_image) }}" alt="{{ $logo->company_name }}">
+                                        </a>
+                                    </div>
+                                @endforeach
+                            </div>
+                        @endif
+                    </div>
+                </div>
+            </section>
+
+            <!-- Testimonial Section -->
+            <section class="testimonial-section" id="testimonials">
+                <div class="container">
+                    <h2>What People Say</h2>
+                    <div class="testimonial-container">
+                        <div class="testimonial-slider">
+                            @forelse($testimonials as $key => $testimonial)
+                                <div class="testimonial-slide {{ $key === 0 ? 'active' : '' }}">
+                                    <div class="testimonial-content">
+                                        {{ $testimonial->testimonial_text }}
+                                    </div>
+                                    <div class="testimonial-author">
+                                        @if($testimonial->client_image)
+                                            <img src="{{ asset($testimonial->client_image) }}" alt="{{ $testimonial->client_name }}" class="company-logo">
+                                        @endif
+
+                                        <div class="author-info">
+                                            <div class="author-name">{{ $testimonial->client_name }}</div>
+                                            <div class="author-title">{{ $testimonial->client_position }}</div>
+                                            @if($testimonial->client_company)
+                                                <div class="author-company">{{ $testimonial->client_company }}</div>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                            @empty
+                                <!-- Default testimonials if no database entries -->
+                                <!-- Testimonial 1 -->
+                               
+                                
+                                <!-- Testimonial 2 -->
+                               
+                                
+                                <!-- Testimonial 3 -->
+                               
+                            @endforelse
+                            
+                            <!-- Navigation Controls -->
+                            <div class="testimonial-nav">
+                                <button id="testimonial-prev" aria-label="Previous testimonial">
+                                    <i class="fas fa-arrow-left"></i>
+                                </button>
+                                <button id="testimonial-next" aria-label="Next testimonial">
+                                    <i class="fas fa-arrow-right"></i>
+                                </button>
+                            </div>
+                            
+                            <!-- Indicators -->
+                            <div class="testimonial-indicators">
+                                @php
+                                    $count = count($testimonials) > 0 ? count($testimonials) : 3;
+                                @endphp
+                                @for($i = 0; $i < $count; $i++)
+                                    <span class="testimonial-indicator {{ $i === 0 ? 'active' : '' }}" data-slide="{{ $i }}"></span>
+                                @endfor
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
             <style>
+                /* Mobile styles for hero section */
+                @media (max-width: 991px) {
+                    .hero-section {
+                        text-align: center;
+                    }
+                    
+                    .hero-content {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        margin-bottom: 30px;
+                    }
+                    
+                    .hero-text {
+                        max-width: 100%;
+                    }
+                    
+                    .hero-social {
+                        justify-content: center;
+                        margin-top: 20px;
+                    }
+                    
+                    .hero-social .social-icons {
+                        justify-content: center;
+                    }
+                    
+                    .hero-signature {
+                        margin: 15px auto;
+                    }
+                    
+                    .hero-image-carousel {
+                        margin-top: 30px;
+                    }
+                }
+                
                 @media (min-width: 992px) {
                     .hero-section {
                         display: flex; /* Flexbox for the entire section */
@@ -247,231 +584,9 @@
              </script>
 
             <!--===== hero section ends =====-->
-           <section id="aboutme" class="dtr-section" style="padding:30px">
-                <div class="container" style="margin-top:20px; margin-bottom:20px">
-                    <div class="row">
 
-                        <!--== column 1 starts ==-->
-                        <div class="col-12 col-md-6" >
 
-                            <!-- about starts -->
-                            <div class="dtr-about2">
-                                <div class="dtr-about2__img">
-                                    <figure><img src="{{ asset('assets/images/GOPIIMAGES/Gopi2.JPG') }}" alt="about-img2"></figure>
-
-                                </div>
-                                <p style="font-weight: bold; color:#0c0c0c">Consultant</p>
-                            </div>
-                            <!-- about ends -->
-
-                        </div>
-                        <!--== column 1 ends ==-->
-
-                        <!--== column 2 starts ==-->
-                        <div class="col-12 col-md-6 intro-dec">
-                            <h2 style="color: #0c0c0c;" class="intro-title">
-                                <div class="desk-intro">
-                                    <span class="line1">Hi There ,<span>I am</span> </span><br>
-                                    <span class="line1"> Gopi Muthumaran</span><br>
-                                </div>
-                                <div class="mobile-intro">
-                                    <span class="line1">Hi There ,</span><br>
-                                    <span class="line1">I am Gopi</span><br>
-                                    <span class="line1">Muthumaran</span>
-                                </div>
-
-                            <span class="spacer spacer-20"></span>
-                            <h6 style="color: #131313">
-                                With a passion for leadership and strategic growth, I’ve dedicated my career to empowering individuals and organizations. My work spans corporate training, consultancy, and education, fostering meaningful change and lasting impact.
-                            </h6>
-                            <span class="spacer spacer-20"></span>
-                            <p style="color: #1e1e1e">
-                                As a seasoned professional with over two decades of experience, I specialize in driving excellence through strategic management, innovative training, and impactful consultancy. Whether mentoring future leaders or crafting transformative solutions, my focus remains on creating value, inspiring progress, and leaving a legacy of trust and collaboration in every endeavor.
-                            </p>
-                            <p style="color: #1e1e1e">
-                                I combine expertise in leadership, training, and strategy to empower growth, inspire innovation, and make a difference in every interaction.
-                            </p>
-                            <span class="spacer spacer-10"></span>
-                            <!-- button -->
-                            <a class="dtr-btn" href="#" role="button" style="background-color: #228B22;">
-                                <span class="dtr-btn__text">Contact</span>
-                            </a>
-                        </div>
-
-                        <!--== column 2 ends ==-->
-
-                    </div>
-                </div>
-            </section>
-
-               <!--===== counter section starts =====-->
-               <section class="dtr-section counter-section">
-                <div class="container">
-                    <div class="row">
-                        <!-- Intro text -->
-                        <div class="col-12 text-center mb-5">
-                            <div class="dtr-intro__divider"></div>
-                            <h5 class="dtr-counter__info-text">
-                                Dedicated to empowering organizations with strategic insights, innovative training, and impactful leadership solutions for over two decades.
-                            </h5>
-                        </div>
-
-                        <!-- Counter items - Desktop and Mobile -->
-                        <div class="col-12 d-flex justify-content-around align-items-center text-center flex-wrap">
-                            <!-- Experience -->
-                            <div class="dtr-counter mb-4">
-                                <div class="counter-icon-wrapper">
-                                    <span class="counter-icon">
-                                        <i class="fas fa-chart-line"></i>
-                                    </span>
-                                </div>
-                                <div class="counter-number-wrapper">
-                                    <span class="dtr-counter__number counting-number" data-from="1" data-to="20" data-speed="1600">20</span>
-                                </div>
-                                <div class="counter-label-wrapper">
-                                    <h6 class="dtr-counter__heading">
-                                        Years Leadership & Consultancy
-                                    </h6>
-                                </div>
-                            </div>
-
-                            <!-- Professionals -->
-                            <div class="dtr-counter mb-4">
-                                <div class="counter-icon-wrapper">
-                                    <span class="counter-icon">
-                                        <i class="fas fa-users"></i>
-                                    </span>
-                                </div>
-                                <div class="counter-number-wrapper">
-                                    <span class="dtr-counter__number counting-number" data-from="1" data-to="1000" data-speed="1600">1000</span>
-                                </div>
-                                <div class="counter-label-wrapper">
-                                    <h6 class="dtr-counter__heading">
-                                        Professionals Trained
-                                    </h6>
-                                </div>
-                            </div>
-
-                            <!-- Projects -->
-                            <div class="dtr-counter mb-4">
-                                <div class="counter-icon-wrapper">
-                                    <span class="counter-icon">
-                                        <i class="fas fa-project-diagram"></i>
-                                    </span>
-                                </div>
-                                <div class="counter-number-wrapper">
-                                    <span class="dtr-counter__number counting-number" data-from="1" data-to="50" data-speed="1600">50</span>
-                                </div>
-                                <div class="counter-label-wrapper">
-                                    <h6 class="dtr-counter__heading">
-                                        Projects Completed
-                                    </h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <style>
-                    .counter-section {
-                        background-color: #002244;
-                        padding: 80px 0;
-                        color: white;
-                    }
-
-                    .dtr-counter__info-text {
-                        color: #ffffff;
-                        font-size: 1.2rem;
-                        max-width: 800px;
-                        margin: 0 auto;
-                        line-height: 1.8;
-                    }
-
-                    .dtr-intro__divider {
-                        width: 80px;
-                        height: 3px;
-                        background-color: #228B22;
-                        margin: 0 auto 20px;
-                    }
-
-                    .dtr-counter {
-                        position: relative;
-                        padding: 20px;
-                        width: 280px;
-                        transition: transform 0.3s ease;
-                    }
-
-                    .dtr-counter:hover {
-                        transform: translateY(-5px);
-                    }
-
-                    .counter-icon-wrapper {
-                        margin-bottom: 15px;
-                    }
-
-                    .counter-icon {
-                        display: inline-flex;
-                        align-items: center;
-                        justify-content: center;
-                        width: 70px;
-                        height: 70px;
-                        background-color: rgba(76, 175, 80, 0.2);
-                        border-radius: 50%;
-                        margin-bottom: 15px;
-                    }
-
-                    .counter-icon i {
-                        font-size: 28px;
-                        color: #4CAF50;
-                    }
-
-                    .counter-number-wrapper {
-                        margin-bottom: 10px;
-                    }
-
-                    .dtr-counter__number {
-                        font-size: 3.5rem;
-                        font-weight: 700;
-                        color: white;
-                        display: block;
-                    }
-
-                    .counter-label-wrapper {
-                        position: relative;
-                        background: transparent;
-                    }
-
-                    .dtr-counter__heading {
-                        font-size: 1.1rem;
-                        font-weight: 500;
-                        color: #e0e0e0;
-                        position: relative;
-                        padding-bottom: 10px;
-                        background: transparent;
-                        display: inline-block;
-                        width: auto;
-                        transform: none;
-                    }
-
-                    .dtr-counter__heading:after {
-                        content: '';
-                        position: absolute;
-                        bottom: 0;
-                        left: 50%;
-                        transform: translateX(-50%);
-                        width: 40px;
-                        height: 2px;
-                        background-color: #4CAF50;
-                    }
-
-                    @media (max-width: 768px) {
-                        .dtr-counter {
-                            width: 100%;
-                            max-width: 280px;
-                            margin: 0 auto 20px;
-                        }
-                    }
-                </style>
-            </section>
+    
             <!--===== counter section ends =====-->
 
 
@@ -483,9 +598,9 @@
                         <!--== intro starts ==-->
                         <div class="col-12">
                             <div class="dtr-intro width-50-center-align">
-                                <h2 class="dtr-intro__heading">Achievements & Certifications</h2>
+                                <h2 class="dtr-intro__heading" style="font-size: 2.5rem;">Achievements & Certifications</h2>
                                 <div class="dtr-intro__divider mx-auto"></div>
-                                <p><b>Showcasing a journey of professional success, learning, and leadership</b></p>
+                                <p class="mt-3"><b>Showcasing a journey of professional success, learning, and leadership</b></p>
                             </div>
                         </div>
                         <!--== intro ends ==-->
@@ -497,43 +612,64 @@
                         <div class="col-12 col-md-6">
 
                             <!-- box 1 starts -->
-                            <div class="padding-50 text-color-white wow animate__fadeIn mobile-bg-1">
+                            <div class="padding-50 wow animate__fadeIn mobile-bg-1">
                                 <h5>Work Experience</h5>
-
-                                <!-- timeline item starts -->
-                                <div class="dtr-timeline">
-                                    <span class="dtr-timeline__heading timeline-year">2022 - Present</span>
-                                    <h6 class="dtr-timeline__heading">Managing Director</h6>
-                                    <div class="dtr-timeline__content">Ignite Learning & Consultancy Pvt. Ltd<br>Sri Lanka</div>
-                                </div>
-                                <!-- timeline item ends -->
-
-                                <span class="spacer spacer-30"></span>
-
-                                <!-- timeline item starts -->
-                                <div class="dtr-timeline">
-                                    <span class="dtr-timeline__heading timeline-year">2017 – 2022</span>
-                                    <h6 class="dtr-timeline__heading">Consultant</h6>
-                                    <div class="dtr-timeline__content">Alcor Management Consultancy Pvt. Ltd<br>
-                                        Maldives</div>
-                                </div>
-                                <!-- timeline item ends -->
-
-                                <span class="spacer spacer-30"></span>
-
-                                <!-- timeline item starts -->
-                                <div class="dtr-timeline">
-                                    <span class="dtr-timeline__heading timeline-year">2010 – 2017</span>
-                                    <h6 class="dtr-timeline__heading">Chief Operating Officer</h6>
-                                    <div class="dtr-timeline__content">Focus Education Centre<br>
-                                        Maldives</div>
-                                </div>
-                                <span class="spacer spacer-30"></span>
-
-                                <div class="dtr-timeline">
-                                    <span class="dtr-timeline__heading timeline-year">2005 – 2010</span>
-                                    <h6 class="dtr-timeline__heading">Various Roles in Sales & Customer Support</h6>
-                                    <div class="dtr-timeline__content">Sri Lanka<br></div>
+                                
+                                <div class="linkedin-timeline">
+                                    <!-- timeline item starts -->
+                                    <div class="timeline-item">
+                                        <div class="timeline-icon">
+                                            <i class="fas fa-briefcase"></i>
+                                        </div>
+                                        <div class="timeline-content">
+                                            <span class="timeline-year">2022 - PRESENT</span>
+                                            <h6 class="timeline-position">Managing Director</h6>
+                                            <div class="timeline-company">Ignite Learning & Consultancy Pvt. Ltd</div>
+                                            <div class="timeline-location"><i class="fas fa-map-marker-alt"></i> Sri Lanka</div>
+                                        </div>
+                                    </div>
+                                    <!-- timeline item ends -->
+                                    
+                                    <!-- timeline item starts -->
+                                    <div class="timeline-item">
+                                        <div class="timeline-icon">
+                                            <i class="fas fa-user-tie"></i>
+                                        </div>
+                                        <div class="timeline-content">
+                                            <span class="timeline-year">2017 – 2022</span>
+                                            <h6 class="timeline-position">Consultant</h6>
+                                            <div class="timeline-company">Alcor Management Consultancy Pvt. Ltd</div>
+                                            <div class="timeline-location"><i class="fas fa-map-marker-alt"></i> Maldives</div>
+                                        </div>
+                                    </div>
+                                    <!-- timeline item ends -->
+                                    
+                                    <!-- timeline item starts -->
+                                    <div class="timeline-item">
+                                        <div class="timeline-icon">
+                                            <i class="fas fa-user-cog"></i>
+                                        </div>
+                                        <div class="timeline-content">
+                                            <span class="timeline-year">2010 – 2017</span>
+                                            <h6 class="timeline-position">Chief Operating Officer</h6>
+                                            <div class="timeline-company">Focus Education Centre</div>
+                                            <div class="timeline-location"><i class="fas fa-map-marker-alt"></i> Maldives</div>
+                                        </div>
+                                    </div>
+                                    <!-- timeline item ends -->
+                                    
+                                    <!-- timeline item starts -->
+                                    <div class="timeline-item">
+                                        <div class="timeline-icon">
+                                            <i class="fas fa-users"></i>
+                                        </div>
+                                        <div class="timeline-content">
+                                            <span class="timeline-year">2005 – 2010</span>
+                                            <h6 class="timeline-position">Various Roles in Sales & Customer Support</h6>
+                                            <div class="timeline-location"><i class="fas fa-map-marker-alt"></i> Sri Lanka</div>
+                                        </div>
+                                    </div>
+                                    <!-- timeline item ends -->
                                 </div>
                                 <!-- timeline item ends -->
 
@@ -547,31 +683,41 @@
                             <div class="padding-50 mobile-bg-2">
                                 <h5>Key Abilities</h5>
 
-                                <!-- inner row - for feature columns starts -->
-                                <div class="dtr-timeline">
-                                    <h6 class="dtr-timeline__heading ability-heading">Leadership and Strategic Planning</h6>
-                                    <div class="dtr-timeline__content">Proven track record of delivering transformative results in corporate training and development.<br></div>
-                                </div>
-                                <!-- timeline item ends -->
-
-                                <span class="spacer spacer-20"></span>
-
-                                <!-- timeline item starts -->
-                                <div class="dtr-timeline">
-                                    <h6 class="dtr-timeline__heading ability-heading">Multicultural Expertise</h6>
-                                    <div class="dtr-timeline__content">Over 20 years of experience across Sri Lanka, Maldives, and India in diverse industries<br></div>
-                                </div>
-                                <!-- timeline item ends -->
-
-                                <span class="spacer spacer-20"></span>
-
-                                <!-- timeline item starts -->
-                                <div class="dtr-timeline">
-                                    <h6 class="dtr-timeline__heading ability-heading">Client-Centric Approach</h6>
-                                    <div class="dtr-timeline__content">Delivered solutions to prestigious clients such as Virtusa, Maldivian Airlines, and Bank of Maldives.<br>
+                                <div class="ability-cards">
+                                    <!-- ability card 1 -->
+                                    <div class="ability-card">
+                                        <div class="ability-icon">
+                                            <i class="fas fa-chess-king"></i>
                                         </div>
+                                        <div class="ability-content">
+                                            <h6 class="ability-heading">Leadership and Strategic Planning</h6>
+                                            <p>Proven track record of delivering transformative results in corporate training and development.</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- ability card 2 -->
+                                    <div class="ability-card">
+                                        <div class="ability-icon">
+                                            <i class="fas fa-globe-asia"></i>
+                                        </div>
+                                        <div class="ability-content">
+                                            <h6 class="ability-heading">Multicultural Expertise</h6>
+                                            <p>Over 20 years of experience across Sri Lanka, Maldives, and India in diverse industries.</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- ability card 3 -->
+                                    <div class="ability-card">
+                                        <div class="ability-icon">
+                                            <i class="fas fa-handshake"></i>
+                                        </div>
+                                        <div class="ability-content">
+                                            <h6 class="ability-heading">Client-Centric Approach</h6>
+                                            <p>Delivered solutions to prestigious clients such as Virtusa, Maldivian Airlines, and Bank of Maldives.</p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <!-- inner row - for feature columns ends -->
+                                <!-- ability cards end -->
 
                             </div>
                             <!-- box 2 ends -->
@@ -583,34 +729,44 @@
                         <div class="col-12 col-md-6 small-device-top-space" >
 
                             <!-- box 1 starts -->
-                            <div class="padding-50 text-color-white wow animate__fadeIn mobile-bg-3" data-wow-delay=".4s">
+                            <div class="padding-50 wow animate__fadeIn mobile-bg-3" data-wow-delay=".4s">
                                 <h5>Academic Achievement</h5>
 
-                                <!-- timeline item starts -->
-                                <div class="dtr-timeline">
-                                    <h6 class="dtr-timeline__heading ability-heading">Master of Business Administration (MBA)</h6>
-                                    <div class="dtr-timeline__content">Open University of Malaysia.<br>
-                                        Graduated with Distinction and College Book Award for academic excellence.</div>
-                                </div>
-                                <!-- timeline item ends -->
-
-                                <span class="spacer spacer-30"></span>
-
-                                <!-- timeline item starts -->
-                                <div class="dtr-timeline">
-                                    <h6 class="dtr-timeline__heading ability-heading">Professional Diploma in Marketing</h6>
-                                    <div class="dtr-timeline__content">Chartered Institute of Marketing (CIM), UK.<br>
-                                        Enhanced expertise in strategic marketing and business development.</div>
-                                </div>
-                                <!-- timeline item ends -->
-
-                                <span class="spacer spacer-30"></span>
-
-                                <!-- timeline item starts -->
-                                <div class="dtr-timeline">
-                                    <h6 class="dtr-timeline__heading ability-heading">Professional Certifications</h6>
-                                    <div class="dtr-timeline__content">Certified Trainer from Door South Asia and Certified Drama-Based Facilitator.<br>
+                                <div class="academic-cards">
+                                    <!-- academic card 1 -->
+                                    <div class="academic-card">
+                                        <div class="academic-icon">
+                                            <i class="fas fa-graduation-cap"></i>
                                         </div>
+                                        <div class="academic-content">
+                                            <h6 class="academic-heading">Master of Business Administration (MBA)</h6>
+                                            <div class="academic-institution">Open University of Malaysia</div>
+                                            <p>Graduated with Distinction and College Book Award for academic excellence.</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- academic card 2 -->
+                                    <div class="academic-card">
+                                        <div class="academic-icon">
+                                            <i class="fas fa-award"></i>
+                                        </div>
+                                        <div class="academic-content">
+                                            <h6 class="academic-heading">Professional Diploma in Marketing</h6>
+                                            <div class="academic-institution">Chartered Institute of Marketing (CIM), UK</div>
+                                            <p>Enhanced expertise in strategic marketing and business development.</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- academic card 3 -->
+                                    <div class="academic-card">
+                                        <div class="academic-icon">
+                                            <i class="fas fa-certificate"></i>
+                                        </div>
+                                        <div class="academic-content">
+                                            <h6 class="academic-heading">Professional Certifications</h6>
+                                            <p>Certified Trainer from Door South Asia and Certified Drama-Based Facilitator.</p>
+                                        </div>
+                                    </div>
                                 </div>
 
                             </div>
@@ -620,41 +776,53 @@
                             <span class="spacer spacer-30"></span>
 
                             <!-- box 2 starts -->
-                            <div class="padding-50 text-color-white wow animate__fadeIn mobile-bg-4" data-wow-delay=".4s">
+                            <div class="padding-50 wow animate__fadeIn mobile-bg-4" data-wow-delay=".4s">
                                 <h5>Technical Skills</h5>
 
-                                <!-- timeline item starts -->
-                                <div class="dtr-timeline">
-                                    <h6 class="dtr-timeline__heading ability-heading">Corporate Training Development</h6>
-                                    <div class="dtr-timeline__content">Expert in developing training programs on leadership, management, and strategic thinking.
-                                        <br></div>
-                                </div>
-                                <!-- timeline item ends -->
-
-                                <span class="spacer spacer-30"></span>
-
-                                <!-- timeline item starts -->
-                                <div class="dtr-timeline">
-                                    <h6 class="dtr-timeline__heading ability-heading">Content Development</h6>
-                                    <div class="dtr-timeline__content">Experienced in creating impactful training modules and consultancy frameworks.<br></div>
-                                </div>
-                                <!-- timeline item ends -->
-
-                                <span class="spacer spacer-30"></span>
-
-                                <!-- timeline item starts -->
-                                <div class="dtr-timeline">
-                                    <h6 class="dtr-timeline__heading ability-heading">Technical Knowledge</h6>
-                                    <div class="dtr-timeline__content">Advanced understanding of IT infrastructure and business solutions.<br>
+                                <div class="skills-cards">
+                                    <!-- skill card 1 -->
+                                    <div class="skill-card">
+                                        <div class="skill-icon">
+                                            <i class="fas fa-chalkboard-teacher"></i>
                                         </div>
-                                </div>
-
-                                <span class="spacer spacer-20"></span>
-
-                                <div class="dtr-timeline">
-                                    <h6 class="dtr-timeline__heading ability-heading">Soft Skills Training</h6>
-                                    <div class="dtr-timeline__content">Skilled in delivering people skills, ethics, and supervisory workshops.<br>
+                                        <div class="skill-content">
+                                            <h6 class="skill-heading">Corporate Training Development</h6>
+                                            <p>Expert in developing training programs on leadership, management, and strategic thinking.</p>
                                         </div>
+                                    </div>
+                                    
+                                    <!-- skill card 2 -->
+                                    <div class="skill-card">
+                                        <div class="skill-icon">
+                                            <i class="fas fa-pencil-alt"></i>
+                                        </div>
+                                        <div class="skill-content">
+                                            <h6 class="skill-heading">Content Development</h6>
+                                            <p>Experienced in creating impactful training modules and consultancy frameworks.</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- skill card 3 -->
+                                    <div class="skill-card">
+                                        <div class="skill-icon">
+                                            <i class="fas fa-laptop-code"></i>
+                                        </div>
+                                        <div class="skill-content">
+                                            <h6 class="skill-heading">Technical Knowledge</h6>
+                                            <p>Advanced understanding of IT infrastructure and business solutions.</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- skill card 4 -->
+                                    <div class="skill-card">
+                                        <div class="skill-icon">
+                                            <i class="fas fa-users-cog"></i>
+                                        </div>
+                                        <div class="skill-content">
+                                            <h6 class="skill-heading">Soft Skills Training</h6>
+                                            <p>Skilled in delivering people skills, ethics, and supervisory workshops.</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <!-- box 2 ends -->
@@ -670,19 +838,21 @@
                 <style>
                     /* Achievement Section Styles */
                     #acheivment {
-                        background-color: #f8f9fa;
+                        background-color: #f9f9f9;
+                        padding: 70px 0;
                     }
 
                     /* Intro Section */
                     #acheivment .dtr-intro__heading {
-                        color: #002244;
+                        color: #333;
                         margin-bottom: 15px;
+                        font-weight: 600;
                     }
 
                     #acheivment .dtr-intro__divider {
                         width: 80px;
                         height: 3px;
-                        background-color: #228B22;
+                        background-color: #28a745;
                         margin-bottom: 20px;
                     }
 
@@ -693,44 +863,175 @@
 
                     /* Box Styles */
                     #acheivment .mobile-bg-1,
-                    #acheivment .mobile-bg-4 {
-                        background-color: #002244;
-                        border-radius: 8px;
-                        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-                    }
-
                     #acheivment .mobile-bg-2,
-                    #acheivment .mobile-bg-3 {
-                        background-color: #1a5276;
+                    #acheivment .mobile-bg-3,
+                    #acheivment .mobile-bg-4 {
+                        background-color: #fff;
                         border-radius: 8px;
-                        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+                        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+                        border-top: 2px solid #28a745;
+                        transition: transform 0.3s ease, box-shadow 0.3s ease;
+                        padding: 30px;
+                    }
+                    
+                    #acheivment .mobile-bg-1:hover,
+                    #acheivment .mobile-bg-2:hover,
+                    #acheivment .mobile-bg-3:hover,
+                    #acheivment .mobile-bg-4:hover {
+                        transform: translateY(-3px);
+                        box-shadow: 0 6px 20px rgba(0,0,0,0.08);
                     }
 
                     /* Heading Styles */
                     #acheivment h5 {
-                        color: #fff;
+                        color: #333;
                         font-size: 1.5rem;
-                        border-bottom: 2px solid #228B22;
-                        padding-bottom: 10px;
-                        margin-bottom: 20px;
+                        margin-bottom: 25px;
+                        font-weight: 600;
+                        position: relative;
+                        display: inline-block;
+                    }
+                    
+                    #acheivment h5:after {
+                        content: '';
+                        position: absolute;
+                        bottom: -8px;
+                        left: 0;
+                        width: 40px;
+                        height: 2px;
+                        background-color: #28a745;
                     }
 
                     #acheivment .timeline-year {
-                        color: #4CAF50;
+                        color: #28a745;
+                        font-weight: 500;
+                        font-size: 0.85rem;
+                        text-transform: uppercase;
+                        letter-spacing: 1px;
+                        margin-bottom: 5px;
+                        display: block;
                     }
 
                     #acheivment .dtr-timeline__heading {
-                        color: #fff;
-                        font-size: 1.2rem;
+                        color: #333;
+                        font-size: 1.1rem;
+                        margin-top: 0;
+                        margin-bottom: 8px;
+                        font-weight: 600;
                     }
 
                     #acheivment .ability-heading {
-                        color: #4CAF50;
-                        font-size: 1.2rem;
+                        color: #333;
+                        font-size: 1.1rem;
+                        font-weight: 600;
+                        margin-bottom: 8px;
                     }
 
                     #acheivment .dtr-timeline__content {
-                        color: #e0e0e0;
+                        color: #666;
+                        line-height: 1.6;
+                        font-size: 0.95rem;
+                    }
+                    
+                    /* Company/Institution name styling */
+                    #acheivment .dtr-timeline__content strong,
+                    #acheivment .dtr-timeline__content b {
+                        color: #555;
+                    }
+                    
+                    /* Responsive adjustments */
+                    @media (max-width: 768px) {
+                        #acheivment .padding-50 {
+                            padding: 25px;
+                        }
+                        
+                        #acheivment h5 {
+                            font-size: 1.3rem;
+                        }
+                    }
+                    
+                    /* LinkedIn-style Timeline */
+                    .linkedin-timeline {
+                        position: relative;
+                        padding-left: 10px;
+                    }
+                    
+                    .linkedin-timeline:before {
+                        content: '';
+                        position: absolute;
+                        top: 10px;
+                        bottom: 10px;
+                        left: 20px;
+                        width: 2px;
+                        background-color: #28a745;
+                    }
+                    
+                    .timeline-item {
+                        position: relative;
+                        padding-left: 45px;
+                        margin-bottom: 30px;
+                    }
+                    
+                    .timeline-item:last-child {
+                        margin-bottom: 0;
+                    }
+                    
+                    .timeline-icon {
+                        position: absolute;
+                        left: 0;
+                        top: 5px;
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 50%;
+                        background-color: white;
+                        border: 2px solid #28a745;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        z-index: 2;
+                    }
+                    
+                    .timeline-icon i {
+                        color: #28a745;
+                        font-size: 16px;
+                    }
+                    
+                    .timeline-content {
+                        padding-bottom: 5px;
+                    }
+                    
+                    .timeline-year {
+                        color: #28a745;
+                        font-weight: 600;
+                        font-size: 0.85rem;
+                        text-transform: uppercase;
+                        letter-spacing: 1px;
+                        display: block;
+                        margin-bottom: 5px;
+                    }
+                    
+                    .timeline-position {
+                        color: #333;
+                        font-size: 1.1rem;
+                        margin-top: 0;
+                        margin-bottom: 5px;
+                        font-weight: 600;
+                    }
+                    
+                    .timeline-company {
+                        color: #555;
+                        margin-bottom: 5px;
+                        font-weight: 500;
+                    }
+                    
+                    .timeline-location {
+                        color: #777;
+                        font-size: 0.9rem;
+                    }
+                    
+                    .timeline-location i {
+                        margin-right: 5px;
+                        font-size: 0.8rem;
                     }
                 </style>
                 <style>
@@ -789,241 +1090,91 @@
                             display: block;
                         }
                     }
+                    
+                    /* Card Styles for Abilities, Academic, and Skills */
+                    .ability-cards, .academic-cards, .skills-cards {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 20px;
+                    }
+                    
+                    .ability-card, .academic-card, .skill-card {
+                        display: flex;
+                        background-color: white;
+                        border-radius: 8px;
+                        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+                        padding: 15px;
+                        transition: transform 0.3s ease, box-shadow 0.3s ease;
+                    }
+                    
+                    .ability-card:hover, .academic-card:hover, .skill-card:hover {
+                        transform: translateY(-5px);
+                        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                    }
+                    
+                    .ability-icon, .academic-icon, .skill-icon {
+                        width: 50px;
+                        height: 50px;
+                        min-width: 50px;
+                        border-radius: 50%;
+                        background-color: #28a745;
+                        color: white;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        margin-right: 15px;
+                    }
+                    
+                    .ability-icon i, .academic-icon i, .skill-icon i {
+                        font-size: 20px;
+                    }
+                    
+                    .ability-content, .academic-content, .skill-content {
+                        flex: 1;
+                    }
+                    
+                    .ability-heading, .academic-heading, .skill-heading {
+                        color: #333;
+                        font-size: 1.1rem;
+                        margin-top: 0;
+                        margin-bottom: 5px;
+                        font-weight: 600;
+                    }
+                    
+                    .academic-institution {
+                        color: #555;
+                        font-weight: 500;
+                        margin-bottom: 5px;
+                        font-size: 0.9rem;
+                    }
+                    
+                    .ability-content p, .academic-content p, .skill-content p {
+                        color: #666;
+                        margin-bottom: 0;
+                        font-size: 0.9rem;
+                        line-height: 1.5;
+                    }
+                    
+                    @media (max-width: 767px) {
+                        .ability-card, .academic-card, .skill-card {
+                            flex-direction: column;
+                        }
+                        
+                        .ability-icon, .academic-icon, .skill-icon {
+                            margin-right: 0;
+                            margin-bottom: 10px;
+                        }
+                    }
                 </style>
             </section>
 
                <!--===== client section starts =====-->
-               <section class="dtr-section padding-y-100 client-section" id="client">
-                <div class="container">
-
-                    <!--== intro starts ==-->
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="dtr-intro width-50-center-align">
-                                <h2 class="dtr-intro__heading">My Clients</h2>
-                                <div class="dtr-intro__divider mx-auto"></div>
-                                <p><b>Proud to have collaborated with renowned organizations, delivering tailored solutions that drive success and lasting partnerships.</b></p>
-                            </div>
-                        </div>
-                    </div>
-                    <!--== intro ends ==-->
-
-                    <!-- spacer -->
-                    <span class="spacer spacer-30"></span>
-
-                    <div class="row g-0">
-
-                        <!--== column 1 starts ==-->
-                        <div class="col-12 col-md-3">
-
-                            <!-- client box starts -->
-                            <div class="dtr-client-box client-box-navy">
-                                <div class="dtr-client-box__content">
-                                    <img src="assets/images/client-1.png" alt="client-1">
-                                </div>
-                            </div>
-                            <!-- client box ends -->
-
-                            <!-- client box starts -->
-                            <div class="dtr-client-box client-box-blue">
-                                <div class="dtr-client-box__content">
-                                    <img src="assets/images/client-5.png" alt="client-5">
-                                </div>
-                            </div>
-                            <!-- client box ends -->
-
-                        </div>
-                        <!--== column 1 ends ==-->
-
-                        <!--== column 2 starts ==-->
-                        <div class="col-12 col-md-3">
-
-                            <!-- client box starts -->
-                            <div class="dtr-client-box client-box-blue">
-                                <div class="dtr-client-box__content">
-                                    <img src="assets/images/client-2.png" alt="client-2">
-                                </div>
-                            </div>
-                            <!-- client box ends -->
-
-                            <!-- client box starts -->
-                            <div class="dtr-client-box client-box-navy">
-                                <div class="dtr-client-box__content">
-                                    <img src="assets/images/client-4.png" alt="client-4">
-                                </div>
-                            </div>
-                            <!-- client box ends -->
-
-                        </div>
-                        <!--== column 2 ends ==-->
-
-                        <!--== column 3 starts ==-->
-                        <div class="col-12 col-md-3">
-
-                            <!-- client box starts -->
-                            <div class="dtr-client-box client-box-navy">
-                                <div class="dtr-client-box__content">
-                                    <img src="assets/images/client-6.png" alt="client-6">
-                                </div>
-                            </div>
-                            <!-- client box ends -->
-
-                            <!-- client box starts -->
-                            <div class="dtr-client-box client-box-blue">
-                                <div class="dtr-client-box__content">
-                                    <img src="assets/images/client-3.png" alt="client-3">
-                                </div>
-                            </div>
-                            <!-- client box ends -->
-
-                        </div>
-                        <!--== column 3 ends ==-->
-
-                        <!--== column 4 starts ==-->
-                        <div class="col-12 col-md-3">
-
-                            <!-- client box starts -->
-                            <div class="dtr-client-box client-box-blue">
-                                <div class="dtr-client-box__content">
-                                    <img src="assets/images/client-7.png" alt="client-7">
-                                </div>
-                            </div>
-                            <!-- client box ends -->
-
-                            <!-- client box starts -->
-                            <div class="dtr-client-box client-box-navy">
-                                <div class="dtr-client-box__content">
-                                    <img src="assets/images/client-8.png" alt="client-8">
-                                </div>
-                            </div>
-                            <!-- client box ends -->
-
-                        </div>
-                        <!--== column 4 ends ==-->
-
-                    </div>
-                </div>
-                <style>
-                    /* Client Section Styles */
-                    .client-section {
-                        background-color: #f8f9fa;
-                        position: relative;
-                        overflow: hidden;
-                    }
-
-                    .client-section:before {
-                        content: '';
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        width: 100%;
-                        height: 100%;
-                        background: linear-gradient(135deg, rgba(0,50,102,0.03) 0%, rgba(78,116,155,0.03) 100%);
-                        z-index: 0;
-                    }
-
-                    .client-section .container {
-                        position: relative;
-                        z-index: 1;
-                    }
-
-                    .client-section .dtr-intro__heading {
-                        color: #002244;
-                        margin-bottom: 15px;
-                    }
-
-                    .client-section .dtr-intro__divider {
-                        width: 80px;
-                        height: 3px;
-                        background-color: #228B22;
-                        margin-bottom: 20px;
-                    }
-
-                    .client-section p {
-                        color: #555;
-                        font-size: 1.1rem;
-                    }
-
-                    .dtr-client-box {
-                        position: relative;
-                        overflow: hidden;
-                        transition: all 0.3s ease;
-                        margin: 0;
-                        border: 1px solid rgba(0,0,0,0.05);
-                    }
-
-                    .client-box-navy {
-                        background-color: #002244;
-                    }
-
-                    .client-box-blue {
-                        background-color: #4E749B;
-                    }
-
-                    .dtr-client-box:hover {
-                        transform: translateY(-5px);
-                        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-                        z-index: 2;
-                    }
-
-                    .dtr-client-box:after {
-                        content: '';
-                        position: absolute;
-                        bottom: 0;
-                        left: 0;
-                        width: 100%;
-                        height: 3px;
-                        background-color: #228B22;
-                        transform: scaleX(0);
-                        transition: transform 0.3s ease;
-                    }
-
-                    .dtr-client-box:hover:after {
-                        transform: scaleX(1);
-                    }
-
-                    .dtr-client-box__content {
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        padding: 40px 20px;
-                        height: 150px;
-                    }
-
-                    .dtr-client-box__content img {
-                        max-width: 80%;
-                        max-height: 80%;
-                        filter: brightness(0) invert(1);
-                        opacity: 0.8;
-                        transition: all 0.3s ease;
-                    }
-
-                    .dtr-client-box:hover .dtr-client-box__content img {
-                        opacity: 1;
-                        transform: scale(1.05);
-                    }
-
-                    @media (max-width: 768px) {
-                        .dtr-client-box__content {
-                            height: 120px;
-                            padding: 25px 15px;
-                        }
-
-                        .client-section .dtr-intro__heading {
-                            font-size: 2rem;
-                        }
-
-                        .client-section p {
-                            font-size: 1rem;
-                        }
-                    }
-                </style>
-            </section>
+              
             <!--===== client section ends =====-->
 
 
             <!--===== works section starts =====-->
-            <section id="Gallery" class="dtr-section gallery-section" style="background-color: #002244;">
+            <section id="gallery" class="dtr-section gallery-section" style="background-color: #002244;">
 
                 <!--== intro starts ==-->
                 <div class="container">
@@ -1039,7 +1190,7 @@
                 <span class="spacer spacer-30"></span>
 
                 <!--== portfolio starts ==-->
-                <div class="container">
+                <div class="container-fluid px-0">
                     <div class="gallery-grid">
                         @foreach($images as $image)
                         <!-- gallery item starts -->
@@ -1074,8 +1225,9 @@
                 <style>
                     /* Gallery Section Styles */
                     .gallery-section {
-                        background-color: #003366;
-                        padding: 80px 0;
+                        background-color: #002244;
+                        background: linear-gradient(to right, #001a33, #002244, #001a33);
+                        padding: 80px 0 0 0;
                         position: relative;
                     }
 
@@ -1093,12 +1245,12 @@
                     .gallery-divider {
                         width: 80px;
                         height: 3px;
-                        background-color: #228B22;
+                        background: linear-gradient(135deg, #1a4b8b, #3a7bd5);
                         margin: 0 auto 25px;
                     }
 
                     .gallery-btn {
-                        background-color: #228B22;
+                        background: linear-gradient(135deg, #1a4b8b, #3a7bd5);
                         border: none;
                         padding: 12px 25px;
                         border-radius: 4px;
@@ -1108,31 +1260,66 @@
                     }
 
                     .gallery-btn:hover {
-                        background-color: #1a6b1a;
+                        background: linear-gradient(135deg, #0d3b7a, #2868c0);
                         transform: translateY(-3px);
                         box-shadow: 0 5px 15px rgba(0,0,0,0.2);
                     }
 
                     .gallery-grid {
-                        display: grid;
-                        grid-template-columns: repeat(4, 1fr);
-                        gap: 20px;
-                        max-width: 1200px;
-                        margin: 0 auto;
+                        display: flex;
+                        flex-wrap: wrap;
+                        width: 100%;
+                        margin: 0;
+                        padding: 0;
+                        background-color: white;
+                    }
+                    
+                    @media (max-width: 768px) {
+                        .gallery-grid {
+                            grid-template-columns: repeat(2, 1fr);
+                            gap: 0;
+                        }
+                    }
+                    
+                    @media (max-width: 480px) {
+                        .gallery-grid {
+                            grid-template-columns: 1fr;
+                            gap: 0;
+                        }
                     }
 
                     .gallery-item {
                         position: relative;
                         overflow: hidden;
-                        border-radius: 8px;
-                        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+                        border-radius: 0;
+                        transition: transform 0.3s ease;
+                        width: 33.333%;
+                        padding: 0;
+                        margin: 0;
+                        box-sizing: border-box;
+                    }
+                    
+                    @media (max-width: 992px) {
+                        .gallery-item {
+                            width: 50%;
+                        }
+                    }
+                    
+                    @media (max-width: 480px) {
+                        .gallery-item {
+                            width: 100%;
+                        }
+                    }
+                    
+                    .gallery-item:hover {
+                        transform: scale(0.98);
                     }
 
                     .gallery-item-wrapper {
                         position: relative;
                         width: 100%;
                         height: 0;
-                        padding-bottom: 75%; /* Square aspect ratio */
+                        padding-bottom: 66.67%; /* 2:3 aspect ratio */
                         overflow: hidden;
                     }
 
@@ -1142,6 +1329,9 @@
                         left: 0;
                         width: 100%;
                         height: 100%;
+                        padding: 0;
+                        background-color: white;
+                        line-height: 0;
                     }
 
                     .gallery-item-img img {
@@ -1149,6 +1339,9 @@
                         height: 100%;
                         object-fit: cover;
                         transition: transform 0.5s ease;
+                        display: block;
+                        margin: 0;
+                        padding: 0;
                     }
 
                     .gallery-item-overlay {
@@ -1168,7 +1361,7 @@
                     .gallery-item-icon {
                         width: 50px;
                         height: 50px;
-                        background-color: #228B22;
+                        background: linear-gradient(135deg, #1a4b8b, #3a7bd5);
                         border-radius: 50%;
                         display: flex;
                         align-items: center;
@@ -1291,9 +1484,25 @@
                     }
                 </style>
 
-                <!-- Lightbox JavaScript -->
+                <!-- Masonry Layout and Lightbox JavaScript -->
                 <script>
                     document.addEventListener('DOMContentLoaded', function() {
+                        // Get all gallery items and images
+                        const allItems = document.querySelectorAll('.gallery-item');
+                        const allImages = document.querySelectorAll('.gallery-item-img img');
+                        
+                        // Make sure images load without gaps
+                        allImages.forEach(img => {
+                            if (img.complete) {
+                                img.style.opacity = '1';
+                            } else {
+                                img.style.opacity = '0';
+                                img.addEventListener('load', () => {
+                                    img.style.opacity = '1';
+                                });
+                            }
+                        });
+
                         // Get all gallery items
                         const galleryItems = document.querySelectorAll('.gallery-item-link');
                         const lightboxModal = document.getElementById('lightboxModal');
@@ -1382,196 +1591,9 @@
                     });
                 </script>
             </section>
-            <!--===== works section ends =====-->
 
 
-            <!--===== testimonial section starts =====-->
-            <section id="Testimonials" class="dtr-section bg-color-secondary-light padding-y-100" style="background-color: white">
-                <div class="container">
-                    <div class="row">
-
-                        <!--== intro starts ==-->
-                        <div class="col-12" style="color: black;">
-                            <div class="dtr-intro width-50-center-align">
-                                <h2 class="dtr-intro__heading">What People Say</h2>
-                            </div>
-                        </div>
-                        <!--== intro ends ==-->
-
-                        <!-- spacer -->
-                        <span class="spacer spacer-10"></span>
-
-                        <!--== column starts ==-->
-                        <div class="col-12">
-
-                            <!--== slider starts ==-->
-                            <div class="swiper dtr-swiper swiper-container dtr-testimonial-carousel dtr-slider-has-arrows clearfix">
-                                <div class="swiper-wrapper">
-
-                                    <!--== slide 1 starts ==-->
-                                    <div class="swiper-slide">
-                                        <div class="dtr-testimonial"><img class="dtr-testimonial__client-img" src="assets/images/testm-user3-100x100.jpg" alt="Mark Robison">
-                                            <div class="dtr-testimonial__content">
-                                                <p style="color: black;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.</p>
-                                            </div>
-                                            <div class="dtr-testimonial__client-info"><span class="dtr-testimonial__icon"></span>
-                                                <h5 class="dtr-testimonial__client-name" style="color: black;">Mark Robison</h5>
-                                                <p class="dtr-testimonial__client-job" style="color: black;">Founder@ACME Inc.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--== slide 1 ends ==-->
-
-                                    <!--== slide 2 starts ==-->
-                                    <div class="swiper-slide">
-                                        <div class="dtr-testimonial"><img class="dtr-testimonial__client-img" src="assets/images/testm-user1-100x100.jpg" alt="Thomas Luze">
-                                            <div class="dtr-testimonial__content">
-                                                <p style="color: black;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.</p>
-                                            </div>
-                                            <div class="dtr-testimonial__client-info"><span class="dtr-testimonial__icon"></span>
-                                                <h5 class="dtr-testimonial__client-name" style="color: black;">Thomas Luze</h5>
-                                                <p class="dtr-testimonial__client-job" style="color: black;">CTO, MUW Studio</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--== slide 2 ends ==-->
-
-                                    <!--== slide 3 starts ==-->
-                                    <div class="swiper-slide">
-                                        <div class="dtr-testimonial"><img class="dtr-testimonial__client-img" src="assets/images/testm-user2-100x100.jpg" alt="Andrea De Santis">
-                                            <div class="dtr-testimonial__content">
-                                                <p style="color: black;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.</p>
-                                            </div>
-                                            <div class="dtr-testimonial__client-info"><span class="dtr-testimonial__icon"></span>
-                                                <h5 class="dtr-testimonial__client-name" style="color: black;">Andrea De Santis</h5>
-                                                <p class="dtr-testimonial__client-job" style="color: black;">Owner, Foundant Factory</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--== slide 3 ends ==-->
-
-                                </div>
-                                <div class="swiper-button-next dtr-swiper-button dtr-testimonial__next" role="button" aria-label="Next slide"></div>
-                                <div class="swiper-button-prev dtr-swiper-button dtr-testimonial__prev" role="button" aria-label="Previous slide"></div>
-                            </div>
-                            <!--== slider ends ==-->
-
-                        </div>
-                        <!--== column ends ==-->
-
-                    </div>
-                </div>
-            </section>
-            <!--===== testimonial section ends =====-->
-
-            <!--===== pricing section starts =====-->
-<!--            <section id="pricing" class="dtr-section padding-y-100">-->
-<!--                <div class="container">-->
-<!--                    <div class="row">-->
-
-<!--                        &lt;!&ndash;== intro starts ==&ndash;&gt;-->
-<!--                        <div class="col-12">-->
-<!--                            <div class="dtr-intro width-50-center-align">-->
-<!--                                <h2 class="dtr-intro__heading">Plans & Pricing</h2>-->
-<!--                                <p>There are many variations of passages of lorem ipsum available, but the majority have suffered alteration in some form</p>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        &lt;!&ndash;== intro ends ==&ndash;&gt;-->
-
-<!--                        &lt;!&ndash; spacer &ndash;&gt;-->
-<!--                        <span class="spacer spacer-10"></span>-->
-
-<!--                        &lt;!&ndash;== column 1 starts ==&ndash;&gt;-->
-<!--                        <div class="col-12 col-md-4">-->
-
-<!--                            &lt;!&ndash; pricing table starts &ndash;&gt;-->
-<!--                            <div class="dtr-pricing dtr-pricing&#45;&#45;animation wow animate__fadeIn">-->
-<!--                                <div class="dtr-pricing__tagline">Most Affordable</div>-->
-<!--                                <div class="dtr-pricing__icon-wrapper">-->
-<!--                                    <span class="dtr-pricing__icon">-->
-<!--                                        <i aria-hidden="true" class="icon-baby-carriage-solid"></i>-->
-<!--                                    </span>-->
-<!--                                </div>-->
-<!--                                <h3 class="dtr-pricing__heading">Weekly</h3>-->
-<!--                                <div class="dtr-pricing__description">-->
-<!--                                    <ul>-->
-<!--                                        <li>3 Revisions Per Project</li>-->
-<!--                                        <li>Limited Customization</li>-->
-<!--                                        <li>Limited Updates</li>-->
-<!--                                        <li>24/7 Support</li>-->
-<!--                                        <li>SEO &amp; Marketing Tips</li>-->
-<!--                                    </ul>-->
-<!--                                </div>-->
-<!--                                <p class="dtr-pricing__price"><span class="dtr-pricing__currency">$</span>99</p>-->
-<!--                                <a href="#" class="dtr-btn dtr-pricing__btn" role="button"><span class="dtr-btn__text">Get Started Now</span></a>-->
-<!--                            </div>-->
-<!--                            &lt;!&ndash; pricing table ends &ndash;&gt;-->
-
-<!--                        </div>-->
-<!--                        &lt;!&ndash;== column 1 ends ==&ndash;&gt;-->
-
-<!--                        &lt;!&ndash;== column 2 starts ==&ndash;&gt;-->
-<!--                        <div class="col-12 col-md-4 small-device-top-space">-->
-
-<!--                            &lt;!&ndash; pricing table starts &ndash;&gt;-->
-<!--                            <div class="dtr-pricing dtr-pricing&#45;&#45;animation dtr-pricing&#45;&#45;clr-scheme3 wow animate__fadeIn" data-wow-delay=".3s">-->
-<!--                                <div class="dtr-pricing__tagline">Value for Money</div>-->
-<!--                                <div class="dtr-pricing__icon-wrapper">-->
-<!--                                    <span class="dtr-pricing__icon">-->
-<!--                                        <i aria-hidden="true" class="icon-shuttle-space-solid"></i>-->
-<!--                                    </span>-->
-<!--                                </div>-->
-<!--                                <h3 class="dtr-pricing__heading">Projectwise</h3>-->
-<!--                                <div class="dtr-pricing__description">-->
-<!--                                    <ul>-->
-<!--                                        <li>Unlimited Revisions</li>-->
-<!--                                        <li>Complete Customization</li>-->
-<!--                                        <li>Unlimited updates</li>-->
-<!--                                        <li>24/7 Priority Support</li>-->
-<!--                                        <li>Full SEO Optimization</li>-->
-<!--                                    </ul>-->
-<!--                                </div>-->
-<!--                                <p class="dtr-pricing__price"><span class="dtr-pricing__currency">$</span>399</p>-->
-<!--                                <a href="#" class="dtr-btn dtr-pricing__btn" role="button"><span class="dtr-btn__text">Get Started Now</span></a>-->
-<!--                            </div>-->
-<!--                            &lt;!&ndash; pricing table ends &ndash;&gt;-->
-
-<!--                        </div>-->
-<!--                        &lt;!&ndash;== column 2 ends ==&ndash;&gt;-->
-
-<!--                        &lt;!&ndash;== column 3 starts ==&ndash;&gt;-->
-<!--                        <div class="col-12 col-md-4 small-device-top-space">-->
-
-<!--                            &lt;!&ndash; pricing table starts &ndash;&gt;-->
-<!--                            <div class="dtr-pricing dtr-pricing&#45;&#45;animation dtr-pricing&#45;&#45;clr-scheme2 wow animate__fadeIn" data-wow-delay="0.6s">-->
-<!--                                <div class="dtr-pricing__tagline">Most Affordable</div>-->
-<!--                                <div class="dtr-pricing__icon-wrapper">-->
-<!--                                    <span class="dtr-pricing__icon">-->
-<!--                                        <i aria-hidden="true" class="icon-truck-monster-solid"></i>-->
-<!--                                    </span>-->
-<!--                                </div>-->
-<!--                                <h3 class="dtr-pricing__heading">Monthly</h3>-->
-<!--                                <div class="dtr-pricing__description">-->
-<!--                                    <ul>-->
-<!--                                        <li>6 Revisions Per Project</li>-->
-<!--                                        <li>Moderate Customization</li>-->
-<!--                                        <li>Limited Updates</li>-->
-<!--                                        <li>24/7 Support</li>-->
-<!--                                        <li>SEO &amp; Marketing Tips</li>-->
-<!--                                    </ul>-->
-<!--                                </div>-->
-<!--                                <p class="dtr-pricing__price"><span class="dtr-pricing__currency">$</span>199</p>-->
-<!--                                <a href="#" class="dtr-btn dtr-pricing__btn" role="button"><span class="dtr-btn__text">Get Started Now</span></a>-->
-<!--                            </div>-->
-<!--                            &lt;!&ndash; pricing table ends &ndash;&gt;-->
-
-<!--                        </div>-->
-<!--                        &lt;!&ndash;== column 3 ends ==&ndash;&gt;-->
-
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </section>-->
-            <!--===== pricing section ends =====-->
+           
             <style>
                .dtr-post-block__img-wrapper {
                     width: 100%;
@@ -1596,234 +1618,242 @@
 
             </style>
 
-            <!--===== blog section starts =====-->
-            <section id="Events" class="dtr-section events-section">
+            <!--===== Public Programmes section starts =====-->
+            <section id="Events" class="dtr-section programmes-section">
                 <div class="container">
                     <!-- Section Header -->
-                    <div class="events-header">
-                        <div class="events-title-wrapper">
-                            <h2 class="events-title">Events</h2>
-                            <div class="events-divider"></div>
-                        </div>
-                        <a class="dtr-btn events-btn" href="{{route('frontend-event')}}" role="button">
-                            <span class="dtr-btn__text">View More</span>
-                        </a>
+                    <div class="programmes-header">
+                        <h2 class="programmes-title">Public Programmes</h2>
+                        <div class="programmes-divider"></div>
                     </div>
 
-                    <!-- Events Slider -->
-                    <div class="events-slider-container">
-                        <div class="swiper dtr-swiper swiper-container dtr-recentposts-carousel">
-                            <div class="swiper-wrapper">
-                                @foreach ($events as $event)
-                                    <div class="swiper-slide event-card">
-                                        <!-- Event Image -->
-                                        <div class="event-image-container">
-                                            <a href="{{ route('events.show', ['slug' => Str::slug($event->title) . '-' . $event->id]) }}">
-                                                <img src="{{ asset('storage/' . ($event->eventImages->first()->image ?? 'default.jpg')) }}" alt="{{ $event->title }}">
-                                                <div class="event-date-badge">
-                                                    <span class="event-day">{{ $event->created_at->format('d') }}</span>
-                                                    <span class="event-month">{{ $event->created_at->format('M') }}</span>
-                                                </div>
-                                            </a>
-                                        </div>
+                    <!-- Programmes Grid -->
+                    <div class="programmes-grid">
+                        @foreach ($events as $event)
+                            <div class="programme-card">
+                                <!-- Programme Image -->
+                                <div class="programme-image-container">
+                                    <a href="{{ route('events.show', ['slug' => Str::slug($event->title) . '-' . $event->id]) }}">
+                                        <img src="{{ asset('storage/' . ($event->eventImages->first()->image ?? 'default.jpg')) }}" alt="{{ $event->title }}">
+                                    </a>
+                                </div>
 
-                                        <!-- Event Content -->
-                                        <div class="event-content">
-                                            <h4 class="event-title">
-                                                <a href="{{ route('events.show', ['slug' => Str::slug($event->title) . '-' . $event->id]) }}">{{ $event->title }}</a>
-                                            </h4>
-
-                                            <div class="event-meta">
-                                                <span class="event-author">
-                                                    <i class="fas fa-user"></i> Author Name
-                                                </span>
-                                                <span class="event-location">
-                                                    <i class="fas fa-map-marker-alt"></i> Event Location
-                                                </span>
-                                            </div>
-
-                                            <div class="event-description">
-                                                {{ \Illuminate\Support\Str::limit($event->description, 120) }}
-                                            </div>
-
-                                            <a href="{{ route('events.show', ['slug' => Str::slug($event->title) . '-' . $event->id]) }}" class="event-read-more">
-                                                Read More <i class="fas fa-arrow-right"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                @endforeach
+                                <!-- Programme Title Overlay -->
+                                <div class="programme-title-overlay">
+                                    <h4 class="programme-title">
+                                        <a href="{{ route('events.show', ['slug' => Str::slug($event->title) . '-' . $event->id]) }}">{{ $event->title }}</a>
+                                    </h4>
+                                    <p class="programme-description">{{ \Illuminate\Support\Str::limit($event->description, 60) }}</p>
+                                </div>
+                                <!-- Arrow Icon -->
+                                <div class="programme-arrow">
+                                    <i class="fas fa-arrow-right"></i>
+                                </div>
                             </div>
-
-                            <!-- Add navigation arrows -->
-                            <div class="swiper-button-next events-nav-next"></div>
-                            <div class="swiper-button-prev events-nav-prev"></div>
-                        </div>
+                        @endforeach
+                    </div>
+                    
+                    <!-- View More Button -->
+                    <div class="programmes-footer">
+                        <a class="dtr-btn programmes-btn" href="{{route('frontend-event')}}" role="button">
+                            <span class="dtr-btn__text">VIEW MORE EVENTS</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
                     </div>
                 </div>
                 <style>
-                    /* Events Section Styles */
-                    .events-section {
-                        background-color: #003366;
+                    /* Public Programmes Section Styles */
+                    .programmes-section {
+                        background-color: #ffffff;
                         padding: 80px 0;
                         position: relative;
                     }
-
-                    .events-section::before {
+                    
+                    .programmes-section::before {
                         content: '';
                         position: absolute;
                         top: 0;
                         left: 0;
                         width: 100%;
                         height: 100%;
-                        background: linear-gradient(135deg, rgba(0,34,68,0.95) 0%, rgba(0,50,102,0.95) 100%);
+                        background-image: url('data:image/svg+xml;utf8,<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M5 5 L6 5 L6 6 L5 6 Z" fill="%23f0a500" /></svg>');
+                        background-size: 40px 40px;
+                        opacity: 0.1;
                         z-index: 0;
                     }
 
-                    .events-section .container {
+                    .programmes-section .container {
                         position: relative;
                         z-index: 1;
                     }
 
-                    .events-header {
-                        display: flex;
-                        justify-content: space-between;
-                        align-items: center;
-                        margin-bottom: 40px;
+                    .programmes-header {
+                        text-align: center;
+                        margin-bottom: 50px;
                     }
 
-                    .events-title {
-                        color: white;
+                    .programmes-title {
+                        color: #333;
                         font-size: 2.5rem;
                         margin-bottom: 15px;
+                        font-weight: 600;
                     }
 
-                    .events-divider {
+                    .programmes-divider {
                         width: 80px;
                         height: 3px;
-                        background-color: #228B22;
-                        margin-bottom: 10px;
+                        background: linear-gradient(135deg, #1a4b8b, #3a7bd5);
+                        margin: 0 auto;
                     }
 
-                    .events-btn {
-                        background-color: #228B22;
-                        border: none;
-                        padding: 12px 25px;
-                        border-radius: 4px;
-                        transition: all 0.3s ease;
+                    .programmes-grid {
+                        display: grid;
+                        grid-template-columns: repeat(3, 1fr);
+                        gap: 20px;
+                        margin-bottom: 40px;
+                        padding: 0 15px;
                     }
 
-                    .events-btn:hover {
-                        background-color: #1a6b1a;
-                        transform: translateY(-3px);
-                        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+                    @media (max-width: 1200px) {
+                        .programmes-grid {
+                            grid-template-columns: repeat(2, 1fr);
+                        }
                     }
 
-                    .events-slider-container {
-                        position: relative;
-                        padding: 0 60px;
+                    @media (max-width: 768px) {
+                        .programmes-grid {
+                            grid-template-columns: repeat(2, 1fr);
+                        }
                     }
 
-                    .event-card {
+                    @media (max-width: 480px) {
+                        .programmes-grid {
+                            grid-template-columns: 1fr;
+                        }
+                    }
+
+                    .programme-card {
                         background-color: white;
-                        border-radius: 8px;
+                        border-radius: 0;
                         overflow: hidden;
-                        box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+                        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
                         transition: all 0.3s ease;
-                        height: 100%;
-                        margin: 0 10px;
-                    }
-
-                    .event-card:hover {
-                        transform: translateY(-10px);
-                        box-shadow: 0 15px 30px rgba(0,0,0,0.25);
-                    }
-
-                    .event-image-container {
                         position: relative;
-                        height: 220px;
+                    }
+
+                    .programme-card:hover {
+                        transform: translateY(-5px);
+                        box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+                    }
+                    
+                    .programme-card:hover .programme-arrow {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                    
+                    .programme-arrow {
+                        position: absolute;
+                        bottom: 15px;
+                        right: 15px;
+                        width: 36px;
+                        height: 36px;
+                        background: linear-gradient(135deg, #1a4b8b, #3a7bd5);
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        color: white;
+                        opacity: 0;
+                        transform: translateY(10px);
+                        transition: all 0.3s ease;
+                        z-index: 2;
+                    }
+                    
+                    .programme-arrow i {
+                        font-size: 14px;
+                    }
+
+                    .programme-image-container {
+                        position: relative;
+                        height: 0;
+                        padding-bottom: 85%; /* Even bigger aspect ratio */
                         overflow: hidden;
                     }
 
-                    .event-image-container img {
+                    .programme-image-container img {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
                         width: 100%;
                         height: 100%;
                         object-fit: cover;
                         transition: transform 0.5s ease;
                     }
 
-                    .event-card:hover .event-image-container img {
-                        transform: scale(1.1);
+                    .programme-card:hover .programme-image-container img {
+                        transform: scale(1.05);
                     }
 
-                    .event-date-badge {
+                    .programme-title-overlay {
                         position: absolute;
-                        top: 15px;
-                        right: 15px;
-                        background-color: #228B22;
+                        bottom: 0;
+                        left: 0;
+                        width: 100%;
+                        background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0) 100%);
+                        padding: 50px 15px 15px;
+                        text-align: left;
+                    }
+
+                    .programme-title {
+                        font-size: 1.1rem;
+                        margin: 0 0 5px;
+                        font-weight: 500;
+                        line-height: 1.4;
+                    }
+                    
+                    .programme-description {
+                        font-size: 0.85rem;
+                        margin: 0;
+                        color: rgba(255,255,255,0.8);
+                        line-height: 1.3;
+                    }
+
+                    .programme-title a {
                         color: white;
-                        padding: 10px;
-                        border-radius: 4px;
-                        display: flex;
-                        flex-direction: column;
-                        align-items: center;
-                        min-width: 60px;
-                        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-                    }
-
-                    .event-day {
-                        font-size: 1.5rem;
-                        font-weight: 700;
-                        line-height: 1;
-                    }
-
-                    .event-month {
-                        font-size: 0.9rem;
-                        text-transform: uppercase;
-                    }
-
-                    .event-content {
-                        padding: 25px;
-                        color: #333;
-                    }
-
-                    .event-title {
-                        font-size: 1.3rem;
-                        margin-bottom: 15px;
-                        font-weight: 600;
-                    }
-
-                    .event-title a {
-                        color: #002244;
                         text-decoration: none;
                         transition: color 0.3s ease;
                     }
 
-                    .event-title a:hover {
+                    .programme-title a:hover {
                         color: #228B22;
                     }
+                    
+                    .programmes-footer {
+                        text-align: center;
+                        margin-top: 30px;
+                    }
 
-                    .event-meta {
-                        display: flex;
-                        gap: 15px;
-                        margin-bottom: 15px;
+                    .programmes-btn {
+                        background: linear-gradient(135deg, #1a4b8b, #3a7bd5);
+                        border: none;
+                        padding: 12px 25px;
+                        border-radius: 4px;
+                        transition: all 0.3s ease;
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 10px;
+                        font-weight: 500;
+                    }
+
+                    .programmes-btn:hover {
+                        background: linear-gradient(135deg, #0d3b7a, #2868c0);
+                        transform: translateY(-3px);
+                        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+                    }
+                    
+                    .programmes-btn i {
                         font-size: 0.9rem;
-                        color: #666;
                     }
-
-                    .event-meta i {
-                        color: #228B22;
-                        margin-right: 5px;
-                    }
-
-                    .event-description {
-                        margin-bottom: 20px;
-                        color: #555;
-                        line-height: 1.6;
-                    }
-
-                    .event-read-more {
-                        display: inline-block;
-                        color: #228B22;
                         font-weight: 600;
                         text-decoration: none;
                         transition: all 0.3s ease;
@@ -1845,7 +1875,7 @@
                     .events-nav-next,
                     .events-nav-prev {
                         color: white;
-                        background-color: #228B22;
+                        background: linear-gradient(135deg, #1a4b8b, #3a7bd5);
                         width: 40px;
                         height: 40px;
                         border-radius: 50%;
@@ -1865,7 +1895,7 @@
 
                     .events-nav-next:hover,
                     .events-nav-prev:hover {
-                        background-color: #1a6b1a;
+                        background: linear-gradient(135deg, #0d3b7a, #2868c0);
                         transform: translateY(-50%) scale(1.1);
                     }
 
@@ -1890,303 +1920,275 @@
                 </style>
             </section>
             <!--===== blog section ends =====-->
-            <section id="Articles" class="dtr-section articles-section">
+            <!-- Articles section commented out as requested -->
+            <!--
+         
+            -->
+
+            <!--===== contact section starts =====-->
+            <section id="Contact" class="dtr-section contact-section">
                 <div class="container">
                     <!-- Section Header -->
-                    <div class="articles-header">
-                        <div class="articles-title-wrapper">
-                            <h2 class="articles-title">Articles</h2>
-                            <div class="articles-divider"></div>
-                        </div>
-                        <a class="dtr-btn articles-btn" href="{{route('frontend-article')}}" role="button">
-                            <span class="dtr-btn__text">View More</span>
-                        </a>
+                    <div class="contact-header">
+                        <h2 class="contact-title">Contact Us</h2>
+                        <div class="contact-divider"></div>
+                        <p class="contact-subtitle">Get in touch with us for any inquiries or collaborations</p>
                     </div>
 
-                    <!-- Articles Slider -->
-                    <div class="articles-slider-container">
-                        <div class="swiper dtr-swiper swiper-container dtr-recentposts-carousel">
-                            <div class="swiper-wrapper">
-                                @foreach ($articles as $article)
-                                    <div class="swiper-slide article-card">
-                                        <!-- Article Image -->
-                                        <div class="article-image-container">
-                                            <a href="{{ route('article.show', ['slug' => Str::slug($article->title) . '-' . $article->id]) }}">
-                                                <img src="{{ asset('storage/' . ($article->images->first()->image ?? 'default.jpg')) }}" alt="{{ $article->title }}">
-                                                <div class="article-date-badge">
-                                                    <span class="article-day">{{ $article->created_at->format('d') }}</span>
-                                                    <span class="article-month">{{ $article->created_at->format('M') }}</span>
-                                                </div>
-                                            </a>
+                    <!-- Contact Form and Info -->
+                    <div class="row">
+                        <!-- Contact Form -->
+                        <div class="col-lg-7 mb-5 mb-lg-0">
+                            <div class="contact-form-container">
+                                <form id="contactForm" action="#" method="POST" class="contact-form">
+                                    @csrf
+                                    <div class="row">
+                                        <div class="col-md-6 form-group">
+                                            <label for="name">Your Name</label>
+                                            <input type="text" class="form-control" id="name" name="name" required>
                                         </div>
-
-                                        <!-- Article Content -->
-                                        <div class="article-content">
-                                            <div class="article-meta">
-                                                <span class="article-date">
-                                                    <i class="far fa-calendar-alt"></i> {{ $article->created_at->format('M d, Y') }}
-                                                </span>
-                                                <span class="article-author">
-                                                    <i class="far fa-user"></i> Gopi Muthumaran
-                                                </span>
-                                            </div>
-
-                                            <h4 class="article-title">
-                                                <a href="{{ route('article.show', ['slug' => Str::slug($article->title) . '-' . $article->id]) }}">{{ $article->title }}</a>
-                                            </h4>
-
-                                            <div class="article-description">
-                                                {{ \Illuminate\Support\Str::limit($article->description, 120) }}
-                                            </div>
-
-                                            <a href="{{ route('article.show', ['slug' => Str::slug($article->title) . '-' . $article->id]) }}" class="article-read-more">
-                                                Read More <i class="fas fa-arrow-right"></i>
-                                            </a>
+                                        <div class="col-md-6 form-group">
+                                            <label for="email">Your Email</label>
+                                            <input type="email" class="form-control" id="email" name="email" required>
                                         </div>
                                     </div>
-                                @endforeach
+                                    <div class="form-group">
+                                        <label for="subject">Subject</label>
+                                        <input type="text" class="form-control" id="subject" name="subject" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="message">Message</label>
+                                        <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+                                    </div>
+                                    <button type="submit" class="dtr-btn contact-submit-btn">
+                                        <span>Send Message</span>
+                                        <i class="fas fa-paper-plane"></i>
+                                    </button>
+                                </form>
                             </div>
-
-                            <!-- Add navigation arrows -->
-                            <div class="swiper-button-next articles-nav-next"></div>
-                            <div class="swiper-button-prev articles-nav-prev"></div>
+                        </div>
+                        
+                        <!-- Contact Info -->
+                        <div class="col-lg-5">
+                            <div class="contact-info-container">
+                                <div class="contact-info-item">
+                                    <div class="contact-info-icon">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                    </div>
+                                    <div class="contact-info-content">
+                                        <h4>Our Location</h4>
+                                        <p>NO.11-A-4, Colombo Stock Exchange<br>Colombo 07, Sri Lanka</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="contact-info-item">
+                                    <div class="contact-info-icon">
+                                        <i class="fas fa-phone-alt"></i>
+                                    </div>
+                                    <div class="contact-info-content">
+                                        <h4>Call Us</h4>
+                                        <p>+94 77 123 4567<br>+94 777 362 826</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="contact-info-item">
+                                    <div class="contact-info-icon">
+                                        <i class="fas fa-envelope"></i>
+                                    </div>
+                                    <div class="contact-info-content">
+                                        <h4>Email Us</h4>
+                                        <p>info@minuka@spcom-1.com<br>email@spcom-1.com</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="contact-social-links">
+                                    <a href="#" class="contact-social-link"><i class="fab fa-facebook-f"></i></a>
+                                    <a href="#" class="contact-social-link"><i class="fab fa-twitter"></i></a>
+                                    <a href="#" class="contact-social-link"><i class="fab fa-instagram"></i></a>
+                                    <a href="#" class="contact-social-link"><i class="fab fa-linkedin-in"></i></a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+                
                 <style>
-                    /* Articles Section Styles */
-                    .articles-section {
-                        background-color: #f8f9fa;
+                    /* Contact Section Styles */
+                    .contact-section {
+                        background-color: #f9f9f9;
                         padding: 80px 0;
                         position: relative;
+                        overflow: hidden;
                     }
-
-                    .articles-section::before {
+                    
+                    .contact-section:before {
                         content: '';
                         position: absolute;
-                        top: 0;
-                        left: 0;
-                        width: 100%;
-                        height: 100%;
-                        background: linear-gradient(135deg, rgba(248,249,250,0.95) 0%, rgba(255,255,255,0.95) 100%);
+                        top: -100px;
+                        left: -100px;
+                        width: 300px;
+                        height: 300px;
+                        border-radius: 50%;
+                        background: linear-gradient(135deg, rgba(26,75,139,0.05) 0%, rgba(58,123,213,0.1) 100%);
                         z-index: 0;
                     }
-
-                    .articles-section .container {
-                        position: relative;
-                        z-index: 1;
+                    
+                    .contact-header {
+                        text-align: center;
+                        margin-bottom: 50px;
                     }
-
-                    .articles-header {
-                        display: flex;
-                        justify-content: space-between;
-                        align-items: center;
-                        margin-bottom: 40px;
-                    }
-
-                    .articles-title {
-                        color: #002244;
+                    
+                    .contact-title {
+                        color: #333;
                         font-size: 2.5rem;
                         margin-bottom: 15px;
+                        font-weight: 600;
                     }
-
-                    .articles-divider {
+                    
+                    .contact-divider {
                         width: 80px;
                         height: 3px;
-                        background-color: #228B22;
-                        margin-bottom: 10px;
+                        background: linear-gradient(135deg, #1a4b8b, #3a7bd5);
+                        margin: 0 auto 15px;
                     }
-
-                    .articles-btn {
-                        background-color: #228B22;
+                    
+                    .contact-subtitle {
+                        color: #666;
+                        font-size: 1.1rem;
+                        max-width: 600px;
+                        margin: 0 auto;
+                    }
+                    
+                    .contact-form-container {
+                        background-color: white;
+                        padding: 30px;
+                        border-radius: 5px;
+                        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+                        border-top: 3px solid #3a7bd5;
+                    }
+                    
+                    .contact-form .form-group {
+                        margin-bottom: 20px;
+                    }
+                    
+                    .contact-form label {
+                        font-weight: 500;
+                        color: #444;
+                        margin-bottom: 5px;
+                    }
+                    
+                    .contact-form .form-control {
+                        border: 1px solid #ddd;
+                        border-radius: 4px;
+                        padding: 10px 15px;
+                        height: auto;
+                        transition: all 0.3s ease;
+                    }
+                    
+                    .contact-form .form-control:focus {
+                        border-color: #3a7bd5;
+                        box-shadow: 0 0 0 0.2rem rgba(58,123,213,0.15);
+                    }
+                    
+                    .contact-submit-btn {
+                        background: linear-gradient(135deg, #1a4b8b, #3a7bd5);
                         border: none;
                         padding: 12px 25px;
                         border-radius: 4px;
-                        transition: all 0.3s ease;
-                    }
-
-                    .articles-btn:hover {
-                        background-color: #1a6b1a;
-                        transform: translateY(-3px);
-                        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-                    }
-
-                    .articles-slider-container {
-                        position: relative;
-                        padding: 0 60px;
-                    }
-
-                    .article-card {
-                        background-color: white;
-                        border-radius: 8px;
-                        overflow: hidden;
-                        box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-                        transition: all 0.3s ease;
-                        height: 100%;
-                        margin: 0 10px;
-                    }
-
-                    .article-card:hover {
-                        transform: translateY(-10px);
-                        box-shadow: 0 15px 30px rgba(0,0,0,0.25);
-                    }
-
-                    .article-image-container {
-                        position: relative;
-                        height: 220px;
-                        overflow: hidden;
-                    }
-
-                    .article-image-container img {
-                        width: 100%;
-                        height: 100%;
-                        object-fit: cover;
-                        transition: transform 0.5s ease;
-                    }
-
-                    .article-card:hover .article-image-container img {
-                        transform: scale(1.1);
-                    }
-
-                    .article-date-badge {
-                        position: absolute;
-                        top: 15px;
-                        right: 15px;
-                        background-color: #228B22;
                         color: white;
-                        padding: 10px;
-                        border-radius: 4px;
-                        display: flex;
-                        flex-direction: column;
+                        font-weight: 500;
+                        display: inline-flex;
                         align-items: center;
-                        min-width: 60px;
-                        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+                        gap: 10px;
+                        transition: all 0.3s ease;
                     }
-
-                    .article-day {
-                        font-size: 1.5rem;
-                        font-weight: 700;
-                        line-height: 1;
+                    
+                    .contact-submit-btn:hover {
+                        background: linear-gradient(135deg, #0d3b7a, #2868c0);
+                        transform: translateY(-3px);
+                        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
                     }
-
-                    .article-month {
-                        font-size: 0.9rem;
-                        text-transform: uppercase;
+                    
+                    .contact-info-container {
+                        height: 100%;
+                        background: linear-gradient(135deg, #1a4b8b, #3a7bd5);
+                        padding: 30px;
+                        border-radius: 5px;
+                        color: white;
+                        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+                        position: relative;
+                        overflow: hidden;
                     }
-
-                    .article-content {
-                        padding: 25px;
-                        color: #333;
+                    
+                    .contact-info-container:before {
+                        content: '';
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+                        width: 150px;
+                        height: 150px;
+                        background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M54.627 0l.83.828-1.415 1.415L51.8 0h2.827zM5.373 0l-.83.828L5.96 2.243 8.2 0H5.374zM48.97 0l3.657 3.657-1.414 1.414L46.143 0h2.828zM11.03 0L7.372 3.657 8.787 5.07 13.857 0H11.03zm32.284 0L49.8 6.485 48.384 7.9l-7.9-7.9h2.83zm-24.596 0l-5.485 5.486 1.414 1.414 7.9-7.9h-2.83zm16.97 0l-7.071 7.07-1.414-1.414L33.284 0h2.83zM30 0L20.344 9.656l1.414 1.414L30 2.828 38.242 11.07l1.415-1.414L30 0zm-2.828 0l-9.9 9.9 1.415 1.414L25.9 4.1 27.314 5.515 17.414 15.415l1.414 1.414L30 5.657l11.172 11.172 1.414-1.414L27.314 0h-.142zm-5.656 0L7.372 14.143l1.414 1.414L22.93 0h-1.414zM38.5 0L26.686 11.814l1.415 1.414 12.228-12.228h-1.83zm2.83 0l-14.143 14.142 1.414 1.414L42.686 0h-1.357zm-8.486 0L16.686 16.143l1.414 1.414L40.243 0h-7.4zM42.687 0L28.544 14.142l1.414 1.414L44.1 0h-1.414zm-24.6 0L3.543 14.143l1.414 1.414L20.1 0h-2.014zM0 0l28.544 28.544 1.414-1.414L0 2.828V0zm0 5.657l25.716 25.717 1.414-1.414L0 8.485v-2.83zm0 5.657l22.887 22.887 1.414-1.414L0 14.142v-2.83zm0 5.657L20.03 34.03l1.414-1.414L0 19.8v-2.83zm0 5.657l17.2 17.2 1.415-1.414L0 25.456v-2.83zm0 5.657l14.37 14.37 1.415-1.414L0 31.113v-2.83zm0 5.657l11.544 11.543 1.414-1.414L0 36.77v-2.83zm0 5.657l8.715 8.715 1.414-1.415L0 42.425v-2.83zm0 5.657l5.886 5.886 1.414-1.414L0 48.082v-2.83zm0 5.657l3.057 3.057 1.414-1.414L0 53.74v-2.83zM0 59.56l.143.143 1.414-1.414L0 56.43v3.13zm5.657 0l.828.83 1.414-1.415-1.414-1.414-1.414 1.414.586.586zM11.314 0L0 11.314v2.83L13.143 0h-1.83zm5.657 0L0 16.97v2.83L19.8 0h-2.83zm5.657 0L0 22.627v2.83L25.456 0h-2.83zm5.657 0L0 28.284v2.83L31.113 0h-2.83zm5.657 0L0 33.94v2.83L36.77 0h-2.83zm5.657 0L0 39.6v2.83L42.426 0h-2.83zm5.657 0L0 45.254v2.83L48.082 0h-2.83zm5.657 0L0 50.91v2.83L53.74 0h-2.83zm5.657 0L0 56.568v2.873L59.397 0h-2.83z' fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+                        opacity: 0.5;
                     }
-
-                    .article-meta {
+                    
+                    .contact-info-item {
                         display: flex;
-                        gap: 15px;
-                        margin-bottom: 15px;
-                        font-size: 0.9rem;
-                        color: #666;
+                        margin-bottom: 25px;
                     }
-
-                    .article-meta i {
-                        color: #228B22;
-                        margin-right: 5px;
+                    
+                    .contact-info-icon {
+                        font-size: 1.5rem;
+                        margin-right: 15px;
+                        color: rgba(255,255,255,0.9);
                     }
-
-                    .article-title {
-                        font-size: 1.3rem;
-                        margin-bottom: 15px;
+                    
+                    .contact-info-content h4 {
+                        font-size: 1.1rem;
+                        margin-bottom: 5px;
                         font-weight: 600;
-                        line-height: 1.4;
                     }
-
-                    .article-title a {
-                        color: #002244;
-                        text-decoration: none;
-                        transition: color 0.3s ease;
-                    }
-
-                    .article-title a:hover {
-                        color: #228B22;
-                    }
-
-                    .article-description {
-                        margin-bottom: 20px;
-                        color: #555;
+                    
+                    .contact-info-content p {
+                        margin: 0;
+                        font-size: 0.95rem;
+                        color: rgba(255,255,255,0.8);
                         line-height: 1.6;
                     }
-
-                    .article-read-more {
-                        display: inline-block;
-                        color: #228B22;
-                        font-weight: 600;
-                        text-decoration: none;
-                        transition: all 0.3s ease;
+                    
+                    .contact-social-links {
+                        display: flex;
+                        gap: 10px;
+                        margin-top: 30px;
                     }
-
-                    .article-read-more i {
-                        margin-left: 5px;
-                        transition: transform 0.3s ease;
-                    }
-
-                    .article-read-more:hover {
-                        color: #002244;
-                    }
-
-                    .article-read-more:hover i {
-                        transform: translateX(5px);
-                    }
-
-                    .articles-nav-next,
-                    .articles-nav-prev {
-                        color: white;
-                        background-color: #228B22;
-                        width: 40px;
-                        height: 40px;
+                    
+                    .contact-social-link {
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 36px;
+                        height: 36px;
+                        background-color: rgba(255,255,255,0.2);
                         border-radius: 50%;
+                        color: white;
                         transition: all 0.3s ease;
-                        position: absolute;
-                        top: 50%;
-                        transform: translateY(-50%);
                     }
-
-                    .articles-nav-next {
-                        right: 10px;
+                    
+                    .contact-social-link:hover {
+                        background-color: white;
+                        color: #228B22;
+                        transform: translateY(-3px);
                     }
-
-                    .articles-nav-prev {
-                        left: 10px;
-                    }
-
-                    .articles-nav-next:hover,
-                    .articles-nav-prev:hover {
-                        background-color: #1a6b1a;
-                        transform: translateY(-50%) scale(1.1);
-                    }
-
-                    @media (max-width: 768px) {
-                        .articles-header {
-                            flex-direction: column;
-                            text-align: center;
-                        }
-
-                        .articles-title-wrapper {
-                            margin-bottom: 20px;
-                        }
-
-                        .articles-divider {
-                            margin: 0 auto 10px;
-                        }
-
-                        .article-image-container {
-                            height: 180px;
+                    
+                    @media (max-width: 991px) {
+                        .contact-info-container {
+                            margin-top: 30px;
                         }
                     }
                 </style>
             </section>
-            <!--===== blog section ends =====-->
-
-            <!--===== contact section starts =====-->
-           @include('partials.footer')
+            
+            <!-- Footer Section -->
+            @include('partials.footer')
             <!--===== contact section ends =====-->
 
         </div>
@@ -2208,20 +2210,25 @@
         </script>
 
         <!--== scroll to top ==-->
-        <a id="take-to-top" href="#" class="active" aria-label="Scroll To Top"></a>
+        <a id="take-to-top" href="#" style="background-color: #002b54;" class="active" aria-label="Scroll To Top"></a>
     </div>
     <!-- #dtr-wrapper ends -->
 
     <!-- JS Files -->
     <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
-    <script src="{{ asset('assets/js/jquery.easing.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('assets/js/menu.js') }}"></script>
-    <script src="{{ asset('assets/js/slicknav.js') }}"></script>
-    <script src="{{ asset('assets/js/swiper-bundle.min.js') }}"></script>
-    <script src="{{ asset('assets/js/forms.js') }}"></script>
-    <script src="{{ asset('assets/js/animate.js') }}"></script>
+    <script src="{{ asset('assets/js/swiper.min.js') }}"></script>
+    <script src="{{ asset('assets/js/isotope.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.magnific-popup.min.js') }}"></script>
+    <script src="{{ asset('assets/js/easypiechart.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.waypoints.min.js') }}"></script>
     <script src="{{ asset('assets/js/custom.js') }}"></script>
+    <script src="{{ asset('assets/js/counter.js') }}"></script>
+    <script src="{{ asset('assets/js/testimonials.js') }}"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="{{ asset('assets/js/custom-header.js') }}"></script>
+    <script src="{{ asset('assets/js/custom-hero.js') }}"></script>
+    <script src="{{ asset('assets/js/client-testimonial.js') }}"></script>
 
     <!-- JS Files for portfolio -->
     <script src="{{ asset('assets/js/imagesloaded.min.js') }}"></script>
@@ -2245,6 +2252,172 @@
                 });
                 return false;
             });
+        });
+    </script>
+
+    <script>
+        // Smooth scroll for anchor links with offset for fixed header
+        document.addEventListener('DOMContentLoaded', function () {
+            const header = document.querySelector('#dtr-header-global');
+            const headerHeight = header ? header.offsetHeight : 0;
+            const navLinks = document.querySelectorAll('a.nav-link[href^="#"]');
+            
+            if (navLinks && navLinks.length > 0) {
+                navLinks.forEach(link => {
+                    link.addEventListener('click', function (e) {
+                        const targetId = this.getAttribute('href').slice(1);
+                        const target = document.getElementById(targetId);
+                        if (target) {
+                            e.preventDefault();
+                            const y = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                            window.scrollTo({ top: y, behavior: 'smooth' });
+                            // Optionally close mobile menu
+                            const mobileMenu = document.querySelector('.mobile-menu');
+                            if (mobileMenu) mobileMenu.classList.remove('active');
+                            $('.mobile-nav-container').slideUp(300);
+                        }
+                    });
+                });
+            }
+    </script>
+    
+    <!-- Mobile Menu Fix -->
+    <script>
+        // Initialize AOS (Animate On Scroll)
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+
+        // Counter Animation
+        function animateCounters() {
+            const counters = document.querySelectorAll('.counter');
+            const duration = 2000; // Animation duration in ms
+            const frameDuration = 1000 / 60; // 60fps
+            
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                const start = 0;
+                const totalFrames = Math.round(duration / frameDuration);
+                let frame = 0;
+                
+                const animate = () => {
+                    frame++;
+                    const progress = frame / totalFrames;
+                    const current = Math.round(easeOutQuart(progress) * target);
+                    
+                    counter.textContent = current;
+                    
+                    if (frame < totalFrames) {
+                        requestAnimationFrame(animate);
+                    } else {
+                        // Add + to 1000+ counter
+                        if (counter.getAttribute('data-target') === '1000') {
+                            counter.textContent = current + '+';
+                        }
+                    }
+                };
+                
+                // Start animation
+                requestAnimationFrame(animate);
+            });
+            
+            // Easing function for smooth animation
+            function easeOutQuart(t) {
+                return 1 - Math.pow(1 - t, 4);
+            }
+        }
+
+        // Run counter when scrolled to section
+        let counted = false;
+        function checkCounter() {
+            const counterSection = document.querySelector('.about-stats');
+            if (counterSection && !counted) {
+                const counterPosition = counterSection.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.5;
+                
+                if (counterPosition < screenPosition) {
+                    // Small delay to ensure AOS has triggered
+                    setTimeout(animateCounters, 300);
+                    counted = true;
+                }
+            }
+        }
+
+        $(document).ready(function() {
+            // Check counter on scroll
+            window.addEventListener('scroll', checkCounter);
+            // Initial check in case section is already in view
+            checkCounter();
+            // Simple toggle for mobile menu
+            $('#dtr-resp-menu-button').on('click', function(e) {
+                e.preventDefault();
+                
+                // Toggle menu visibility and button active state
+                $('.mobile-nav-container').slideToggle(300);
+                $(this).toggleClass('is-active');
+            });
+            
+            // Close mobile menu when clicking on a menu item
+            $('.mobile-nav-list li a').on('click', function() {
+                $('.mobile-nav-container').slideUp(300);
+                $('#dtr-resp-menu-button').removeClass('is-active');
+            });
+            
+            // Mobile menu toggle for the standard header
+            $('#dtr-menu-button').on('click', function(e) {
+                e.preventDefault();
+                $('.mobile-menu').slideToggle(300);
+                $(this).toggleClass('is-active');
+            });
+            
+            // Close mobile menu when clicking outside
+            $(document).on('click', function(e) {
+                if (!$(e.target).closest('#dtr-menu-button, .mobile-menu, #dtr-resp-menu-button, .mobile-nav-container').length) {
+                    $('.mobile-menu').slideUp(300);
+                    $('.mobile-nav-container').slideUp(300);
+                    $('#dtr-menu-button, #dtr-resp-menu-button').removeClass('is-active');
+                }
+            });
+            
+            // Ensure mobile menu is visible on small screens
+            $(window).on('resize', function() {
+                if ($(window).width() > 767) {
+                    $('.mobile-menu').hide();
+                    $('.mobile-nav-container').hide();
+                    $('#dtr-menu-button, #dtr-resp-menu-button').removeClass('is-active');
+                }
+            });
+            
+            // Fix jQuery compatibility issues with other scripts
+            jQuery.easing = jQuery.easing || {};
+            jQuery.easing.jswing = jQuery.easing.jswing || function(x) { return x; };
+            
+            // Handle null element errors
+            const safeAddEventListener = function(selector, event, handler) {
+                const element = document.querySelector(selector);
+                if (element) {
+                    element.addEventListener(event, handler);
+                }
+            };
+            
+            // Fix for forms.js error
+            if (typeof e !== 'function') {
+                window.e = function() { return true; };
+            }
+            
+            // Fix for missing image errors
+            document.querySelectorAll('img').forEach(img => {
+                img.onerror = function() {
+                    // Replace with a transparent placeholder
+                    this.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=';
+                    this.onerror = null; // Prevent infinite loop
+                };
+            });
+            
+            // Add padding to body to account for fixed header
+            document.body.style.paddingTop = '60px';
         });
     </script>
 

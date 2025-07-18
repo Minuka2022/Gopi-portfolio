@@ -9,6 +9,8 @@ use App\Models\event;
 use Illuminate\Support\Facades\Log;
 use App\Models\Article;
 use App\Models\Gallery;
+use App\Models\Testimonial;
+use App\Models\TrustedLogo;
 
 
 class FrontendController extends Controller
@@ -19,8 +21,10 @@ class FrontendController extends Controller
         $articles = article::with('images')->orderBy('created_at', 'desc')->get();
         $events = event::with('eventImages')->orderBy('created_at', 'desc')->get();
         $images = Gallery::latest()->take(12)->get();
+        $testimonials = Testimonial::where('is_active', true)->orderBy('display_order')->get();
+        $trustedLogos = TrustedLogo::where('is_active', true)->orderBy('display_order')->get();
         Log::info('Events' . $events);
-        return view('User.index', compact('articles', 'events', 'images'));
+        return view('User.index', compact('articles', 'events', 'images', 'testimonials', 'trustedLogos'));
     }
 
 
