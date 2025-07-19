@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-use App\Models\event;
+use App\Models\Event;
 use Illuminate\Support\Facades\Log;
 use App\Models\Article;
 use App\Models\Gallery;

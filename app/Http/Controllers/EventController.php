@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\event;
-use App\Models\eventimages;
+use App\Models\Event;
+use App\Models\Eventimages;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
