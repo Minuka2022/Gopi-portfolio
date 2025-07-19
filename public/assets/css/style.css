@@ -1043,4 +1043,10 @@ a:link, .dtr-nav a, #dtr-header-global, .dtr-form-btn, input, select, textarea, 
     .dtr-counter-mobile .dtr-counter__heading {
         font-size: 1.1rem;
     }
+    
+    /* Center hero description on mobile */
+    .mobile-center {
+        text-align: center !important;
+        margin: 0 auto !important;
+    }
 }

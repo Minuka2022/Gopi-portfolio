@@ -277,7 +277,7 @@
                                 <!-- Hero content starts -->
                                 <div class="hero-text">
                                     <div style="margin: 30px 0; padding: 0 20px 0 0;">
-                                        <p class="hero-description" style="text-align: left; max-width: 800px; margin: 0; line-height: 1.8; color: white; font-weight: 400; font-size: 1.1em;">
+                                        <p class="hero-description mobile-center" style="text-align: left; max-width: 800px; margin: 0; line-height: 1.8; color: white; font-weight: 400; font-size: 1.1em;">
                                             Success is about empowering others, delivering excellence, and leaving a meaningful impact that inspires trust, growth, and lasting connections in every endeavor.
                                         </p>
                                     </div>
