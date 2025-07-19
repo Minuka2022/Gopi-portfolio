@@ -18,6 +18,6 @@ class Event extends Model
     // Relationship with eventimages model
     public function eventImages()
     {
-        return $this->hasMany(eventimages::class, 'event_id');
+        return $this->hasMany(Eventimages::class, 'event_id');
     }
 }

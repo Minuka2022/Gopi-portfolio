@@ -19,7 +19,7 @@ class FrontendController extends Controller
 
     public function index() {
         $articles = Article::with('images')->orderBy('created_at', 'desc')->get();
-        $events = event::with('eventImages')->orderBy('created_at', 'desc')->get();
+        $events = Event::with('eventImages')->orderBy('created_at', 'desc')->get();
         $images = Gallery::latest()->take(12)->get();
         $testimonials = Testimonial::where('is_active', true)->orderBy('display_order')->get();
         $trustedLogos = TrustedLogo::where('is_active', true)->orderBy('display_order')->get();
@@ -37,7 +37,7 @@ class FrontendController extends Controller
     public function event()
 {
     // Fetch all events with their associated images
-    $events = event::with('eventImages')->get();
+    $events = Event::with('eventImages')->get();
     Log::info('Events fetched' . $events);
 
     // Pass the data to the User.Events view
