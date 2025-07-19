@@ -10,28 +10,29 @@
     <meta name="description" content="HTMLTemplate">
     <meta name="keywords" content="portfolio, personal">
 
-    <!-- FAVICON -->
-    <link rel="icon" href="{{ asset('assets/images/icons/favicon.png') }}" sizes="32x32" />
-    <link rel="icon" href="{{ asset('assets/images/icons/cropped-favicon-192x192.png') }}" sizes="192x192" />
-    <link rel="apple-touch-icon" href="{{ asset('assets/images/icons/cropped-favicon-180x180.png') }}" />
-    <meta name="msapplication-TileImage" content="{{ asset('assets/images/icons/cropped-favicon-270x270.png') }}" />
+   <!-- FAVICON -->
+<link rel="icon" href="{{ secure_asset('assets/images/icons/favicon.png') }}" sizes="32x32" />
+<link rel="icon" href="{{ secure_asset('assets/images/icons/cropped-favicon-192x192.png') }}" sizes="192x192" />
+<link rel="apple-touch-icon" href="{{ secure_asset('assets/images/icons/cropped-favicon-180x180.png') }}" />
+<meta name="msapplication-TileImage" content="{{ secure_asset('assets/images/icons/cropped-favicon-270x270.png') }}" />
 
-    <!-- CSS FILES -->
-    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/fonts/iconfont.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/swiper.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/animate.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/counter.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/custom-header.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/custom-hero.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/mobile-fixes.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/client-testimonial.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/about-section.css') }}">
-    
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<!-- CSS FILES -->
+<link rel="stylesheet" href="{{ secure_asset('assets/css/bootstrap.min.css') }}">
+<link rel="stylesheet" href="{{ secure_asset('assets/fonts/iconfont.css') }}">
+<link rel="stylesheet" href="{{ secure_asset('assets/css/swiper.min.css') }}">
+<link rel="stylesheet" href="{{ secure_asset('assets/css/animate.css') }}">
+<link rel="stylesheet" href="{{ secure_asset('assets/css/style.css') }}">
+<link rel="stylesheet" href="{{ secure_asset('assets/css/responsive.css') }}">
+<link rel="stylesheet" href="{{ secure_asset('assets/css/counter.css') }}">
+<link rel="stylesheet" href="{{ secure_asset('assets/css/custom-header.css') }}">
+<link rel="stylesheet" href="{{ secure_asset('assets/css/custom-hero.css') }}">
+<link rel="stylesheet" href="{{ secure_asset('assets/css/mobile-fixes.css') }}">
+<link rel="stylesheet" href="{{ secure_asset('assets/css/client-testimonial.css') }}">
+<link rel="stylesheet" href="{{ secure_asset('assets/css/about-section.css') }}">
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
 </head>
 
 
