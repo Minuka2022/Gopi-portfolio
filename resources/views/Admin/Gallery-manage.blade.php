@@ -1,133 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-      <title>Manage Gallery</title>
-      <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
-      <meta name="csrf-token" content="{{ csrf_token() }}">
+<head>
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <title>Manage Gallery</title>
+   <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
+   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-      <!-- Fonts and icons -->
-      <script src="{{ asset('assets-dash/js/plugin/webfont/webfont.min.js') }}"></script>
-      <script>
-         WebFont.load({
-             google: { families: ["Public Sans:300,400,500,600,700"] },
-             custom: {
-                 families: [
-                     "Font Awesome 5 Solid",
-                     "Font Awesome 5 Regular",
-                     "Font Awesome 5 Brands",
-                     "simple-line-icons",
-                 ],
-                 urls: ["{{ asset('assets-dash/css/fonts.min.css') }}"],
-             },
-             active: function () {
-                 sessionStorage.fonts = true;
-             },
-         });
-      </script>
+   <!-- Fonts and icons -->
+   <script src="{{ secure_asset('assets-dash/js/plugin/webfont/webfont.min.js') }}"></script>
+   <script>
+      WebFont.load({
+         google: { families: ["Public Sans:300,400,500,600,700"] },
+         custom: {
+            families: [
+               "Font Awesome 5 Solid",
+               "Font Awesome 5 Regular",
+               "Font Awesome 5 Brands",
+               "simple-line-icons",
+            ],
+            urls: ["{{ secure_asset('assets-dash/css/fonts.min.css') }}"],
+         },
+         active: function () {
+            sessionStorage.fonts = true;
+         },
+      });
+   </script>
 
-      <!-- CSS Files -->
-      <link rel="stylesheet" href="{{ asset('assets-dash/css/bootstrap.min.css') }}" />
-      <link rel="stylesheet" href="{{ asset('assets-dash/css/plugins.min.css') }}" />
-      <link rel="stylesheet" href="{{ asset('assets-dash/css/kaiadmin.min.css') }}" />
-      <link rel="stylesheet" href="{{ asset('assets-dash/css/demo.css') }}" />
+   <!-- CSS Files -->
+   <link rel="stylesheet" href="{{ secure_asset('assets-dash/css/bootstrap.min.css') }}" />
+   <link rel="stylesheet" href="{{ secure_asset('assets-dash/css/plugins.min.css') }}" />
+   <link rel="stylesheet" href="{{ secure_asset('assets-dash/css/kaiadmin.min.css') }}" />
+   <link rel="stylesheet" href="{{ secure_asset('assets-dash/css/demo.css') }}" />
 
-      <!-- The original styles remain unchanged -->
-      <style>
-        /* Base layout styles */
-        .card-body {
-            padding: 20px;
-            background: white;
-        }
+   <!-- The original styles remain unchanged -->
+   <style>
+      .card-body {
+         padding: 20px;
+         background: white;
+      }
 
-        /* Gallery grid layout */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            padding: 20px;
-        }
+      .gallery-grid {
+         display: grid;
+         grid-template-columns: repeat(4, 1fr);
+         gap: 20px;
+         padding: 20px;
+      }
 
-        /* Individual gallery tile styling */
-        .gallery-tile {
-            aspect-ratio: 1;
-            background: #e9ecef;
-            border-radius: 4px;
-            overflow: hidden;
-            position: relative;
-            transition: opacity 0.3s ease;
-        }
+      .gallery-tile {
+         aspect-ratio: 1;
+         background: #e9ecef;
+         border-radius: 4px;
+         overflow: hidden;
+         position: relative;
+         transition: opacity 0.3s ease;
+      }
 
-        /* Add button tile styling */
-        .add-tile {
-            background: #e9ecef;
-            cursor: pointer;
-        }
+      .add-tile {
+         background: #e9ecef;
+         cursor: pointer;
+      }
 
-        .add-image-btn {
-            width: 100%;
-            height: 100%;
-            border: none;
-            background: none;
-            cursor: pointer;
-            padding: 0;
-            transition: background-color 0.3s ease;
-        }
+      .add-image-btn {
+         width: 100%;
+         height: 100%;
+         border: none;
+         background: none;
+         cursor: pointer;
+         padding: 0;
+         transition: background-color 0.3s ease;
+      }
 
-        .add-image-btn:hover {
-            background: #dee2e6;
-        }
+      .add-image-btn:hover {
+         background: #dee2e6;
+      }
 
-        .add-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100%;
-            color: #6c757d;
-        }
+      .add-content {
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         justify-content: center;
+         height: 100%;
+         color: #6c757d;
+      }
 
-        .add-icon {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
+      .add-icon {
+         font-size: 2rem;
+         margin-bottom: 0.5rem;
+      }
 
-        /* Image container and image styling */
-        .image-container {
-            width: 100%;
-            height: 100%;
-            position: relative;
-        }
+      .image-container {
+         width: 100%;
+         height: 100%;
+         position: relative;
+      }
 
-        .image-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+      .image-container img {
+         width: 100%;
+         height: 100%;
+         object-fit: cover;
+      }
 
-        /* Remove button styling */
-        .remove-btn {
-            position: absolute;
-            top: 8px;
-            right: 8px;
-            background: rgba(0, 0, 0, 0.5);
-            color: white;
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s ease;
-        }
+      .remove-btn {
+         position: absolute;
+         top: 8px;
+         right: 8px;
+         background: rgba(0, 0, 0, 0.5);
+         color: white;
+         width: 24px;
+         height: 24px;
+         border-radius: 50%;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         cursor: pointer;
+         font-size: 16px;
+         transition: background-color 0.3s ease;
+      }
 
-        .remove-btn:hover {
-            background: rgba(0, 0, 0, 0.7);
-        }
-      </style>
-   </head>
+      .remove-btn:hover {
+         background: rgba(0, 0, 0, 0.7);
+      }
+   </style>
+</head>
+
    <body>
       <div class="wrapper">
          <!-- Sidebar -->

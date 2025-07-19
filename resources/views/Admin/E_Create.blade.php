@@ -1,90 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-      <title>Create Event</title>
-      <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
-      <meta name="csrf-token" content="{{ csrf_token() }}">
+<head>
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <title>Create Event</title>
+   <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
+   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-      <!-- Fonts and icons -->
-      <script src="{{ asset('assets-dash/js/plugin/webfont/webfont.min.js') }}"></script>
-      <script>
-         WebFont.load({
-            google: { families: ["Public Sans:300,400,500,600,700"] },
-            custom: {
-               families: [
-                  "Font Awesome 5 Solid",
-                  "Font Awesome 5 Regular",
-                  "Font Awesome 5 Brands",
-                  "simple-line-icons",
-               ],
-               urls: ["{{ asset('assets-dash/css/fonts.min.css') }}"],
-            },
-            active: function () {
-               sessionStorage.fonts = true;
-            },
-         });
-      </script>
+   <!-- Fonts and icons -->
+   <script src="{{ secure_asset('assets-dash/js/plugin/webfont/webfont.min.js') }}"></script>
+   <script>
+      WebFont.load({
+         google: { families: ["Public Sans:300,400,500,600,700"] },
+         custom: {
+            families: [
+               "Font Awesome 5 Solid",
+               "Font Awesome 5 Regular",
+               "Font Awesome 5 Brands",
+               "simple-line-icons",
+            ],
+            urls: ["{{ secure_asset('assets-dash/css/fonts.min.css') }}"],
+         },
+         active: function () {
+            sessionStorage.fonts = true;
+         },
+      });
+   </script>
 
-      <!-- CSS Files -->
-      <link rel="stylesheet" href="{{ asset('assets-dash/css/bootstrap.min.css') }}" />
-      <link rel="stylesheet" href="{{ asset('assets-dash/css/plugins.min.css') }}" />
-      <link rel="stylesheet" href="{{ asset('assets-dash/css/kaiadmin.min.css') }}" />
+   <!-- CSS Files -->
+   <link rel="stylesheet" href="{{ secure_asset('assets-dash/css/bootstrap.min.css') }}" />
+   <link rel="stylesheet" href="{{ secure_asset('assets-dash/css/plugins.min.css') }}" />
+   <link rel="stylesheet" href="{{ secure_asset('assets-dash/css/kaiadmin.min.css') }}" />
 
-      <!-- Custom Styles -->
-      <style>
-         .card-body {
-            padding: 20px;
-            background: white;
-         }
+   <!-- Custom Styles -->
+   <style>
+      .card-body {
+         padding: 20px;
+         background: white;
+      }
 
-         .add-images-section {
-            background: #f6f5f5;
-            padding: 15px;
-            border-radius: 4px;
-         }
+      .add-images-section {
+         background: #f6f5f5;
+         padding: 15px;
+         border-radius: 4px;
+      }
 
-         .image-preview {
-            width: 110px;
-            height: 110px;
-            background: #dee2e6;
-            position: relative;
-            border-radius: 4px;
-            transition: opacity 0.3s ease;
-            opacity: 1;
-            overflow: hidden;
-         }
+      .image-preview {
+         width: 110px;
+         height: 110px;
+         background: #dee2e6;
+         position: relative;
+         border-radius: 4px;
+         transition: opacity 0.3s ease;
+         opacity: 1;
+         overflow: hidden;
+      }
 
-         .image-preview img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-         }
+      .image-preview img {
+         width: 100%;
+         height: 100%;
+         object-fit: cover;
+      }
 
-         .remove-btn {
-            position: absolute;
-            top: -1px;
-            right: -1px;
-            background: rgb(116, 115, 115);
-            color: white;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 16px;
-            z-index: 1;
-         }
+      .remove-btn {
+         position: absolute;
+         top: -1px;
+         right: -1px;
+         background: rgb(116, 115, 115);
+         color: white;
+         width: 20px;
+         height: 20px;
+         border-radius: 50%;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         cursor: pointer;
+         font-size: 16px;
+         z-index: 1;
+      }
 
-         .remove-btn:hover {
-            background: rgba(0, 0, 0, 0.7);
-         }
+      .remove-btn:hover {
+         background: rgba(0, 0, 0, 0.7);
+      }
 
-         .gap-3 { gap: 1rem !important; }
-      </style>
-   </head>
+      .gap-3 { gap: 1rem !important; }
+   </style>
+</head>
+
    <body>
       <div class="wrapper">
          <!-- Sidebar -->
