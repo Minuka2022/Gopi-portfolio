@@ -2,7 +2,6 @@
 <html lang="en">
 
 
-<!-- Mirrored from tanshcreative.com/copr-st-preview/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 22 Oct 2024 14:26:15 GMT -->
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -33,6 +32,7 @@
     <link rel="stylesheet" href="{{ secure_asset('assets/css/client-testimonial.css') }}">
     <link rel="stylesheet" href="{{ secure_asset('assets/css/about-section.css') }}">
     <link rel="stylesheet" href="{{ secure_asset('assets/css/counter-styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-dU9pQ9zBAZzNQ3e9zRMvIGsCB9eLFxAUAFUsPZ9RIpvUqIQtfp0sc8+1OUeLRQqylI9KPyV9Tf+Sm3kZZZ94kg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
 
