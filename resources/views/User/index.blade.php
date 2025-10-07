@@ -12,27 +12,27 @@
     <meta name="keywords" content="portfolio, personal">
 
    <!-- FAVICON -->
-    <link rel="icon" href="{{ secure_asset('assets/images/icons/favicon.png') }}" sizes="32x32" />
-    <link rel="icon" href="{{ secure_asset('assets/images/icons/cropped-favicon-192x192.png') }}" sizes="192x192" />
-    <link rel="apple-touch-icon" href="{{ secure_asset('assets/images/icons/cropped-favicon-180x180.png') }}" />
-    <meta name="msapplication-TileImage" content="{{ secure_asset('assets/images/icons/cropped-favicon-270x270.png') }}" />
+    <link rel="icon" href="{{ asset('assets/images/icons/favicon.png') }}" sizes="32x32" />
+    <link rel="icon" href="{{ asset('assets/images/icons/cropped-favicon-192x192.png') }}" sizes="192x192" />
+    <link rel="apple-touch-icon" href="{{ asset('assets/images/icons/cropped-favicon-180x180.png') }}" />
+    <meta name="msapplication-TileImage" content="{{ asset('assets/images/icons/cropped-favicon-270x270.png') }}" />
 
     <!-- CSS FILES -->
-    <link rel="stylesheet" href="{{ secure_asset('assets/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ secure_asset('assets/fonts/iconfont.css') }}">
-    <link rel="stylesheet" href="{{ secure_asset('assets/css/swiper.min.css') }}">
-    <link rel="stylesheet" href="{{ secure_asset('assets/css/animate.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/fonts/iconfont.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/swiper.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/animate.css') }}">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <link rel="stylesheet" href="{{ secure_asset('assets/css/style.css') }}">
-    <link rel="stylesheet" href="{{ secure_asset('assets/css/responsive.css') }}">
-    <link rel="stylesheet" href="{{ secure_asset('assets/css/counter.css') }}">
-    <link rel="stylesheet" href="{{ secure_asset('assets/css/custom-header.css') }}">
-    <link rel="stylesheet" href="{{ secure_asset('assets/css/custom-hero.css') }}">
-    <link rel="stylesheet" href="{{ secure_asset('assets/css/mobile-fixes.css') }}">
-    <link rel="stylesheet" href="{{ secure_asset('assets/css/client-testimonial.css') }}">
-    <link rel="stylesheet" href="{{ secure_asset('assets/css/about-section.css') }}">
-    <link rel="stylesheet" href="{{ secure_asset('assets/css/counter-styles.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-dU9pQ9zBAZzNQ3e9zRMvIGsCB9eLFxAUAFUsPZ9RIpvUqIQtfp0sc8+1OUeLRQqylI9KPyV9Tf+Sm3kZZZ94kg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/counter.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/custom-header.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/custom-hero.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/mobile-fixes.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/client-testimonial.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/about-section.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/counter-styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
 
@@ -43,7 +43,7 @@
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
-    <script src="{{ secure_asset('assets/js/logo-carousel.js') }}"></script>
+    <script src="{{ asset('assets/js/logo-carousel.js') }}"></script>
 
     
     <!-- Fix for missing scripts -->
@@ -568,17 +568,23 @@
                  document.addEventListener("DOMContentLoaded", function () {
                      const images = ["assets/images/about-img1.jpg", "assets/images/about-img2.jpg", "assets/images/about-img3.jpg"];
                      const imageElement = document.querySelector(".dtr-about__img img");
+                     const prevBtn = document.querySelector(".slider-prev");
+                     const nextBtn = document.querySelector(".slider-next");
                      let currentIndex = 0;
 
-                     document.querySelector(".slider-prev").addEventListener("click", function () {
-                         currentIndex = (currentIndex === 0) ? images.length - 1 : currentIndex - 1;
-                         imageElement.src = images[currentIndex];
-                     });
+                     if (prevBtn && imageElement) {
+                         prevBtn.addEventListener("click", function () {
+                             currentIndex = (currentIndex === 0) ? images.length - 1 : currentIndex - 1;
+                             imageElement.src = images[currentIndex];
+                         });
+                     }
 
-                     document.querySelector(".slider-next").addEventListener("click", function () {
-                         currentIndex = (currentIndex === images.length - 1) ? 0 : currentIndex + 1;
-                         imageElement.src = images[currentIndex];
-                     });
+                     if (nextBtn && imageElement) {
+                         nextBtn.addEventListener("click", function () {
+                             currentIndex = (currentIndex === images.length - 1) ? 0 : currentIndex + 1;
+                             imageElement.src = images[currentIndex];
+                         });
+                     }
                  });
 
              </script>
@@ -2217,13 +2223,11 @@
     <!-- JS Files -->
     <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('assets/js/swiper.min.js') }}"></script>
-    <script src="{{ asset('assets/js/isotope.min.js') }}"></script>
-    <script src="{{ asset('assets/js/jquery.magnific-popup.min.js') }}"></script>
-    <script src="{{ asset('assets/js/easypiechart.min.js') }}"></script>
-    <script src="{{ asset('assets/js/jquery.waypoints.min.js') }}"></script>
+    <script src="{{ asset('assets/js/swiper-bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/js/isotope.js') }}"></script>
+    <script src="{{ asset('assets/js/imagesloaded.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.easing.js') }}"></script>
     <script src="{{ asset('assets/js/custom.js') }}"></script>
-    <script src="{{ asset('assets/js/counter.js') }}"></script>
     <script src="{{ asset('assets/js/testimonials.js') }}"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script src="{{ asset('assets/js/custom-header.js') }}"></script>
@@ -2279,8 +2283,9 @@
                     });
                 });
             }
+        });
     </script>
-    
+
     <!-- Mobile Menu Fix -->
     <script>
         // Initialize AOS (Animate On Scroll)

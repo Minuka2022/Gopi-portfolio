@@ -174,10 +174,10 @@ $(document).ready(function() {
         }
     });
     
-    // counter
-    $(".dtr-counter").appear(function () {
-        $(".counting-number").countTo();
-    });
+    // counter - disabled due to missing appear plugin
+    // $(".dtr-counter").appear(function () {
+    //     $(".counting-number").countTo();
+    // });
 
     // menu scroll	
     var headeroffset = $('#dtr-header-global').height();

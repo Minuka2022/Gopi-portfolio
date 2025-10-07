@@ -9,7 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Fonts and icons -->
-    <script src="{{ secure_asset('assets-dash/js/plugin/webfont/webfont.min.js') }}"></script>
+    <script src="{{ asset('assets-dash/js/plugin/webfont/webfont.min.js') }}"></script>
     <script>
         WebFont.load({
             google: { families: ["Public Sans:300,400,500,600,700"] },
@@ -20,7 +20,7 @@
                     "Font Awesome 5 Brands",
                     "simple-line-icons",
                 ],
-                urls: ["{{ secure_asset('assets-dash/css/fonts.min.css') }}"],
+                urls: ["{{ asset('assets-dash/css/fonts.min.css') }}"],
             },
             active: function () {
                 sessionStorage.fonts = true;
@@ -29,12 +29,12 @@
     </script>
 
     <!-- CSS Files -->
-    <link rel="stylesheet" href="{{ secure_asset('assets-dash/css/bootstrap.min.css') }}" />
-    <link rel="stylesheet" href="{{ secure_asset('assets-dash/css/plugins.min.css') }}" />
-    <link rel="stylesheet" href="{{ secure_asset('assets-dash/css/kaiadmin.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets-dash/css/bootstrap.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets-dash/css/plugins.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets-dash/css/kaiadmin.min.css') }}" />
 
     <!-- CSS Just for demo purpose -->
-    <link rel="stylesheet" href="{{ secure_asset('assets-dash/css/demo.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets-dash/css/demo.css') }}" />
 </head>
 
 
